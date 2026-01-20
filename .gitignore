@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local development
+.env
+.env.local
+*.log
+
+# Node (if ever added)
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.Python
+venv/
+
+# Temporary files
+*.tmp
+*.temp
