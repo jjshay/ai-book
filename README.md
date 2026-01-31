@@ -2,7 +2,7 @@
 
 > A comprehensive M&A signals and company intelligence platform tracking 593 private AI companies with $150B+ in combined funding.
 
-![Platform Preview](docs/images/preview.png)
+https://www.jjshay.com/aibook.html
 
 ## What I Built
 
