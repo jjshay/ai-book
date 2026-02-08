@@ -1527,6 +1527,7 @@
                 <button class="filter-btn" id="filter-unicorn" onclick="toggleFilter('unicorn')" title="Unicorns: $1B+ funding elite">🦄</button>
                 <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ strong momentum">🔥</button>
                 <button class="filter-btn" id="filter-rising" onclick="toggleFilter('rising')" title="Rising Stars: $10M-$100M growth stage">📈</button>
+                <button class="filter-btn" id="filter-recent" onclick="toggleFilter('recent')" title="Recently updated by AI monitor">🔄</button>
             </div>
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
@@ -1547,6 +1548,10 @@
             <div class="vanity-stat">
                 <span class="vanity-value" id="stat-ma">200+</span>
                 <span class="vanity-label">M&A Targets</span>
+            </div>
+            <div class="vanity-stat">
+                <span class="vanity-value" id="stat-updated" style="font-size:var(--fs-sm);color:var(--cyan)">--</span>
+                <span class="vanity-label">Last Updated</span>
             </div>
         </div>
 
@@ -1773,9 +1778,18 @@ function renderListView() {
     container.innerHTML = html;
 }
 
+function isRecentlyUpdated(c) {
+    if (!c.lastAutoUpdate) return false;
+    const d = new Date(c.lastAutoUpdate);
+    const ago = new Date();
+    ago.setDate(ago.getDate() - 7);
+    return d >= ago;
+}
+
 function renderMiniCard(c) {
     const logoUrl = c.website ? `https://www.google.com/s2/favicons?domain=${c.website}&sz=128` : null;
     const fallback = c.name.charAt(0).toUpperCase();
+    const updated = isRecentlyUpdated(c);
     return `
         <div class="mini-card" onclick="enterSwipeMode(${c.id})">
             <div class="mini-logo">
@@ -1785,7 +1799,7 @@ function renderMiniCard(c) {
                 }
             </div>
             <div class="mini-info">
-                <div class="mini-name">${c.name}</div>
+                <div class="mini-name">${c.name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}</div>
                 <div class="mini-product">${c.product || ''}</div>
             </div>
             <div class="mini-funding">${c.funding || ''}</div>
@@ -1869,6 +1883,26 @@ function updateVanityStats() {
     document.getElementById('stat-companies').textContent = deck.length;
     document.getElementById('stat-funding').textContent = fundingDisplay;
     document.getElementById('stat-ma').textContent = maTargets;
+
+    // Find most recent auto-update date
+    let latestUpdate = null;
+    let recentCount = 0;
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    companies.forEach(c => {
+        if (c.lastAutoUpdate) {
+            const d = new Date(c.lastAutoUpdate);
+            if (!latestUpdate || d > latestUpdate) latestUpdate = d;
+            if (d >= sevenDaysAgo) recentCount++;
+        }
+    });
+    const el = document.getElementById('stat-updated');
+    if (el && latestUpdate) {
+        const mo = latestUpdate.toLocaleString('default', { month: 'short' });
+        const day = latestUpdate.getDate();
+        el.textContent = `${mo} ${day}`;
+        if (recentCount > 0) el.title = `${recentCount} companies updated in the last 7 days`;
+    }
 }
 
 function buildDeck() {
@@ -1907,6 +1941,8 @@ function buildDeck() {
                 return funding >= 100; // $100M+
             } else if (activeHealthFilter === 'rising') {
                 return funding >= 10 && funding < 100; // $10M-$100M
+            } else if (activeHealthFilter === 'recent') {
+                return isRecentlyUpdated(c);
             }
             return true;
         });
