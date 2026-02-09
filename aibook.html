@@ -1528,7 +1528,7 @@
                 <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ strong momentum">🔥</button>
                 <button class="filter-btn" id="filter-rising" onclick="toggleFilter('rising')" title="Rising Stars: $10M-$100M growth stage">📈</button>
                 <button class="filter-btn" id="filter-recent" onclick="toggleFilter('recent')" title="Recently updated by AI monitor">🔄</button>
-                <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="New: Founded 2024+">🆕</button>
+                <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="Newly added companies">🆕</button>
             </div>
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
@@ -1945,7 +1945,7 @@ function buildDeck() {
             } else if (activeHealthFilter === 'recent') {
                 return isRecentlyUpdated(c);
             } else if (activeHealthFilter === 'new') {
-                return parseInt(c.founded) >= 2024;
+                return !!c.dateAdded;
             }
             return true;
         });
