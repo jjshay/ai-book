@@ -669,7 +669,16 @@
       "Defense market concentration",
       "Geopolitical shifts"
     ],
-    "linkedin": "https://linkedin.com/company/anduril-industries"
+    "linkedin": "https://linkedin.com/company/anduril-industries",
+    "fundingRounds": [
+      {"stage": "Series A", "amount": "$17M", "date": "2017-09", "investors": "Founders Fund, a16z"},
+      {"stage": "Series B", "amount": "$114M", "date": "2019-09", "investors": "a16z, Founders Fund"},
+      {"stage": "Series C", "amount": "$200M", "date": "2020-07", "investors": "a16z, Founders Fund"},
+      {"stage": "Series D", "amount": "$450M", "date": "2021-06", "investors": "Valor Equity, a16z, Founders Fund"},
+      {"stage": "Series E", "amount": "$1.5B", "date": "2022-12", "investors": "Valor Equity, a16z"},
+      {"stage": "Series F", "amount": "$1.5B", "date": "2024-08", "investors": "Founders Fund, Sands Capital, a16z"},
+      {"stage": "Series G", "amount": "$2.5B", "date": "2025-06", "investors": "Founders Fund, a16z, General Catalyst"}
+    ]
   },
   {
     "id": 22,
@@ -699,6 +708,16 @@
       "OpenAI competition",
       "Capital intensity",
       "Safety vs speed tension"
+    ],
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$124M", "date": "2021-05", "investors": "Jaan Tallinn, Dustin Moskovitz"},
+      {"stage": "Series A", "amount": "$580M", "date": "2022-04", "investors": "Spark Capital, Google"},
+      {"stage": "Series B", "amount": "$450M", "date": "2023-05", "investors": "Spark Capital, Google"},
+      {"stage": "Series C", "amount": "$2B", "date": "2023-12", "investors": "Google, Spark Capital"},
+      {"stage": "Series D", "amount": "$750M", "date": "2024-03", "investors": "Menlo Ventures, DTCP"},
+      {"stage": "Series E", "amount": "$4B", "date": "2024-08", "investors": "Amazon, Lightspeed, Salesforce"},
+      {"stage": "Series F", "amount": "$2B", "date": "2025-01", "investors": "Lightspeed, Google, Salesforce"},
+      {"stage": "Series G", "amount": "$15B", "date": "2025-11", "investors": "ICONIQ, Microsoft, Nvidia, Google"}
     ]
   },
   {
@@ -829,6 +848,7 @@
   {
     "id": 27,
     "name": "AppHarvest",
+    "status": "closed",
     "product": "AI Indoor Farming",
     "category": "agriculture-ai",
     "founded": 2017,
@@ -1723,6 +1743,8 @@
   {
     "id": 54,
     "name": "Berkshire Grey",
+    "status": "acquired",
+    "acquiredBy": "SoftBank",
     "product": "AI Robotic Picking",
     "category": "supply-chain",
     "founded": 2013,
@@ -2600,7 +2622,16 @@
       "Adobe competition",
       "Figma rivalry"
     ],
-    "linkedin": "https://linkedin.com/company/canva"
+    "linkedin": "https://linkedin.com/company/canva",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$3M", "date": "2013-03", "investors": "Matrix Partners, InterWest Partners"},
+      {"stage": "Series A", "amount": "$15M", "date": "2015-03", "investors": "Felicis, Blackbird Ventures"},
+      {"stage": "Series B", "amount": "$15M", "date": "2018-01", "investors": "Sequoia, Felicis"},
+      {"stage": "Series C", "amount": "$70M", "date": "2019-10", "investors": "General Atlantic, Bond"},
+      {"stage": "Series D", "amount": "$60M", "date": "2020-06", "investors": "Blackbird, Felicis, Sequoia"},
+      {"stage": "Series E", "amount": "$200M", "date": "2021-04", "investors": "T. Rowe Price, Franklin Templeton"},
+      {"stage": "Series F", "amount": "$200M", "date": "2021-09", "investors": "T. Rowe Price, Dragoneer"}
+    ]
   },
   {
     "id": 80,
@@ -2705,6 +2736,8 @@
   {
     "id": 83,
     "name": "Caption Health",
+    "status": "acquired",
+    "acquiredBy": "GE Healthcare",
     "product": "AI Ultrasound",
     "category": "healthtech",
     "founded": 2013,
@@ -3990,7 +4023,15 @@
     ],
     "valuation": "$7B",
     "lastRound": "Series D ($600M, Aug-Sep 2025)",
-    "investors": "Radical Ventures, Inovia Capital, AMD, Nvidia, PSP Investments, Salesforce Ventures"
+    "investors": "Radical Ventures, Inovia Capital, AMD, Nvidia, PSP Investments, Salesforce Ventures",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$8M", "date": "2019-09", "investors": "Radical Ventures, Section 32"},
+      {"stage": "Series A", "amount": "$40M", "date": "2020-05", "investors": "Index Ventures, DCVC"},
+      {"stage": "Series B", "amount": "$125M", "date": "2021-02", "investors": "Tiger Global, Index Ventures"},
+      {"stage": "Series C", "amount": "$270M", "date": "2022-06", "investors": "Inovia Capital, Tiger Global, Nvidia"},
+      {"stage": "Series D", "amount": "$500M", "date": "2025-07", "investors": "PSP Investments, AMD, Nvidia"},
+      {"stage": "Series D+", "amount": "$600M", "date": "2025-09", "investors": "Radical, Inovia, AMD, Nvidia, Salesforce"}
+    ]
   },
   {
     "id": 123,
@@ -4599,6 +4640,13 @@
       "Viral developer adoption",
       "AI-native architecture",
       "Multi-model flexibility"
+    ],
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$2M", "date": "2022-10", "investors": "OpenAI Startup Fund"},
+      {"stage": "Series A", "amount": "$60M", "date": "2024-01", "investors": "a16z, OpenAI Startup Fund"},
+      {"stage": "Series B", "amount": "$100M", "date": "2024-08", "investors": "Thrive Capital, a16z"},
+      {"stage": "Series C", "amount": "$900M", "date": "2025-01", "investors": "Thrive Capital, a16z"},
+      {"stage": "Series D", "amount": "$1.2B", "date": "2025-12", "investors": "Thrive Capital, a16z, Accel"}
     ]
   },
   {
@@ -4706,6 +4754,8 @@
   {
     "id": 145,
     "name": "Darktrace",
+    "status": "acquired",
+    "acquiredBy": "Thoma Bravo",
     "product": "Cyber AI",
     "category": "security-ai",
     "founded": 2013,
@@ -4762,7 +4812,20 @@
     "valuation": "$134B",
     "revenue": "$4.8B+ run-rate",
     "lastRound": "Series L ($4B+, Dec 2025)",
-    "investors": "Meta, a16z, DST Global, Tiger Global, Thrive Capital"
+    "investors": "Meta, a16z, DST Global, Tiger Global, Thrive Capital",
+    "fundingRounds": [
+      {"stage": "Series A", "amount": "$13.5M", "date": "2013-09", "investors": "a16z"},
+      {"stage": "Series B", "amount": "$33M", "date": "2016-02", "investors": "NEA, a16z"},
+      {"stage": "Series C", "amount": "$100M", "date": "2017-08", "investors": "a16z, NEA"},
+      {"stage": "Series D", "amount": "$400M", "date": "2019-02", "investors": "a16z, Microsoft"},
+      {"stage": "Series E", "amount": "$1B", "date": "2019-10", "investors": "a16z, Tiger Global"},
+      {"stage": "Series F", "amount": "$1.6B", "date": "2021-02", "investors": "Franklin Templeton"},
+      {"stage": "Series G", "amount": "$1.5B", "date": "2021-08", "investors": "Morgan Stanley, Tiger Global"},
+      {"stage": "Series H", "amount": "$500M", "date": "2022-09", "investors": "Morgan Stanley"},
+      {"stage": "Series I", "amount": "$500M", "date": "2023-09", "investors": "T. Rowe Price, Nvidia, Capital One"},
+      {"stage": "Series J", "amount": "$10B", "date": "2024-12", "investors": "Thrive Capital, a16z, DST, Meta"},
+      {"stage": "Series L", "amount": "$4B+", "date": "2025-12", "investors": "Meta, a16z, DST Global, Tiger Global"}
+    ]
   },
   {
     "id": 147,
@@ -7722,6 +7785,13 @@
       "1.7M+ hosted models",
       "Community network effects",
       "Revenue from enterprise hub"
+    ],
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$1.5M", "date": "2018-03", "investors": "Betaworks, SV Angel"},
+      {"stage": "Series A", "amount": "$15M", "date": "2019-12", "investors": "Lux Capital, Betaworks"},
+      {"stage": "Series B", "amount": "$40M", "date": "2021-03", "investors": "Addition, Lux Capital"},
+      {"stage": "Series C", "amount": "$100M", "date": "2022-05", "investors": "Coatue, Lux Capital, Sequoia"},
+      {"stage": "Series D", "amount": "$235M", "date": "2023-08", "investors": "Google, Amazon, Nvidia, Salesforce, Intel"}
     ]
   },
   {
@@ -12072,6 +12142,16 @@
       "Regulatory scrutiny",
       "Competition from Anthropic/Google/xAI",
       "Profit model transition"
+    ],
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$130M", "date": "2019-03", "investors": "Microsoft"},
+      {"stage": "Series A", "amount": "$1B", "date": "2021-01", "investors": "Microsoft"},
+      {"stage": "Series B", "amount": "$300M", "date": "2023-01", "investors": "Microsoft"},
+      {"stage": "Series C", "amount": "$10B", "date": "2023-04", "investors": "Microsoft"},
+      {"stage": "Series D", "amount": "$300M", "date": "2023-11", "investors": "Thrive Capital, Khosla, a16z"},
+      {"stage": "Series E", "amount": "$6.6B", "date": "2024-10", "investors": "Thrive Capital, Microsoft, SoftBank, Nvidia"},
+      {"stage": "Series F", "amount": "$40B", "date": "2025-03", "investors": "SoftBank"},
+      {"stage": "Series G", "amount": "$6.6B", "date": "2025-10", "investors": "Thrive Capital, Microsoft, SoftBank"}
     ]
   },
   {
@@ -12792,7 +12872,14 @@
     "valuation": "$20B",
     "revenue": "$200M ARR",
     "lastRound": "Series C ($200M, Sep 2025)",
-    "investors": "Institutional Venture Partners, NEA, Jeff Bezos, Nvidia, Softbank"
+    "investors": "Institutional Venture Partners, NEA, Jeff Bezos, Nvidia, Softbank",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$3.1M", "date": "2022-03", "investors": "Elad Gil, Nat Friedman"},
+      {"stage": "Series A", "amount": "$25.6M", "date": "2023-01", "investors": "IVP, NEA"},
+      {"stage": "Series B", "amount": "$73.6M", "date": "2024-01", "investors": "IVP, NEA, Jeff Bezos, Nvidia"},
+      {"stage": "Series B+", "amount": "$250M", "date": "2024-06", "investors": "SoftBank, Nvidia, Jeff Bezos"},
+      {"stage": "Series C", "amount": "$200M", "date": "2025-09", "investors": "IVP, NEA, SoftBank"}
+    ]
   },
   {
     "id": 391,
@@ -13604,6 +13691,8 @@
   {
     "id": 416,
     "name": "Qualified",
+    "status": "acquired",
+    "acquiredBy": "Salesforce",
     "product": "Pipeline Cloud",
     "category": "gtm-ai",
     "founded": 2018,
@@ -13910,6 +13999,8 @@
   {
     "id": 425,
     "name": "Recorded Future",
+    "status": "acquired",
+    "acquiredBy": "Mastercard",
     "product": "Threat Intelligence AI",
     "category": "security-ai",
     "founded": 2009,
@@ -14840,7 +14931,14 @@
     ],
     "valuation": "$3B",
     "lastRound": "Series D ($308M, Apr 2025)",
-    "investors": "General Atlantic, Fidelity, Nvidia, SoftBank, Baillie Gifford"
+    "investors": "General Atlantic, Fidelity, Nvidia, SoftBank, Baillie Gifford",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$8.5M", "date": "2020-12", "investors": "Lux Capital, Amplify Partners"},
+      {"stage": "Series A", "amount": "$35M", "date": "2021-12", "investors": "Coatue, Lux Capital"},
+      {"stage": "Series B", "amount": "$50M", "date": "2022-10", "investors": "Felicis Ventures, Coatue"},
+      {"stage": "Series C", "amount": "$141M", "date": "2023-06", "investors": "Google, Nvidia, Salesforce Ventures"},
+      {"stage": "Series D", "amount": "$308M", "date": "2025-04", "investors": "General Atlantic, Fidelity, Nvidia, SoftBank"}
+    ]
   },
   {
     "id": 454,
@@ -15236,7 +15334,17 @@
     ],
     "valuation": "$13.8B+",
     "lastRound": "Series G ($14.3B, Jun 2025)",
-    "investors": "Meta, Accel, Nvidia, Amazon, Tiger Global"
+    "investors": "Meta, Accel, Nvidia, Amazon, Tiger Global",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$5.6M", "date": "2016-08", "investors": "Accel, Y Combinator"},
+      {"stage": "Series A", "amount": "$13M", "date": "2017-08", "investors": "Accel, Index Ventures"},
+      {"stage": "Series B", "amount": "$100M", "date": "2019-08", "investors": "Founders Fund, Index"},
+      {"stage": "Series C", "amount": "$155M", "date": "2021-04", "investors": "Tiger Global, Index, Founders Fund"},
+      {"stage": "Series D", "amount": "$325M", "date": "2021-11", "investors": "Tiger Global"},
+      {"stage": "Series E", "amount": "$600M", "date": "2022-02", "investors": "Tiger Global, Greenoaks, Index"},
+      {"stage": "Series F", "amount": "$1B", "date": "2024-05", "investors": "Accel, Amazon, Nvidia"},
+      {"stage": "Series G", "amount": "$14.3B", "date": "2025-06", "investors": "Meta, Accel, Nvidia, Amazon, Tiger Global"}
+    ]
   },
   {
     "id": 466,
@@ -15613,7 +15721,16 @@
       "Defense market only",
       "Contract concentration"
     ],
-    "linkedin": "https://linkedin.com/company/shieldaboratories"
+    "linkedin": "https://linkedin.com/company/shieldaboratories",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$11M", "date": "2017-09", "investors": "Homebrew, Point72"},
+      {"stage": "Series A", "amount": "$10.5M", "date": "2019-02", "investors": "a16z, Homebrew"},
+      {"stage": "Series B", "amount": "$90M", "date": "2020-07", "investors": "Point72, Snowpoint Ventures"},
+      {"stage": "Series C", "amount": "$165M", "date": "2021-06", "investors": "Tiger Global, Snowpoint"},
+      {"stage": "Series D", "amount": "$200M", "date": "2022-01", "investors": "Koch Disruptive Technologies"},
+      {"stage": "Series E", "amount": "$300M", "date": "2023-05", "investors": "a16z, Snowpoint Ventures"},
+      {"stage": "Series F", "amount": "$200M", "date": "2023-11", "investors": "a16z, Snowpoint"}
+    ]
   },
   {
     "id": 477,
@@ -16539,7 +16656,18 @@
       "Valuation reset from 2021",
       "Competition from Adyen"
     ],
-    "linkedin": "https://linkedin.com/company/stripe"
+    "linkedin": "https://linkedin.com/company/stripe",
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "$2M", "date": "2011-03", "investors": "Y Combinator, Peter Thiel"},
+      {"stage": "Series A", "amount": "$18M", "date": "2012-02", "investors": "Sequoia Capital"},
+      {"stage": "Series B", "amount": "$20M", "date": "2014-01", "investors": "Founders Fund, Khosla Ventures"},
+      {"stage": "Series C", "amount": "$70M", "date": "2016-11", "investors": "CapitalG, General Catalyst"},
+      {"stage": "Series D", "amount": "$150M", "date": "2018-09", "investors": "Tiger Global, DST Global"},
+      {"stage": "Series E", "amount": "$250M", "date": "2019-09", "investors": "Sequoia, a16z, General Catalyst"},
+      {"stage": "Series G", "amount": "$600M", "date": "2020-04", "investors": "Sequoia, a16z, General Catalyst"},
+      {"stage": "Series H", "amount": "$6.5B", "date": "2023-03", "investors": "Sequoia, a16z, Fidelity, Goldman Sachs"},
+      {"stage": "Series I", "amount": "$694M", "date": "2023-12", "investors": "Sequoia, a16z, Tiger Global"}
+    ]
   },
   {
     "id": 505,
@@ -18880,6 +19008,8 @@
   {
     "id": 577,
     "name": "Wiz",
+    "status": "acquired",
+    "acquiredBy": "Google",
     "product": "Cloud Security",
     "category": "security-ai",
     "founded": 2020,
@@ -19097,6 +19227,12 @@
       "Musk distraction risk",
       "Regulatory concerns",
       "Late entrant to market"
+    ],
+    "fundingRounds": [
+      {"stage": "Seed", "amount": "Undisclosed", "date": "2023-07", "investors": "Elon Musk, private investors"},
+      {"stage": "Series A", "amount": "$500M", "date": "2023-11", "investors": "A/H Capital, Sequoia"},
+      {"stage": "Series B", "amount": "$6B", "date": "2024-05", "investors": "a16z, Sequoia, Fidelity, Valor Equity"},
+      {"stage": "Series C", "amount": "$20B", "date": "2026-01", "investors": "Nvidia, Cisco, Fidelity, a16z, Sequoia"}
     ]
   },
   {
@@ -19375,6 +19511,8 @@
   {
     "id": 592,
     "name": "Zendesk",
+    "status": "acquired",
+    "acquiredBy": "Hellman & Friedman / Permira",
     "product": "Customer Service + AI",
     "category": "enterprise-ai",
     "founded": 2007,
@@ -19444,6 +19582,8 @@
   {
     "id": 594,
     "name": "Zoox",
+    "status": "acquired",
+    "acquiredBy": "Amazon",
     "product": "Autonomous Robotaxi",
     "category": "industrial-ai",
     "founded": 2014,

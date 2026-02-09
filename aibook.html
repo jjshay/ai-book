@@ -798,6 +798,14 @@
             background: linear-gradient(135deg, #6b7280, #9ca3af);
             color: #fff;
         }
+        .health-badge.acquired {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
+        }
+        .health-badge.closed {
+            background: linear-gradient(135deg, #4b5563, #374151);
+            color: #9ca3af;
+        }
         .health-badge::after {
             content: attr(data-tooltip);
             position: absolute;
@@ -823,6 +831,58 @@
         .health-badge:hover::after {
             opacity: 1;
             visibility: visible;
+        }
+
+        /* ========== FUNDING TIMELINE ========== */
+        .funding-timeline {
+            position: relative;
+            padding-left: 24px;
+            margin: 8px 0;
+        }
+        .funding-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+            border-radius: 1px;
+        }
+        .timeline-item {
+            position: relative;
+            padding: 8px 0 8px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 14px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+        }
+        .timeline-stage {
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+        .timeline-amount {
+            font-size: var(--fs-base);
+            font-weight: 800;
+            color: #fff;
+            margin: 2px 0;
+        }
+        .timeline-meta {
+            font-size: var(--fs-xs);
+            color: var(--text-dim);
         }
 
         .card-name {
@@ -1529,6 +1589,7 @@
                 <button class="filter-btn" id="filter-rising" onclick="toggleFilter('rising')" title="Rising Stars: $10M-$100M growth stage">📈</button>
                 <button class="filter-btn" id="filter-recent" onclick="toggleFilter('recent')" title="Recently updated by AI monitor">🔄</button>
                 <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="Newly added companies">🆕</button>
+                <button class="filter-btn" id="filter-acquired" onclick="toggleFilter('acquired')" title="Acquired or closed companies">🏷️</button>
             </div>
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
@@ -1917,6 +1978,11 @@ function buildDeck() {
         return !funding.includes('public');
     });
 
+    // Hide acquired/closed unless specifically filtering for them
+    if (activeHealthFilter !== 'acquired') {
+        deck = deck.filter(c => c.status !== 'acquired' && c.status !== 'closed');
+    }
+
     // Deduplicate by normalized name (keep first occurrence)
     const seen = new Set();
     function normalizeName(name) {
@@ -1946,19 +2012,16 @@ function buildDeck() {
                 return isRecentlyUpdated(c);
             } else if (activeHealthFilter === 'new') {
                 return !!c.dateAdded;
+            } else if (activeHealthFilter === 'acquired') {
+                return c.status === 'acquired' || c.status === 'closed';
             }
             return true;
         });
     }
 
-    // Apply search filter
+    // Apply search filter (searches name, product, description, ceo, investors, hq, customers, category)
     if (searchQuery) {
-        deck = deck.filter(c =>
-            c.name.toLowerCase().includes(searchQuery) ||
-            (c.product && c.product.toLowerCase().includes(searchQuery)) ||
-            (c.description && c.description.toLowerCase().includes(searchQuery)) ||
-            (c.ceo && c.ceo.toLowerCase().includes(searchQuery))
-        );
+        deck = deck.filter(c => c._searchText && c._searchText.includes(searchQuery));
     }
 
     // Shuffle only if no search or sort active
@@ -2073,6 +2136,26 @@ function parseFundingAmount(funding) {
 }
 
 function getCompanyHealth(c) {
+    // Acquired companies
+    if (c.status === 'acquired') {
+        return {
+            class: 'acquired',
+            icon: '🏷️',
+            label: 'Acquired',
+            tooltip: c.acquiredBy ? `Acquired by ${c.acquiredBy}` : 'Acquired'
+        };
+    }
+
+    // Closed/bankrupt companies
+    if (c.status === 'closed') {
+        return {
+            class: 'closed',
+            icon: '⛔',
+            label: 'Closed',
+            tooltip: 'Company closed or bankrupt'
+        };
+    }
+
     const funding = parseFundingAmount(c.funding);
     const rating = c.rating || 3;
 
@@ -2491,6 +2574,20 @@ function openDetail(company) {
                     </div>
                 </div>
             </div>
+            ${company.fundingRounds && company.fundingRounds.length > 0 ? `
+            <div class="detail-section">
+                <div class="detail-section-title">Funding Timeline</div>
+                <div class="funding-timeline">
+                    ${company.fundingRounds.slice().reverse().map(r => `
+                        <div class="timeline-item">
+                            <div class="timeline-stage">${r.stage}</div>
+                            <div class="timeline-amount">${r.amount}</div>
+                            <div class="timeline-meta">${r.date ? r.date : ''}${r.investors ? ' · ' + r.investors : ''}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
             <div class="detail-section">
                 <div class="detail-section-title">Leadership</div>
                 <div class="detail-section-content">${company.ceo ? `CEO: ${company.ceo}` : 'Not available'}</div>
@@ -3099,6 +3196,15 @@ function exportCSV() {
     try {
         const response = await fetch('companies.json');
         companies = await response.json();
+        // Pre-compute search text for performance
+        companies.forEach(c => {
+            c._searchText = [
+                c.name, c.product, c.description, c.ceo,
+                c.investors, c.hq, c.customers,
+                getCategoryLabel(c.category), getCategoryLabel(c.category, true),
+                c.status, c.acquiredBy
+            ].filter(Boolean).join(' ').toLowerCase();
+        });
         console.log('[AI Book] Loaded ' + companies.length + ' companies from JSON');
         init();
     } catch (error) {
