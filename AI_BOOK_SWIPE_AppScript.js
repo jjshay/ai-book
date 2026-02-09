@@ -252,7 +252,7 @@ function sendWatchlistEmail(email, companies) {
   // ===== FOOTER =====
   h += "<tr><td style='padding:28px 24px;text-align:center'>";
   h += "<div style='font-size:10px;color:" + textMuted + ";margin-bottom:6px'>Generated " + new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}) + "</div>";
-  h += "<div style='font-size:11px;color:" + textMuted + "'>Powered by <a href='https://jjshay.com' style='color:" + gold + ";text-decoration:none;font-weight:600'>jjshay.com</a></div>";
+  h += "<div style='font-size:11px;color:" + textMuted + "'>Powered by <a href='https://jjshay.com/AI' style='color:" + gold + ";text-decoration:none;font-weight:600'>jjshay.com/AI</a></div>";
   h += "</td></tr>";
 
   h += "</table></td></tr></table></body></html>";
