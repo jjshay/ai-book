@@ -417,6 +417,32 @@
             color: var(--text-dim);
             margin-left: 8px;
         }
+        .filter-heading .rotating-stats {
+            display: flex;
+            gap: 0;
+            margin-top: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            overflow: hidden;
+            position: relative;
+            height: 20px;
+        }
+        .filter-heading .rotating-stats .stat-item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            color: var(--text-dim);
+        }
+        .filter-heading .rotating-stats .stat-item.active {
+            opacity: 1;
+        }
+        .filter-heading .rotating-stats .stat-item span {
+            color: var(--gold);
+            font-weight: 800;
+        }
         .letter-section {
             position: sticky;
             top: 0;
@@ -2241,6 +2267,47 @@ function init() {
 // ========== LIST VIEW ==========
 let currentLetter = 'A';
 
+function getAcquiredStats() {
+    let total = 0;
+    let count = 0;
+    let withValue = 0;
+    deck.forEach(c => {
+        count++;
+        // Try to parse acquisition value from valuation or funding
+        const val = c.valuation || c.funding || '';
+        const match = val.match(/\$?([\d.]+)\s*(B|M|T)/i);
+        if (match) {
+            const num = parseFloat(match[1]);
+            const mult = match[2].toUpperCase() === 'B' ? 1000 : match[2].toUpperCase() === 'T' ? 1000000 : 1;
+            total += num * mult; // in millions
+            withValue++;
+        }
+    });
+    const avg = withValue > 0 ? total / withValue : 0;
+    const fmtVal = (v) => v >= 1000 ? `$${(v/1000).toFixed(1)}B` : `$${Math.round(v)}M`;
+    return {
+        count,
+        totalStr: total > 0 ? fmtVal(total) : 'N/A',
+        avgStr: avg > 0 ? fmtVal(avg) : 'N/A'
+    };
+}
+
+let acquiredRotationTimer = null;
+
+function startAcquiredRotation() {
+    if (acquiredRotationTimer) clearInterval(acquiredRotationTimer);
+    const container = document.getElementById('acquired-rotating');
+    if (!container) return;
+    let idx = 0;
+    const items = container.querySelectorAll('.stat-item');
+    if (items.length === 0) return;
+    acquiredRotationTimer = setInterval(() => {
+        items[idx].classList.remove('active');
+        idx = (idx + 1) % items.length;
+        items[idx].classList.add('active');
+    }, 2500);
+}
+
 function getFilterHeading() {
     const labels = {
         unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
@@ -2260,7 +2327,17 @@ function renderListView() {
     // Add filter heading if a filter is active
     const heading = getFilterHeading();
     if (heading) {
-        html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span></div>`;
+        if (activeHealthFilter === 'acquired') {
+            const stats = getAcquiredStats();
+            html += `<div class="filter-heading">${heading.icon} ${heading.title}` +
+                `<div class="rotating-stats" id="acquired-rotating">` +
+                `<div class="stat-item active"><span>${stats.count}</span> companies acquired</div>` +
+                `<div class="stat-item"><span>${stats.totalStr}</span> total deal value</div>` +
+                `<div class="stat-item"><span>${stats.avgStr}</span> avg. acquisition price</div>` +
+                `</div></div>`;
+        } else {
+            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span></div>`;
+        }
     }
 
     // Use the already-sorted deck (from applyDeckSort)
@@ -2296,6 +2373,14 @@ function renderListView() {
     }
 
     container.innerHTML = html;
+
+    // Start rotation if acquired filter is active
+    if (activeHealthFilter === 'acquired') {
+        startAcquiredRotation();
+    } else if (acquiredRotationTimer) {
+        clearInterval(acquiredRotationTimer);
+        acquiredRotationTimer = null;
+    }
 }
 
 function isRecentlyUpdated(c) {
