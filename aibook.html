@@ -2392,20 +2392,12 @@ function updateVanityStats() {
     document.getElementById('stat-funding').textContent = fundingDisplay;
     document.getElementById('stat-ma').textContent = maTargets;
 
-    // Find most recent update date (check lastAutoUpdate, dateAdded, or fall back to today)
-    let latestUpdate = null;
-    companies.forEach(c => {
-        const dateStr = c.lastAutoUpdate || c.dateAdded;
-        if (dateStr) {
-            const d = new Date(dateStr);
-            if (!latestUpdate || d > latestUpdate) latestUpdate = d;
-        }
-    });
-    if (!latestUpdate) latestUpdate = new Date();
+    // Show today's date as last updated
+    const now = new Date();
     const el = document.getElementById('stat-updated');
     if (el) {
-        const mo = latestUpdate.toLocaleString('default', { month: 'short' });
-        const day = latestUpdate.getDate();
+        const mo = now.toLocaleString('default', { month: 'short' });
+        const day = now.getDate();
         el.textContent = `${mo} ${day}`;
     }
 }
