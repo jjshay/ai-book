@@ -1,0 +1,19 @@
+{
+  "name": "ai-book-auto-updater",
+  "version": "1.0.0",
+  "description": "Daily AI-powered company tracker updater for ai-book",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "update": "node run-update.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.37.0",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
