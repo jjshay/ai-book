@@ -6,6 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>AI Company Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D4AF37">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -713,6 +715,13 @@
         }
         .swipe-action-btn:hover { transform: scale(1.05); }
         .swipe-action-btn:active { transform: scale(0.97); }
+        .swipe-action-btn.undo {
+            background: rgba(148,163,184,0.15);
+            color: #94a3b8;
+            border: 2px solid rgba(148,163,184,0.3);
+            padding: 10px 16px;
+            font-size: 18px;
+        }
         .swipe-action-btn.pass {
             background: rgba(239,68,68,0.15);
             color: #ef4444;
@@ -1799,6 +1808,104 @@
             white-space: nowrap;
         }
 
+        .az-dropdown {
+            font-family: var(--font);
+            font-size: 13px;
+            padding: 6px 10px;
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* ========== COMPARE MODE ========== */
+        .compare-banner {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a3a5c, var(--navy));
+            border-top: 2px solid var(--cyan);
+            padding: 12px 16px;
+            z-index: 200;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text);
+            animation: slideUp 0.3s ease;
+        }
+        .compare-banner.active { display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .compare-banner-name { color: var(--cyan); font-weight: 700; }
+        .compare-banner button {
+            font-family: var(--font);
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+            cursor: pointer;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .compare-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 260;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .compare-modal.active { display: block; }
+        .compare-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .compare-header h2 { font-size: var(--fs-lg); font-weight: 700; color: var(--cyan); margin: 0; }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+            max-width: 700px;
+            margin: 16px auto;
+        }
+        .compare-cell {
+            padding: 10px 14px;
+            background: var(--bg);
+            font-size: 13px;
+        }
+        .compare-cell.header {
+            background: var(--navy);
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            font-size: 15px;
+            padding: 14px;
+        }
+        .compare-cell.label {
+            grid-column: 1 / -1;
+            background: rgba(0,206,209,0.08);
+            color: var(--cyan);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 14px;
+        }
+        .compare-cell .val { color: var(--text); font-weight: 600; }
+        .compare-cell .dim { color: var(--text-dim); font-size: 11px; }
+        .compare-winner { color: var(--gold) !important; }
+
         /* ========== STAR RATING INTERACTIVE ========== */
         .card-rating.clickable {
             cursor: pointer;
@@ -1965,9 +2072,10 @@
             </div>
             <div class="card-area" id="card-area"></div>
             <div class="swipe-actions" id="swipe-actions">
-                <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass">✕ Pass</button>
+                <button class="swipe-action-btn undo" onclick="undoSwipe()" title="Undo (Z)">↩</button>
+                <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass (←)">✕ Pass</button>
                 <span class="swipe-counter" id="swipe-counter"></span>
-                <button class="swipe-action-btn save" onclick="doSwipe('right')" title="Save">♥ Save</button>
+                <button class="swipe-action-btn save" onclick="doSwipe('right')" title="Save (→)">♥ Save</button>
             </div>
         </div>
 
@@ -1976,6 +2084,40 @@
     <!-- DETAIL MODAL -->
     <div class="detail-modal" id="detail-modal">
         <div class="detail-content" id="detail-content"></div>
+    </div>
+
+    <!-- RATING DEFINITIONS MODAL -->
+    <div class="modal" id="rating-modal" style="z-index:260">
+        <div class="modal-content" style="max-width:400px">
+            <div class="modal-header">
+                <h2>Rating Guide</h2>
+                <button class="close-btn" onclick="document.getElementById('rating-modal').classList.remove('active')">×</button>
+            </div>
+            <div class="modal-body" style="padding:16px">
+                <div style="display:flex;flex-direction:column;gap:14px">
+                    <div style="display:flex;align-items:flex-start;gap:12px">
+                        <span style="color:var(--gold);font-size:16px;white-space:nowrap">★★★★★</span>
+                        <div><strong style="color:#fff">Category Leader</strong><br><span style="color:var(--text-dim);font-size:13px">Dominant market position, $1B+ scale, proven moat</span></div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:12px">
+                        <span style="color:var(--gold);font-size:16px;white-space:nowrap">★★★★☆</span>
+                        <div><strong style="color:#fff">Strong Contender</strong><br><span style="color:var(--text-dim);font-size:13px">$200M+ raised, strong traction, clear differentiation</span></div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:12px">
+                        <span style="color:var(--gold);font-size:16px;white-space:nowrap">★★★☆☆</span>
+                        <div><strong style="color:#fff">Promising</strong><br><span style="color:var(--text-dim);font-size:13px">Growing company with product-market fit, real revenue</span></div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:12px">
+                        <span style="color:var(--gold);font-size:16px;white-space:nowrap">★★☆☆☆</span>
+                        <div><strong style="color:#fff">Early Stage</strong><br><span style="color:var(--text-dim);font-size:13px">Pre-revenue or early revenue, still finding fit</span></div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:12px">
+                        <span style="color:var(--gold);font-size:16px;white-space:nowrap">★☆☆☆☆</span>
+                        <div><strong style="color:#fff">Nascent</strong><br><span style="color:var(--text-dim);font-size:13px">Very early, pre-product or research stage</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- SAVED MODAL -->
@@ -1999,13 +2141,20 @@
         <div class="stat-modal-body" id="stat-modal-body"></div>
     </div>
 
-    <!-- RATING DEFINITIONS MODAL -->
-    <div class="stat-modal" id="rating-modal">
-        <div class="stat-modal-header">
-            <h2>Rating Definitions</h2>
-            <button class="stat-modal-close" onclick="closeRatingModal()">&times;</button>
+    <!-- COMPARE BANNER -->
+    <div class="compare-banner" id="compare-banner">
+        <span>Comparing: <span class="compare-banner-name" id="compare-name-1">—</span></span>
+        <span style="color:var(--text-dim)">Pick another company</span>
+        <button onclick="cancelCompare()">Cancel</button>
+    </div>
+
+    <!-- COMPARE MODAL -->
+    <div class="compare-modal" id="compare-modal">
+        <div class="compare-header">
+            <h2>Compare</h2>
+            <button class="stat-modal-close" onclick="closeCompare()">&times;</button>
         </div>
-        <div class="stat-modal-body" id="rating-modal-body"></div>
+        <div id="compare-body"></div>
     </div>
 
 <script>
@@ -2282,26 +2431,7 @@ function renderMABarChart() {
 
 // ========== STAR RATING DEFINITIONS ==========
 function openRatingModal() {
-    const modal = document.getElementById('rating-modal');
-    const body = document.getElementById('rating-modal-body');
-    const defs = [
-        { stars: 5, title: 'Category Leader', desc: 'Dominant market position, massive funding, proven product-market fit' },
-        { stars: 4, title: 'Strong Contender', desc: 'Significant traction, major funding, clear differentiation' },
-        { stars: 3, title: 'Promising', desc: 'Growing presence, solid funding, developing market position' },
-        { stars: 2, title: 'Early Stage', desc: 'Limited traction, early funding, unproven market fit' },
-        { stars: 1, title: 'Nascent', desc: 'Pre-revenue or minimal traction, seed stage' }
-    ];
-    body.innerHTML = defs.map(d => {
-        const filled = '\u2605'.repeat(d.stars);
-        const empty = '\u2606'.repeat(5 - d.stars);
-        return '<div class="rating-def-item">' +
-            '<div class="rating-def-stars">' + filled + empty + '</div>' +
-            '<div class="rating-def-text">' +
-            '<div class="rating-def-title">' + d.title + '</div>' +
-            '<div class="rating-def-desc">' + d.desc + '</div>' +
-            '</div></div>';
-    }).join('');
-    modal.classList.add('active');
+    document.getElementById('rating-modal').classList.add('active');
 }
 
 function closeRatingModal() {
@@ -2316,15 +2446,36 @@ function init() {
     updateUI();
     updateVanityStats();
 
-    // Escape key to close modals or exit swipe mode
+    // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
+        // Don't intercept if typing in search
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
         if (e.key === 'Escape') {
-            if (document.getElementById('stat-modal').classList.contains('active')) {
+            if (document.getElementById('compare-modal').classList.contains('active')) {
+                closeCompare();
+            } else if (document.getElementById('saved-modal').classList.contains('active')) {
+                closeSaved();
+            } else if (document.getElementById('stat-modal').classList.contains('active')) {
                 closeStatModal();
             } else if (document.getElementById('rating-modal').classList.contains('active')) {
                 closeRatingModal();
+            } else if (document.getElementById('detail-modal').classList.contains('active')) {
+                closeDetail();
+            } else if (compareCompany) {
+                cancelCompare();
             } else if (document.body.classList.contains('swipe-mode')) {
                 exitSwipeMode();
+            }
+        }
+
+        // Swipe mode shortcuts
+        if (document.body.classList.contains('swipe-mode') && !document.querySelector('.modal.active, .detail-modal.active')) {
+            if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'p') { doSwipe('left'); }
+            else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 's') { doSwipe('right'); }
+            else if (e.key.toLowerCase() === 'z') { undoSwipe(); }
+            else if (e.key === 'ArrowUp' || e.key === 'Enter') {
+                const c = deck[index]; if (c) openDetail(c);
             }
         }
     });
@@ -2547,8 +2698,8 @@ function updateVanityStats() {
 
     deck.forEach(c => {
         totalFunding += parseFundingAmount(c.funding);
-        // Count M&A targets (companies with >$100M funding or high rating)
-        if (parseFundingAmount(c.funding) > 100 || c.rating >= 4) {
+        // Count M&A targets (companies with >$100M funding or 5-star rating)
+        if (parseFundingAmount(c.funding) >= 100 || c.rating >= 5) {
             maTargets++;
         }
     });
@@ -2971,7 +3122,7 @@ function createCard(c, isCurrent) {
         <div class="card-overlay save">SAVE</div>
         <div class="card-logo-row">
             <div class="card-logo" id="logo-${c.id}">
-                ${logoUrl ? `<img src="${logoUrl}" alt="${c.name}">` : `<div class="card-logo-fallback">${fallbackInitial}</div>`}
+                ${logoUrl ? `<img src="${logoUrl}" alt="${c.name}" onerror="this.parentElement.innerHTML='<div class=\\'card-logo-fallback\\'>${fallbackInitial}</div>'">` : `<div class="card-logo-fallback">${fallbackInitial}</div>`}
             </div>
             <div style="flex:1">
                 <div class="card-name">${c.name}</div>
@@ -3211,6 +3362,10 @@ function openDetail(company) {
                 ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}">🌐</a>` : ''}
                 <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn">in</a>
                 <button class="link-circle" onclick="shareCompany(${company.id})" title="Copy summary">📋</button>
+                ${compareCompany && compareCompany.id !== company.id
+                    ? `<button class="link-circle" onclick="doCompare(${company.id})" title="Compare with ${compareCompany.name}" style="background:rgba(0,206,209,0.2);color:var(--cyan)">⚖</button>`
+                    : `<button class="link-circle" onclick="startCompare(${company.id})" title="Compare">⚖</button>`
+                }
             </div>
         </div>
         <div class="detail-actions">
@@ -3239,6 +3394,89 @@ function shareCompany(id) {
         const btn = event.target.closest('button');
         if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
     });
+}
+
+// ========== COMPARE MODE ==========
+let compareCompany = null; // first company selected for comparison
+
+function startCompare(id) {
+    const c = companies.find(x => x.id === id);
+    if (!c) return;
+    compareCompany = c;
+    document.getElementById('compare-name-1').textContent = c.name;
+    document.getElementById('compare-banner').classList.add('active');
+    closeDetail();
+}
+
+function cancelCompare() {
+    compareCompany = null;
+    document.getElementById('compare-banner').classList.remove('active');
+}
+
+function doCompare(id) {
+    const c2 = companies.find(x => x.id === id);
+    if (!c2 || !compareCompany) return;
+    const c1 = compareCompany;
+    cancelCompare();
+    closeDetail();
+
+    const f1 = parseFundingAmount(c1.funding);
+    const f2 = parseFundingAmount(c2.funding);
+    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+
+    let html = '<div class="compare-grid">';
+    html += `<div class="compare-cell header">${c1.name}</div>`;
+    html += `<div class="compare-cell header">${c2.name}</div>`;
+
+    // Category
+    html += '<div class="compare-cell label">Category</div>';
+    html += `<div class="compare-cell"><span class="val">${getCategoryLabel(c1.category)}</span></div>`;
+    html += `<div class="compare-cell"><span class="val">${getCategoryLabel(c2.category)}</span></div>`;
+
+    // Funding
+    html += '<div class="compare-cell label">Funding</div>';
+    html += `<div class="compare-cell"><span class="val ${f1 >= f2 ? 'compare-winner' : ''}">${c1.funding || 'N/A'}</span></div>`;
+    html += `<div class="compare-cell"><span class="val ${f2 >= f1 ? 'compare-winner' : ''}">${c2.funding || 'N/A'}</span></div>`;
+
+    // Rating
+    html += '<div class="compare-cell label">Rating</div>';
+    const r1 = c1.rating || 3, r2 = c2.rating || 3;
+    html += `<div class="compare-cell"><span class="val ${r1 >= r2 ? 'compare-winner' : ''}" style="color:var(--gold)">${stars(r1)}</span></div>`;
+    html += `<div class="compare-cell"><span class="val ${r2 >= r1 ? 'compare-winner' : ''}" style="color:var(--gold)">${stars(r2)}</span></div>`;
+
+    // Founded
+    html += '<div class="compare-cell label">Founded</div>';
+    html += `<div class="compare-cell"><span class="val">${c1.founded || '—'}</span></div>`;
+    html += `<div class="compare-cell"><span class="val">${c2.founded || '—'}</span></div>`;
+
+    // HQ
+    html += '<div class="compare-cell label">HQ</div>';
+    html += `<div class="compare-cell"><span class="val">${c1.hq || '—'}</span></div>`;
+    html += `<div class="compare-cell"><span class="val">${c2.hq || '—'}</span></div>`;
+
+    // Product
+    html += '<div class="compare-cell label">Product</div>';
+    html += `<div class="compare-cell"><span class="val">${c1.product || '—'}</span></div>`;
+    html += `<div class="compare-cell"><span class="val">${c2.product || '—'}</span></div>`;
+
+    // Investors
+    html += '<div class="compare-cell label">Key Investors</div>';
+    html += `<div class="compare-cell"><span class="dim">${c1.investors || '—'}</span></div>`;
+    html += `<div class="compare-cell"><span class="dim">${c2.investors || '—'}</span></div>`;
+
+    // Description
+    html += '<div class="compare-cell label">Description</div>';
+    html += `<div class="compare-cell"><span class="dim">${c1.description || '—'}</span></div>`;
+    html += `<div class="compare-cell"><span class="dim">${c2.description || '—'}</span></div>`;
+
+    html += '</div>';
+
+    document.getElementById('compare-body').innerHTML = html;
+    document.getElementById('compare-modal').classList.add('active');
+}
+
+function closeCompare() {
+    document.getElementById('compare-modal').classList.remove('active');
 }
 
 // ========== SWIPE GESTURES ==========
@@ -3395,7 +3633,12 @@ function flyCard(direction) {
 }
 
 function doSwipe(direction) {
-    flyCard(direction);
+    const card = document.querySelector('.card[style*="z-index: 2"]');
+    if (card) {
+        const overlay = card.querySelector(`.card-overlay.${direction === 'left' ? 'pass' : 'save'}`);
+        if (overlay) { overlay.style.opacity = '1'; }
+    }
+    setTimeout(() => flyCard(direction), 150);
 }
 
 function undoSwipe() {
@@ -3837,6 +4080,10 @@ function exportCSV() {
         });
         console.log('[AI Book] Loaded ' + companies.length + ' companies from JSON');
         init();
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
     } catch (error) {
         console.error('[AI Book] Failed to load companies:', error);
         document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#fff;background:#0a0f1a;min-height:100vh;"><h2>Loading Error</h2><p>Could not load company data. Make sure companies.json is in the same folder.</p></div>';
