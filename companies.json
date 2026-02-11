@@ -5512,7 +5512,7 @@
     "customers": "Developers, enterprises",
     "competitors": "OpenAI, Anthropic, Mistral",
     "secretSauce": "Cost-efficient training + open-source models + Chinese AI leader",
-    "description": "Chinese AI lab that shocked the industry with DeepSeek-V3 and R1 models achieving GPT-4 level performance at fraction of cost.",
+    "description": "Chinese AI company DeepSeek gained significant attention for releasing competitive AI models at reportedly lower costs, triggering major market reactions and discussions about AI infrastructure spending efficiency in early February 2026",
     "maInsight": "Chinese AI dark horse. Disrupted cost assumptions for AI training. Key geopolitical AI player.",
     "acquirers": "Alibaba, Tencent, ByteDance",
     "maValue": "Efficient LLM training",
@@ -5525,7 +5525,8 @@
       "US-China tensions",
       "Export controls"
     ],
-    "linkedin": "https://linkedin.com/company/deepseek-ai"
+    "linkedin": "https://linkedin.com/company/deepseek-ai",
+    "lastAutoUpdate": "2026-02-11"
   },
   {
     "id": 166,
