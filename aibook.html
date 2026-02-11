@@ -1548,6 +1548,202 @@
             background: var(--save);
             color: white;
         }
+
+        /* ========== CLICKABLE STAT CARDS ========== */
+        .vanity-stat.clickable {
+            cursor: pointer;
+            transition: transform 0.15s, background 0.15s;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        .vanity-stat.clickable:hover { background: rgba(212,175,55,0.1); }
+        .vanity-stat.clickable:active { transform: scale(0.95); }
+
+        /* ========== STAT MODAL ========== */
+        .stat-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 250;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .stat-modal.active { display: block; }
+        .stat-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .stat-modal-header h2 {
+            font-family: var(--font);
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--gold);
+            margin: 0;
+        }
+        .stat-modal-close {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-modal-body {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== BAR CHART ========== */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 8px 0;
+        }
+        .bar-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .bar-label-name { color: var(--text); }
+        .bar-label-value { color: var(--gold); font-weight: 700; }
+        .bar-label-value.cyan { color: var(--cyan); }
+        .bar-track {
+            height: 32px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #e8c84a);
+            border-radius: 8px;
+            transition: width 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+            min-width: 4px;
+        }
+        .bar-fill.cyan {
+            background: linear-gradient(90deg, var(--cyan), #00e5e8);
+        }
+
+        /* ========== STAT COMPANY LIST ========== */
+        .stat-letter-header {
+            position: sticky;
+            top: 0;
+            background: var(--navy);
+            padding: 6px 16px;
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 5;
+            border-bottom: 1px solid var(--border);
+        }
+        .stat-company-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            cursor: pointer;
+            transition: background 0.15s;
+            gap: 12px;
+        }
+        .stat-company-item:active { background: rgba(212,175,55,0.1); }
+        .stat-company-name {
+            flex: 1;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .stat-company-cat {
+            font-family: var(--font);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+        .stat-company-funding {
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        /* ========== STAR RATING INTERACTIVE ========== */
+        .card-rating.clickable {
+            cursor: pointer;
+            position: relative;
+        }
+        .card-rating.clickable:hover::after {
+            content: 'Tap for definitions';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            white-space: nowrap;
+            border: 1px solid var(--border);
+            margin-bottom: 4px;
+            letter-spacing: 0;
+            pointer-events: none;
+        }
+        .rating-def-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            align-items: flex-start;
+        }
+        .rating-def-item:last-child { border-bottom: none; }
+        .rating-def-stars {
+            color: var(--gold);
+            font-size: 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-width: 80px;
+            letter-spacing: 1px;
+        }
+        .rating-def-text { flex: 1; }
+        .rating-def-title {
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .rating-def-desc {
+            font-family: var(--font);
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -1605,15 +1801,15 @@
 
         <!-- VANITY STATS -->
         <div class="vanity-stats" id="vanity-stats">
-            <div class="vanity-stat">
+            <div class="vanity-stat clickable" onclick="openStatModal('companies')">
                 <span class="vanity-value" id="stat-companies">800</span>
                 <span class="vanity-label">Companies</span>
             </div>
-            <div class="vanity-stat">
+            <div class="vanity-stat clickable" onclick="openStatModal('funding')">
                 <span class="vanity-value" id="stat-funding">$150B+</span>
                 <span class="vanity-label">Total Raised</span>
             </div>
-            <div class="vanity-stat">
+            <div class="vanity-stat clickable" onclick="openStatModal('ma')">
                 <span class="vanity-value" id="stat-ma">200+</span>
                 <span class="vanity-label">M&A Targets</span>
             </div>
@@ -1663,6 +1859,24 @@
             <div class="modal-body" id="saved-list"></div>
             <div class="modal-footer" id="modal-footer"></div>
         </div>
+    </div>
+
+    <!-- STAT MODAL -->
+    <div class="stat-modal" id="stat-modal">
+        <div class="stat-modal-header">
+            <h2 id="stat-modal-title">Companies</h2>
+            <button class="stat-modal-close" onclick="closeStatModal()">&times;</button>
+        </div>
+        <div class="stat-modal-body" id="stat-modal-body"></div>
+    </div>
+
+    <!-- RATING DEFINITIONS MODAL -->
+    <div class="stat-modal" id="rating-modal">
+        <div class="stat-modal-header">
+            <h2>Rating Definitions</h2>
+            <button class="stat-modal-close" onclick="closeRatingModal()">&times;</button>
+        </div>
+        <div class="stat-modal-body" id="rating-modal-body"></div>
     </div>
 
 <script>
@@ -1792,6 +2006,179 @@ function getCategoryLabel(category, long = false) {
     return labels[category] || category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
+// ========== SUPER CATEGORY MAPPING ==========
+const SUPER_CATEGORIES = {
+    'Foundation & Infra': ['foundation-models','ai-chips','ai-infrastructure','ai-agents','data-infra','data-infrastructure'],
+    'Enterprise': ['enterprise-ai','gtm-ai','hr-talent'],
+    'Developer Tools': ['developer-tools','coding-ai'],
+    'Consumer & Creative': ['consumer-ai','creative-ai','photo-ai','video-ai','music-ai','gaming-ai','text-ai','voice-ai','education-ai','search-ai'],
+    'Finance & Legal': ['fintech-legal','legal-compliance','insurance-ai','legal-ai'],
+    'Health & Security': ['healthtech','healthtech-ai','security-ai'],
+    'Industrial & Climate': ['industrial-ai','robotics-ai','supply-chain','energy-ai','real-estate','travel-ai','ocean-ai','space-ai','climate-agri','agriculture-ai']
+};
+const CATEGORY_TO_SUPER = {};
+Object.entries(SUPER_CATEGORIES).forEach(([superCat, cats]) => {
+    cats.forEach(cat => { CATEGORY_TO_SUPER[cat] = superCat; });
+});
+function getSuperCategory(category) {
+    return CATEGORY_TO_SUPER[category] || 'Other';
+}
+
+// ========== STAT MODAL ==========
+function openStatModal(type) {
+    const modal = document.getElementById('stat-modal');
+    const title = document.getElementById('stat-modal-title');
+    const body = document.getElementById('stat-modal-body');
+
+    if (type === 'companies') {
+        const allCompanies = [...companies].filter(c => {
+            const funding = (c.funding || '').toLowerCase();
+            return !funding.includes('public');
+        });
+        title.textContent = 'All Companies (' + allCompanies.length + ')';
+        body.innerHTML = renderCompanyListForStatModal(allCompanies);
+    } else if (type === 'funding') {
+        title.textContent = 'Funding by Category';
+        body.innerHTML = renderFundingBarChart();
+    } else if (type === 'ma') {
+        title.textContent = 'M&A Targets by Category';
+        body.innerHTML = renderMABarChart();
+    }
+
+    modal.classList.add('active');
+}
+
+function closeStatModal() {
+    document.getElementById('stat-modal').classList.remove('active');
+}
+
+function renderCompanyListForStatModal(companyList) {
+    const sorted = companyList.sort((a, b) => a.name.localeCompare(b.name));
+    const grouped = {};
+    sorted.forEach(c => {
+        const letter = c.name.charAt(0).toUpperCase();
+        if (!grouped[letter]) grouped[letter] = [];
+        grouped[letter].push(c);
+    });
+
+    const letters = Object.keys(grouped).sort();
+    let html = '<div style="margin-bottom:12px;display:flex;align-items:center;gap:8px">';
+    html += '<label style="font-size:12px;font-weight:600;color:var(--text-dim)">Jump to:</label>';
+    html += '<select class="az-dropdown" onchange="statModalScrollToLetter(this.value)">';
+    html += '<option value="">All (' + sorted.length + ')</option>';
+    letters.forEach(l => {
+        html += '<option value="' + l + '">' + l + ' (' + grouped[l].length + ')</option>';
+    });
+    html += '</select></div>';
+
+    html += '<div id="stat-company-list">';
+    letters.forEach(letter => {
+        html += '<div class="stat-letter-header" id="stat-section-' + letter + '">' + letter + '</div>';
+        grouped[letter].forEach(c => {
+            const catLabel = getCategoryLabel(c.category);
+            html += '<div class="stat-company-item" onclick="closeStatModal(); enterSwipeMode(' + c.id + ')">';
+            html += '<div style="flex:1;min-width:0"><div class="stat-company-name">' + c.name + '</div>';
+            html += '<div class="stat-company-cat">' + catLabel + '</div></div>';
+            html += '<div class="stat-company-funding">' + (c.funding || '') + '</div>';
+            html += '</div>';
+        });
+    });
+    html += '</div>';
+    return html;
+}
+
+function statModalScrollToLetter(letter) {
+    if (!letter) return;
+    const el = document.getElementById('stat-section-' + letter);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderFundingBarChart() {
+    const fundingByCat = {};
+    companies.forEach(c => {
+        const funding = (c.funding || '').toLowerCase();
+        if (funding.includes('public')) return;
+        const superCat = getSuperCategory(c.category);
+        if (!fundingByCat[superCat]) fundingByCat[superCat] = 0;
+        fundingByCat[superCat] += parseFundingAmount(c.funding);
+    });
+
+    const sorted = Object.entries(fundingByCat).sort((a, b) => b[1] - a[1]);
+    const max = sorted.length > 0 ? sorted[0][1] : 1;
+
+    let html = '<div class="bar-chart">';
+    sorted.forEach(([cat, amount]) => {
+        const pct = (amount / max) * 100;
+        const display = amount >= 1000 ? '$' + (amount / 1000).toFixed(1) + 'B' : '$' + Math.round(amount) + 'M';
+        html += '<div class="bar-row">';
+        html += '<div class="bar-label"><span class="bar-label-name">' + cat + '</span>';
+        html += '<span class="bar-label-value">' + display + '</span></div>';
+        html += '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+        html += '</div>';
+    });
+    html += '</div>';
+    return html;
+}
+
+function renderMABarChart() {
+    const maByCat = {};
+    let total = 0;
+    companies.forEach(c => {
+        const funding = (c.funding || '').toLowerCase();
+        if (funding.includes('public')) return;
+        if (parseFundingAmount(c.funding) > 100 || (c.rating || 4) >= 4) {
+            const superCat = getSuperCategory(c.category);
+            if (!maByCat[superCat]) maByCat[superCat] = 0;
+            maByCat[superCat]++;
+            total++;
+        }
+    });
+
+    const sorted = Object.entries(maByCat).sort((a, b) => b[1] - a[1]);
+    const max = sorted.length > 0 ? sorted[0][1] : 1;
+
+    let html = '<p style="font-size:12px;color:var(--text-dim);margin-bottom:16px">Companies with $100M+ funding or 4+ star rating (' + total + ' total)</p>';
+    html += '<div class="bar-chart">';
+    sorted.forEach(([cat, count]) => {
+        const pct = (count / max) * 100;
+        html += '<div class="bar-row">';
+        html += '<div class="bar-label"><span class="bar-label-name">' + cat + '</span>';
+        html += '<span class="bar-label-value cyan">' + count + ' companies</span></div>';
+        html += '<div class="bar-track"><div class="bar-fill cyan" style="width:' + pct + '%"></div></div>';
+        html += '</div>';
+    });
+    html += '</div>';
+    return html;
+}
+
+// ========== STAR RATING DEFINITIONS ==========
+function openRatingModal() {
+    const modal = document.getElementById('rating-modal');
+    const body = document.getElementById('rating-modal-body');
+    const defs = [
+        { stars: 5, title: 'Category Leader', desc: 'Dominant market position, massive funding, proven product-market fit' },
+        { stars: 4, title: 'Strong Contender', desc: 'Significant traction, major funding, clear differentiation' },
+        { stars: 3, title: 'Promising', desc: 'Growing presence, solid funding, developing market position' },
+        { stars: 2, title: 'Early Stage', desc: 'Limited traction, early funding, unproven market fit' },
+        { stars: 1, title: 'Nascent', desc: 'Pre-revenue or minimal traction, seed stage' }
+    ];
+    body.innerHTML = defs.map(d => {
+        const filled = '\u2605'.repeat(d.stars);
+        const empty = '\u2606'.repeat(5 - d.stars);
+        return '<div class="rating-def-item">' +
+            '<div class="rating-def-stars">' + filled + empty + '</div>' +
+            '<div class="rating-def-text">' +
+            '<div class="rating-def-title">' + d.title + '</div>' +
+            '<div class="rating-def-desc">' + d.desc + '</div>' +
+            '</div></div>';
+    }).join('');
+    modal.classList.add('active');
+}
+
+function closeRatingModal() {
+    document.getElementById('rating-modal').classList.remove('active');
+}
+
 // ========== INIT ==========
 function init() {
     buildDeck();
@@ -1800,10 +2187,16 @@ function init() {
     updateUI();
     updateVanityStats();
 
-    // Escape key to exit swipe mode back to list
+    // Escape key to close modals or exit swipe mode
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && document.body.classList.contains('swipe-mode')) {
-            exitSwipeMode();
+        if (e.key === 'Escape') {
+            if (document.getElementById('stat-modal').classList.contains('active')) {
+                closeStatModal();
+            } else if (document.getElementById('rating-modal').classList.contains('active')) {
+                closeRatingModal();
+            } else if (document.body.classList.contains('swipe-mode')) {
+                exitSwipeMode();
+            }
         }
     });
 }
@@ -2399,7 +2792,7 @@ function createCard(c, isCurrent) {
             <span class="sauce-text">${c.secretSauce}</span>
         </div>` : ''}
         <div class="card-header">
-            <span class="card-rating">${stars}</span>
+            <span class="card-rating clickable" onclick="event.stopPropagation(); openRatingModal()">${stars}</span>
             <span class="card-category">${catLabel}</span>
         </div>
         <div class="card-stats">
@@ -2558,7 +2951,7 @@ function openDetail(company) {
         <div class="detail-body">
             <div class="detail-section">
                 <div class="detail-section-title">Rating</div>
-                <div class="detail-rating">${stars}</div>
+                <div class="detail-rating" style="cursor:pointer" onclick="openRatingModal()">${stars}</div>
             </div>
             <div class="detail-section">
                 <div class="detail-section-title">Category</div>
@@ -2652,22 +3045,21 @@ function setupSwipeGestures(card) {
         currentX = x - startX;
         currentY = y - startY;
 
-        // Check if swiping up (for undo)
+        // Check if swiping up (for SAVE)
         if (currentY < -50 && Math.abs(currentX) < 50) {
-            const undoProgress = Math.min(1, Math.abs(currentY) / 150);
-            card.style.transform = `translateY(${currentY}px) scale(${1 - undoProgress * 0.1})`;
-            card.style.opacity = 1 - undoProgress * 0.3;
-            // Show undo overlay
-            let undoOverlay = card.querySelector('.card-overlay.undo');
-            if (!undoOverlay) {
-                undoOverlay = document.createElement('div');
-                undoOverlay.className = 'card-overlay undo';
-                undoOverlay.innerHTML = '<span>↩ UNDO</span>';
-                undoOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(100,100,100,0.9);display:flex;align-items:center;justify-content:center;border-radius:20px;opacity:0;transition:opacity 0.2s;z-index:10;';
-                undoOverlay.querySelector('span').style.cssText = 'color:#fff;font-size:32px;font-weight:800;';
-                card.appendChild(undoOverlay);
+            const saveUpProgress = Math.min(1, Math.abs(currentY) / 150);
+            card.style.transform = `translateY(${currentY}px) scale(${1 - saveUpProgress * 0.1})`;
+            card.style.opacity = 1 - saveUpProgress * 0.3;
+            let saveUpOverlay = card.querySelector('.card-overlay.save-up');
+            if (!saveUpOverlay) {
+                saveUpOverlay = document.createElement('div');
+                saveUpOverlay.className = 'card-overlay save-up';
+                saveUpOverlay.innerHTML = '<span>♥ SAVE</span>';
+                saveUpOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(34,197,94,0.9);display:flex;align-items:center;justify-content:center;border-radius:20px;opacity:0;transition:opacity 0.2s;z-index:10;';
+                saveUpOverlay.querySelector('span').style.cssText = 'color:#fff;font-size:32px;font-weight:800;';
+                card.appendChild(saveUpOverlay);
             }
-            undoOverlay.style.opacity = undoProgress;
+            saveUpOverlay.style.opacity = saveUpProgress;
         }
         // Check if swiping down (back to list)
         else if (currentY > 50 && Math.abs(currentX) < 50) {
@@ -2693,9 +3085,9 @@ function setupSwipeGestures(card) {
 
             const passOverlay = card.querySelector('.card-overlay.pass');
             const saveOverlay = card.querySelector('.card-overlay.save');
-            const undoOverlay = card.querySelector('.card-overlay.undo');
+            const saveUpOverlay = card.querySelector('.card-overlay.save-up');
             const backOverlay = card.querySelector('.card-overlay.back');
-            if (undoOverlay) undoOverlay.style.opacity = 0;
+            if (saveUpOverlay) saveUpOverlay.style.opacity = 0;
             if (backOverlay) backOverlay.style.opacity = 0;
 
             if (currentX < -40) {
@@ -2716,15 +3108,17 @@ function setupSwipeGestures(card) {
         isDragging = false;
         card.classList.remove('dragging');
 
-        // Check for swipe up (undo)
+        // Check for swipe up (SAVE)
         if (currentY < -100 && Math.abs(currentX) < 50) {
-            card.style.transition = 'transform 0.3s, opacity 0.3s';
-            card.style.transform = '';
-            card.style.opacity = '';
-            const undoOverlay = card.querySelector('.card-overlay.undo');
-            if (undoOverlay) undoOverlay.style.opacity = 0;
-            setTimeout(() => card.style.transition = '', 300);
-            undoSwipe();
+            card.classList.add('flying');
+            card.style.transition = 'transform 0.35s, opacity 0.35s';
+            card.style.transform = 'translateY(-100vh)';
+            card.style.opacity = '0';
+            const company = deck[index];
+            history.push({ company, direction: 'right' });
+            saved.push(company);
+            localStorage.setItem('ai_tracker_saved', JSON.stringify(saved));
+            setTimeout(() => { index++; renderCards(); updateUI(); }, 350);
         }
         // Check for swipe down (back to list)
         else if (currentY > 100 && Math.abs(currentX) < 50) {
@@ -2744,8 +3138,8 @@ function setupSwipeGestures(card) {
             card.style.opacity = '';
             card.querySelector('.card-overlay.pass').style.opacity = 0;
             card.querySelector('.card-overlay.save').style.opacity = 0;
-            const undoOverlay = card.querySelector('.card-overlay.undo');
-            if (undoOverlay) undoOverlay.style.opacity = 0;
+            const saveUpOverlay = card.querySelector('.card-overlay.save-up');
+            if (saveUpOverlay) saveUpOverlay.style.opacity = 0;
             const backOverlay = card.querySelector('.card-overlay.back');
             if (backOverlay) backOverlay.style.opacity = 0;
             setTimeout(() => card.style.transition = '', 300);
