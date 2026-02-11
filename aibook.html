@@ -694,6 +694,43 @@
             overflow: hidden;
         }
 
+        .swipe-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            padding: 12px 16px 16px;
+        }
+        .swipe-action-btn {
+            font-family: var(--font);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .swipe-action-btn:hover { transform: scale(1.05); }
+        .swipe-action-btn:active { transform: scale(0.97); }
+        .swipe-action-btn.pass {
+            background: rgba(239,68,68,0.15);
+            color: #ef4444;
+            border: 2px solid rgba(239,68,68,0.3);
+        }
+        .swipe-action-btn.save {
+            background: rgba(34,197,94,0.15);
+            color: #22c55e;
+            border: 2px solid rgba(34,197,94,0.3);
+        }
+        .swipe-counter {
+            font-size: 13px;
+            color: var(--text-dim);
+            font-weight: 600;
+            min-width: 70px;
+            text-align: center;
+        }
+
         .card {
             position: absolute;
             width: calc(100% - 32px);
@@ -1838,24 +1875,48 @@
         <div class="filter-bar">
             <div class="filter-left">
                 <select class="filter-select" id="filter" onchange="filterChanged()">
-                    <option value="all">All</option>
-                    <option value="foundation-models">Foundation</option>
-                    <option value="enterprise-ai">Enterprise</option>
-                    <option value="developer-tools">Dev Tools</option>
-                    <option value="consumer-ai">Consumer</option>
-                    <option value="gtm-ai">GTM/Sales</option>
-                    <option value="healthtech">Healthcare</option>
-                    <option value="fintech-legal">Fintech</option>
-                    <option value="industrial-ai">Industrial</option>
-                    <option value="data-infra">Data Infra</option>
-                    <option value="security-ai">Security</option>
-                    <option value="robotics-ai">Robotics</option>
-                    <option value="video-ai">Video</option>
-                    <option value="voice-ai">Voice</option>
-                    <option value="creative-ai">Creative</option>
-                    <option value="education-ai">Education</option>
-                    <option value="gaming-ai">Gaming</option>
-                    <option value="music-ai">Music</option>
+                    <option value="all">All (625)</option>
+                    <optgroup label="Foundation & Infra">
+                        <option value="foundation-models">Foundation Models</option>
+                        <option value="ai-chips">AI Chips</option>
+                        <option value="ai-infrastructure">AI Infrastructure</option>
+                        <option value="data-infra">Data Infra</option>
+                    </optgroup>
+                    <optgroup label="Enterprise">
+                        <option value="enterprise-ai">Enterprise AI</option>
+                        <option value="gtm-ai">GTM / Sales</option>
+                        <option value="hr-talent">HR & Talent</option>
+                    </optgroup>
+                    <optgroup label="Developer Tools">
+                        <option value="developer-tools">Dev Tools</option>
+                        <option value="coding-ai">Coding AI</option>
+                    </optgroup>
+                    <optgroup label="Consumer & Creative">
+                        <option value="consumer-ai">Consumer</option>
+                        <option value="creative-ai">Creative</option>
+                        <option value="video-ai">Video</option>
+                        <option value="voice-ai">Voice</option>
+                        <option value="music-ai">Music</option>
+                        <option value="photo-ai">Photo</option>
+                        <option value="text-ai">Text / Writing</option>
+                        <option value="education-ai">Education</option>
+                        <option value="gaming-ai">Gaming</option>
+                    </optgroup>
+                    <optgroup label="Health & Security">
+                        <option value="healthtech">Healthcare</option>
+                        <option value="security-ai">Security</option>
+                    </optgroup>
+                    <optgroup label="Finance & Legal">
+                        <option value="fintech-legal">Fintech / Legal</option>
+                        <option value="insurance-ai">Insurance</option>
+                    </optgroup>
+                    <optgroup label="Industrial & Climate">
+                        <option value="industrial-ai">Industrial</option>
+                        <option value="robotics-ai">Robotics</option>
+                        <option value="energy-ai">Energy</option>
+                        <option value="climate-agri">Climate / Agri</option>
+                        <option value="space-ai">Space</option>
+                    </optgroup>
                 </select>
                 <button class="filter-btn" id="filter-unicorn" onclick="toggleFilter('unicorn')" title="Unicorns: $1B+ valuation">🦄 $1B+</button>
                 <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ funding">🔥 HOT</button>
@@ -1903,6 +1964,11 @@
                 <div class="progress-fill" id="progress" style="width: 0%"></div>
             </div>
             <div class="card-area" id="card-area"></div>
+            <div class="swipe-actions" id="swipe-actions">
+                <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass">✕ Pass</button>
+                <span class="swipe-counter" id="swipe-counter"></span>
+                <button class="swipe-action-btn save" onclick="doSwipe('right')" title="Save">♥ Save</button>
+            </div>
         </div>
 
     </div>
@@ -2585,9 +2651,13 @@ function buildDeck() {
 }
 
 function updateUI() {
+    const savedBtn = document.querySelector('.saved-btn');
     document.getElementById('saved-count').textContent = saved.length;
+    if (savedBtn) savedBtn.style.opacity = saved.length > 0 ? '1' : '0.5';
     const pct = deck.length > 0 ? ((index / deck.length) * 100) : 0;
     document.getElementById('progress').style.width = pct + '%';
+    const counter = document.getElementById('swipe-counter');
+    if (counter) counter.textContent = deck.length > 0 ? `${index + 1} of ${deck.length}` : '';
 }
 
 // ========== FILTER ==========
@@ -2721,21 +2791,21 @@ function getCompanyHealth(c) {
         };
     }
 
-    // Rising: $10M-$100M or growing
-    if (funding >= 10 || rating >= 3) {
+    // Emerging: $10M-$100M
+    if (funding >= 10) {
         return {
             class: 'warm',
-            icon: '📈',
-            label: 'Rising',
-            tooltip: 'Rising Star ($10M-$100M)'
+            icon: '🌱',
+            label: 'Emerging',
+            tooltip: 'Emerging ($10M-$100M)'
         };
     }
 
-    // Cold: Under $10M or early stage
+    // Early: Under $10M
     return {
         class: 'cold',
-        icon: '❄️',
-        label: 'Cold',
+        icon: '🔬',
+        label: 'Early',
         tooltip: 'Early Stage'
     };
 }
@@ -3140,6 +3210,7 @@ function openDetail(company) {
             <div class="card-links" style="margin-top:16px;">
                 ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}">🌐</a>` : ''}
                 <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn">in</a>
+                <button class="link-circle" onclick="shareCompany(${company.id})" title="Copy summary">📋</button>
             </div>
         </div>
         <div class="detail-actions">
@@ -3153,6 +3224,21 @@ function openDetail(company) {
 
 function closeDetail() {
     document.getElementById('detail-modal').classList.remove('active');
+}
+
+function shareCompany(id) {
+    const c = companies.find(x => x.id === id);
+    if (!c) return;
+    const text = `${c.name} — ${c.product || ''}\n` +
+        `Funding: ${c.funding || 'N/A'}\n` +
+        `HQ: ${c.hq || 'N/A'}\n` +
+        `Founded: ${c.founded || 'N/A'}\n` +
+        (c.description ? `${c.description}\n` : '') +
+        (c.website ? `https://${c.website}` : '');
+    navigator.clipboard.writeText(text.trim()).then(() => {
+        const btn = event.target.closest('button');
+        if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
+    });
 }
 
 // ========== SWIPE GESTURES ==========
@@ -3738,7 +3824,7 @@ function exportCSV() {
 // Load companies from master JSON, then init
 (async function() {
     try {
-        const response = await fetch('companies.json');
+        const response = await fetch('companies.json?v=' + Date.now());
         companies = await response.json();
         // Pre-compute search text for performance
         companies.forEach(c => {
