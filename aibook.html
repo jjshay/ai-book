@@ -775,32 +775,6 @@
         .card-overlay.pass { right: 20px; background: var(--pass); transform: rotate(15deg); }
         .card-overlay.save { left: 20px; background: var(--save); transform: rotate(-15deg); }
 
-        .swipe-up-hint {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 6px 0 2px;
-            color: #22c55e;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            opacity: 0.6;
-            animation: hintPulse 2.5s ease-in-out infinite;
-        }
-        .swipe-up-hint .arrow {
-            font-size: 18px;
-            animation: hintBounce 2.5s ease-in-out infinite;
-        }
-        @keyframes hintBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-        @keyframes hintPulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.7; }
-        }
-
         /* Card Content */
         .card-logo-row {
             display: flex;
@@ -1968,7 +1942,6 @@
                 <div class="progress-fill" id="progress" style="width: 0%"></div>
             </div>
             <div class="card-area" id="card-area"></div>
-            <div class="swipe-up-hint"><span class="arrow">↑</span> SWIPE UP = SAVE <span class="arrow">↑</span></div>
             <div class="swipe-actions" id="swipe-actions">
                 <button class="swipe-action-btn undo" onclick="undoSwipe()" title="Undo (Z)">↩</button>
                 <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass (←)">✕ Pass</button>
