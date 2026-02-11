@@ -492,6 +492,22 @@
             color: var(--save);
             flex-shrink: 0;
         }
+        .mini-card.acquired {
+            opacity: 0.6;
+        }
+        .mini-card.acquired .mini-funding {
+            color: var(--text-dim);
+        }
+        .acquired-badge {
+            font-size: 10px;
+            font-weight: 600;
+            color: #f59e0b;
+            background: rgba(245,158,11,0.15);
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
         .mini-arrow {
             color: var(--text-dim);
             font-size: 16px;
@@ -2294,8 +2310,10 @@ function renderMiniCard(c) {
     const logoUrl = c.website ? `https://www.google.com/s2/favicons?domain=${c.website}&sz=128` : null;
     const fallback = c.name.charAt(0).toUpperCase();
     const updated = isRecentlyUpdated(c);
+    const isAcquired = c.status === 'acquired' || c.status === 'closed';
+    const acquiredBadge = isAcquired ? `<span class="acquired-badge">Acquired${c.acquiredBy ? ' → ' + c.acquiredBy : ''}</span>` : '';
     return `
-        <div class="mini-card" onclick="enterSwipeMode(${c.id})">
+        <div class="mini-card${isAcquired ? ' acquired' : ''}" onclick="enterSwipeMode(${c.id})">
             <div class="mini-logo">
                 ${logoUrl
                     ? `<img src="${logoUrl}" onerror="this.parentElement.innerHTML='<span class=\\'mini-logo-fallback\\'>${fallback}</span>'">`
@@ -2303,7 +2321,7 @@ function renderMiniCard(c) {
                 }
             </div>
             <div class="mini-info">
-                <div class="mini-name">${c.name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}</div>
+                <div class="mini-name">${c.name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}${acquiredBadge}</div>
                 <div class="mini-product">${c.product || ''}</div>
             </div>
             <div class="mini-funding">${c.funding || ''}</div>
@@ -2413,10 +2431,7 @@ function buildDeck() {
         return !funding.includes('public');
     });
 
-    // Hide acquired/closed unless specifically filtering for them
-    if (activeHealthFilter !== 'acquired') {
-        deck = deck.filter(c => c.status !== 'acquired' && c.status !== 'closed');
-    }
+    // Acquired companies stay in the list (marked visually in renderMiniCard)
 
     // Deduplicate by normalized name (keep first occurrence)
     const seen = new Set();
