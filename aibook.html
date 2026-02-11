@@ -775,6 +775,32 @@
         .card-overlay.pass { right: 20px; background: var(--pass); transform: rotate(15deg); }
         .card-overlay.save { left: 20px; background: var(--save); transform: rotate(-15deg); }
 
+        .swipe-up-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 0 2px;
+            color: #22c55e;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            animation: hintPulse 2.5s ease-in-out infinite;
+        }
+        .swipe-up-hint .arrow {
+            font-size: 18px;
+            animation: hintBounce 2.5s ease-in-out infinite;
+        }
+        @keyframes hintBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        @keyframes hintPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
         /* Card Content */
         .card-logo-row {
             display: flex;
@@ -1819,93 +1845,6 @@
             cursor: pointer;
         }
 
-        /* ========== COMPARE MODE ========== */
-        .compare-banner {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #1a3a5c, var(--navy));
-            border-top: 2px solid var(--cyan);
-            padding: 12px 16px;
-            z-index: 200;
-            text-align: center;
-            font-size: 13px;
-            color: var(--text);
-            animation: slideUp 0.3s ease;
-        }
-        .compare-banner.active { display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .compare-banner-name { color: var(--cyan); font-weight: 700; }
-        .compare-banner button {
-            font-family: var(--font);
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.1);
-            color: var(--text);
-            cursor: pointer;
-        }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        .compare-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            z-index: 260;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .compare-modal.active { display: block; }
-        .compare-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .compare-header h2 { font-size: var(--fs-lg); font-weight: 700; color: var(--cyan); margin: 0; }
-        .compare-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: rgba(255,255,255,0.06);
-            max-width: 700px;
-            margin: 16px auto;
-        }
-        .compare-cell {
-            padding: 10px 14px;
-            background: var(--bg);
-            font-size: 13px;
-        }
-        .compare-cell.header {
-            background: var(--navy);
-            font-weight: 700;
-            color: var(--gold);
-            text-align: center;
-            font-size: 15px;
-            padding: 14px;
-        }
-        .compare-cell.label {
-            grid-column: 1 / -1;
-            background: rgba(0,206,209,0.08);
-            color: var(--cyan);
-            font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 14px;
-        }
-        .compare-cell .val { color: var(--text); font-weight: 600; }
-        .compare-cell .dim { color: var(--text-dim); font-size: 11px; }
-        .compare-winner { color: var(--gold) !important; }
-
         /* ========== STAR RATING INTERACTIVE ========== */
         .card-rating.clickable {
             cursor: pointer;
@@ -2029,6 +1968,7 @@
                 <div class="progress-fill" id="progress" style="width: 0%"></div>
             </div>
             <div class="card-area" id="card-area"></div>
+            <div class="swipe-up-hint"><span class="arrow">↑</span> SWIPE UP = SAVE <span class="arrow">↑</span></div>
             <div class="swipe-actions" id="swipe-actions">
                 <button class="swipe-action-btn undo" onclick="undoSwipe()" title="Undo (Z)">↩</button>
                 <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass (←)">✕ Pass</button>
@@ -2099,21 +2039,6 @@
         <div class="stat-modal-body" id="stat-modal-body"></div>
     </div>
 
-    <!-- COMPARE BANNER -->
-    <div class="compare-banner" id="compare-banner">
-        <span>Comparing: <span class="compare-banner-name" id="compare-name-1">—</span></span>
-        <span style="color:var(--text-dim)">Pick another company</span>
-        <button onclick="cancelCompare()">Cancel</button>
-    </div>
-
-    <!-- COMPARE MODAL -->
-    <div class="compare-modal" id="compare-modal">
-        <div class="compare-header">
-            <h2>Compare</h2>
-            <button class="stat-modal-close" onclick="closeCompare()">&times;</button>
-        </div>
-        <div id="compare-body"></div>
-    </div>
 
 <script>
 // ========== COMPANY DATA ==========
@@ -2151,113 +2076,20 @@ let history = [];
 let userEmail = localStorage.getItem('ai_tracker_email') || '';
 
 // ========== CATEGORY LABELS ==========
-function getCategoryLabel(category, long = false) {
-    const shortLabels = {
-        'foundation-models': 'Foundation',
-        'enterprise-ai': 'Enterprise',
-        'developer-tools': 'Dev Tools',
-        'consumer-ai': 'Consumer',
-        'video-ai': 'Video',
-        'voice-ai': 'Voice',
-        'healthtech': 'Health',
-        'healthtech-ai': 'Health',
-        'fintech-legal': 'Fintech',
-        'fintech-ai': 'Fintech',
-        'security-ai': 'Security',
-        'robotics-ai': 'Robotics',
-        'gtm-ai': 'GTM/Sales',
-        'industrial-ai': 'Industrial',
-        'data-infra': 'Data',
-        'data-infrastructure': 'Data',
-        'education-ai': 'Education',
-        'hr-talent': 'HR/Talent',
-        'supply-chain': 'Supply Chain',
-        'legal-compliance': 'Legal',
-        'legal-ai': 'Legal',
-        'real-estate': 'Real Estate',
-        'climate-agri': 'Climate',
-        'agriculture-ai': 'Agriculture',
-        'photo-ai': 'Photo',
-        'text-ai': 'Text',
-        'space-ai': 'Space',
-        'ocean-ai': 'Ocean',
-        'gaming-ai': 'Gaming',
-        'music-ai': 'Music',
-        'travel-ai': 'Travel',
-        'construction-ai': 'Construction',
-        'media-ai': 'Media',
-        'energy-ai': 'Energy',
-        'insurance-ai': 'Insurance',
-        'ai-agents': 'Agents',
-        'coding-ai': 'Coding',
-        'ai-infrastructure': 'AI Infra',
-        'ai-chips': 'AI Chips',
-        'creative-ai': 'Creative',
-        'search-ai': 'Search'
-    };
-    const longLabels = {
-        'foundation-models': 'Foundation Models',
-        'enterprise-ai': 'Enterprise AI',
-        'developer-tools': 'Developer Tools',
-        'consumer-ai': 'Consumer AI',
-        'video-ai': 'Video AI',
-        'voice-ai': 'Voice AI',
-        'healthtech': 'Healthcare',
-        'healthtech-ai': 'Healthcare AI',
-        'fintech-legal': 'Fintech & Legal',
-        'fintech-ai': 'Fintech AI',
-        'security-ai': 'Security AI',
-        'robotics-ai': 'Robotics AI',
-        'gtm-ai': 'GTM / Sales AI',
-        'industrial-ai': 'Industrial AI',
-        'data-infra': 'Data Infrastructure',
-        'data-infrastructure': 'Data Infrastructure',
-        'education-ai': 'Education AI',
-        'hr-talent': 'HR & Talent',
-        'supply-chain': 'Supply Chain',
-        'legal-compliance': 'Legal & Compliance',
-        'legal-ai': 'Legal AI',
-        'real-estate': 'Real Estate',
-        'climate-agri': 'Climate & Agriculture',
-        'agriculture-ai': 'Agriculture AI',
-        'photo-ai': 'Photo AI',
-        'text-ai': 'Text AI',
-        'space-ai': 'Space AI',
-        'ocean-ai': 'Ocean AI',
-        'gaming-ai': 'Gaming AI',
-        'music-ai': 'Music AI',
-        'travel-ai': 'Travel AI',
-        'construction-ai': 'Construction AI',
-        'media-ai': 'Media AI',
-        'energy-ai': 'Energy AI',
-        'insurance-ai': 'Insurance AI',
-        'ai-agents': 'AI Agents',
-        'coding-ai': 'Coding AI',
-        'ai-infrastructure': 'AI Infrastructure',
-        'ai-chips': 'AI Chips',
-        'creative-ai': 'Creative AI',
-        'search-ai': 'Search AI'
-    };
-    const labels = long ? longLabels : shortLabels;
-    return labels[category] || category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-}
-
-// ========== SUPER CATEGORY MAPPING ==========
-const SUPER_CATEGORIES = {
-    'Foundation & Infra': ['foundation-models','ai-chips','ai-infrastructure','ai-agents','data-infra','data-infrastructure'],
-    'Enterprise': ['enterprise-ai','gtm-ai','hr-talent'],
-    'Developer Tools': ['developer-tools','coding-ai'],
-    'Consumer & Creative': ['consumer-ai','creative-ai','photo-ai','video-ai','music-ai','gaming-ai','text-ai','voice-ai','education-ai','search-ai'],
-    'Finance & Legal': ['fintech-legal','legal-compliance','insurance-ai','legal-ai'],
-    'Health & Security': ['healthtech','healthtech-ai','security-ai'],
-    'Industrial & Climate': ['industrial-ai','robotics-ai','supply-chain','energy-ai','real-estate','travel-ai','ocean-ai','space-ai','climate-agri','agriculture-ai']
+const CATEGORY_LABELS = {
+    'foundation-infra': { short: 'Foundation', long: 'Foundation & Infra' },
+    'enterprise': { short: 'Enterprise', long: 'Enterprise AI' },
+    'dev-tools': { short: 'Dev Tools', long: 'Developer Tools' },
+    'consumer-creative': { short: 'Consumer', long: 'Consumer & Creative' },
+    'healthcare': { short: 'Health', long: 'Healthcare' },
+    'security': { short: 'Security', long: 'Security AI' },
+    'finance-legal': { short: 'Finance', long: 'Finance & Legal' },
+    'industrial': { short: 'Industrial', long: 'Industrial & Climate' }
 };
-const CATEGORY_TO_SUPER = {};
-Object.entries(SUPER_CATEGORIES).forEach(([superCat, cats]) => {
-    cats.forEach(cat => { CATEGORY_TO_SUPER[cat] = superCat; });
-});
-function getSuperCategory(category) {
-    return CATEGORY_TO_SUPER[category] || 'Other';
+function getCategoryLabel(category, long = false) {
+    const entry = CATEGORY_LABELS[category];
+    if (entry) return long ? entry.long : entry.short;
+    return category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
 // ========== BUILD FILTER DROPDOWN ==========
@@ -2267,14 +2099,9 @@ function buildFilterDropdown() {
     companies.forEach(c => { counts[c.category] = (counts[c.category] || 0) + 1; });
 
     let html = `<option value="all">All (${companies.length})</option>`;
-    Object.entries(SUPER_CATEGORIES).forEach(([group, cats]) => {
-        const groupCats = cats.filter(cat => counts[cat]);
-        if (groupCats.length === 0) return;
-        html += `<optgroup label="${group}">`;
-        groupCats.forEach(cat => {
-            html += `<option value="${cat}">${getCategoryLabel(cat)} (${counts[cat]})</option>`;
-        });
-        html += '</optgroup>';
+    Object.keys(CATEGORY_LABELS).forEach(cat => {
+        if (!counts[cat]) return;
+        html += `<option value="${cat}">${getCategoryLabel(cat, true)} (${counts[cat]})</option>`;
     });
     select.innerHTML = html;
     if (currentFilter !== 'all') select.value = currentFilter;
@@ -2354,9 +2181,9 @@ function renderFundingBarChart() {
     companies.forEach(c => {
         const funding = (c.funding || '').toLowerCase();
         if (funding.includes('public')) return;
-        const superCat = getSuperCategory(c.category);
-        if (!fundingByCat[superCat]) fundingByCat[superCat] = 0;
-        fundingByCat[superCat] += parseFundingAmount(c.funding);
+        const catLabel = getCategoryLabel(c.category, true);
+        if (!fundingByCat[catLabel]) fundingByCat[catLabel] = 0;
+        fundingByCat[catLabel] += parseFundingAmount(c.funding);
     });
 
     const sorted = Object.entries(fundingByCat).sort((a, b) => b[1] - a[1]);
@@ -2383,9 +2210,9 @@ function renderMABarChart() {
         const funding = (c.funding || '').toLowerCase();
         if (funding.includes('public')) return;
         if (isMATarget(c)) {
-            const superCat = getSuperCategory(c.category);
-            if (!maByCat[superCat]) maByCat[superCat] = 0;
-            maByCat[superCat]++;
+            const catLabel = getCategoryLabel(c.category, true);
+            if (!maByCat[catLabel]) maByCat[catLabel] = 0;
+            maByCat[catLabel]++;
             total++;
         }
     });
@@ -2436,9 +2263,7 @@ function init() {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
         if (e.key === 'Escape') {
-            if (document.getElementById('compare-modal').classList.contains('active')) {
-                closeCompare();
-            } else if (document.getElementById('saved-modal').classList.contains('active')) {
+            if (document.getElementById('saved-modal').classList.contains('active')) {
                 closeSaved();
             } else if (document.getElementById('stat-modal').classList.contains('active')) {
                 closeStatModal();
@@ -2446,8 +2271,6 @@ function init() {
                 closeRatingModal();
             } else if (document.getElementById('detail-modal').classList.contains('active')) {
                 closeDetail();
-            } else if (compareCompany) {
-                cancelCompare();
             } else if (document.body.classList.contains('swipe-mode')) {
                 exitSwipeMode();
             }
@@ -3359,10 +3182,6 @@ function openDetail(company) {
                 ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}">🌐</a>` : ''}
                 <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn">in</a>
                 <button class="link-circle" onclick="shareCompany(${company.id})" title="Copy summary">📋</button>
-                ${compareCompany && compareCompany.id !== company.id
-                    ? `<button class="link-circle" onclick="doCompare(${company.id})" title="Compare with ${compareCompany.name}" style="background:rgba(0,206,209,0.2);color:var(--cyan)">⚖</button>`
-                    : `<button class="link-circle" onclick="startCompare(${company.id})" title="Compare">⚖</button>`
-                }
             </div>
         </div>
         <div class="detail-actions">
@@ -3394,89 +3213,6 @@ function shareCompany(id) {
             if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
         });
     }
-}
-
-// ========== COMPARE MODE ==========
-let compareCompany = null; // first company selected for comparison
-
-function startCompare(id) {
-    const c = companies.find(x => x.id === id);
-    if (!c) return;
-    compareCompany = c;
-    document.getElementById('compare-name-1').textContent = c.name;
-    document.getElementById('compare-banner').classList.add('active');
-    closeDetail();
-}
-
-function cancelCompare() {
-    compareCompany = null;
-    document.getElementById('compare-banner').classList.remove('active');
-}
-
-function doCompare(id) {
-    const c2 = companies.find(x => x.id === id);
-    if (!c2 || !compareCompany) return;
-    const c1 = compareCompany;
-    cancelCompare();
-    closeDetail();
-
-    const f1 = parseFundingAmount(c1.funding);
-    const f2 = parseFundingAmount(c2.funding);
-    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
-
-    let html = '<div class="compare-grid">';
-    html += `<div class="compare-cell header">${c1.name}</div>`;
-    html += `<div class="compare-cell header">${c2.name}</div>`;
-
-    // Category
-    html += '<div class="compare-cell label">Category</div>';
-    html += `<div class="compare-cell"><span class="val">${getCategoryLabel(c1.category)}</span></div>`;
-    html += `<div class="compare-cell"><span class="val">${getCategoryLabel(c2.category)}</span></div>`;
-
-    // Funding
-    html += '<div class="compare-cell label">Funding</div>';
-    html += `<div class="compare-cell"><span class="val ${f1 >= f2 ? 'compare-winner' : ''}">${c1.funding || 'N/A'}</span></div>`;
-    html += `<div class="compare-cell"><span class="val ${f2 >= f1 ? 'compare-winner' : ''}">${c2.funding || 'N/A'}</span></div>`;
-
-    // Rating
-    html += '<div class="compare-cell label">Rating</div>';
-    const r1 = c1.rating || 3, r2 = c2.rating || 3;
-    html += `<div class="compare-cell"><span class="val ${r1 >= r2 ? 'compare-winner' : ''}" style="color:var(--gold)">${stars(r1)}</span></div>`;
-    html += `<div class="compare-cell"><span class="val ${r2 >= r1 ? 'compare-winner' : ''}" style="color:var(--gold)">${stars(r2)}</span></div>`;
-
-    // Founded
-    html += '<div class="compare-cell label">Founded</div>';
-    html += `<div class="compare-cell"><span class="val">${c1.founded || '—'}</span></div>`;
-    html += `<div class="compare-cell"><span class="val">${c2.founded || '—'}</span></div>`;
-
-    // HQ
-    html += '<div class="compare-cell label">HQ</div>';
-    html += `<div class="compare-cell"><span class="val">${c1.hq || '—'}</span></div>`;
-    html += `<div class="compare-cell"><span class="val">${c2.hq || '—'}</span></div>`;
-
-    // Product
-    html += '<div class="compare-cell label">Product</div>';
-    html += `<div class="compare-cell"><span class="val">${c1.product || '—'}</span></div>`;
-    html += `<div class="compare-cell"><span class="val">${c2.product || '—'}</span></div>`;
-
-    // Investors
-    html += '<div class="compare-cell label">Key Investors</div>';
-    html += `<div class="compare-cell"><span class="dim">${c1.investors || '—'}</span></div>`;
-    html += `<div class="compare-cell"><span class="dim">${c2.investors || '—'}</span></div>`;
-
-    // Description
-    html += '<div class="compare-cell label">Description</div>';
-    html += `<div class="compare-cell"><span class="dim">${c1.description || '—'}</span></div>`;
-    html += `<div class="compare-cell"><span class="dim">${c2.description || '—'}</span></div>`;
-
-    html += '</div>';
-
-    document.getElementById('compare-body').innerHTML = html;
-    document.getElementById('compare-modal').classList.add('active');
-}
-
-function closeCompare() {
-    document.getElementById('compare-modal').classList.remove('active');
 }
 
 // ========== SWIPE GESTURES ==========
