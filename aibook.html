@@ -1981,50 +1981,7 @@
         <!-- FILTER BAR -->
         <div class="filter-bar">
             <div class="filter-left">
-                <select class="filter-select" id="filter" onchange="filterChanged()">
-                    <option value="all">All (625)</option>
-                    <optgroup label="Foundation & Infra">
-                        <option value="foundation-models">Foundation Models</option>
-                        <option value="ai-chips">AI Chips</option>
-                        <option value="ai-infrastructure">AI Infrastructure</option>
-                        <option value="data-infra">Data Infra</option>
-                    </optgroup>
-                    <optgroup label="Enterprise">
-                        <option value="enterprise-ai">Enterprise AI</option>
-                        <option value="gtm-ai">GTM / Sales</option>
-                        <option value="hr-talent">HR & Talent</option>
-                    </optgroup>
-                    <optgroup label="Developer Tools">
-                        <option value="developer-tools">Dev Tools</option>
-                        <option value="coding-ai">Coding AI</option>
-                    </optgroup>
-                    <optgroup label="Consumer & Creative">
-                        <option value="consumer-ai">Consumer</option>
-                        <option value="creative-ai">Creative</option>
-                        <option value="video-ai">Video</option>
-                        <option value="voice-ai">Voice</option>
-                        <option value="music-ai">Music</option>
-                        <option value="photo-ai">Photo</option>
-                        <option value="text-ai">Text / Writing</option>
-                        <option value="education-ai">Education</option>
-                        <option value="gaming-ai">Gaming</option>
-                    </optgroup>
-                    <optgroup label="Health & Security">
-                        <option value="healthtech">Healthcare</option>
-                        <option value="security-ai">Security</option>
-                    </optgroup>
-                    <optgroup label="Finance & Legal">
-                        <option value="fintech-legal">Fintech / Legal</option>
-                        <option value="insurance-ai">Insurance</option>
-                    </optgroup>
-                    <optgroup label="Industrial & Climate">
-                        <option value="industrial-ai">Industrial</option>
-                        <option value="robotics-ai">Robotics</option>
-                        <option value="energy-ai">Energy</option>
-                        <option value="climate-agri">Climate / Agri</option>
-                        <option value="space-ai">Space</option>
-                    </optgroup>
-                </select>
+                <select class="filter-select" id="filter" onchange="filterChanged()"></select>
                 <button class="filter-btn" id="filter-unicorn" onclick="toggleFilter('unicorn')" title="Unicorns: $1B+ valuation">🦄 $1B+</button>
                 <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ funding">🔥 HOT</button>
                 <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="New additions">🆕 NEW</button>
@@ -2033,6 +1990,7 @@
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
                 <button class="sort-btn" id="sort-funding" onclick="sortDeck('funding')" title="Sort by funding amount">$$$</button>
+                <button class="sort-btn" onclick="exportCSV()" title="Export filtered list as CSV">CSV</button>
             </div>
         </div>
 
@@ -2302,6 +2260,26 @@ function getSuperCategory(category) {
     return CATEGORY_TO_SUPER[category] || 'Other';
 }
 
+// ========== BUILD FILTER DROPDOWN ==========
+function buildFilterDropdown() {
+    const select = document.getElementById('filter');
+    const counts = {};
+    companies.forEach(c => { counts[c.category] = (counts[c.category] || 0) + 1; });
+
+    let html = `<option value="all">All (${companies.length})</option>`;
+    Object.entries(SUPER_CATEGORIES).forEach(([group, cats]) => {
+        const groupCats = cats.filter(cat => counts[cat]);
+        if (groupCats.length === 0) return;
+        html += `<optgroup label="${group}">`;
+        groupCats.forEach(cat => {
+            html += `<option value="${cat}">${getCategoryLabel(cat)} (${counts[cat]})</option>`;
+        });
+        html += '</optgroup>';
+    });
+    select.innerHTML = html;
+    if (currentFilter !== 'all') select.value = currentFilter;
+}
+
 // ========== STAT MODAL ==========
 function openStatModal(type) {
     const modal = document.getElementById('stat-modal');
@@ -2404,7 +2382,7 @@ function renderMABarChart() {
     companies.forEach(c => {
         const funding = (c.funding || '').toLowerCase();
         if (funding.includes('public')) return;
-        if (parseFundingAmount(c.funding) > 100 || (c.rating || 4) >= 4) {
+        if (isMATarget(c)) {
             const superCat = getSuperCategory(c.category);
             if (!maByCat[superCat]) maByCat[superCat] = 0;
             maByCat[superCat]++;
@@ -2415,7 +2393,7 @@ function renderMABarChart() {
     const sorted = Object.entries(maByCat).sort((a, b) => b[1] - a[1]);
     const max = sorted.length > 0 ? sorted[0][1] : 1;
 
-    let html = '<p style="font-size:12px;color:var(--text-dim);margin-bottom:16px">Companies with $100M+ funding or 4+ star rating (' + total + ' total)</p>';
+    let html = '<p style="font-size:12px;color:var(--text-dim);margin-bottom:16px">Companies with $100M+ funding or 5-star rating (' + total + ' total)</p>';
     html += '<div class="bar-chart">';
     sorted.forEach(([cat, count]) => {
         const pct = (count / max) * 100;
@@ -2440,7 +2418,13 @@ function closeRatingModal() {
 
 // ========== INIT ==========
 function init() {
+    buildFilterDropdown();
     buildDeck();
+    // Restore swipe progress
+    try {
+        const savedIdx = parseInt(localStorage.getItem('ai-book-swipe-index'));
+        if (!isNaN(savedIdx) && savedIdx >= 0 && savedIdx < deck.length) index = savedIdx;
+    } catch(e) {}
     renderListView();
     renderAZSidebar();
     updateUI();
@@ -2608,12 +2592,20 @@ function isRecentlyUpdated(c) {
     return d >= ago;
 }
 
+function highlightMatch(text, query) {
+    if (!query || !text) return text || '';
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark style="background:var(--gold);color:#000;border-radius:2px;padding:0 1px">$1</mark>');
+}
+
 function renderMiniCard(c) {
     const logoUrl = c.website ? `https://www.google.com/s2/favicons?domain=${c.website}&sz=128` : null;
     const fallback = c.name.charAt(0).toUpperCase();
     const updated = isRecentlyUpdated(c);
     const isAcquired = c.status === 'acquired' || c.status === 'closed';
     const acquiredBadge = isAcquired ? `<span class="acquired-badge">Acquired${c.acquiredBy ? ' → ' + c.acquiredBy : ''}</span>` : '';
+    const name = searchQuery ? highlightMatch(c.name, searchQuery) : c.name;
+    const product = searchQuery ? highlightMatch(c.product || '', searchQuery) : (c.product || '');
     return `
         <div class="mini-card${isAcquired ? ' acquired' : ''}" onclick="enterSwipeMode(${c.id})">
             <div class="mini-logo">
@@ -2623,8 +2615,8 @@ function renderMiniCard(c) {
                 }
             </div>
             <div class="mini-info">
-                <div class="mini-name">${c.name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}${acquiredBadge}</div>
-                <div class="mini-product">${c.product || ''}</div>
+                <div class="mini-name">${name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}${acquiredBadge}</div>
+                <div class="mini-product">${product}</div>
             </div>
             <div class="mini-funding">${c.funding || ''}</div>
             <div class="mini-arrow">›</div>
@@ -2698,8 +2690,7 @@ function updateVanityStats() {
 
     deck.forEach(c => {
         totalFunding += parseFundingAmount(c.funding);
-        // Count M&A targets (companies with >$100M funding or 5-star rating)
-        if (parseFundingAmount(c.funding) >= 100 || c.rating >= 5) {
+        if (isMATarget(c)) {
             maTargets++;
         }
     });
@@ -2809,6 +2800,8 @@ function updateUI() {
     document.getElementById('progress').style.width = pct + '%';
     const counter = document.getElementById('swipe-counter');
     if (counter) counter.textContent = deck.length > 0 ? `${index + 1} of ${deck.length}` : '';
+    // Persist swipe progress
+    try { localStorage.setItem('ai-book-swipe-index', index); } catch(e) {}
 }
 
 // ========== FILTER ==========
@@ -2885,6 +2878,10 @@ function applyDeckSort() {
         });
     }
     index = 0;
+}
+
+function isMATarget(c) {
+    return parseFundingAmount(c.funding) >= 100 || (c.rating || 3) >= 5;
 }
 
 function parseFundingAmount(funding) {
@@ -3384,16 +3381,19 @@ function closeDetail() {
 function shareCompany(id) {
     const c = companies.find(x => x.id === id);
     if (!c) return;
-    const text = `${c.name} — ${c.product || ''}\n` +
-        `Funding: ${c.funding || 'N/A'}\n` +
-        `HQ: ${c.hq || 'N/A'}\n` +
-        `Founded: ${c.founded || 'N/A'}\n` +
-        (c.description ? `${c.description}\n` : '') +
-        (c.website ? `https://${c.website}` : '');
-    navigator.clipboard.writeText(text.trim()).then(() => {
-        const btn = event.target.closest('button');
-        if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
-    });
+    const text = `${c.name} — ${c.product || ''}\nFunding: ${c.funding || 'N/A'}\nHQ: ${c.hq || 'N/A'}\nFounded: ${c.founded || 'N/A'}\n` +
+        (c.description ? `${c.description}\n` : '') + (c.website ? `https://${c.website}` : '');
+    const url = c.website ? `https://${c.website}` : '';
+
+    // Use Web Share API on mobile if available
+    if (navigator.share) {
+        navigator.share({ title: c.name, text: text.trim(), url: url }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(text.trim()).then(() => {
+            const btn = event.target.closest('button');
+            if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
+        });
+    }
 }
 
 // ========== COMPARE MODE ==========
@@ -4045,21 +4045,23 @@ async function resendEmail() {
     }
 }
 
-function exportCSV() {
-    if (saved.length === 0) return;
+function exportCSV(source) {
+    const list = source === 'saved' ? saved : deck;
+    if (list.length === 0) return;
 
-    const headers = ['Name', 'Product', 'Category', 'Funding', 'HQ', 'Employees', 'Website', 'CEO', 'Founded'];
-    const rows = saved.map(c => [
-        c.name, c.product, c.category, c.funding, c.hq, c.employees, c.website, c.ceo, c.founded
+    const headers = ['Name', 'Product', 'Category', 'Funding', 'Rating', 'HQ', 'Founded', 'Website', 'Investors', 'Description'];
+    const rows = list.map(c => [
+        c.name, c.product, getCategoryLabel(c.category), c.funding,
+        c.rating || '', c.hq, c.founded, c.website, c.investors, c.description
     ]);
 
-    const csv = [headers, ...rows].map(r => r.map(v => `"${v || ''}"`).join(',')).join('\n');
+    const csv = [headers, ...rows].map(r => r.map(v => `"${(v || '').toString().replace(/"/g, '""')}"`).join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'ai_companies_saved.csv';
+    a.download = source === 'saved' ? 'ai_companies_saved.csv' : `ai_companies_${deck.length}.csv`;
     a.click();
     URL.revokeObjectURL(url);
 }

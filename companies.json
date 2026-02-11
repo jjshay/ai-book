@@ -836,17 +836,17 @@
   },
   {
     "id": 25,
-    "name": "Anysphere",
-    "product": "Cursor AI Coding",
-    "category": "coding-ai",
+    "name": "Anysphere (Cursor)",
+    "product": "Cursor AI Code Editor",
+    "category": "developer-tools",
     "founded": 2022,
     "ceo": "Michael Truell",
-    "funding": "$3.4B (via Cursor)",
+    "funding": "$3.4B",
     "fundingValue": 3400000000,
     "valuation": "$29.3B",
     "lastRound": "Series D ($2.3B, Nov 2025)",
     "rating": 5,
-    "website": "anysphere.inc",
+    "website": "cursor.sh",
     "hq": "San Francisco, CA",
     "employees": "100-200",
     "investors": "Accel, Coatue, Google, Nvidia, Thrive Capital",
@@ -867,7 +867,39 @@
       "Valuation justification"
     ],
     "linkedin": "https://linkedin.com/company/anysphere",
-    "revenue": "$1B+ ARR"
+    "revenue": "$1B+ ARR",
+    "fundingRounds": [
+      {
+        "stage": "Seed",
+        "amount": "$2M",
+        "date": "2022-10",
+        "investors": "OpenAI Startup Fund"
+      },
+      {
+        "stage": "Series A",
+        "amount": "$60M",
+        "date": "2024-01",
+        "investors": "a16z, OpenAI Startup Fund"
+      },
+      {
+        "stage": "Series B",
+        "amount": "$100M",
+        "date": "2024-08",
+        "investors": "Thrive Capital, a16z"
+      },
+      {
+        "stage": "Series C",
+        "amount": "$900M",
+        "date": "2025-01",
+        "investors": "Thrive Capital, a16z"
+      },
+      {
+        "stage": "Series D",
+        "amount": "$1.2B",
+        "date": "2025-12",
+        "investors": "Thrive Capital, a16z, Accel"
+      }
+    ]
   },
   {
     "id": 26,
@@ -4884,60 +4916,6 @@
   },
   {
     "id": 149,
-    "name": "Cursor",
-    "product": "Cursor IDE",
-    "category": "developer-tools",
-    "founded": 2022,
-    "ceo": "Michael Truell",
-    "funding": "$3.4B (via Anysphere)",
-    "fundingValue": 3400000000,
-    "rating": 5,
-    "website": "cursor.sh",
-    "hq": "San Francisco, CA",
-    "employees": "30-50",
-    "secretSauce": "AI-first IDE + codebase awareness + multi-model",
-    "description": "AI-first code editor by Anysphere. Crossed $1B ARR in 2025. Leading AI coding tool.",
-    "maInsight": "Hot acquisition target for Microsoft, JetBrains, or AI companies.",
-    "successFactors": [
-      "Viral developer adoption",
-      "AI-native architecture",
-      "Multi-model flexibility"
-    ],
-    "fundingRounds": [
-      {
-        "stage": "Seed",
-        "amount": "$2M",
-        "date": "2022-10",
-        "investors": "OpenAI Startup Fund"
-      },
-      {
-        "stage": "Series A",
-        "amount": "$60M",
-        "date": "2024-01",
-        "investors": "a16z, OpenAI Startup Fund"
-      },
-      {
-        "stage": "Series B",
-        "amount": "$100M",
-        "date": "2024-08",
-        "investors": "Thrive Capital, a16z"
-      },
-      {
-        "stage": "Series C",
-        "amount": "$900M",
-        "date": "2025-01",
-        "investors": "Thrive Capital, a16z"
-      },
-      {
-        "stage": "Series D",
-        "amount": "$1.2B",
-        "date": "2025-12",
-        "investors": "Thrive Capital, a16z, Accel"
-      }
-    ]
-  },
-  {
-    "id": 150,
     "name": "Customer.io",
     "product": "Messaging Automation AI",
     "category": "gtm-ai",
@@ -4971,7 +4949,7 @@
     "linkedin": "https://linkedin.com/company/customerio"
   },
   {
-    "id": 151,
+    "id": 150,
     "name": "Cybereason",
     "product": "AI Endpoint Security",
     "category": "security-ai",
@@ -5005,7 +4983,7 @@
     "linkedin": "https://linkedin.com/company/cybereason"
   },
   {
-    "id": 152,
+    "id": 151,
     "name": "d-Matrix",
     "product": "AI Inference Chip",
     "category": "data-infra",
@@ -5039,7 +5017,7 @@
     "linkedin": "https://linkedin.com/company/d-matrix"
   },
   {
-    "id": 153,
+    "id": 152,
     "name": "Darktrace",
     "status": "acquired",
     "acquiredBy": "Thoma Bravo",
@@ -5076,7 +5054,7 @@
     "linkedin": "https://linkedin.com/company/darktrace"
   },
   {
-    "id": 154,
+    "id": 153,
     "name": "Databricks",
     "product": "DBRX, Mosaic",
     "category": "foundation-models",
@@ -5182,10 +5160,10 @@
     "description": "Cloud monitoring and observability platform with AI-powered analytics for infrastructure and applications. Public company.",
     "investors": "ICONIQ Capital, Index Ventures, Amplify Partners",
     "dateAdded": "2026-02-11",
-    "id": 155
+    "id": 154
   },
   {
-    "id": 156,
+    "id": 155,
     "name": "Dataiku",
     "product": "Everyday AI Platform",
     "category": "data-infra",
@@ -5220,7 +5198,7 @@
     "linkedin": "https://linkedin.com/company/dataiku"
   },
   {
-    "id": 157,
+    "id": 156,
     "name": "Dataminr",
     "product": "Real-Time AI Intelligence",
     "category": "enterprise-ai",
@@ -5255,7 +5233,7 @@
     "linkedin": "https://linkedin.com/company/dataminr"
   },
   {
-    "id": 158,
+    "id": 157,
     "name": "DataRobot",
     "product": "AI Platform",
     "category": "data-infra",
@@ -5303,10 +5281,10 @@
     "description": "Analytics engineering platform enabling data teams to transform data using software engineering best practices.",
     "investors": "Sequoia Capital, Andreessen Horowitz, Altimeter Capital",
     "dateAdded": "2026-02-11",
-    "id": 159
+    "id": 158
   },
   {
-    "id": 160,
+    "id": 159,
     "name": "Decagon",
     "product": "AI Customer Service Agents",
     "category": "enterprise-ai",
@@ -5340,7 +5318,7 @@
     "linkedin": "https://linkedin.com/company/decagon-ai"
   },
   {
-    "id": 161,
+    "id": 160,
     "name": "Deel",
     "product": "Global Payroll",
     "category": "fintech-legal",
@@ -5375,7 +5353,7 @@
     "linkedin": "https://linkedin.com/company/deaboratories"
   },
   {
-    "id": 162,
+    "id": 161,
     "name": "Deep Instinct",
     "product": "Deep Learning Security",
     "category": "security-ai",
@@ -5409,7 +5387,7 @@
     "linkedin": "https://linkedin.com/company/deep-instinct"
   },
   {
-    "id": 163,
+    "id": 162,
     "name": "Deepgram",
     "product": "Speech Recognition AI",
     "category": "developer-tools",
@@ -5442,7 +5420,7 @@
     "linkedin": "https://linkedin.com/company/deepgram"
   },
   {
-    "id": 164,
+    "id": 163,
     "name": "DeepL",
     "product": "AI Translation",
     "category": "foundation-models",
@@ -5477,7 +5455,7 @@
     "linkedin": "https://linkedin.com/company/deepl"
   },
   {
-    "id": 165,
+    "id": 164,
     "name": "DeepScribe",
     "product": "AI Medical Scribe",
     "category": "healthtech",
@@ -5511,7 +5489,7 @@
     "linkedin": "https://linkedin.com/company/deepscribe"
   },
   {
-    "id": 166,
+    "id": 165,
     "name": "DeepSeek",
     "product": "DeepSeek LLM",
     "category": "foundation-models",
@@ -5546,7 +5524,7 @@
     "lastAutoUpdate": "2026-02-11"
   },
   {
-    "id": 167,
+    "id": 166,
     "name": "Delfina",
     "product": "Maternal Health AI",
     "category": "healthtech-ai",
@@ -5580,7 +5558,7 @@
     "linkedin": "https://linkedin.com/company/delfina-care"
   },
   {
-    "id": 168,
+    "id": 167,
     "name": "Demandbase",
     "product": "ABM Platform",
     "category": "gtm-ai",
@@ -5613,7 +5591,7 @@
     ]
   },
   {
-    "id": 169,
+    "id": 168,
     "name": "Descartes Labs",
     "product": "Geospatial AI Platform",
     "category": "space-ai",
@@ -5646,7 +5624,7 @@
     "linkedin": "https://linkedin.com/company/descartes-labs"
   },
   {
-    "id": 170,
+    "id": 169,
     "name": "Descript",
     "product": "AI Audio/Video Editor",
     "category": "consumer-ai",
@@ -5680,7 +5658,7 @@
     "linkedin": "https://linkedin.com/company/descript"
   },
   {
-    "id": 171,
+    "id": 170,
     "name": "Devoted Health",
     "product": "Medicare AI",
     "category": "healthtech",
@@ -5715,7 +5693,7 @@
     "linkedin": "https://linkedin.com/company/devoted-health"
   },
   {
-    "id": 172,
+    "id": 171,
     "name": "Dexterity",
     "product": "Robot Manipulation",
     "category": "robotics-ai",
@@ -5748,7 +5726,7 @@
     "linkedin": "https://linkedin.com/company/dexterityaboratoriesai"
   },
   {
-    "id": 173,
+    "id": 172,
     "name": "Didimo",
     "product": "Digital Human AI",
     "category": "consumer-ai",
@@ -5782,7 +5760,7 @@
     "linkedin": "https://linkedin.com/company/didimo"
   },
   {
-    "id": 174,
+    "id": 173,
     "name": "Disperse",
     "product": "Construction Analytics AI",
     "category": "industrial-ai",
@@ -5815,7 +5793,7 @@
     "linkedin": "https://linkedin.com/company/disperse"
   },
   {
-    "id": 175,
+    "id": 174,
     "name": "Docugami",
     "product": "Document Engineering AI",
     "category": "enterprise-ai",
@@ -5849,7 +5827,7 @@
     "linkedin": "https://linkedin.com/company/docugami"
   },
   {
-    "id": 176,
+    "id": 175,
     "name": "Domino Data Lab",
     "product": "Enterprise MLOps",
     "category": "data-infra",
@@ -5883,7 +5861,7 @@
     "linkedin": "https://linkedin.com/company/dominodatalab"
   },
   {
-    "id": 177,
+    "id": 176,
     "name": "Doxel",
     "product": "AI Construction Analytics",
     "category": "industrial-ai",
@@ -5928,10 +5906,10 @@
     "description": "Automated security and compliance platform for SOC 2, ISO 27001, and other frameworks with continuous monitoring.",
     "investors": "ICONIQ Growth, GGV Capital, Salesforce Ventures",
     "dateAdded": "2026-02-11",
-    "id": 178
+    "id": 177
   },
   {
-    "id": 179,
+    "id": 178,
     "name": "Duolingo",
     "product": "Duolingo AI",
     "category": "consumer-ai",
@@ -5953,7 +5931,7 @@
     ]
   },
   {
-    "id": 180,
+    "id": 179,
     "name": "Dust",
     "product": "AI Knowledge Assistant",
     "category": "enterprise-ai",
@@ -5987,7 +5965,7 @@
     "linkedin": "https://linkedin.com/company/dust-tt"
   },
   {
-    "id": 181,
+    "id": 180,
     "name": "E2B",
     "product": "AI Sandbox",
     "category": "developer-tools",
@@ -6020,7 +5998,7 @@
     "linkedin": "https://linkedin.com/company/e2b-dev"
   },
   {
-    "id": 182,
+    "id": 181,
     "name": "eFishery",
     "product": "Smart Fish Feeding",
     "category": "ocean-ai",
@@ -6054,7 +6032,7 @@
     "linkedin": "https://linkedin.com/company/efishery"
   },
   {
-    "id": 183,
+    "id": 182,
     "name": "Eigen Technologies",
     "product": "Document AI",
     "category": "enterprise-ai",
@@ -6088,7 +6066,7 @@
     "linkedin": "https://linkedin.com/company/eigen-technologies"
   },
   {
-    "id": 184,
+    "id": 183,
     "name": "Eightfold AI",
     "product": "Talent Intelligence",
     "category": "enterprise-ai",
@@ -6135,10 +6113,10 @@
     "description": "Search and observability platform built on Elasticsearch. Public company with AI-powered search capabilities.",
     "investors": "Benchmark, Index Ventures, NEA",
     "dateAdded": "2026-02-11",
-    "id": 185
+    "id": 184
   },
   {
-    "id": 186,
+    "id": 185,
     "name": "ElevenLabs",
     "product": "ElevenLabs",
     "category": "consumer-ai",
@@ -6164,7 +6142,7 @@
     "investors": "Sequoia, a16z, ICONIQ, Lightspeed, BOND"
   },
   {
-    "id": 187,
+    "id": 186,
     "name": "EliseAI",
     "product": "Healthcare & Housing AI",
     "category": "healthtech",
@@ -6198,7 +6176,7 @@
     "linkedin": "https://linkedin.com/company/eliseai"
   },
   {
-    "id": 188,
+    "id": 187,
     "name": "Elsa Speak",
     "product": "AI Pronunciation Coach",
     "category": "education-ai",
@@ -6232,7 +6210,7 @@
     "linkedin": "https://linkedin.com/company/elsa-speak"
   },
   {
-    "id": 189,
+    "id": 188,
     "name": "Ema",
     "product": "Universal AI Employee",
     "category": "ai-agents",
@@ -6266,7 +6244,7 @@
     "linkedin": "https://linkedin.com/company/ema-ai"
   },
   {
-    "id": 190,
+    "id": 189,
     "name": "Endel",
     "product": "AI Soundscapes",
     "category": "consumer-ai",
@@ -6299,7 +6277,7 @@
     "linkedin": "https://linkedin.com/company/endelworld"
   },
   {
-    "id": 191,
+    "id": 190,
     "name": "Enveda Biosciences",
     "product": "AI Drug Discovery",
     "category": "healthtech-ai",
@@ -6333,7 +6311,7 @@
     "linkedin": "https://linkedin.com/company/enveda-biosciences"
   },
   {
-    "id": 192,
+    "id": 191,
     "name": "Equals",
     "product": "Spreadsheet for Teams",
     "category": "enterprise-ai",
@@ -6366,7 +6344,7 @@
     "linkedin": "https://linkedin.com/company/equalshq"
   },
   {
-    "id": 193,
+    "id": 192,
     "name": "Evisort",
     "product": "AI Contract Analytics",
     "category": "legal-compliance",
@@ -6400,7 +6378,7 @@
     "linkedin": "https://linkedin.com/company/evisort"
   },
   {
-    "id": 194,
+    "id": 193,
     "name": "Exa",
     "product": "AI Web Search API",
     "category": "developer-tools",
@@ -6433,7 +6411,7 @@
     "linkedin": "https://linkedin.com/company/exa-ai"
   },
   {
-    "id": 195,
+    "id": 194,
     "name": "Exscientia",
     "product": "AI Drug Design",
     "category": "healthtech",
@@ -6470,7 +6448,7 @@
     "acquiredBy": "Recursion Pharma"
   },
   {
-    "id": 196,
+    "id": 195,
     "name": "Factory",
     "product": "AI Coding Droids",
     "category": "developer-tools",
@@ -6503,7 +6481,7 @@
     "linkedin": "https://linkedin.com/company/factory-ai"
   },
   {
-    "id": 197,
+    "id": 196,
     "name": "Faire",
     "product": "Wholesale AI Marketplace",
     "category": "enterprise-ai",
@@ -6538,7 +6516,7 @@
     "linkedin": "https://linkedin.com/company/faire-wholesale"
   },
   {
-    "id": 198,
+    "id": 197,
     "name": "Farmers Business Network",
     "product": "AgTech Platform",
     "category": "climate-agri",
@@ -6573,7 +6551,7 @@
     "linkedin": "https://linkedin.com/company/farmers-business-network"
   },
   {
-    "id": 199,
+    "id": 198,
     "name": "Fathom",
     "product": "Meeting AI",
     "category": "enterprise-ai",
@@ -6606,7 +6584,7 @@
     "linkedin": "https://linkedin.com/company/fathomhq"
   },
   {
-    "id": 200,
+    "id": 199,
     "name": "Ferrum Health",
     "product": "AI Deployment for Hospitals",
     "category": "healthtech-ai",
@@ -6640,7 +6618,7 @@
     "linkedin": "https://linkedin.com/company/ferrum-health"
   },
   {
-    "id": 201,
+    "id": 200,
     "name": "Fetcher",
     "product": "AI Sourcing",
     "category": "hr-talent",
@@ -6674,7 +6652,7 @@
     "linkedin": "https://linkedin.com/company/fetcher"
   },
   {
-    "id": 202,
+    "id": 201,
     "name": "Fiddler AI",
     "product": "ML Observability",
     "category": "data-infra",
@@ -6720,10 +6698,10 @@
     "description": "Leading collaborative design platform for product teams, integrating AI features for design automation and assistance.",
     "investors": "Sequoia Capital, Greylock Partners, Index Ventures",
     "dateAdded": "2026-02-11",
-    "id": 203
+    "id": 202
   },
   {
-    "id": 204,
+    "id": 203,
     "name": "Figure",
     "product": "Figure 01",
     "category": "industrial-ai",
@@ -6748,7 +6726,7 @@
     "investors": "Parkway Venture Capital, Brookfield, Nvidia, Intel Capital, Microsoft, OpenAI, Jeff Bezos"
   },
   {
-    "id": 205,
+    "id": 204,
     "name": "Filevine",
     "product": "Legal AI Platform",
     "category": "legal-ai",
@@ -6782,7 +6760,7 @@
     "linkedin": "https://linkedin.com/company/filevine"
   },
   {
-    "id": 206,
+    "id": 205,
     "name": "Fireflies.ai",
     "product": "Meeting Intelligence",
     "category": "enterprise-ai",
@@ -6817,7 +6795,7 @@
     "crunchbase": "https://crunchbase.com/organization/fireflies"
   },
   {
-    "id": 207,
+    "id": 206,
     "name": "Fireworks AI",
     "product": "AI Inference Platform",
     "category": "ai-infrastructure",
@@ -6863,10 +6841,10 @@
     "description": "Automated data movement platform delivering ready-to-query data into cloud warehouses with hundreds of connectors.",
     "investors": "General Catalyst, Andreessen Horowitz, CEAS Investments",
     "dateAdded": "2026-02-11",
-    "id": 208
+    "id": 207
   },
   {
-    "id": 209,
+    "id": 208,
     "name": "Fixie.ai",
     "product": "AI Agent Platform",
     "category": "developer-tools",
@@ -6899,7 +6877,7 @@
     "linkedin": "https://linkedin.com/company/fixieaboratories"
   },
   {
-    "id": 210,
+    "id": 209,
     "name": "Flexport",
     "product": "AI Freight Forwarding",
     "category": "supply-chain",
@@ -6934,7 +6912,7 @@
     "linkedin": "https://linkedin.com/company/flexport"
   },
   {
-    "id": 211,
+    "id": 210,
     "name": "Fly.io",
     "product": "Global App Platform",
     "category": "developer-tools",
@@ -6968,7 +6946,7 @@
     "linkedin": "https://linkedin.com/company/fly-io"
   },
   {
-    "id": 212,
+    "id": 211,
     "name": "Forethought",
     "product": "SupportGPT",
     "category": "enterprise-ai",
@@ -7013,10 +6991,10 @@
     "description": "Preventive primary care provider using AI and sensors for personalized health monitoring.",
     "investors": "Founders Fund, Khosla Ventures, Softbank",
     "dateAdded": "2026-02-11",
-    "id": 213
+    "id": 212
   },
   {
-    "id": 214,
+    "id": 213,
     "name": "FourKites",
     "product": "Supply Chain Visibility",
     "category": "supply-chain",
@@ -7051,7 +7029,7 @@
     "linkedin": "https://linkedin.com/company/fourkites"
   },
   {
-    "id": 215,
+    "id": 214,
     "name": "Freenome",
     "product": "Cancer Detection AI",
     "category": "healthtech",
@@ -7085,7 +7063,7 @@
     "linkedin": "https://linkedin.com/company/freenome"
   },
   {
-    "id": 216,
+    "id": 215,
     "name": "FreshBooks",
     "product": "SMB Accounting AI",
     "category": "fintech-legal",
@@ -7119,7 +7097,7 @@
     "linkedin": "https://linkedin.com/company/freshbooks"
   },
   {
-    "id": 217,
+    "id": 216,
     "name": "Functionize",
     "product": "AI Test Platform",
     "category": "developer-tools",
@@ -7152,7 +7130,7 @@
     "linkedin": "https://linkedin.com/company/functionize"
   },
   {
-    "id": 218,
+    "id": 217,
     "name": "Gamma",
     "product": "AI Presentations & Visuals",
     "category": "creative-ai",
@@ -7186,7 +7164,7 @@
     "linkedin": "https://linkedin.com/company/gamma-app"
   },
   {
-    "id": 219,
+    "id": 218,
     "name": "Gatik",
     "product": "Autonomous Middle-Mile",
     "category": "supply-chain",
@@ -7220,7 +7198,7 @@
     "linkedin": "https://linkedin.com/company/gatik-ai"
   },
   {
-    "id": 220,
+    "id": 219,
     "name": "Gem",
     "product": "Recruiting CRM",
     "category": "hr-talent",
@@ -7255,7 +7233,7 @@
     "linkedin": "https://linkedin.com/company/gem-recruiting"
   },
   {
-    "id": 221,
+    "id": 220,
     "name": "Generate Biomedicines",
     "product": "Generative AI Proteins",
     "category": "healthtech",
@@ -7289,7 +7267,7 @@
     "linkedin": "https://linkedin.com/company/generatebiomedicines"
   },
   {
-    "id": 222,
+    "id": 221,
     "name": "Genmo",
     "product": "AI Video Generation",
     "category": "video-ai",
@@ -7323,7 +7301,7 @@
     "linkedin": "https://linkedin.com/company/genmo-ai"
   },
   {
-    "id": 223,
+    "id": 222,
     "name": "Giskard",
     "product": "AI Testing Platform",
     "category": "developer-tools",
@@ -7357,7 +7335,7 @@
     "linkedin": "https://linkedin.com/company/giskard-ai"
   },
   {
-    "id": 224,
+    "id": 223,
     "name": "Glean",
     "product": "Enterprise Search",
     "category": "enterprise-ai",
@@ -7393,7 +7371,7 @@
     "crunchbase": "https://crunchbase.com/organization/glean"
   },
   {
-    "id": 225,
+    "id": 224,
     "name": "Glide",
     "product": "No-Code AI Apps",
     "category": "developer-tools",
@@ -7427,7 +7405,7 @@
     "linkedin": "https://linkedin.com/company/glideapps"
   },
   {
-    "id": 226,
+    "id": 225,
     "name": "Gloat",
     "product": "Talent Marketplace",
     "category": "enterprise-ai",
@@ -7462,7 +7440,7 @@
     "linkedin": "https://linkedin.com/company/gloat"
   },
   {
-    "id": 227,
+    "id": 226,
     "name": "Gong",
     "product": "Revenue Intelligence",
     "category": "gtm-ai",
@@ -7510,10 +7488,10 @@
     "description": "Google's AI research lab behind AlphaGo, AlphaFold, and Gemini models. Leading AI safety and capabilities research.",
     "investors": "Google (Parent Company)",
     "dateAdded": "2026-02-11",
-    "id": 228
+    "id": 227
   },
   {
-    "id": 229,
+    "id": 228,
     "name": "Grafana Labs",
     "product": "Observability Platform",
     "category": "developer-tools",
@@ -7548,7 +7526,7 @@
     "linkedin": "https://linkedin.com/company/grafana-labs"
   },
   {
-    "id": 230,
+    "id": 229,
     "name": "Grain",
     "product": "Meeting Highlights",
     "category": "enterprise-ai",
@@ -7582,7 +7560,7 @@
     "linkedin": "https://linkedin.com/company/graboratories"
   },
   {
-    "id": 231,
+    "id": 230,
     "name": "Grammarly",
     "product": "Grammarly",
     "category": "enterprise-ai",
@@ -7604,7 +7582,7 @@
     ]
   },
   {
-    "id": 232,
+    "id": 231,
     "name": "Graphcore",
     "product": "AI Accelerator Chips",
     "category": "ai-chips",
@@ -7639,7 +7617,7 @@
     "linkedin": "https://linkedin.com/company/graphcore"
   },
   {
-    "id": 233,
+    "id": 232,
     "name": "Gretel",
     "product": "Synthetic Data",
     "category": "data-infra",
@@ -7672,7 +7650,7 @@
     "linkedin": "https://linkedin.com/company/greaboratoriesai"
   },
   {
-    "id": 234,
+    "id": 233,
     "name": "Groq",
     "product": "LPU Inference",
     "category": "foundation-models",
@@ -7694,7 +7672,7 @@
     ]
   },
   {
-    "id": 235,
+    "id": 234,
     "name": "Gusto",
     "product": "SMB Payroll AI",
     "category": "fintech-legal",
@@ -7740,10 +7718,10 @@
     "description": "Open-source machine learning and AutoML platform enabling enterprises to build and deploy AI models.",
     "investors": "Goldman Sachs, NVIDIA, Wells Fargo",
     "dateAdded": "2026-02-11",
-    "id": 236
+    "id": 235
   },
   {
-    "id": 237,
+    "id": 236,
     "name": "Hailo",
     "product": "Edge AI Chips",
     "category": "ai-chips",
@@ -7777,7 +7755,7 @@
     "linkedin": "https://linkedin.com/company/hailotech"
   },
   {
-    "id": 238,
+    "id": 237,
     "name": "Harness",
     "product": "Software Delivery AI",
     "category": "developer-tools",
@@ -7812,7 +7790,7 @@
     "linkedin": "https://linkedin.com/company/haraboratories"
   },
   {
-    "id": 239,
+    "id": 238,
     "name": "Harvey",
     "product": "Harvey AI",
     "category": "fintech-legal",
@@ -7838,7 +7816,7 @@
     "investors": "Andreessen Horowitz, Sequoia, Google Ventures, Kleiner Perkins"
   },
   {
-    "id": 240,
+    "id": 239,
     "name": "Hazy",
     "product": "Synthetic Data Enterprise",
     "category": "data-infra",
@@ -7871,7 +7849,7 @@
     "linkedin": "https://linkedin.com/company/haboratoriesaz-y"
   },
   {
-    "id": 241,
+    "id": 240,
     "name": "Headspace",
     "product": "Mental Health AI",
     "category": "consumer-ai",
@@ -7905,7 +7883,7 @@
     "linkedin": "https://linkedin.com/company/headspace-meditation"
   },
   {
-    "id": 242,
+    "id": 241,
     "name": "Hebbia",
     "product": "AI Research Platform",
     "category": "enterprise-ai",
@@ -7940,7 +7918,7 @@
     "linkedin": "https://linkedin.com/company/hebbia"
   },
   {
-    "id": 243,
+    "id": 242,
     "name": "Height",
     "product": "AI Project Management",
     "category": "developer-tools",
@@ -7973,7 +7951,7 @@
     "linkedin": "https://linkedin.com/company/height-app"
   },
   {
-    "id": 244,
+    "id": 243,
     "name": "Helsing",
     "product": "Defense AI",
     "category": "security-ai",
@@ -8007,7 +7985,7 @@
     "linkedin": "https://linkedin.com/company/helsing-ai"
   },
   {
-    "id": 245,
+    "id": 244,
     "name": "HeyGen",
     "product": "AI Video Avatar",
     "category": "consumer-ai",
@@ -8041,7 +8019,7 @@
     "linkedin": "https://linkedin.com/company/heygen"
   },
   {
-    "id": 246,
+    "id": 245,
     "name": "Highspot",
     "product": "Sales Enablement AI",
     "category": "gtm-ai",
@@ -8075,7 +8053,7 @@
     "linkedin": "https://linkedin.com/company/highspot"
   },
   {
-    "id": 247,
+    "id": 246,
     "name": "Hightouch",
     "product": "Reverse ETL + AI",
     "category": "data-infra",
@@ -8109,7 +8087,7 @@
     "linkedin": "https://linkedin.com/company/hightouch-io"
   },
   {
-    "id": 248,
+    "id": 247,
     "name": "Hippocratic AI",
     "product": "Healthcare LLM",
     "category": "healthtech",
@@ -8143,7 +8121,7 @@
     "linkedin": "https://linkedin.com/company/hippocratic-ai"
   },
   {
-    "id": 249,
+    "id": 248,
     "name": "Hireology",
     "product": "SMB Hiring Platform",
     "category": "hr-talent",
@@ -8177,7 +8155,7 @@
     "linkedin": "https://linkedin.com/company/hireology"
   },
   {
-    "id": 250,
+    "id": 249,
     "name": "HireVue",
     "product": "Video Interviewing AI",
     "category": "enterprise-ai",
@@ -8211,7 +8189,7 @@
     "linkedin": "https://linkedin.com/company/hirevue"
   },
   {
-    "id": 251,
+    "id": 250,
     "name": "Hopper",
     "product": "AI Travel Booking",
     "category": "consumer-ai",
@@ -8246,7 +8224,7 @@
     "linkedin": "https://linkedin.com/company/hopper"
   },
   {
-    "id": 252,
+    "id": 251,
     "name": "Hugging Face",
     "product": "Transformers, Hub",
     "category": "foundation-models",
@@ -8323,11 +8301,11 @@
       "Early stage",
       "Unproven product"
     ],
-    "id": 253,
+    "id": 252,
     "dateAdded": "2026-02-08"
   },
   {
-    "id": 254,
+    "id": 253,
     "name": "Hunters",
     "product": "SOC Platform",
     "category": "security-ai",
@@ -8361,7 +8339,7 @@
     "linkedin": "https://linkedin.com/company/hunters-ai"
   },
   {
-    "id": 255,
+    "id": 254,
     "name": "Hyperscience",
     "product": "AI Document Processing",
     "category": "enterprise-ai",
@@ -8396,7 +8374,7 @@
     "linkedin": "https://linkedin.com/company/hyperscience"
   },
   {
-    "id": 256,
+    "id": 255,
     "name": "Icertis",
     "product": "Contract Intelligence",
     "category": "legal-compliance",
@@ -8431,7 +8409,7 @@
     "linkedin": "https://linkedin.com/company/icertis"
   },
   {
-    "id": 257,
+    "id": 256,
     "name": "ICEYE",
     "product": "SAR Satellite AI",
     "category": "space-ai",
@@ -8465,7 +8443,7 @@
     "linkedin": "https://linkedin.com/company/iceye"
   },
   {
-    "id": 258,
+    "id": 257,
     "name": "Ideogram",
     "product": "AI Image Text",
     "category": "consumer-ai",
@@ -8499,7 +8477,7 @@
     "linkedin": "https://linkedin.com/company/ideogram-ai"
   },
   {
-    "id": 259,
+    "id": 258,
     "name": "Imbue",
     "product": "AI Reasoning",
     "category": "foundation-models",
@@ -8533,7 +8511,7 @@
     "linkedin": "https://linkedin.com/company/imbue-ai"
   },
   {
-    "id": 260,
+    "id": 259,
     "name": "Indigo Agriculture",
     "product": "AgTech AI",
     "category": "climate-agri",
@@ -8567,7 +8545,7 @@
     "linkedin": "https://linkedin.com/company/indigoag"
   },
   {
-    "id": 261,
+    "id": 260,
     "name": "Induced AI",
     "product": "Browser Automation",
     "category": "developer-tools",
@@ -8600,7 +8578,7 @@
     "linkedin": "https://linkedin.com/company/induced-ai"
   },
   {
-    "id": 262,
+    "id": 261,
     "name": "Inflection AI Enterprise",
     "product": "Pi for Enterprise",
     "category": "enterprise-ai",
@@ -8624,7 +8602,7 @@
     "acquiredBy": "Microsoft"
   },
   {
-    "id": 263,
+    "id": 262,
     "name": "Insilico Medicine",
     "product": "AI Pharma",
     "category": "healthtech",
@@ -8658,7 +8636,7 @@
     "linkedin": "https://linkedin.com/company/insaboratories"
   },
   {
-    "id": 264,
+    "id": 263,
     "name": "Insitro",
     "product": "ML Drug Discovery",
     "category": "healthtech",
@@ -8693,7 +8671,7 @@
     "linkedin": "https://linkedin.com/company/insaboratories"
   },
   {
-    "id": 265,
+    "id": 264,
     "name": "Instabase",
     "product": "AI Document Understanding",
     "category": "enterprise-ai",
@@ -8728,7 +8706,7 @@
     "linkedin": "https://linkedin.com/company/instabase"
   },
   {
-    "id": 266,
+    "id": 265,
     "name": "Intercom",
     "product": "Fin AI Agent",
     "category": "enterprise-ai",
@@ -8763,7 +8741,7 @@
     "linkedin": "https://linkedin.com/company/intercom"
   },
   {
-    "id": 267,
+    "id": 266,
     "name": "InVideo",
     "product": "AI Video Editor",
     "category": "consumer-ai",
@@ -8797,7 +8775,7 @@
     "linkedin": "https://linkedin.com/company/invideo-io"
   },
   {
-    "id": 268,
+    "id": 267,
     "name": "Inworld AI",
     "product": "AI NPCs",
     "category": "consumer-ai",
@@ -8832,7 +8810,7 @@
     "linkedin": "https://linkedin.com/company/inworld-ai"
   },
   {
-    "id": 269,
+    "id": 268,
     "name": "Ironclad",
     "product": "Ironclad",
     "category": "fintech-legal",
@@ -8854,7 +8832,7 @@
     ]
   },
   {
-    "id": 270,
+    "id": 269,
     "name": "Isomorphic Labs",
     "product": "AI Drug Discovery",
     "category": "healthtech",
@@ -8889,7 +8867,7 @@
     "linkedin": "https://linkedin.com/company/isomorphic-labs"
   },
   {
-    "id": 271,
+    "id": 270,
     "name": "Iterable",
     "product": "Cross-Channel Marketing AI",
     "category": "gtm-ai",
@@ -8924,7 +8902,7 @@
     "linkedin": "https://linkedin.com/company/iterable"
   },
   {
-    "id": 272,
+    "id": 271,
     "name": "Jasper",
     "product": "Jasper AI",
     "category": "enterprise-ai",
@@ -8946,7 +8924,7 @@
     ]
   },
   {
-    "id": 273,
+    "id": 272,
     "name": "Jasper Art",
     "product": "AI Image Generation",
     "category": "consumer-ai",
@@ -8978,7 +8956,7 @@
     "linkedin": "https://linkedin.com/company/jasperai"
   },
   {
-    "id": 274,
+    "id": 273,
     "name": "Jupiter Intelligence",
     "product": "Climate Analytics",
     "category": "climate-agri",
@@ -9012,7 +8990,7 @@
     "linkedin": "https://linkedin.com/company/jupiter-intel"
   },
   {
-    "id": 275,
+    "id": 274,
     "name": "Jurny",
     "product": "AI Hotel Operations",
     "category": "travel-ai",
@@ -9045,7 +9023,7 @@
     "linkedin": "https://linkedin.com/company/jurny"
   },
   {
-    "id": 276,
+    "id": 275,
     "name": "K Health",
     "product": "AI Primary Care",
     "category": "healthtech",
@@ -9080,7 +9058,7 @@
     "linkedin": "https://linkedin.com/company/k-health"
   },
   {
-    "id": 277,
+    "id": 276,
     "name": "Kaedim",
     "product": "AI 3D from 2D",
     "category": "photo-ai",
@@ -9113,7 +9091,7 @@
     "linkedin": "https://linkedin.com/company/kaedim"
   },
   {
-    "id": 278,
+    "id": 277,
     "name": "Kaiber",
     "product": "AI Video Generation",
     "category": "consumer-ai",
@@ -9147,7 +9125,7 @@
     "linkedin": "https://linkedin.com/company/kaiber-ai"
   },
   {
-    "id": 279,
+    "id": 278,
     "name": "Kairos Power",
     "product": "AI Nuclear Reactors",
     "category": "energy-ai",
@@ -9180,7 +9158,7 @@
     "linkedin": "https://linkedin.com/company/kairos-power"
   },
   {
-    "id": 280,
+    "id": 279,
     "name": "Kapwing",
     "product": "AI Video Editor",
     "category": "consumer-ai",
@@ -9213,7 +9191,7 @@
     "linkedin": "https://linkedin.com/company/kapwing"
   },
   {
-    "id": 281,
+    "id": 280,
     "name": "Khan Academy",
     "product": "Khanmigo",
     "category": "consumer-ai",
@@ -9235,7 +9213,7 @@
     ]
   },
   {
-    "id": 282,
+    "id": 281,
     "name": "Kin Insurance",
     "product": "Home Insurance AI",
     "category": "fintech-legal",
@@ -9270,7 +9248,7 @@
     "linkedin": "https://linkedin.com/company/kin-insurance"
   },
   {
-    "id": 283,
+    "id": 282,
     "name": "Klarna",
     "product": "Global BNPL",
     "category": "fintech-legal",
@@ -9305,7 +9283,7 @@
     "linkedin": "https://linkedin.com/company/klarna"
   },
   {
-    "id": 284,
+    "id": 283,
     "name": "Klevu",
     "product": "AI Search & Discovery",
     "category": "enterprise-ai",
@@ -9339,7 +9317,7 @@
     "linkedin": "https://linkedin.com/company/klevu"
   },
   {
-    "id": 285,
+    "id": 284,
     "name": "Kodiak Robotics",
     "product": "Autonomous Trucking",
     "category": "industrial-ai",
@@ -9374,7 +9352,7 @@
     "linkedin": "https://linkedin.com/company/kodiak-robotics"
   },
   {
-    "id": 286,
+    "id": 285,
     "name": "Komodo Health",
     "product": "Healthcare Analytics AI",
     "category": "healthtech",
@@ -9409,7 +9387,7 @@
     "linkedin": "https://linkedin.com/company/komodo-health"
   },
   {
-    "id": 287,
+    "id": 286,
     "name": "Kong",
     "product": "API Gateway + AI",
     "category": "developer-tools",
@@ -9444,7 +9422,7 @@
     "linkedin": "https://linkedin.com/company/konghq"
   },
   {
-    "id": 288,
+    "id": 287,
     "name": "Kore.ai",
     "product": "XO Platform",
     "category": "enterprise-ai",
@@ -9479,7 +9457,7 @@
     "linkedin": "https://linkedin.com/company/kaboratories"
   },
   {
-    "id": 289,
+    "id": 288,
     "name": "Kraken Robotics",
     "product": "Subsea AI Systems",
     "category": "ocean-ai",
@@ -9513,7 +9491,7 @@
     "linkedin": "https://linkedin.com/company/kraken-robotic-systems"
   },
   {
-    "id": 290,
+    "id": 289,
     "name": "Krutrim",
     "product": "India AI",
     "category": "foundation-models",
@@ -9548,7 +9526,7 @@
     "linkedin": "https://linkedin.com/company/krutrim-ai"
   },
   {
-    "id": 291,
+    "id": 290,
     "name": "Labelbox",
     "product": "Labelbox",
     "category": "industrial-ai",
@@ -9570,7 +9548,7 @@
     ]
   },
   {
-    "id": 292,
+    "id": 291,
     "name": "Lacework",
     "product": "Cloud Security AI",
     "category": "security-ai",
@@ -9606,7 +9584,7 @@
     "linkedin": "https://linkedin.com/company/lacework"
   },
   {
-    "id": 293,
+    "id": 292,
     "name": "Lambda Labs",
     "product": "GPU Cloud",
     "category": "data-infra",
@@ -9641,7 +9619,7 @@
     "linkedin": "https://linkedin.com/company/lambdalabs"
   },
   {
-    "id": 294,
+    "id": 293,
     "name": "LambdaTest",
     "product": "Cross-Browser Testing",
     "category": "developer-tools",
@@ -9674,7 +9652,7 @@
     "linkedin": "https://linkedin.com/company/lambdatest"
   },
   {
-    "id": 295,
+    "id": 294,
     "name": "LANDR",
     "product": "AI Music Mastering",
     "category": "consumer-ai",
@@ -9707,7 +9685,7 @@
     "linkedin": "https://linkedin.com/company/landr-audio"
   },
   {
-    "id": 296,
+    "id": 295,
     "name": "LangChain",
     "product": "LangChain Framework",
     "category": "developer-tools",
@@ -9729,7 +9707,7 @@
     ]
   },
   {
-    "id": 297,
+    "id": 296,
     "name": "Langdock",
     "product": "Enterprise AI Platform",
     "category": "enterprise-ai",
@@ -9763,7 +9741,7 @@
     "linkedin": "https://linkedin.com/company/langdock"
   },
   {
-    "id": 298,
+    "id": 297,
     "name": "LangSmith",
     "product": "LLM Observability",
     "category": "developer-tools",
@@ -9797,7 +9775,7 @@
     "linkedin": "https://linkedin.com/company/langchain"
   },
   {
-    "id": 299,
+    "id": 298,
     "name": "Latitude",
     "product": "AI Dungeon/Game AI",
     "category": "gaming-ai",
@@ -9830,7 +9808,7 @@
     "linkedin": "https://linkedin.com/company/latitude-io"
   },
   {
-    "id": 300,
+    "id": 299,
     "name": "Lattice",
     "product": "People Management",
     "category": "hr-talent",
@@ -9865,7 +9843,7 @@
     "linkedin": "https://linkedin.com/company/lattice-hq"
   },
   {
-    "id": 301,
+    "id": 300,
     "name": "LaunchDarkly",
     "product": "Feature Management",
     "category": "developer-tools",
@@ -9900,7 +9878,7 @@
     "linkedin": "https://linkedin.com/company/launchdarkly"
   },
   {
-    "id": 302,
+    "id": 301,
     "name": "Lavender",
     "product": "Lavender",
     "category": "gtm-ai",
@@ -9922,7 +9900,7 @@
     ]
   },
   {
-    "id": 303,
+    "id": 302,
     "name": "LayerX",
     "product": "AI Back-Office Automation",
     "category": "fintech-legal",
@@ -9956,7 +9934,7 @@
     "linkedin": "https://linkedin.com/company/layerx"
   },
   {
-    "id": 304,
+    "id": 303,
     "name": "Leena AI",
     "product": "HR Virtual Assistant",
     "category": "enterprise-ai",
@@ -9990,7 +9968,7 @@
     "linkedin": "https://linkedin.com/company/leaboratories"
   },
   {
-    "id": 305,
+    "id": 304,
     "name": "Lemurian Labs",
     "product": "AI Inference Chip",
     "category": "data-infra",
@@ -10023,7 +10001,7 @@
     "linkedin": "https://linkedin.com/company/lemurian-labs"
   },
   {
-    "id": 306,
+    "id": 305,
     "name": "Lensa",
     "product": "AI Avatar Generator",
     "category": "consumer-ai",
@@ -10056,7 +10034,7 @@
     "linkedin": "https://linkedin.com/company/prisma-labs"
   },
   {
-    "id": 307,
+    "id": 306,
     "name": "LeoLabs",
     "product": "Space Radar Tracking",
     "category": "space-ai",
@@ -10089,7 +10067,7 @@
     "linkedin": "https://linkedin.com/company/leolabs"
   },
   {
-    "id": 308,
+    "id": 307,
     "name": "Leonardo.ai",
     "product": "AI Image Platform",
     "category": "consumer-ai",
@@ -10123,7 +10101,7 @@
     "linkedin": "https://linkedin.com/company/leonardoai"
   },
   {
-    "id": 309,
+    "id": 308,
     "name": "Lessen",
     "product": "Property Ops AI",
     "category": "real-estate",
@@ -10158,7 +10136,7 @@
     "linkedin": "https://linkedin.com/company/lessen-inc"
   },
   {
-    "id": 310,
+    "id": 309,
     "name": "Letta",
     "product": "AI Memory",
     "category": "foundation-models",
@@ -10191,7 +10169,7 @@
     "linkedin": "https://linkedin.com/company/letta-ai"
   },
   {
-    "id": 311,
+    "id": 310,
     "name": "Levels",
     "product": "Metabolic Health AI",
     "category": "healthtech",
@@ -10225,7 +10203,7 @@
     "linkedin": "https://linkedin.com/company/levelshealth"
   },
   {
-    "id": 312,
+    "id": 311,
     "name": "Lex",
     "product": "AI Word Processor",
     "category": "consumer-ai",
@@ -10258,7 +10236,7 @@
     "linkedin": "https://linkedin.com/company/lexpage"
   },
   {
-    "id": 313,
+    "id": 312,
     "name": "Lightmatter",
     "product": "AI Photonic Chips",
     "category": "data-infra",
@@ -10292,7 +10270,7 @@
     "linkedin": "https://linkedin.com/company/lightmatter"
   },
   {
-    "id": 314,
+    "id": 313,
     "name": "Lightricks",
     "product": "AI Photo/Video Apps",
     "category": "consumer-ai",
@@ -10326,7 +10304,7 @@
     "linkedin": "https://linkedin.com/company/lightricks"
   },
   {
-    "id": 315,
+    "id": 314,
     "name": "Lila Sciences",
     "product": "Scientific Superintelligence",
     "category": "healthtech",
@@ -10360,7 +10338,7 @@
     "linkedin": "https://linkedin.com/company/lila-sciences"
   },
   {
-    "id": 316,
+    "id": 315,
     "name": "Lilt",
     "product": "AI Translation Platform",
     "category": "enterprise-ai",
@@ -10393,7 +10371,7 @@
     "linkedin": "https://linkedin.com/company/laboratiesilt"
   },
   {
-    "id": 317,
+    "id": 316,
     "name": "Lily AI",
     "product": "Product Attribution AI",
     "category": "enterprise-ai",
@@ -10427,7 +10405,7 @@
     "linkedin": "https://linkedin.com/company/lily-ai"
   },
   {
-    "id": 318,
+    "id": 317,
     "name": "Lindy AI",
     "product": "No-Code AI Agents",
     "category": "enterprise-ai",
@@ -10461,7 +10439,7 @@
     "linkedin": "https://linkedin.com/company/lindy-ai"
   },
   {
-    "id": 319,
+    "id": 318,
     "name": "Linear",
     "product": "Issue Tracking AI",
     "category": "developer-tools",
@@ -10508,10 +10486,10 @@
     "description": "MIT-founded AI company developing liquid neural networks, a new architecture inspired by biological neurons for more efficient and interpretable AI.",
     "investors": "AMD Ventures, OSS Capital, Samsung Next",
     "dateAdded": "2026-02-11",
-    "id": 320
+    "id": 319
   },
   {
-    "id": 321,
+    "id": 320,
     "name": "LlamaIndex",
     "product": "LlamaIndex",
     "category": "developer-tools",
@@ -10545,10 +10523,10 @@
     "description": "AI evaluation platform originating from UC Berkeley's Chatbot Arena research project. Powers crowd-sourced AI model benchmarking with millions of monthly users.",
     "investors": "Felicis, UC Investments, Andreessen Horowitz, Kleiner Perkins",
     "dateAdded": "2026-02-11",
-    "id": 322
+    "id": 321
   },
   {
-    "id": 323,
+    "id": 322,
     "name": "Loadsmart",
     "product": "AI Freight Platform",
     "category": "supply-chain",
@@ -10582,7 +10560,7 @@
     "linkedin": "https://linkedin.com/company/loadsmart"
   },
   {
-    "id": 324,
+    "id": 323,
     "name": "Locus Robotics",
     "product": "Warehouse Robots",
     "category": "supply-chain",
@@ -10616,7 +10594,7 @@
     "linkedin": "https://linkedin.com/company/locus-robotics"
   },
   {
-    "id": 325,
+    "id": 324,
     "name": "Lovable",
     "product": "AI App Builder",
     "category": "coding-ai",
@@ -10651,7 +10629,7 @@
     "revenue": "$200M+ ARR"
   },
   {
-    "id": 326,
+    "id": 325,
     "name": "Lucidworks",
     "product": "AI Search Platform",
     "category": "enterprise-ai",
@@ -10684,7 +10662,7 @@
     "linkedin": "https://linkedin.com/company/lucidworks"
   },
   {
-    "id": 327,
+    "id": 326,
     "name": "Luma AI",
     "product": "3D AI",
     "category": "consumer-ai",
@@ -10718,7 +10696,7 @@
     "linkedin": "https://linkedin.com/company/lumaaboratories"
   },
   {
-    "id": 328,
+    "id": 327,
     "name": "Lumen",
     "product": "Metabolism AI",
     "category": "consumer-ai",
@@ -10752,7 +10730,7 @@
     "linkedin": "https://linkedin.com/company/lumen-me"
   },
   {
-    "id": 329,
+    "id": 328,
     "name": "Luminance",
     "product": "Legal AI",
     "category": "fintech-legal",
@@ -10786,7 +10764,7 @@
     "linkedin": "https://linkedin.com/company/luminance-tech"
   },
   {
-    "id": 330,
+    "id": 329,
     "name": "Lusha",
     "product": "B2B Data Platform",
     "category": "gtm-ai",
@@ -10821,7 +10799,7 @@
     "linkedin": "https://linkedin.com/company/lusha-co"
   },
   {
-    "id": 331,
+    "id": 330,
     "name": "Mabl",
     "product": "AI Test Automation",
     "category": "developer-tools",
@@ -10854,7 +10832,7 @@
     "linkedin": "https://linkedin.com/company/mabllabs"
   },
   {
-    "id": 332,
+    "id": 331,
     "name": "Machina Labs",
     "product": "AI Manufacturing",
     "category": "industrial-ai",
@@ -10887,7 +10865,7 @@
     "linkedin": "https://linkedin.com/company/machina-labs"
   },
   {
-    "id": 333,
+    "id": 332,
     "name": "Magic AI",
     "product": "AI Coding Assistant",
     "category": "developer-tools",
@@ -10922,7 +10900,7 @@
     "linkedin": "https://linkedin.com/company/magic-dev"
   },
   {
-    "id": 334,
+    "id": 333,
     "name": "Main Func",
     "product": "Enterprise AI Agents",
     "category": "ai-agents",
@@ -10956,7 +10934,7 @@
     "linkedin": "https://linkedin.com/company/main-func"
   },
   {
-    "id": 335,
+    "id": 334,
     "name": "Martian",
     "product": "Model Router",
     "category": "developer-tools",
@@ -11002,10 +10980,10 @@
     "description": "AI-powered email security platform protecting against phishing, account takeover, and data loss.",
     "investors": "Sequoia Capital, March Capital, Khosla Ventures",
     "dateAdded": "2026-02-11",
-    "id": 336
+    "id": 335
   },
   {
-    "id": 337,
+    "id": 336,
     "name": "Meilisearch",
     "product": "Open Source Search",
     "category": "developer-tools",
@@ -11038,7 +11016,7 @@
     "linkedin": "https://linkedin.com/company/meilisearch"
   },
   {
-    "id": 338,
+    "id": 337,
     "name": "Melio",
     "product": "SMB Payments AI",
     "category": "fintech-legal",
@@ -11072,7 +11050,7 @@
     "linkedin": "https://linkedin.com/company/meliopayments"
   },
   {
-    "id": 339,
+    "id": 338,
     "name": "Mem",
     "product": "AI Note-Taking",
     "category": "enterprise-ai",
@@ -11105,7 +11083,7 @@
     "linkedin": "https://linkedin.com/company/memdotai"
   },
   {
-    "id": 340,
+    "id": 339,
     "name": "Mercury",
     "product": "Banking for Startups",
     "category": "fintech-legal",
@@ -11140,7 +11118,7 @@
     "linkedin": "https://linkedin.com/company/mercuryfi"
   },
   {
-    "id": 341,
+    "id": 340,
     "name": "Meshy",
     "product": "AI 3D Models",
     "category": "text-ai",
@@ -11173,7 +11151,7 @@
     "linkedin": "https://linkedin.com/company/meshy-ai"
   },
   {
-    "id": 342,
+    "id": 341,
     "name": "Mews",
     "product": "Hospitality Cloud",
     "category": "enterprise-ai",
@@ -11208,7 +11186,7 @@
     "linkedin": "https://linkedin.com/company/maboratories"
   },
   {
-    "id": 343,
+    "id": 342,
     "name": "Midjourney",
     "product": "Midjourney",
     "category": "consumer-ai",
@@ -11230,7 +11208,7 @@
     ]
   },
   {
-    "id": 344,
+    "id": 343,
     "name": "Milvus / Zilliz",
     "product": "Milvus",
     "category": "developer-tools",
@@ -11252,7 +11230,7 @@
     ]
   },
   {
-    "id": 345,
+    "id": 344,
     "name": "Mindtickle",
     "product": "Sales Readiness AI",
     "category": "gtm-ai",
@@ -11287,7 +11265,7 @@
     "linkedin": "https://linkedin.com/company/mindtickle"
   },
   {
-    "id": 346,
+    "id": 345,
     "name": "Mistral AI",
     "product": "Mistral Models",
     "category": "foundation-models",
@@ -11312,7 +11290,7 @@
     "investors": "ASML, DST Global, a16z, Bpifrance, General Catalyst, Nvidia, Lightspeed"
   },
   {
-    "id": 347,
+    "id": 346,
     "name": "Mixpanel",
     "product": "Product Analytics AI",
     "category": "developer-tools",
@@ -11345,7 +11323,7 @@
     "linkedin": "https://linkedin.com/company/mixpanel"
   },
   {
-    "id": 348,
+    "id": 347,
     "name": "Modal",
     "product": "Modal",
     "category": "developer-tools",
@@ -11367,7 +11345,7 @@
     ]
   },
   {
-    "id": 349,
+    "id": 348,
     "name": "Modern Treasury",
     "product": "Payment Operations",
     "category": "fintech-legal",
@@ -11402,7 +11380,7 @@
     "linkedin": "https://linkedin.com/company/modern-treasury"
   },
   {
-    "id": 350,
+    "id": 349,
     "name": "Modl.ai",
     "product": "Game AI Testing",
     "category": "gaming-ai",
@@ -11435,7 +11413,7 @@
     "linkedin": "https://linkedin.com/company/modl-ai"
   },
   {
-    "id": 351,
+    "id": 350,
     "name": "Modular",
     "product": "AI Development Platform",
     "category": "data-infra",
@@ -11470,7 +11448,7 @@
     "linkedin": "https://linkedin.com/company/modaboratories"
   },
   {
-    "id": 352,
+    "id": 351,
     "name": "Moonvalley",
     "product": "AI Video Generation",
     "category": "video-ai",
@@ -11504,7 +11482,7 @@
     "linkedin": "https://linkedin.com/company/moonvalley-ai"
   },
   {
-    "id": 353,
+    "id": 352,
     "name": "Mostly AI",
     "product": "Synthetic Data",
     "category": "data-infra",
@@ -11537,7 +11515,7 @@
     "linkedin": "https://linkedin.com/company/mostly-ai"
   },
   {
-    "id": 354,
+    "id": 353,
     "name": "Motion",
     "product": "AI Calendar App",
     "category": "consumer-ai",
@@ -11570,7 +11548,7 @@
     "linkedin": "https://linkedin.com/company/usemotion"
   },
   {
-    "id": 355,
+    "id": 354,
     "name": "Motional",
     "product": "Autonomous Driving",
     "category": "industrial-ai",
@@ -11615,10 +11593,10 @@
     "description": "AI-powered fleet operations platform for safety, compliance, and efficiency in trucking and logistics.",
     "investors": "Andreessen Horowitz, Index Ventures, Insight Partners",
     "dateAdded": "2026-02-11",
-    "id": 356
+    "id": 355
   },
   {
-    "id": 357,
+    "id": 356,
     "name": "Movable Ink",
     "product": "Dynamic Content AI",
     "category": "gtm-ai",
@@ -11653,7 +11631,7 @@
     "linkedin": "https://linkedin.com/company/movable-ink"
   },
   {
-    "id": 358,
+    "id": 357,
     "name": "Move.ai",
     "product": "Markerless Motion Capture",
     "category": "video-ai",
@@ -11686,7 +11664,7 @@
     "linkedin": "https://linkedin.com/company/move-ai"
   },
   {
-    "id": 359,
+    "id": 358,
     "name": "Moveworks",
     "product": "Moveworks",
     "category": "enterprise-ai",
@@ -11708,7 +11686,7 @@
     ]
   },
   {
-    "id": 360,
+    "id": 359,
     "name": "mParticle",
     "product": "Customer Data AI",
     "category": "data-infra",
@@ -11743,7 +11721,7 @@
     "linkedin": "https://linkedin.com/company/mparticle"
   },
   {
-    "id": 361,
+    "id": 360,
     "name": "MultiOn",
     "product": "AI Web Agent",
     "category": "foundation-models",
@@ -11776,7 +11754,7 @@
     "linkedin": "https://linkedin.com/company/multion-ai"
   },
   {
-    "id": 362,
+    "id": 361,
     "name": "Murf.ai",
     "product": "AI Voice Generator",
     "category": "consumer-ai",
@@ -11810,7 +11788,7 @@
     "linkedin": "https://linkedin.com/company/murf-ai"
   },
   {
-    "id": 363,
+    "id": 362,
     "name": "Mutiny",
     "product": "Website Personalization",
     "category": "gtm-ai",
@@ -11844,7 +11822,7 @@
     "linkedin": "https://linkedin.com/company/mutinyhq"
   },
   {
-    "id": 364,
+    "id": 363,
     "name": "Nabla",
     "product": "Ambient AI for Clinicians",
     "category": "healthtech",
@@ -11878,7 +11856,7 @@
     "linkedin": "https://linkedin.com/company/nabla-technologies"
   },
   {
-    "id": 365,
+    "id": 364,
     "name": "Nanonets",
     "product": "AI OCR Platform",
     "category": "enterprise-ai",
@@ -11912,7 +11890,7 @@
     "linkedin": "https://linkedin.com/company/nanonets"
   },
   {
-    "id": 366,
+    "id": 365,
     "name": "Navan",
     "product": "Corporate Travel + AI",
     "category": "enterprise-ai",
@@ -11947,7 +11925,7 @@
     "linkedin": "https://linkedin.com/company/navan"
   },
   {
-    "id": 367,
+    "id": 366,
     "name": "Neon",
     "product": "Serverless Postgres",
     "category": "developer-tools",
@@ -11982,7 +11960,7 @@
     "linkedin": "https://linkedin.com/company/neaboratories"
   },
   {
-    "id": 368,
+    "id": 367,
     "name": "Neptune.ai",
     "product": "Experiment Tracking",
     "category": "data-infra",
@@ -12016,7 +11994,7 @@
     "linkedin": "https://linkedin.com/company/neptuneai"
   },
   {
-    "id": 369,
+    "id": 368,
     "name": "Netlify",
     "product": "Web Platform",
     "category": "developer-tools",
@@ -12050,7 +12028,7 @@
     "linkedin": "https://linkedin.com/company/netlify"
   },
   {
-    "id": 370,
+    "id": 369,
     "name": "Neuralink",
     "product": "Brain-Computer Interfaces",
     "category": "healthtech-ai",
@@ -12085,7 +12063,7 @@
     "linkedin": "https://linkedin.com/company/neuralink"
   },
   {
-    "id": 371,
+    "id": 370,
     "name": "New Relic",
     "product": "Observability AI",
     "category": "developer-tools",
@@ -12120,7 +12098,7 @@
     "linkedin": "https://linkedin.com/company/new-relic"
   },
   {
-    "id": 372,
+    "id": 371,
     "name": "NightCafe",
     "product": "AI Art Generator",
     "category": "consumer-ai",
@@ -12154,7 +12132,7 @@
     "linkedin": "https://linkedin.com/company/nightcafe-studio"
   },
   {
-    "id": 373,
+    "id": 372,
     "name": "Noom",
     "product": "AI Weight Loss",
     "category": "consumer-ai",
@@ -12188,7 +12166,7 @@
     "linkedin": "https://linkedin.com/company/noom-inc"
   },
   {
-    "id": 374,
+    "id": 373,
     "name": "Nori",
     "product": "Carbon Removal Marketplace",
     "category": "climate-agri",
@@ -12222,7 +12200,7 @@
     "linkedin": "https://linkedin.com/company/noricarbonremoval"
   },
   {
-    "id": 375,
+    "id": 374,
     "name": "Nosto",
     "product": "E-commerce Personalization",
     "category": "enterprise-ai",
@@ -12255,7 +12233,7 @@
     "linkedin": "https://linkedin.com/company/nosto-solutions"
   },
   {
-    "id": 376,
+    "id": 375,
     "name": "NotCo",
     "product": "Food AI R&D",
     "category": "industrial-ai",
@@ -12290,7 +12268,7 @@
     "linkedin": "https://linkedin.com/company/thenotcompany"
   },
   {
-    "id": 377,
+    "id": 376,
     "name": "Notion AI",
     "product": "Notion AI",
     "category": "enterprise-ai",
@@ -12312,7 +12290,7 @@
     ]
   },
   {
-    "id": 378,
+    "id": 377,
     "name": "Numerade",
     "product": "AI Video Tutoring",
     "category": "education-ai",
@@ -12346,7 +12324,7 @@
     "linkedin": "https://linkedin.com/company/numerade"
   },
   {
-    "id": 379,
+    "id": 378,
     "name": "Nuro",
     "product": "Autonomous Delivery",
     "category": "supply-chain",
@@ -12381,7 +12359,7 @@
     "linkedin": "https://linkedin.com/company/naboratories"
   },
   {
-    "id": 380,
+    "id": 379,
     "name": "o9 Solutions",
     "product": "AI Planning Platform",
     "category": "supply-chain",
@@ -12416,7 +12394,7 @@
     "linkedin": "https://linkedin.com/company/o9-solutions"
   },
   {
-    "id": 381,
+    "id": 380,
     "name": "Observe Technologies",
     "product": "Aquaculture AI",
     "category": "ocean-ai",
@@ -12449,7 +12427,7 @@
     "linkedin": "https://linkedin.com/company/observe-technologies"
   },
   {
-    "id": 382,
+    "id": 381,
     "name": "Ocean Infinity",
     "product": "Ocean Robotics Fleet",
     "category": "ocean-ai",
@@ -12482,7 +12460,7 @@
     "linkedin": "https://linkedin.com/company/ocean-infinity"
   },
   {
-    "id": 383,
+    "id": 382,
     "name": "OctoML",
     "product": "ML Optimization",
     "category": "data-infra",
@@ -12516,7 +12494,7 @@
     "linkedin": "https://linkedin.com/company/octoml"
   },
   {
-    "id": 384,
+    "id": 383,
     "name": "Olive AI",
     "product": "Healthcare Automation",
     "category": "healthtech",
@@ -12547,7 +12525,7 @@
     "linkedin": "https://linkedin.com/company/olive-ai"
   },
   {
-    "id": 385,
+    "id": 384,
     "name": "Omada Health",
     "product": "Digital Health AI",
     "category": "healthtech",
@@ -12581,7 +12559,7 @@
     "linkedin": "https://linkedin.com/company/omada-health"
   },
   {
-    "id": 386,
+    "id": 385,
     "name": "One Concern",
     "product": "Disaster AI",
     "category": "climate-agri",
@@ -12615,7 +12593,7 @@
     "linkedin": "https://linkedin.com/company/one-concern"
   },
   {
-    "id": 387,
+    "id": 386,
     "name": "Onit",
     "product": "AI Legal Operations",
     "category": "legal-compliance",
@@ -12649,7 +12627,7 @@
     "linkedin": "https://linkedin.com/company/onit-inc"
   },
   {
-    "id": 388,
+    "id": 387,
     "name": "OPAQUE Systems",
     "product": "Confidential AI Platform",
     "category": "security-ai",
@@ -12683,7 +12661,7 @@
     "linkedin": "https://linkedin.com/company/opaque-systems"
   },
   {
-    "id": 389,
+    "id": 388,
     "name": "OpenAI",
     "product": "ChatGPT / GPT-4",
     "category": "foundation-models",
@@ -12762,7 +12740,7 @@
     ]
   },
   {
-    "id": 390,
+    "id": 389,
     "name": "OpenEvidence",
     "product": "Medical AI Chatbot",
     "category": "healthtech-ai",
@@ -12797,7 +12775,7 @@
     "linkedin": "https://linkedin.com/company/openevidence"
   },
   {
-    "id": 391,
+    "id": 390,
     "name": "OpenOcean (Greensea)",
     "product": "Underwater Robot AI",
     "category": "ocean-ai",
@@ -12830,7 +12808,7 @@
     "linkedin": "https://linkedin.com/company/greensea-systems"
   },
   {
-    "id": 392,
+    "id": 391,
     "name": "OpenSpace",
     "product": "Reality Capture AI",
     "category": "industrial-ai",
@@ -12865,7 +12843,7 @@
     "linkedin": "https://linkedin.com/company/openspace-ai"
   },
   {
-    "id": 393,
+    "id": 392,
     "name": "Opus Clip",
     "product": "AI Video Repurposing",
     "category": "consumer-ai",
@@ -12898,7 +12876,7 @@
     "linkedin": "https://linkedin.com/company/opusclip"
   },
   {
-    "id": 394,
+    "id": 393,
     "name": "Orbital Insight",
     "product": "Geospatial AI",
     "category": "industrial-ai",
@@ -12931,7 +12909,7 @@
     "linkedin": "https://linkedin.com/company/orbital-insight"
   },
   {
-    "id": 395,
+    "id": 394,
     "name": "Orby AI",
     "product": "AI Agent Platform",
     "category": "enterprise-ai",
@@ -12965,7 +12943,7 @@
     "linkedin": "https://linkedin.com/company/orby-ai"
   },
   {
-    "id": 396,
+    "id": 395,
     "name": "Orca AI",
     "product": "Ship Navigation AI",
     "category": "ocean-ai",
@@ -12998,7 +12976,7 @@
     "linkedin": "https://linkedin.com/company/orca-ai"
   },
   {
-    "id": 397,
+    "id": 396,
     "name": "Orca Security",
     "product": "Cloud Security AI",
     "category": "security-ai",
@@ -13033,7 +13011,7 @@
     "linkedin": "https://linkedin.com/company/orca-security"
   },
   {
-    "id": 398,
+    "id": 397,
     "name": "Otter.ai",
     "product": "AI Meeting Assistant",
     "category": "enterprise-ai",
@@ -13069,7 +13047,7 @@
     "crunchbase": "https://crunchbase.com/organization/otter-ai"
   },
   {
-    "id": 399,
+    "id": 398,
     "name": "Oura",
     "product": "Health Tracking Ring",
     "category": "consumer-ai",
@@ -13104,7 +13082,7 @@
     "linkedin": "https://linkedin.com/company/oura"
   },
   {
-    "id": 400,
+    "id": 399,
     "name": "Outreach",
     "product": "Sales Execution Platform",
     "category": "gtm-ai",
@@ -13139,7 +13117,7 @@
     "linkedin": "https://linkedin.com/company/outaboratories"
   },
   {
-    "id": 401,
+    "id": 400,
     "name": "Owkin",
     "product": "AI Drug Discovery",
     "category": "healthtech",
@@ -13173,7 +13151,7 @@
     "linkedin": "https://linkedin.com/company/owkin"
   },
   {
-    "id": 402,
+    "id": 401,
     "name": "OYO",
     "product": "Budget Hotels AI",
     "category": "consumer-ai",
@@ -13206,7 +13184,7 @@
     "linkedin": "https://linkedin.com/company/oyorooms"
   },
   {
-    "id": 403,
+    "id": 402,
     "name": "Pachama",
     "product": "Pachama",
     "category": "industrial-ai",
@@ -13228,7 +13206,7 @@
     ]
   },
   {
-    "id": 404,
+    "id": 403,
     "name": "Paige AI",
     "product": "Cancer Diagnostics",
     "category": "healthtech",
@@ -13274,7 +13252,7 @@
     "description": "Enterprise data analytics and AI platform for government and commercial sectors. Public company known for Foundry and Gotham.",
     "investors": "Founders Fund, In-Q-Tel, Tiger Global",
     "dateAdded": "2026-02-11",
-    "id": 405
+    "id": 404
   },
   {
     "name": "Palo Alto Networks",
@@ -13289,10 +13267,10 @@
     "description": "Leading cybersecurity platform with next-gen firewalls, cloud security, and AI-powered threat detection. Public company.",
     "investors": "Greylock Partners, Sequoia Capital",
     "dateAdded": "2026-02-11",
-    "id": 406
+    "id": 405
   },
   {
-    "id": 407,
+    "id": 406,
     "name": "Paradox",
     "product": "Olivia AI",
     "category": "enterprise-ai",
@@ -13327,7 +13305,7 @@
     "linkedin": "https://linkedin.com/company/paradaboratories"
   },
   {
-    "id": 408,
+    "id": 407,
     "name": "Path Robotics",
     "product": "AI Welding",
     "category": "industrial-ai",
@@ -13361,7 +13339,7 @@
     "linkedin": "https://linkedin.com/company/path-robotics"
   },
   {
-    "id": 409,
+    "id": 408,
     "name": "PathAI",
     "product": "PathAI",
     "category": "healthtech",
@@ -13383,7 +13361,7 @@
     ]
   },
   {
-    "id": 410,
+    "id": 409,
     "name": "Patronus AI",
     "product": "AI Testing & Safety",
     "category": "developer-tools",
@@ -13417,7 +13395,7 @@
     "linkedin": "https://linkedin.com/company/patronus-ai"
   },
   {
-    "id": 411,
+    "id": 410,
     "name": "Peek",
     "product": "Travel Activities AI",
     "category": "consumer-ai",
@@ -13451,7 +13429,7 @@
     "linkedin": "https://linkedin.com/company/peek"
   },
   {
-    "id": 412,
+    "id": 411,
     "name": "People.ai",
     "product": "Revenue Operations",
     "category": "gtm-ai",
@@ -13486,7 +13464,7 @@
     "linkedin": "https://linkedin.com/company/peopleai"
   },
   {
-    "id": 413,
+    "id": 412,
     "name": "Perplexity",
     "product": "Perplexity",
     "category": "consumer-ai",
@@ -13544,7 +13522,7 @@
     ]
   },
   {
-    "id": 414,
+    "id": 413,
     "name": "Persado",
     "product": "Generative AI Marketing",
     "category": "gtm-ai",
@@ -13578,7 +13556,7 @@
     "linkedin": "https://linkedin.com/company/persado"
   },
   {
-    "id": 415,
+    "id": 414,
     "name": "Persona",
     "product": "Identity Infrastructure",
     "category": "fintech-legal",
@@ -13613,7 +13591,7 @@
     "linkedin": "https://linkedin.com/company/persona-identities"
   },
   {
-    "id": 416,
+    "id": 415,
     "name": "Phenom",
     "product": "Talent Experience",
     "category": "enterprise-ai",
@@ -13648,7 +13626,7 @@
     "linkedin": "https://linkedin.com/company/phenompeople"
   },
   {
-    "id": 417,
+    "id": 416,
     "name": "Photoroom",
     "product": "AI Photo Editor",
     "category": "consumer-ai",
@@ -13683,7 +13661,7 @@
     "linkedin": "https://linkedin.com/company/photoroom"
   },
   {
-    "id": 418,
+    "id": 417,
     "name": "Phrasee",
     "product": "AI Copywriting",
     "category": "gtm-ai",
@@ -13716,7 +13694,7 @@
     "linkedin": "https://linkedin.com/company/phrasee"
   },
   {
-    "id": 419,
+    "id": 418,
     "name": "Physical Intelligence",
     "product": "Foundation Model for Robots",
     "category": "industrial-ai",
@@ -13749,7 +13727,7 @@
     "linkedin": "https://linkedin.com/company/physical-intelligence"
   },
   {
-    "id": 420,
+    "id": 419,
     "name": "Pictory",
     "product": "AI Video Creation",
     "category": "consumer-ai",
@@ -13783,7 +13761,7 @@
     "linkedin": "https://linkedin.com/company/pictoryai"
   },
   {
-    "id": 421,
+    "id": 420,
     "name": "Pika",
     "product": "Pika",
     "category": "consumer-ai",
@@ -13805,7 +13783,7 @@
     ]
   },
   {
-    "id": 422,
+    "id": 421,
     "name": "Pilot",
     "product": "AI Bookkeeping",
     "category": "fintech-legal",
@@ -13840,7 +13818,7 @@
     "linkedin": "https://linkedin.com/company/pilot-com"
   },
   {
-    "id": 423,
+    "id": 422,
     "name": "Pinecone",
     "product": "Vector Database",
     "category": "developer-tools",
@@ -13862,7 +13840,7 @@
     ]
   },
   {
-    "id": 424,
+    "id": 423,
     "name": "Pivot Bio",
     "product": "Nitrogen-Fixing AI",
     "category": "climate-agri",
@@ -13897,7 +13875,7 @@
     "linkedin": "https://linkedin.com/company/pivot-bio"
   },
   {
-    "id": 425,
+    "id": 424,
     "name": "Pixxel",
     "product": "Hyperspectral Satellites",
     "category": "space-ai",
@@ -13930,7 +13908,7 @@
     "linkedin": "https://linkedin.com/company/pixxel-space"
   },
   {
-    "id": 426,
+    "id": 425,
     "name": "Plaid",
     "product": "Financial Data API",
     "category": "fintech-legal",
@@ -13965,7 +13943,7 @@
     "linkedin": "https://linkedin.com/company/plaid-"
   },
   {
-    "id": 427,
+    "id": 426,
     "name": "PlanetScale",
     "product": "Serverless Database",
     "category": "developer-tools",
@@ -14000,7 +13978,7 @@
     "linkedin": "https://linkedin.com/company/planetscale"
   },
   {
-    "id": 428,
+    "id": 427,
     "name": "Plenty",
     "product": "AI Vertical Farms",
     "category": "agriculture-ai",
@@ -14034,7 +14012,7 @@
     "linkedin": "https://linkedin.com/company/plenty-unlimited"
   },
   {
-    "id": 429,
+    "id": 428,
     "name": "Plus",
     "product": "Autonomous Trucking",
     "category": "industrial-ai",
@@ -14069,7 +14047,7 @@
     "linkedin": "https://linkedin.com/company/plusaboratories"
   },
   {
-    "id": 430,
+    "id": 429,
     "name": "Podcastle",
     "product": "AI Podcast Studio",
     "category": "consumer-ai",
@@ -14102,7 +14080,7 @@
     "linkedin": "https://linkedin.com/company/podcastleai"
   },
   {
-    "id": 431,
+    "id": 430,
     "name": "Poe",
     "product": "Poe",
     "category": "consumer-ai",
@@ -14136,10 +14114,10 @@
     "description": "Autonomous driving technology for robotaxis and trucks. Operating commercial robotaxi services in China.",
     "investors": "Toyota, Ontario Teachers' Pension Plan, CITIC",
     "dateAdded": "2026-02-11",
-    "id": 432
+    "id": 431
   },
   {
-    "id": 433,
+    "id": 432,
     "name": "Poolside",
     "product": "AI Coding Model",
     "category": "developer-tools",
@@ -14174,7 +14152,7 @@
     "linkedin": "https://linkedin.com/company/poolside-ai"
   },
   {
-    "id": 434,
+    "id": 433,
     "name": "Postman",
     "product": "API Platform + AI",
     "category": "developer-tools",
@@ -14209,7 +14187,7 @@
     "linkedin": "https://linkedin.com/company/postman-platform"
   },
   {
-    "id": 435,
+    "id": 434,
     "name": "Prisma Labs",
     "product": "AI Art Filters",
     "category": "photo-ai",
@@ -14242,7 +14220,7 @@
     "linkedin": "https://linkedin.com/company/prisma-labs"
   },
   {
-    "id": 436,
+    "id": 435,
     "name": "Privateer",
     "product": "Space Sustainability AI",
     "category": "space-ai",
@@ -14275,7 +14253,7 @@
     "linkedin": "https://linkedin.com/company/privateer-space"
   },
   {
-    "id": 437,
+    "id": 436,
     "name": "Project44",
     "product": "Supply Chain Visibility",
     "category": "supply-chain",
@@ -14310,7 +14288,7 @@
     "linkedin": "https://linkedin.com/company/project44"
   },
   {
-    "id": 438,
+    "id": 437,
     "name": "Qdrant",
     "product": "Qdrant",
     "category": "developer-tools",
@@ -14332,7 +14310,7 @@
     ]
   },
   {
-    "id": 439,
+    "id": 438,
     "name": "Qraft Technologies",
     "product": "AI Asset Management",
     "category": "fintech-legal",
@@ -14366,7 +14344,7 @@
     "linkedin": "https://linkedin.com/company/qraft-technologies"
   },
   {
-    "id": 440,
+    "id": 439,
     "name": "Qualified",
     "status": "acquired",
     "acquiredBy": "Salesforce",
@@ -14403,7 +14381,7 @@
     "valuation": "Acquired"
   },
   {
-    "id": 441,
+    "id": 440,
     "name": "Quizlet",
     "product": "AI Study Tools",
     "category": "education-ai",
@@ -14437,7 +14415,7 @@
     "linkedin": "https://linkedin.com/company/quizlet"
   },
   {
-    "id": 442,
+    "id": 441,
     "name": "Rad AI",
     "product": "Radiology AI",
     "category": "healthtech-ai",
@@ -14471,7 +14449,7 @@
     "linkedin": "https://linkedin.com/company/rad-ai"
   },
   {
-    "id": 443,
+    "id": 442,
     "name": "Railway",
     "product": "Cloud Platform",
     "category": "developer-tools",
@@ -14505,7 +14483,7 @@
     "linkedin": "https://linkedin.com/company/railway-app"
   },
   {
-    "id": 444,
+    "id": 443,
     "name": "Rain AI",
     "product": "AI Brain Chips",
     "category": "data-infra",
@@ -14538,7 +14516,7 @@
     "linkedin": "https://linkedin.com/company/rain-neuromorphics"
   },
   {
-    "id": 445,
+    "id": 444,
     "name": "Ramp",
     "product": "Corporate Spend",
     "category": "fintech-legal",
@@ -14573,7 +14551,7 @@
     "linkedin": "https://linkedin.com/company/raboratories"
   },
   {
-    "id": 446,
+    "id": 445,
     "name": "Read AI",
     "product": "AI Meeting Copilot",
     "category": "enterprise-ai",
@@ -14606,7 +14584,7 @@
     "linkedin": "https://linkedin.com/company/read-ai"
   },
   {
-    "id": 447,
+    "id": 446,
     "name": "Ready Player Me",
     "product": "Avatar Platform",
     "category": "consumer-ai",
@@ -14653,10 +14631,10 @@
     "description": "AI platform for defense and national security applications, providing data analytics and decision support.",
     "investors": "Insight Partners, Lux Capital, Costanoa Ventures",
     "dateAdded": "2026-02-11",
-    "id": 448
+    "id": 447
   },
   {
-    "id": 449,
+    "id": 448,
     "name": "Reclaim.ai",
     "product": "AI Scheduling",
     "category": "enterprise-ai",
@@ -14689,7 +14667,7 @@
     "linkedin": "https://linkedin.com/company/reclaim-ai"
   },
   {
-    "id": 450,
+    "id": 449,
     "name": "Recorded Future",
     "status": "acquired",
     "acquiredBy": "Mastercard",
@@ -14721,7 +14699,7 @@
     "linkedin": "https://linkedin.com/company/recorded-future"
   },
   {
-    "id": 451,
+    "id": 450,
     "name": "Recursion",
     "product": "AI Drug Discovery",
     "category": "healthtech",
@@ -14756,7 +14734,7 @@
     "linkedin": "https://linkedin.com/company/recursionpharma"
   },
   {
-    "id": 452,
+    "id": 451,
     "name": "Reflection AI",
     "product": "Open-Source Foundation Models",
     "category": "foundation-models",
@@ -14790,7 +14768,7 @@
     "linkedin": "https://linkedin.com/company/reflection-ai"
   },
   {
-    "id": 453,
+    "id": 452,
     "name": "Regie.ai",
     "product": "Regie",
     "category": "gtm-ai",
@@ -14812,7 +14790,7 @@
     ]
   },
   {
-    "id": 454,
+    "id": 453,
     "name": "Reka",
     "product": "Multimodal AI",
     "category": "foundation-models",
@@ -14846,7 +14824,7 @@
     "linkedin": "https://linkedin.com/company/reka-ai"
   },
   {
-    "id": 455,
+    "id": 454,
     "name": "Relativity",
     "product": "eDiscovery Platform",
     "category": "legal-compliance",
@@ -14881,7 +14859,7 @@
     "linkedin": "https://linkedin.com/company/relataboratories"
   },
   {
-    "id": 456,
+    "id": 455,
     "name": "Relevance AI",
     "product": "AI Agent Builder",
     "category": "enterprise-ai",
@@ -14914,7 +14892,7 @@
     "linkedin": "https://linkedin.com/company/relevance-ai"
   },
   {
-    "id": 457,
+    "id": 456,
     "name": "Remote",
     "product": "Global Employment",
     "category": "fintech-legal",
@@ -14949,7 +14927,7 @@
     "linkedin": "https://linkedin.com/company/remaboratories"
   },
   {
-    "id": 458,
+    "id": 457,
     "name": "Render",
     "product": "Cloud Platform",
     "category": "developer-tools",
@@ -14984,7 +14962,7 @@
     "linkedin": "https://linkedin.com/company/renderinc"
   },
   {
-    "id": 459,
+    "id": 458,
     "name": "Reonomy",
     "product": "CRE Intelligence",
     "category": "real-estate",
@@ -15017,7 +14995,7 @@
     "linkedin": "https://linkedin.com/company/reonomy"
   },
   {
-    "id": 460,
+    "id": 459,
     "name": "Replicate",
     "product": "Model API",
     "category": "foundation-models",
@@ -15039,7 +15017,7 @@
     ]
   },
   {
-    "id": 461,
+    "id": 460,
     "name": "Replika",
     "product": "AI Companion",
     "category": "consumer-ai",
@@ -15073,7 +15051,7 @@
     "linkedin": "https://linkedin.com/company/replika-ai"
   },
   {
-    "id": 462,
+    "id": 461,
     "name": "Replit",
     "product": "Replit",
     "category": "developer-tools",
@@ -15095,7 +15073,7 @@
     ]
   },
   {
-    "id": 463,
+    "id": 462,
     "name": "Resemble AI",
     "product": "Generative Voice",
     "category": "consumer-ai",
@@ -15128,7 +15106,7 @@
     "linkedin": "https://linkedin.com/company/resemble-ai"
   },
   {
-    "id": 464,
+    "id": 463,
     "name": "Respeecher",
     "product": "Voice Cloning AI",
     "category": "consumer-ai",
@@ -15162,7 +15140,7 @@
     "linkedin": "https://linkedin.com/company/respeecher"
   },
   {
-    "id": 465,
+    "id": 464,
     "name": "Retool",
     "product": "Internal Tools Platform",
     "category": "developer-tools",
@@ -15197,7 +15175,7 @@
     "linkedin": "https://linkedin.com/company/retaboratories"
   },
   {
-    "id": 466,
+    "id": 465,
     "name": "Rev.com",
     "product": "Transcription AI",
     "category": "developer-tools",
@@ -15230,7 +15208,7 @@
     "linkedin": "https://linkedin.com/company/revdotcom"
   },
   {
-    "id": 467,
+    "id": 466,
     "name": "RightHand Robotics",
     "product": "Picking Robots",
     "category": "robotics-ai",
@@ -15263,7 +15241,7 @@
     "linkedin": "https://linkedin.com/company/righthand-robotics"
   },
   {
-    "id": 468,
+    "id": 467,
     "name": "Riiid",
     "product": "AI Test Prep",
     "category": "education-ai",
@@ -15297,7 +15275,7 @@
     "linkedin": "https://linkedin.com/company/riiid"
   },
   {
-    "id": 469,
+    "id": 468,
     "name": "Rippling",
     "product": "HR & IT AI",
     "category": "hr-talent",
@@ -15332,7 +15310,7 @@
     "linkedin": "https://linkedin.com/company/ripaboratoriespling"
   },
   {
-    "id": 470,
+    "id": 469,
     "name": "Riverside.fm",
     "product": "AI Recording Studio",
     "category": "consumer-ai",
@@ -15365,7 +15343,7 @@
     "linkedin": "https://linkedin.com/company/riverside-fm"
   },
   {
-    "id": 471,
+    "id": 470,
     "name": "Ro",
     "product": "Digital Health AI",
     "category": "healthtech",
@@ -15400,7 +15378,7 @@
     "linkedin": "https://linkedin.com/company/ro-health"
   },
   {
-    "id": 472,
+    "id": 471,
     "name": "Robin AI",
     "product": "Contract Drafting AI",
     "category": "legal-compliance",
@@ -15434,7 +15412,7 @@
     "linkedin": "https://linkedin.com/company/robin-ai"
   },
   {
-    "id": 473,
+    "id": 472,
     "name": "Rokoko",
     "product": "AI Motion Capture",
     "category": "video-ai",
@@ -15467,7 +15445,7 @@
     "linkedin": "https://linkedin.com/company/rokoko-electronics"
   },
   {
-    "id": 474,
+    "id": 473,
     "name": "Rossum",
     "product": "AI Document Processing",
     "category": "enterprise-ai",
@@ -15501,7 +15479,7 @@
     "linkedin": "https://linkedin.com/company/rossum-ai"
   },
   {
-    "id": 475,
+    "id": 474,
     "name": "Rows",
     "product": "Spreadsheet AI",
     "category": "enterprise-ai",
@@ -15534,7 +15512,7 @@
     "linkedin": "https://linkedin.com/company/rowshq"
   },
   {
-    "id": 476,
+    "id": 475,
     "name": "RudderStack",
     "product": "Open Source CDP",
     "category": "data-infra",
@@ -15568,7 +15546,7 @@
     "linkedin": "https://linkedin.com/company/rudderlabs"
   },
   {
-    "id": 477,
+    "id": 476,
     "name": "Running Tide",
     "product": "Ocean Carbon Removal",
     "category": "ocean-ai",
@@ -15601,7 +15579,7 @@
     "linkedin": "https://linkedin.com/company/runningtide"
   },
   {
-    "id": 478,
+    "id": 477,
     "name": "Runway",
     "product": "Runway ML",
     "category": "consumer-ai",
@@ -15658,7 +15636,7 @@
     ]
   },
   {
-    "id": 479,
+    "id": 478,
     "name": "Runway ML",
     "product": "AI Video & Creative",
     "category": "consumer-ai",
@@ -15693,7 +15671,7 @@
     "linkedin": "https://linkedin.com/company/runwayml"
   },
   {
-    "id": 480,
+    "id": 479,
     "name": "Safe Superintelligence",
     "product": "SSI",
     "category": "foundation-models",
@@ -15727,7 +15705,7 @@
     "linkedin": "https://linkedin.com/company/safe-superintelligence"
   },
   {
-    "id": 481,
+    "id": 480,
     "name": "Saga",
     "product": "AI Knowledge Base",
     "category": "enterprise-ai",
@@ -15759,7 +15737,7 @@
     "linkedin": "https://linkedin.com/company/sagaboratories"
   },
   {
-    "id": 482,
+    "id": 481,
     "name": "Saildrone",
     "product": "Autonomous Ocean Drones",
     "category": "ocean-ai",
@@ -15792,7 +15770,7 @@
     "linkedin": "https://linkedin.com/company/saildrone"
   },
   {
-    "id": 483,
+    "id": 482,
     "name": "Sakana AI",
     "product": "Nature-Inspired AI",
     "category": "foundation-models",
@@ -15826,7 +15804,7 @@
     "linkedin": "https://linkedin.com/company/sakana-ai"
   },
   {
-    "id": 484,
+    "id": 483,
     "name": "Salesloft",
     "product": "Revenue Workflow",
     "category": "gtm-ai",
@@ -15860,7 +15838,7 @@
     "linkedin": "https://linkedin.com/company/salesloft"
   },
   {
-    "id": 485,
+    "id": 484,
     "name": "SambaNova",
     "product": "AI Compute Platform",
     "category": "data-infra",
@@ -15907,10 +15885,10 @@
     "description": "Connected operations cloud combining IoT sensors and AI analytics for fleet management. Public company.",
     "investors": "Andreessen Horowitz, General Catalyst, Tiger Global",
     "dateAdded": "2026-02-11",
-    "id": 486
+    "id": 485
   },
   {
-    "id": 487,
+    "id": 486,
     "name": "Sana Labs",
     "product": "AI Learning Platform",
     "category": "education-ai",
@@ -15944,7 +15922,7 @@
     "linkedin": "https://linkedin.com/company/sana-labs"
   },
   {
-    "id": 488,
+    "id": 487,
     "name": "Sanctuary AI",
     "product": "Humanoid Robots",
     "category": "robotics-ai",
@@ -15977,7 +15955,7 @@
     "linkedin": "https://linkedin.com/company/sanctuaryaboratoriesai"
   },
   {
-    "id": 489,
+    "id": 488,
     "name": "Sarvam AI",
     "product": "India AI Platform",
     "category": "foundation-models",
@@ -16010,7 +15988,7 @@
     "linkedin": "https://linkedin.com/company/sarvam-ai"
   },
   {
-    "id": 490,
+    "id": 489,
     "name": "Saviynt",
     "product": "AI Identity Management",
     "category": "security-ai",
@@ -16044,7 +16022,7 @@
     "linkedin": "https://linkedin.com/company/saviynt"
   },
   {
-    "id": 491,
+    "id": 490,
     "name": "Scale AI",
     "product": "Scale",
     "category": "industrial-ai",
@@ -16119,7 +16097,7 @@
     ]
   },
   {
-    "id": 492,
+    "id": 491,
     "name": "Scenario",
     "product": "AI Game Assets",
     "category": "photo-ai",
@@ -16152,7 +16130,7 @@
     "linkedin": "https://linkedin.com/company/scenario-gg"
   },
   {
-    "id": 493,
+    "id": 492,
     "name": "Sea Machines",
     "product": "Autonomous Ships",
     "category": "ocean-ai",
@@ -16197,10 +16175,10 @@
     "description": "Automated compliance platform for SOC 2, ISO 27001, HIPAA, and other security certifications.",
     "investors": "Kleiner Perkins, Base10 Partners, Accomplice",
     "dateAdded": "2026-02-11",
-    "id": 494
+    "id": 493
   },
   {
-    "id": 495,
+    "id": 494,
     "name": "Securiti",
     "product": "Data+AI Governance",
     "category": "security-ai",
@@ -16235,7 +16213,7 @@
     "linkedin": "https://linkedin.com/company/securiti-ai"
   },
   {
-    "id": 496,
+    "id": 495,
     "name": "Seekout",
     "product": "Talent Search",
     "category": "enterprise-ai",
@@ -16270,7 +16248,7 @@
     "linkedin": "https://linkedin.com/company/seekout"
   },
   {
-    "id": 497,
+    "id": 496,
     "name": "Seismic",
     "product": "Sales Enablement AI",
     "category": "gtm-ai",
@@ -16305,7 +16283,7 @@
     "linkedin": "https://linkedin.com/company/seaboratories"
   },
   {
-    "id": 498,
+    "id": 497,
     "name": "SenseTime",
     "product": "Computer Vision & AI Platform",
     "category": "industrial-ai",
@@ -16340,7 +16318,7 @@
     "linkedin": "https://linkedin.com/company/sensetime-group"
   },
   {
-    "id": 499,
+    "id": 498,
     "name": "Sensible",
     "product": "Document Extraction API",
     "category": "enterprise-ai",
@@ -16374,7 +16352,7 @@
     "linkedin": "https://linkedin.com/company/sensible-so"
   },
   {
-    "id": 500,
+    "id": 499,
     "name": "Sentera",
     "product": "Drone Ag Analytics",
     "category": "agriculture-ai",
@@ -16419,10 +16397,10 @@
     "description": "Autonomous AI-powered cybersecurity platform for endpoint, cloud, and identity protection. Public company.",
     "investors": "Tiger Global, Insight Partners, Redpoint Ventures",
     "dateAdded": "2026-02-11",
-    "id": 501
+    "id": 500
   },
   {
-    "id": 502,
+    "id": 501,
     "name": "Sentry",
     "product": "Error Monitoring + AI",
     "category": "developer-tools",
@@ -16457,7 +16435,7 @@
     "linkedin": "https://linkedin.com/company/saboratoriesentry"
   },
   {
-    "id": 503,
+    "id": 502,
     "name": "Sesame",
     "product": "Voice AI Platform",
     "category": "voice-ai",
@@ -16491,7 +16469,7 @@
     "linkedin": "https://linkedin.com/company/sesame-ai"
   },
   {
-    "id": 504,
+    "id": 503,
     "name": "Shield AI",
     "product": "AI Pilot",
     "category": "industrial-ai",
@@ -16570,7 +16548,7 @@
     ]
   },
   {
-    "id": 505,
+    "id": 504,
     "name": "Shift Technology",
     "product": "Insurance Fraud AI",
     "category": "insurance-ai",
@@ -16604,7 +16582,7 @@
     "linkedin": "https://linkedin.com/company/shift-technology"
   },
   {
-    "id": 506,
+    "id": 505,
     "name": "Sierra",
     "product": "Conversational AI",
     "category": "enterprise-ai",
@@ -16639,7 +16617,7 @@
     "linkedin": "https://linkedin.com/company/sierra-ai"
   },
   {
-    "id": 507,
+    "id": 506,
     "name": "Sinequa",
     "product": "Enterprise Search AI",
     "category": "enterprise-ai",
@@ -16672,7 +16650,7 @@
     "linkedin": "https://linkedin.com/company/sinequa"
   },
   {
-    "id": 508,
+    "id": 507,
     "name": "Skild AI",
     "product": "Skild Brain",
     "category": "robotics-ai",
@@ -16706,7 +16684,7 @@
     "linkedin": "https://linkedin.com/company/skild-ai"
   },
   {
-    "id": 509,
+    "id": 508,
     "name": "Skydio",
     "product": "Autonomous Drones",
     "category": "industrial-ai",
@@ -16741,7 +16719,7 @@
     "linkedin": "https://linkedin.com/company/skydio"
   },
   {
-    "id": 510,
+    "id": 509,
     "name": "Skylo",
     "product": "Satellite IoT",
     "category": "space-ai",
@@ -16774,7 +16752,7 @@
     "linkedin": "https://linkedin.com/company/skylo-tech"
   },
   {
-    "id": 511,
+    "id": 510,
     "name": "Slingshot Aerospace",
     "product": "Space Situational Awareness",
     "category": "space-ai",
@@ -16807,7 +16785,7 @@
     "linkedin": "https://linkedin.com/company/slingshot-aerospace"
   },
   {
-    "id": 512,
+    "id": 511,
     "name": "Snapsheet",
     "product": "Virtual Claims AI",
     "category": "fintech-legal",
@@ -16841,7 +16819,7 @@
     "linkedin": "https://linkedin.com/company/snapsheet"
   },
   {
-    "id": 513,
+    "id": 512,
     "name": "Snorkel AI",
     "product": "Snorkel Flow",
     "category": "industrial-ai",
@@ -16875,10 +16853,10 @@
     "description": "Leading cloud data platform for storage, processing, and analytics across multiple clouds. Public company.",
     "investors": "Sequoia Capital, Altimeter Capital, ICONIQ Growth",
     "dateAdded": "2026-02-11",
-    "id": 514
+    "id": 513
   },
   {
-    "id": 515,
+    "id": 514,
     "name": "Snyk",
     "product": "Developer Security",
     "category": "security-ai",
@@ -16913,7 +16891,7 @@
     "linkedin": "https://linkedin.com/company/snyk"
   },
   {
-    "id": 516,
+    "id": 515,
     "name": "Socure",
     "product": "Digital Identity AI",
     "category": "fintech-legal",
@@ -16948,7 +16926,7 @@
     "linkedin": "https://linkedin.com/company/socure"
   },
   {
-    "id": 517,
+    "id": 516,
     "name": "Sofar Ocean",
     "product": "Ocean Data AI",
     "category": "ocean-ai",
@@ -16981,7 +16959,7 @@
     "linkedin": "https://linkedin.com/company/sofarocean"
   },
   {
-    "id": 518,
+    "id": 517,
     "name": "Soundraw",
     "product": "AI Music Generator",
     "category": "consumer-ai",
@@ -17015,7 +16993,7 @@
     "linkedin": "https://linkedin.com/company/soundraw"
   },
   {
-    "id": 519,
+    "id": 518,
     "name": "Sourcegraph",
     "product": "Code Intelligence",
     "category": "developer-tools",
@@ -17049,7 +17027,7 @@
     "linkedin": "https://linkedin.com/company/sourcegraph"
   },
   {
-    "id": 520,
+    "id": 519,
     "name": "SparkCognition",
     "product": "Industrial AI",
     "category": "industrial-ai",
@@ -17082,7 +17060,7 @@
     "linkedin": "https://linkedin.com/company/sparkcognition"
   },
   {
-    "id": 521,
+    "id": 520,
     "name": "Speak",
     "product": "AI Language Learning",
     "category": "consumer-ai",
@@ -17116,7 +17094,7 @@
     "linkedin": "https://linkedin.com/company/speak-ai"
   },
   {
-    "id": 522,
+    "id": 521,
     "name": "Speechmatics",
     "product": "Speech Recognition",
     "category": "developer-tools",
@@ -17150,7 +17128,7 @@
     "linkedin": "https://linkedin.com/company/speechmatics"
   },
   {
-    "id": 523,
+    "id": 522,
     "name": "Spellbook",
     "product": "Legal Drafting AI",
     "category": "legal-compliance",
@@ -17184,7 +17162,7 @@
     "linkedin": "https://linkedin.com/company/spellbook-legal"
   },
   {
-    "id": 524,
+    "id": 523,
     "name": "Spire Global",
     "product": "Space Data AI",
     "category": "space-ai",
@@ -17218,7 +17196,7 @@
     "linkedin": "https://linkedin.com/company/spaboratoriesire-global"
   },
   {
-    "id": 525,
+    "id": 524,
     "name": "Splash",
     "product": "AI Music for Gaming",
     "category": "music-ai",
@@ -17251,7 +17229,7 @@
     "linkedin": "https://linkedin.com/company/splashmusic"
   },
   {
-    "id": 526,
+    "id": 525,
     "name": "Spline",
     "product": "3D Design + AI",
     "category": "photo-ai",
@@ -17284,7 +17262,7 @@
     "linkedin": "https://linkedin.com/company/spaboratoriesline-design"
   },
   {
-    "id": 527,
+    "id": 526,
     "name": "Spotnana",
     "product": "Travel Platform AI",
     "category": "enterprise-ai",
@@ -17319,7 +17297,7 @@
     "linkedin": "https://linkedin.com/company/spotnana"
   },
   {
-    "id": 528,
+    "id": 527,
     "name": "Squirrel AI",
     "product": "Adaptive Learning China",
     "category": "education-ai",
@@ -17353,7 +17331,7 @@
     "linkedin": "https://linkedin.com/company/squirrel-ai"
   },
   {
-    "id": 529,
+    "id": 528,
     "name": "Stability AI",
     "product": "Stable Diffusion",
     "category": "foundation-models",
@@ -17375,7 +17353,7 @@
     ]
   },
   {
-    "id": 530,
+    "id": 529,
     "name": "Stampli",
     "product": "AP Automation AI",
     "category": "fintech-legal",
@@ -17409,7 +17387,7 @@
     "linkedin": "https://linkedin.com/company/stampli"
   },
   {
-    "id": 531,
+    "id": 530,
     "name": "Stitch Fix",
     "product": "AI Styling",
     "category": "consumer-ai",
@@ -17442,7 +17420,7 @@
     "linkedin": "https://linkedin.com/company/stitch-fix"
   },
   {
-    "id": 532,
+    "id": 531,
     "name": "Strava",
     "product": "Fitness Social + AI",
     "category": "consumer-ai",
@@ -17476,7 +17454,7 @@
     "linkedin": "https://linkedin.com/company/strava"
   },
   {
-    "id": 533,
+    "id": 532,
     "name": "Stripe",
     "product": "Payment Infrastructure",
     "category": "fintech-legal",
@@ -17567,7 +17545,7 @@
     ]
   },
   {
-    "id": 534,
+    "id": 533,
     "name": "SudoLang",
     "product": "AI Programming Language",
     "category": "developer-tools",
@@ -17600,7 +17578,7 @@
     "linkedin": "https://linkedin.com/company/sudolang"
   },
   {
-    "id": 535,
+    "id": 534,
     "name": "Sudowrite",
     "product": "AI Fiction Writing",
     "category": "consumer-ai",
@@ -17633,7 +17611,7 @@
     "linkedin": "https://linkedin.com/company/sudowrite"
   },
   {
-    "id": 536,
+    "id": 535,
     "name": "Suno",
     "product": "Suno",
     "category": "consumer-ai",
@@ -17655,7 +17633,7 @@
     ]
   },
   {
-    "id": 537,
+    "id": 536,
     "name": "Supabase",
     "product": "Open Source Firebase + AI",
     "category": "developer-tools",
@@ -17690,7 +17668,7 @@
     "linkedin": "https://linkedin.com/company/supabase"
   },
   {
-    "id": 538,
+    "id": 537,
     "name": "Superagent",
     "product": "AI Agent Framework",
     "category": "developer-tools",
@@ -17723,7 +17701,7 @@
     "linkedin": "https://linkedin.com/company/superagent-ai"
   },
   {
-    "id": 539,
+    "id": 538,
     "name": "Superhuman",
     "product": "AI Email",
     "category": "enterprise-ai",
@@ -17758,7 +17736,7 @@
     "linkedin": "https://linkedin.com/company/superhuman"
   },
   {
-    "id": 540,
+    "id": 539,
     "name": "Synthesia",
     "product": "Synthesia",
     "category": "consumer-ai",
@@ -17783,7 +17761,7 @@
     "investors": "Google Ventures, Evantic, Hedosophia, Nvidia, Accel"
   },
   {
-    "id": 541,
+    "id": 540,
     "name": "Synthesis AI",
     "product": "Synthetic Data Vision",
     "category": "data-infra",
@@ -17816,7 +17794,7 @@
     "linkedin": "https://linkedin.com/company/synthesis-ai"
   },
   {
-    "id": 542,
+    "id": 541,
     "name": "Synthflow",
     "product": "AI Voice Agents",
     "category": "voice-ai",
@@ -17850,7 +17828,7 @@
     "linkedin": "https://linkedin.com/company/synthflow"
   },
   {
-    "id": 543,
+    "id": 542,
     "name": "Syte",
     "product": "Visual AI for Retail",
     "category": "enterprise-ai",
@@ -17884,7 +17862,7 @@
     "linkedin": "https://linkedin.com/company/syte-ai"
   },
   {
-    "id": 544,
+    "id": 543,
     "name": "Tabnine",
     "product": "Tabnine",
     "category": "developer-tools",
@@ -17906,7 +17884,7 @@
     ]
   },
   {
-    "id": 545,
+    "id": 544,
     "name": "Tala Health",
     "product": "Personalized Healthcare AI",
     "category": "healthtech",
@@ -17940,7 +17918,7 @@
     "linkedin": "https://linkedin.com/company/tala-health"
   },
   {
-    "id": 546,
+    "id": 545,
     "name": "Talkdesk",
     "product": "AI Contact Center",
     "category": "enterprise-ai",
@@ -17975,7 +17953,7 @@
     "linkedin": "https://linkedin.com/company/talkdesk"
   },
   {
-    "id": 547,
+    "id": 546,
     "name": "Taranis",
     "product": "Crop Intelligence Platform",
     "category": "agriculture-ai",
@@ -18008,7 +17986,7 @@
     "linkedin": "https://linkedin.com/company/taranis-ag"
   },
   {
-    "id": 548,
+    "id": 547,
     "name": "Tastewise",
     "product": "Food Intelligence AI",
     "category": "consumer-ai",
@@ -18041,7 +18019,7 @@
     "linkedin": "https://linkedin.com/company/tastewise"
   },
   {
-    "id": 549,
+    "id": 548,
     "name": "Tavus",
     "product": "AI Video Personalization",
     "category": "video-ai",
@@ -18075,7 +18053,7 @@
     "linkedin": "https://linkedin.com/company/tavus"
   },
   {
-    "id": 550,
+    "id": 549,
     "name": "Tecton",
     "product": "Feature Platform",
     "category": "data-infra",
@@ -18110,7 +18088,7 @@
     "linkedin": "https://linkedin.com/company/tecton"
   },
   {
-    "id": 551,
+    "id": 550,
     "name": "Tempo",
     "product": "AI Home Gym",
     "category": "consumer-ai",
@@ -18143,7 +18121,7 @@
     "linkedin": "https://linkedin.com/company/tempo-fit"
   },
   {
-    "id": 552,
+    "id": 551,
     "name": "Tempus",
     "product": "Tempus AI",
     "category": "healthtech",
@@ -18165,7 +18143,7 @@
     ]
   },
   {
-    "id": 553,
+    "id": 552,
     "name": "Tenstorrent",
     "product": "AI Chips",
     "category": "data-infra",
@@ -18199,7 +18177,7 @@
     "linkedin": "https://linkedin.com/company/tenstorrent"
   },
   {
-    "id": 554,
+    "id": 553,
     "name": "Terradepth",
     "product": "Autonomous Subsea",
     "category": "ocean-ai",
@@ -18232,7 +18210,7 @@
     "linkedin": "https://linkedin.com/company/terradepth"
   },
   {
-    "id": 555,
+    "id": 554,
     "name": "TestFit",
     "product": "AI Building Design",
     "category": "industrial-ai",
@@ -18265,7 +18243,7 @@
     "linkedin": "https://linkedin.com/company/testfit"
   },
   {
-    "id": 556,
+    "id": 555,
     "name": "Textio",
     "product": "Augmented Writing",
     "category": "enterprise-ai",
@@ -18299,7 +18277,7 @@
     "linkedin": "https://linkedin.com/company/textio"
   },
   {
-    "id": 557,
+    "id": 556,
     "name": "Thinking Machines Lab",
     "product": "Foundation Models & Fine-tuning",
     "category": "foundation-models",
@@ -18333,7 +18311,7 @@
     "linkedin": "https://linkedin.com/company/thinking-machines-lab"
   },
   {
-    "id": 558,
+    "id": 557,
     "name": "ThoughtSpot",
     "product": "AI Analytics Platform",
     "category": "data-infrastructure",
@@ -18367,7 +18345,7 @@
     "linkedin": "https://linkedin.com/company/thoughtspot"
   },
   {
-    "id": 559,
+    "id": 558,
     "name": "Tipalti",
     "product": "Global Payables AI",
     "category": "fintech-legal",
@@ -18402,7 +18380,7 @@
     "linkedin": "https://linkedin.com/company/tipalti"
   },
   {
-    "id": 560,
+    "id": 559,
     "name": "tl;dv",
     "product": "AI Meeting Recorder",
     "category": "enterprise-ai",
@@ -18435,7 +18413,7 @@
     "linkedin": "https://linkedin.com/company/tldv"
   },
   {
-    "id": 561,
+    "id": 560,
     "name": "Together AI",
     "product": "Together Inference",
     "category": "foundation-models",
@@ -18457,7 +18435,7 @@
     ]
   },
   {
-    "id": 562,
+    "id": 561,
     "name": "Tome",
     "product": "AI Presentations",
     "category": "creative-ai",
@@ -18491,7 +18469,7 @@
     "linkedin": "https://linkedin.com/company/tome-app"
   },
   {
-    "id": 563,
+    "id": 562,
     "name": "Tonal",
     "product": "AI Home Gym",
     "category": "consumer-ai",
@@ -18525,7 +18503,7 @@
     "linkedin": "https://linkedin.com/company/tonal-systems"
   },
   {
-    "id": 564,
+    "id": 563,
     "name": "Tonic.ai",
     "product": "Data Masking AI",
     "category": "data-infra",
@@ -18558,7 +18536,7 @@
     "linkedin": "https://linkedin.com/company/taboratoriesoniaboratoriesai"
   },
   {
-    "id": 565,
+    "id": 564,
     "name": "Torc Robotics",
     "product": "Autonomous Trucking",
     "category": "industrial-ai",
@@ -18591,7 +18569,7 @@
     "linkedin": "https://linkedin.com/company/torc-robotics"
   },
   {
-    "id": 566,
+    "id": 565,
     "name": "Trace Genomics",
     "product": "Soil Microbiome AI",
     "category": "agriculture-ai",
@@ -18624,7 +18602,7 @@
     "linkedin": "https://linkedin.com/company/trace-genomics"
   },
   {
-    "id": 567,
+    "id": 566,
     "name": "Tractable",
     "product": "AI Claims",
     "category": "fintech-legal",
@@ -18659,7 +18637,7 @@
     "linkedin": "https://linkedin.com/company/tractable"
   },
   {
-    "id": 568,
+    "id": 567,
     "name": "Tractian",
     "product": "Industrial AI Maintenance",
     "category": "industrial-ai",
@@ -18693,7 +18671,7 @@
     "linkedin": "https://linkedin.com/company/tractian"
   },
   {
-    "id": 569,
+    "id": 568,
     "name": "TravelPerk",
     "product": "Business Travel AI",
     "category": "enterprise-ai",
@@ -18728,7 +18706,7 @@
     "linkedin": "https://linkedin.com/company/travelperk"
   },
   {
-    "id": 570,
+    "id": 569,
     "name": "Tray.io",
     "product": "AI Automation Platform",
     "category": "enterprise-ai",
@@ -18762,7 +18740,7 @@
     "linkedin": "https://linkedin.com/company/taboratoriesrayaboratories"
   },
   {
-    "id": 571,
+    "id": 570,
     "name": "Truecaller",
     "product": "AI Caller ID",
     "category": "consumer-ai",
@@ -18796,7 +18774,7 @@
     "linkedin": "https://linkedin.com/company/truecaller"
   },
   {
-    "id": 572,
+    "id": 571,
     "name": "Typeface",
     "product": "Generative AI Content",
     "category": "gtm-ai",
@@ -18831,7 +18809,7 @@
     "linkedin": "https://linkedin.com/company/typeface-ai"
   },
   {
-    "id": 573,
+    "id": 572,
     "name": "Typeform",
     "product": "AI Forms & Surveys",
     "category": "enterprise-ai",
@@ -18865,7 +18843,7 @@
     "linkedin": "https://linkedin.com/company/typeform"
   },
   {
-    "id": 574,
+    "id": 573,
     "name": "Typesense",
     "product": "Open Source Search",
     "category": "developer-tools",
@@ -18898,7 +18876,7 @@
     "linkedin": "https://linkedin.com/company/typesense"
   },
   {
-    "id": 575,
+    "id": 574,
     "name": "Udio",
     "product": "Udio",
     "category": "consumer-ai",
@@ -18932,10 +18910,10 @@
     "description": "Leading enterprise automation platform combining RPA with AI to automate repetitive business processes. Public company.",
     "investors": "Accel, CapitalG, Sequoia Capital",
     "dateAdded": "2026-02-11",
-    "id": 576
+    "id": 575
   },
   {
-    "id": 577,
+    "id": 576,
     "name": "Umbra",
     "product": "SAR Satellites",
     "category": "space-ai",
@@ -18968,7 +18946,7 @@
     "linkedin": "https://linkedin.com/company/umbra-lab"
   },
   {
-    "id": 578,
+    "id": 577,
     "name": "Unbabel",
     "product": "AI Translation Service",
     "category": "enterprise-ai",
@@ -19001,7 +18979,7 @@
     "linkedin": "https://linkedin.com/company/unbabel"
   },
   {
-    "id": 579,
+    "id": 578,
     "name": "Unconventional AI",
     "product": "Energy-Efficient AI Computing",
     "category": "ai-infrastructure",
@@ -19036,7 +19014,7 @@
     "linkedin": "https://linkedin.com/company/unconventional-ai"
   },
   {
-    "id": 580,
+    "id": 579,
     "name": "Unify",
     "product": "LLM Router",
     "category": "developer-tools",
@@ -19070,7 +19048,7 @@
     "linkedin": "https://linkedin.com/company/unify-ai"
   },
   {
-    "id": 581,
+    "id": 580,
     "name": "Uniphore",
     "product": "Conversational AI Platform",
     "category": "enterprise-ai",
@@ -19104,7 +19082,7 @@
     "linkedin": "https://linkedin.com/company/uniphore"
   },
   {
-    "id": 582,
+    "id": 581,
     "name": "Unit",
     "product": "Banking-as-a-Service",
     "category": "fintech-legal",
@@ -19151,10 +19129,10 @@
     "description": "Open-source platform for preprocessing unstructured data like PDFs and documents for AI/RAG applications.",
     "investors": "Madrona Venture Group, Bain Capital Ventures",
     "dateAdded": "2026-02-11",
-    "id": 583
+    "id": 582
   },
   {
-    "id": 584,
+    "id": 583,
     "name": "Uptake",
     "product": "Industrial AI",
     "category": "industrial-ai",
@@ -19188,7 +19166,7 @@
     "linkedin": "https://linkedin.com/company/uptake-technologies"
   },
   {
-    "id": 585,
+    "id": 584,
     "name": "Utilidata",
     "product": "Grid Edge AI",
     "category": "energy-ai",
@@ -19233,10 +19211,10 @@
     "description": "Automated security compliance platform for SOC 2, ISO 27001, and other certifications.",
     "investors": "Sequoia Capital, Craft Ventures, Y Combinator",
     "dateAdded": "2026-02-11",
-    "id": 586
+    "id": 585
   },
   {
-    "id": 587,
+    "id": 586,
     "name": "Vapi",
     "product": "Voice AI API",
     "category": "voice-ai",
@@ -19270,7 +19248,7 @@
     "linkedin": "https://linkedin.com/company/vapi-ai"
   },
   {
-    "id": 588,
+    "id": 587,
     "name": "VAST Data",
     "product": "AI Data Platform",
     "category": "data-infrastructure",
@@ -19304,7 +19282,7 @@
     "linkedin": "https://linkedin.com/company/vast-data"
   },
   {
-    "id": 589,
+    "id": 588,
     "name": "Vast.ai",
     "product": "GPU Marketplace",
     "category": "data-infra",
@@ -19338,7 +19316,7 @@
     "linkedin": "https://linkedin.com/company/vast-ai"
   },
   {
-    "id": 590,
+    "id": 589,
     "name": "Vectara",
     "product": "GenAI Search",
     "category": "data-infra",
@@ -19371,7 +19349,7 @@
     "linkedin": "https://linkedin.com/company/vectara"
   },
   {
-    "id": 591,
+    "id": 590,
     "name": "Vectra AI",
     "product": "AI Threat Detection",
     "category": "security-ai",
@@ -19406,7 +19384,7 @@
     "linkedin": "https://linkedin.com/company/vectra-networks"
   },
   {
-    "id": 592,
+    "id": 591,
     "name": "Veed.io",
     "product": "AI Video Editor",
     "category": "consumer-ai",
@@ -19439,7 +19417,7 @@
     "linkedin": "https://linkedin.com/company/veed-io"
   },
   {
-    "id": 593,
+    "id": 592,
     "name": "Veo Robotics",
     "product": "Industrial Safety AI",
     "category": "industrial-ai",
@@ -19472,7 +19450,7 @@
     "linkedin": "https://linkedin.com/company/veo-robotics"
   },
   {
-    "id": 594,
+    "id": 593,
     "name": "Verbit",
     "product": "Transcription AI",
     "category": "enterprise-ai",
@@ -19507,7 +19485,7 @@
     "linkedin": "https://linkedin.com/company/verbit"
   },
   {
-    "id": 595,
+    "id": 594,
     "name": "Vercel",
     "product": "Frontend Cloud + AI",
     "category": "developer-tools",
@@ -19542,7 +19520,7 @@
     "linkedin": "https://linkedin.com/company/vercel"
   },
   {
-    "id": 596,
+    "id": 595,
     "name": "Verdant Robotics",
     "product": "AI Farm Robots",
     "category": "climate-agri",
@@ -19576,7 +19554,7 @@
     "linkedin": "https://linkedin.com/company/verdant-robotics"
   },
   {
-    "id": 597,
+    "id": 596,
     "name": "Vic.ai",
     "product": "AI Accounting",
     "category": "fintech-legal",
@@ -19610,7 +19588,7 @@
     "linkedin": "https://linkedin.com/company/vicaboratories"
   },
   {
-    "id": 598,
+    "id": 597,
     "name": "Virta Health",
     "product": "Diabetes Reversal",
     "category": "healthtech",
@@ -19643,7 +19621,7 @@
     "linkedin": "https://linkedin.com/company/virta-health"
   },
   {
-    "id": 599,
+    "id": 598,
     "name": "Viz.ai",
     "product": "Viz Platform",
     "category": "healthtech",
@@ -19665,7 +19643,7 @@
     ]
   },
   {
-    "id": 600,
+    "id": 599,
     "name": "VTS",
     "product": "CRE Leasing AI",
     "category": "real-estate",
@@ -19700,7 +19678,7 @@
     "linkedin": "https://linkedin.com/company/vaboratories"
   },
   {
-    "id": 601,
+    "id": 600,
     "name": "Vue.ai",
     "product": "Retail AI Platform",
     "category": "enterprise-ai",
@@ -19733,7 +19711,7 @@
     "linkedin": "https://linkedin.com/company/vue-ai"
   },
   {
-    "id": 602,
+    "id": 601,
     "name": "Waymo",
     "product": "Autonomous Vehicles",
     "category": "industrial-ai",
@@ -19768,7 +19746,7 @@
     "linkedin": "https://linkedin.com/company/waymo"
   },
   {
-    "id": 603,
+    "id": 602,
     "name": "Weaviate",
     "product": "Weaviate",
     "category": "developer-tools",
@@ -19790,7 +19768,7 @@
     ]
   },
   {
-    "id": 604,
+    "id": 603,
     "name": "Weights & Biases",
     "product": "W&B Platform",
     "category": "developer-tools",
@@ -19812,7 +19790,7 @@
     ]
   },
   {
-    "id": 605,
+    "id": 604,
     "name": "WellSaid Labs",
     "product": "AI Voice Generation",
     "category": "consumer-ai",
@@ -19858,10 +19836,10 @@
     "description": "Autonomous driving company developing robotaxis, robobuses, and robovans with commercial services in China.",
     "investors": "Renault-Nissan-Mitsubishi, Yutong Group, GAC Group",
     "dateAdded": "2026-02-11",
-    "id": 606
+    "id": 605
   },
   {
-    "id": 607,
+    "id": 606,
     "name": "Whoop",
     "product": "Fitness AI Wearable",
     "category": "consumer-ai",
@@ -19896,7 +19874,7 @@
     "linkedin": "https://linkedin.com/company/whoop"
   },
   {
-    "id": 608,
+    "id": 607,
     "name": "Windsurf",
     "product": "AI Code Editor",
     "category": "developer-tools",
@@ -19930,7 +19908,7 @@
     "linkedin": "https://linkedin.com/company/codeium"
   },
   {
-    "id": 609,
+    "id": 608,
     "name": "Windward",
     "product": "Maritime AI Intelligence",
     "category": "ocean-ai",
@@ -19963,7 +19941,7 @@
     "linkedin": "https://linkedin.com/company/windward"
   },
   {
-    "id": 610,
+    "id": 609,
     "name": "Wiz",
     "status": "acquired",
     "acquiredBy": "Google",
@@ -19999,7 +19977,7 @@
     "linkedin": "https://linkedin.com/company/waboratories"
   },
   {
-    "id": 611,
+    "id": 610,
     "name": "Wonderful",
     "product": "Multilingual AI Agents",
     "category": "ai-agents",
@@ -20033,7 +20011,7 @@
     "linkedin": "https://linkedin.com/company/wonderful-ai"
   },
   {
-    "id": 612,
+    "id": 611,
     "name": "Workato",
     "product": "Integration AI",
     "category": "enterprise-ai",
@@ -20068,7 +20046,7 @@
     "linkedin": "https://linkedin.com/company/workato"
   },
   {
-    "id": 613,
+    "id": 612,
     "name": "World Labs",
     "product": "Spatial Intelligence",
     "category": "foundation-models",
@@ -20102,7 +20080,7 @@
     "linkedin": "https://linkedin.com/company/world-labs-ai"
   },
   {
-    "id": 614,
+    "id": 613,
     "name": "Writer",
     "product": "Writer",
     "category": "enterprise-ai",
@@ -20124,7 +20102,7 @@
     ]
   },
   {
-    "id": 615,
+    "id": 614,
     "name": "Writesonic",
     "product": "AI Content",
     "category": "gtm-ai",
@@ -20157,7 +20135,7 @@
     "linkedin": "https://linkedin.com/company/writesonic"
   },
   {
-    "id": 616,
+    "id": 615,
     "name": "xAI",
     "product": "Grok",
     "category": "foundation-models",
@@ -20213,7 +20191,7 @@
     ]
   },
   {
-    "id": 617,
+    "id": 616,
     "name": "xBlue",
     "product": "Ocean Carbon AI",
     "category": "ocean-ai",
@@ -20246,7 +20224,7 @@
     "linkedin": "https://linkedin.com/company/xblue-io"
   },
   {
-    "id": 618,
+    "id": 617,
     "name": "XpertSea",
     "product": "Shrimp Farm AI",
     "category": "ocean-ai",
@@ -20279,7 +20257,7 @@
     "linkedin": "https://linkedin.com/company/xpertsea"
   },
   {
-    "id": 619,
+    "id": 618,
     "name": "XtalPi",
     "product": "AI Pharma R&D",
     "category": "healthtech",
@@ -20314,7 +20292,7 @@
     "linkedin": "https://linkedin.com/company/xtalpi"
   },
   {
-    "id": 620,
+    "id": 619,
     "name": "Yellow.ai",
     "product": "Dynamic AI Agents",
     "category": "enterprise-ai",
@@ -20348,7 +20326,7 @@
     "linkedin": "https://linkedin.com/company/yellowaboratories"
   },
   {
-    "id": 621,
+    "id": 620,
     "name": "Yotpo",
     "product": "E-commerce Marketing AI",
     "category": "gtm-ai",
@@ -20383,7 +20361,7 @@
     "linkedin": "https://linkedin.com/company/yotpo"
   },
   {
-    "id": 622,
+    "id": 621,
     "name": "You.com",
     "product": "AI Search Engine",
     "category": "consumer-ai",
@@ -20416,7 +20394,7 @@
     "linkedin": "https://linkedin.com/company/you-com"
   },
   {
-    "id": 623,
+    "id": 622,
     "name": "Zapata AI",
     "product": "Quantum-AI Computing",
     "category": "data-infrastructure",
@@ -20451,7 +20429,7 @@
     "linkedin": "https://linkedin.com/company/zapata-computing"
   },
   {
-    "id": 624,
+    "id": 623,
     "name": "Zapier",
     "product": "Workflow Automation",
     "category": "enterprise-ai",
@@ -20486,7 +20464,7 @@
     "linkedin": "https://linkedin.com/company/zapier"
   },
   {
-    "id": 625,
+    "id": 624,
     "name": "Zendesk",
     "status": "acquired",
     "acquiredBy": "Hellman & Friedman / Permira",
@@ -20523,7 +20501,7 @@
     "linkedin": "https://linkedin.com/company/zendesk"
   },
   {
-    "id": 626,
+    "id": 625,
     "name": "ZoomInfo",
     "product": "Go-To-Market Intelligence",
     "category": "gtm-ai",
@@ -20557,7 +20535,7 @@
     ]
   },
   {
-    "id": 627,
+    "id": 626,
     "name": "Zoox",
     "status": "acquired",
     "acquiredBy": "Amazon",
