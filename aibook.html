@@ -2229,7 +2229,7 @@ function getFilterHeading() {
     const labels = {
         unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
         hot: { icon: '🔥', title: 'Hot Companies', desc: '$100M+ funding' },
-        new: { icon: '🆕', title: 'New Additions', desc: 'Recently added' },
+        new: { icon: '🆕', title: 'New Additions', desc: 'Added in last 30 days' },
         acquired: { icon: '💰', title: 'Sold / Acquired', desc: 'Acquired or closed' }
     };
     return activeHealthFilter ? labels[activeHealthFilter] || null : null;
@@ -2442,7 +2442,11 @@ function buildDeck() {
             } else if (activeHealthFilter === 'hot') {
                 return funding >= 100; // $100M+
             } else if (activeHealthFilter === 'new') {
-                return !!c.dateAdded;
+                if (!c.dateAdded) return false;
+                const added = new Date(c.dateAdded);
+                const cutoff = new Date();
+                cutoff.setDate(cutoff.getDate() - 30);
+                return added >= cutoff;
             } else if (activeHealthFilter === 'acquired') {
                 return c.status === 'acquired' || c.status === 'closed';
             }
