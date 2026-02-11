@@ -84,6 +84,32 @@
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
+            text-decoration: none;
+            position: relative;
+            cursor: pointer;
+        }
+        .logo:hover .logo-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .logo-tooltip {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 6px;
+            background: var(--gold);
+            color: var(--navy);
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: 100;
         }
 
         .logo-icon {
@@ -1750,10 +1776,11 @@
     <div class="app">
         <!-- HEADER -->
         <div class="header">
-            <div class="logo">
+            <a href="https://jjshay.com" class="logo" target="_blank">
                 <img src="https://jjshay.com/logo.png" alt="JS" class="logo-icon" style="width:32px;height:32px;border-radius:6px">
                 <span class="logo-text">AI BOOK</span>
-            </div>
+                <span class="logo-tooltip">jjshay.com</span>
+            </a>
             <div class="header-search">
                 <span class="search-icon">⌕</span>
                 <input type="text" class="search-input" id="search-input" placeholder="Search..." oninput="handleSearch(this.value)">
