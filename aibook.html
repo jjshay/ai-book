@@ -358,55 +358,43 @@
         body.swipe-mode .swipe-view { display: flex; flex-direction: column; flex: 1; }
         body.swipe-mode .vanity-stats { display: none; }
 
-        /* ========== A-Z DROPDOWN ========== */
+        /* ========== A-Z SIDEBAR + LIST ========== */
         .list-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             flex: 1;
             overflow: hidden;
         }
-        .az-dropdown-bar {
+        .az-sidebar {
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
+            width: 22px;
             flex-shrink: 0;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            overflow: hidden;
+            padding: 4px 0;
+            -webkit-user-select: none;
+            user-select: none;
         }
-        .az-dropdown-bar label {
+        .az-sidebar a {
             font-family: var(--font);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-dim);
-        }
-        .az-dropdown {
-            font-family: var(--font);
-            font-size: 14px;
+            font-size: 9px;
             font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--gold);
-            cursor: pointer;
-            min-width: 60px;
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23D4AF37'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 8px center;
-            padding-right: 28px;
-        }
-        .az-dropdown:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(212,175,55,0.3);
-        }
-        .az-letter-count {
-            font-family: var(--font);
-            font-size: 11px;
             color: var(--text-dim);
+            text-decoration: none;
+            padding: 1px 0;
+            line-height: 1.2;
+            text-align: center;
+            display: block;
+            transition: color 0.1s;
+        }
+        .az-sidebar a:hover,
+        .az-sidebar a.active {
+            color: var(--gold);
+            font-size: 13px;
         }
 
         /* ========== MINI CARDS LIST ========== */
@@ -414,6 +402,20 @@
             flex: 1;
             overflow-y: auto;
             padding: 0;
+        }
+        .filter-heading {
+            padding: 14px 16px 10px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            background: rgba(212,175,55,0.08);
+        }
+        .filter-heading .filter-count {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-left: 8px;
         }
         .letter-section {
             position: sticky;
@@ -1813,12 +1815,10 @@
                     <option value="gaming-ai">Gaming</option>
                     <option value="music-ai">Music</option>
                 </select>
-                <button class="filter-btn" id="filter-unicorn" onclick="toggleFilter('unicorn')" title="Unicorns: $1B+ funding elite">🦄</button>
-                <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ strong momentum">🔥</button>
-                <button class="filter-btn" id="filter-rising" onclick="toggleFilter('rising')" title="Rising Stars: $10M-$100M growth stage">📈</button>
-                <button class="filter-btn" id="filter-recent" onclick="toggleFilter('recent')" title="Recently updated by AI monitor">🔄</button>
-                <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="Newly added companies">🆕</button>
-                <button class="filter-btn" id="filter-acquired" onclick="toggleFilter('acquired')" title="Acquired or closed companies">🏷️</button>
+                <button class="filter-btn" id="filter-unicorn" onclick="toggleFilter('unicorn')" title="Unicorns: $1B+ valuation">🦄 $1B+</button>
+                <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ funding">🔥 HOT</button>
+                <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="New additions">🆕 NEW</button>
+                <button class="filter-btn" id="filter-acquired" onclick="toggleFilter('acquired')" title="Acquired / Sold">💰 SOLD</button>
             </div>
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
@@ -1848,13 +1848,7 @@
 
         <!-- LIST VIEW (Landing Page) -->
         <div class="list-view list-container">
-            <div class="az-dropdown-bar">
-                <label>Jump to:</label>
-                <select class="az-dropdown" id="az-dropdown" onchange="filterByLetter(this.value)">
-                    <option value="">All</option>
-                </select>
-                <span class="az-letter-count" id="az-letter-count"></span>
-            </div>
+            <div class="az-sidebar" id="az-sidebar"></div>
             <div class="mini-cards-container" id="mini-cards"></div>
         </div>
 
@@ -2231,11 +2225,27 @@ function init() {
 // ========== LIST VIEW ==========
 let currentLetter = 'A';
 
+function getFilterHeading() {
+    const labels = {
+        unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
+        hot: { icon: '🔥', title: 'Hot Companies', desc: '$100M+ funding' },
+        new: { icon: '🆕', title: 'New Additions', desc: 'Recently added' },
+        acquired: { icon: '💰', title: 'Sold / Acquired', desc: 'Acquired or closed' }
+    };
+    return activeHealthFilter ? labels[activeHealthFilter] || null : null;
+}
+
 function renderListView() {
     const container = document.getElementById('mini-cards');
     if (!container) return;
 
     let html = '';
+
+    // Add filter heading if a filter is active
+    const heading = getFilterHeading();
+    if (heading) {
+        html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span></div>`;
+    }
 
     // Use the already-sorted deck (from applyDeckSort)
     if (deckSortMode === 'funding') {
@@ -2305,10 +2315,9 @@ function renderMiniCard(c) {
 let activeLetterFilter = '';
 
 function renderAZSidebar() {
-    const dropdown = document.getElementById('az-dropdown');
-    if (!dropdown) return;
+    const sidebar = document.getElementById('az-sidebar');
+    if (!sidebar) return;
 
-    // Count companies per letter
     const lCounts = {};
     deck.forEach(c => {
         const letter = c.name.charAt(0).toUpperCase();
@@ -2316,16 +2325,19 @@ function renderAZSidebar() {
     });
 
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    dropdown.innerHTML = '<option value="">All (' + deck.length + ')</option>' +
-        letters.filter(l => lCounts[l]).map(letter =>
-            `<option value="${letter}" ${letter === activeLetterFilter ? 'selected' : ''}>${letter} (${lCounts[letter]})</option>`
-        ).join('');
+    sidebar.innerHTML = letters.map(letter => {
+        const has = lCounts[letter];
+        const cls = activeLetterFilter === letter ? ' class="active"' : '';
+        return has
+            ? `<a href="#section-${letter}"${cls} onclick="event.preventDefault();scrollToLetter('${letter}')">${letter}</a>`
+            : `<span style="font-size:8px;color:rgba(255,255,255,0.15);padding:1px 0">${letter}</span>`;
+    }).join('');
+}
 
-    const countEl = document.getElementById('az-letter-count');
-    if (countEl && activeLetterFilter) {
-        countEl.textContent = (lCounts[activeLetterFilter] || 0) + ' companies';
-    } else if (countEl) {
-        countEl.textContent = '';
+function scrollToLetter(letter) {
+    const section = document.getElementById('section-' + letter);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
@@ -2380,24 +2392,21 @@ function updateVanityStats() {
     document.getElementById('stat-funding').textContent = fundingDisplay;
     document.getElementById('stat-ma').textContent = maTargets;
 
-    // Find most recent auto-update date
+    // Find most recent update date (check lastAutoUpdate, dateAdded, or fall back to today)
     let latestUpdate = null;
-    let recentCount = 0;
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
     companies.forEach(c => {
-        if (c.lastAutoUpdate) {
-            const d = new Date(c.lastAutoUpdate);
+        const dateStr = c.lastAutoUpdate || c.dateAdded;
+        if (dateStr) {
+            const d = new Date(dateStr);
             if (!latestUpdate || d > latestUpdate) latestUpdate = d;
-            if (d >= sevenDaysAgo) recentCount++;
         }
     });
+    if (!latestUpdate) latestUpdate = new Date();
     const el = document.getElementById('stat-updated');
-    if (el && latestUpdate) {
+    if (el) {
         const mo = latestUpdate.toLocaleString('default', { month: 'short' });
         const day = latestUpdate.getDate();
         el.textContent = `${mo} ${day}`;
-        if (recentCount > 0) el.title = `${recentCount} companies updated in the last 7 days`;
     }
 }
 
@@ -2440,10 +2449,6 @@ function buildDeck() {
                 return funding >= 1000; // $1B+
             } else if (activeHealthFilter === 'hot') {
                 return funding >= 100; // $100M+
-            } else if (activeHealthFilter === 'rising') {
-                return funding >= 10 && funding < 100; // $10M-$100M
-            } else if (activeHealthFilter === 'recent') {
-                return isRecentlyUpdated(c);
             } else if (activeHealthFilter === 'new') {
                 return !!c.dateAdded;
             } else if (activeHealthFilter === 'acquired') {
