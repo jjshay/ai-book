@@ -339,38 +339,39 @@
             overflow: hidden;
         }
         .az-sidebar {
-            width: 32px;
+            width: 36px;
             background: var(--bg-card);
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 8px 0;
-            overflow-y: auto;
+            padding: 4px 0;
+            overflow-y: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            justify-content: space-around;
         }
         .az-letter {
             font-family: var(--font);
             font-size: 11px;
             font-weight: 600;
             color: rgba(255,255,255,0.4);
-            padding: 3px 0;
+            padding: 1px 0;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: color 0.1s, text-shadow 0.1s;
             width: 100%;
             text-align: center;
+            flex-shrink: 0;
         }
         .az-letter:hover {
             color: var(--cyan);
-            font-size: 16px;
             font-weight: 800;
-            transform: scale(1.3);
             text-shadow: 0 0 10px rgba(0,206,209,0.6);
         }
         .az-letter.active {
             color: var(--cyan);
-            font-size: 16px;
             font-weight: 800;
-            transform: scale(1.3);
             text-shadow: 0 0 12px rgba(0,206,209,0.8);
         }
         .az-letter.has-items {
@@ -378,6 +379,29 @@
         }
         .az-letter.has-items:hover {
             color: var(--cyan);
+        }
+        /* Touch glide letter preview bubble */
+        .letter-bubble {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--navy);
+            font-family: var(--font);
+            font-size: 28px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(212,175,55,0.5);
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        .letter-bubble.visible {
+            opacity: 1;
         }
 
         /* ========== MINI CARDS LIST ========== */
@@ -1239,22 +1263,25 @@
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 0;
             z-index: 1000;
             background: rgba(30,58,95,0.95);
-            padding: var(--space-xs) var(--space-xs);
+            padding: 4px 2px;
             border-radius: var(--space-md);
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
         }
         .alpha-index span {
             font-family: var(--font);
-            font-size: var(--fs-xs);
+            font-size: 10px;
             font-weight: 600;
             color: #fff;
-            padding: 2px var(--space-xs);
+            padding: 2px 6px;
             cursor: pointer;
             text-align: center;
             border-radius: var(--space-xs);
-            transition: background 0.15s;
+            transition: background 0.1s;
         }
         .alpha-index span:hover,
         .alpha-index span.active {
@@ -1886,8 +1913,10 @@ function renderAZSidebar() {
         const hasItems = letterCounts[letter] > 0;
         const isActive = letter === currentLetter;
         return `<div class="az-letter ${hasItems ? 'has-items' : ''} ${isActive ? 'active' : ''}"
-                     onclick="scrollToLetter('${letter}')">${letter}</div>`;
+                     data-letter="${letter}">${letter}</div>`;
     }).join('');
+
+    enableTouchGlide(sidebar, (letter) => scrollToLetter(letter));
 }
 
 function scrollToLetter(letter) {
@@ -3023,6 +3052,7 @@ function addAlphaIndex(availableLetters) {
     allLetters.forEach(letter => {
         const span = document.createElement('span');
         span.textContent = letter;
+        span.setAttribute('data-letter', letter);
         if (availableLetters.includes(letter)) {
             span.onclick = () => scrollToSavedLetter(letter);
         } else {
@@ -3032,6 +3062,116 @@ function addAlphaIndex(availableLetters) {
     });
 
     modal.appendChild(alphaDiv);
+    enableTouchGlide(alphaDiv, (letter) => {
+        if (availableLetters.includes(letter)) scrollToSavedLetter(letter);
+    });
+}
+
+// Touch-glide for A-Z navigation - drag finger to glide through letters
+function enableTouchGlide(container, onLetterSelect) {
+    let isDragging = false;
+    let bubble = null;
+    let lastLetter = null;
+
+    function getLetterAtPoint(x, y) {
+        const el = document.elementFromPoint(x, y);
+        if (el && el.dataset && el.dataset.letter) return el.dataset.letter;
+        // Fallback: find nearest letter element by Y position
+        const letters = container.querySelectorAll('[data-letter]');
+        let closest = null;
+        let closestDist = Infinity;
+        letters.forEach(l => {
+            const rect = l.getBoundingClientRect();
+            const centerY = rect.top + rect.height / 2;
+            const dist = Math.abs(y - centerY);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = l.dataset.letter;
+            }
+        });
+        return closest;
+    }
+
+    function showBubble(letter, x, y) {
+        if (!bubble) {
+            bubble = document.createElement('div');
+            bubble.className = 'letter-bubble';
+            document.body.appendChild(bubble);
+        }
+        bubble.textContent = letter;
+        const containerRect = container.getBoundingClientRect();
+        bubble.style.left = (containerRect.left - 70) + 'px';
+        bubble.style.top = (y - 28) + 'px';
+        bubble.classList.add('visible');
+    }
+
+    function hideBubble() {
+        if (bubble) {
+            bubble.classList.remove('visible');
+            setTimeout(() => { if (bubble) { bubble.remove(); bubble = null; } }, 150);
+        }
+    }
+
+    function handleMove(x, y) {
+        const letter = getLetterAtPoint(x, y);
+        if (letter && letter !== lastLetter) {
+            lastLetter = letter;
+            // Highlight active letter
+            container.querySelectorAll('[data-letter]').forEach(el => el.classList.remove('active'));
+            const activeEl = container.querySelector(`[data-letter="${letter}"]`);
+            if (activeEl) activeEl.classList.add('active');
+            showBubble(letter, x, y);
+            onLetterSelect(letter);
+        }
+    }
+
+    container.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        lastLetter = null;
+        const t = e.touches[0];
+        handleMove(t.clientX, t.clientY);
+        e.preventDefault();
+    }, { passive: false });
+
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const t = e.touches[0];
+        handleMove(t.clientX, t.clientY);
+        e.preventDefault();
+    }, { passive: false });
+
+    container.addEventListener('touchend', () => {
+        isDragging = false;
+        lastLetter = null;
+        hideBubble();
+    });
+
+    container.addEventListener('touchcancel', () => {
+        isDragging = false;
+        lastLetter = null;
+        hideBubble();
+    });
+
+    // Mouse drag support too
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        lastLetter = null;
+        handleMove(e.clientX, e.clientY);
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        handleMove(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            lastLetter = null;
+            hideBubble();
+        }
+    });
 }
 
 function scrollToSavedLetter(letter) {
