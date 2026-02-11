@@ -370,23 +370,23 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 22px;
+            width: 28px;
             flex-shrink: 0;
             background: var(--bg-card);
             border-right: 1px solid var(--border);
             overflow: hidden;
-            padding: 4px 0;
+            padding: 2px 0;
             -webkit-user-select: none;
             user-select: none;
         }
         .az-sidebar a {
             font-family: var(--font);
-            font-size: 9px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-dim);
             text-decoration: none;
-            padding: 1px 0;
-            line-height: 1.2;
+            padding: 0;
+            line-height: 1.15;
             text-align: center;
             display: block;
             transition: color 0.1s;
@@ -394,7 +394,7 @@
         .az-sidebar a:hover,
         .az-sidebar a.active {
             color: var(--gold);
-            font-size: 13px;
+            font-size: 16px;
         }
 
         /* ========== MINI CARDS LIST ========== */
@@ -2330,7 +2330,7 @@ function renderAZSidebar() {
         const cls = activeLetterFilter === letter ? ' class="active"' : '';
         return has
             ? `<a href="#section-${letter}"${cls} onclick="event.preventDefault();scrollToLetter('${letter}')">${letter}</a>`
-            : `<span style="font-size:8px;color:rgba(255,255,255,0.15);padding:1px 0">${letter}</span>`;
+            : `<span style="font-size:14px;color:rgba(255,255,255,0.15);padding:0;line-height:1.15">${letter}</span>`;
     }).join('');
 }
 
