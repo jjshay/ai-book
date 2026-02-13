@@ -107,19 +107,31 @@
             top: 100%;
             left: 0;
             margin-top: 6px;
-            background: var(--gold);
-            color: var(--navy);
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            color: var(--text);
             font-family: var(--font);
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            white-space: nowrap;
-            pointer-events: none;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 10px 14px;
+            border-radius: 10px;
+            white-space: normal;
+            width: 220px;
+            line-height: 1.5;
+            pointer-events: auto;
             opacity: 0;
             transform: translateY(-4px);
             transition: opacity 0.2s, transform 0.2s;
             z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .logo-tooltip a {
+            color: var(--gold);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .logo-tooltip a:hover {
+            text-decoration: underline;
         }
 
         .logo-icon {
@@ -2169,7 +2181,7 @@
             <div class="logo" onclick="openAppInfo()">
                 <img src="icon-192.png" alt="AI Book" class="logo-icon">
                 <span class="logo-text">AI BOOK</span>
-                <span class="logo-tooltip">Tap for guide</span>
+                <span class="logo-tooltip">Over 70 reports and counting on AI. See all projects at <a href="https://jjshay.com" target="_blank">jjshay.com</a></span>
             </div>
             <div class="header-search">
                 <span class="search-icon">⌕</span>
