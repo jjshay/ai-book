@@ -339,12 +339,17 @@
         .vanity-stats {
             display: flex;
             justify-content: space-around;
+            align-items: flex-end;
             padding: var(--space-md) var(--space-lg);
             background: linear-gradient(135deg, var(--navy) 0%, #2d4a6f 100%);
             border-bottom: 1px solid var(--border);
         }
         .vanity-stat {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
         }
         .vanity-value {
             display: block;
