@@ -249,8 +249,8 @@
 
         .saved-btn {
             font-family: var(--font);
-            background: var(--gold);
-            color: var(--bg);
+            background: #0A66C2;
+            color: #fff;
             border: none;
             padding: 8px 16px;
             border-radius: 20px;
@@ -265,8 +265,8 @@
         }
 
         .saved-btn .badge {
-            background: var(--bg);
-            color: var(--gold);
+            background: #fff;
+            color: #0A66C2;
             padding: 2px 7px;
             border-radius: 10px;
             font-size: 12px;
@@ -274,9 +274,9 @@
         }
 
         @keyframes savedPulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { transform: scale(1.15); box-shadow: 0 0 12px 4px rgba(212,175,55,0.5); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10,102,194,0.7); }
+            50% { transform: scale(1.15); box-shadow: 0 0 12px 4px rgba(10,102,194,0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10,102,194,0); }
         }
         .saved-btn.pulse {
             animation: savedPulse 0.6s ease-in-out 2;
@@ -323,9 +323,9 @@
             border-color: var(--gold);
         }
         .filter-btn.active {
-            background: var(--gold);
-            color: var(--bg);
-            border-color: var(--gold);
+            background: #0A66C2;
+            color: #fff;
+            border-color: #0A66C2;
         }
         .sort-btn {
             font-family: var(--font);
@@ -1717,14 +1717,14 @@
             margin-bottom: var(--space-md);
         }
 
-        .email-input:focus { outline: none; border-color: var(--gold); }
+        .email-input:focus { outline: none; border-color: #0A66C2; }
 
         .email-submit {
             font-family: var(--font);
             width: 100%;
             padding: var(--space-md);
-            background: var(--gold);
-            color: var(--bg);
+            background: #0A66C2;
+            color: #fff;
             border: none;
             border-radius: var(--space-md);
             font-size: var(--fs-base);
@@ -2220,7 +2220,7 @@
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
                 <button class="sort-btn" id="sort-funding" onclick="sortDeck('funding')" title="Sort by funding amount">$$$</button>
-                <button class="sort-btn" onclick="exportCSV()" title="Export filtered list as CSV">CSV</button>
+                <button class="saved-btn" style="font-size:12px;padding:5px 12px" onclick="exportCSV()" title="Export filtered list as CSV">CSV</button>
             </div>
         </div>
 
