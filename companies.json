@@ -20102,7 +20102,7 @@
     "category": "foundation-infra",
     "founded": 2023,
     "ceo": "Elon Musk",
-    "funding": "$42B+",
+    "funding": "$25B+",
     "fundingValue": 22000000000,
     "rating": 5,
     "website": "x.ai",
@@ -20149,7 +20149,9 @@
         "date": "2026-01",
         "investors": "Nvidia, Cisco, Fidelity, a16z, Sequoia"
       }
-    ]
+    ],
+    "status": "acquired",
+    "acquiredBy": "SpaceX"
   },
   {
     "id": 613,
