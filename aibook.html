@@ -378,9 +378,8 @@
         .az-sidebar {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 28px;
+            width: 38px;
             flex-shrink: 0;
             background: var(--bg-card);
             border-right: 1px solid var(--border);
@@ -388,6 +387,34 @@
             padding: 2px 0;
             -webkit-user-select: none;
             user-select: none;
+        }
+        .az-sort-btn {
+            width: 32px;
+            height: 22px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: transparent;
+            color: var(--text-dim);
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0;
+            line-height: 20px;
+            text-align: center;
+            margin: 1px 0;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+        }
+        .az-sort-btn.active {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            color: var(--bg);
+        }
+        .az-sort-divider {
+            width: 20px;
+            height: 1px;
+            background: var(--border);
+            margin: 3px 0;
         }
         .az-sidebar a {
             font-family: var(--font);
@@ -707,44 +734,40 @@
         .swipe-actions {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 24px;
-            padding: 12px 16px 16px;
+            justify-content: space-evenly;
+            padding: 6px 16px 8px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-card);
         }
-        .swipe-action-btn {
-            font-family: var(--font);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 24px;
-            font-size: 15px;
-            font-weight: 700;
+        .swipe-action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
             cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.15s;
+            -webkit-tap-highlight-color: transparent;
+            padding: 4px 12px;
         }
-        .swipe-action-btn:hover { transform: scale(1.05); }
-        .swipe-action-btn:active { transform: scale(0.97); }
-        .swipe-action-btn.undo {
-            background: rgba(148,163,184,0.15);
-            color: #94a3b8;
-            border: 2px solid rgba(148,163,184,0.3);
-            padding: 10px 16px;
-            font-size: 18px;
+        .swipe-action-item:active { opacity: 0.6; }
+        .swipe-action-icon {
+            font-size: 20px;
+            line-height: 1;
         }
-        .swipe-action-btn.pass {
-            background: rgba(239,68,68,0.15);
-            color: #ef4444;
-            border: 2px solid rgba(239,68,68,0.3);
+        .swipe-action-label {
+            font-family: var(--font);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .swipe-action-btn.save {
-            background: rgba(34,197,94,0.15);
-            color: #22c55e;
-            border: 2px solid rgba(34,197,94,0.3);
-        }
+        .swipe-action-item.pass { color: #ef4444; }
+        .swipe-action-item.back { color: #94a3b8; }
+        .swipe-action-item.save { color: #22c55e; }
         .swipe-counter {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--text-dim);
             font-weight: 600;
-            min-width: 70px;
+            min-width: 50px;
             text-align: center;
         }
 
@@ -1089,6 +1112,18 @@
         }
 
         .stat-value.funding { color: var(--save); font-size: var(--fs-lg); }
+
+        .card-info-hint {
+            text-align: center;
+            margin-top: 8px;
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 4px 0;
+        }
 
         .card-meta {
             display: flex;
@@ -1925,12 +1960,8 @@
                 <span class="vanity-value" id="stat-funding">$150B+</span>
                 <span class="vanity-label">Total Raised</span>
             </div>
-            <div class="vanity-stat clickable" onclick="openStatModal('ma')">
-                <span class="vanity-value" id="stat-ma">200+</span>
-                <span class="vanity-label">M&A Targets</span>
-            </div>
             <div class="vanity-stat">
-                <span class="vanity-value" id="stat-updated" style="font-size:var(--fs-sm);color:var(--cyan)">--</span>
+                <span class="vanity-value" id="stat-updated" style="color:var(--cyan)">--</span>
                 <span class="vanity-label">Last Updated</span>
             </div>
         </div>
@@ -1951,10 +1982,19 @@
             </div>
             <div class="card-area" id="card-area"></div>
             <div class="swipe-actions" id="swipe-actions">
-                <button class="swipe-action-btn undo" onclick="undoSwipe()" title="Undo (Z)">↩</button>
-                <button class="swipe-action-btn pass" onclick="doSwipe('left')" title="Pass (←)">✕ Pass</button>
+                <div class="swipe-action-item pass" onclick="doSwipe('left')">
+                    <span class="swipe-action-icon">←</span>
+                    <span class="swipe-action-label">Pass</span>
+                </div>
+                <div class="swipe-action-item back" onclick="exitSwipeMode()">
+                    <span class="swipe-action-icon">↑</span>
+                    <span class="swipe-action-label">Back</span>
+                </div>
                 <span class="swipe-counter" id="swipe-counter"></span>
-                <button class="swipe-action-btn save" onclick="doSwipe('right')" title="Save (→)">♥ Save</button>
+                <div class="swipe-action-item save" onclick="doSwipe('right')">
+                    <span class="swipe-action-icon">→</span>
+                    <span class="swipe-action-label">Save</span>
+                </div>
             </div>
         </div>
 
@@ -2297,6 +2337,45 @@ function getAcquiredStats() {
     };
 }
 
+function renderAcquiredPieChart() {
+    const catCounts = {};
+    deck.forEach(c => {
+        const cat = getCategoryLabel(c.category, true);
+        catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+    const sorted = Object.entries(catCounts).sort((a, b) => b[1] - a[1]);
+    const total = sorted.reduce((s, e) => s + e[1], 0);
+    if (total === 0) return '';
+
+    const colors = ['#d4af37','#00ced1','#ef4444','#22c55e','#a855f7','#f97316','#3b82f6','#ec4899','#14b8a6','#eab308','#6366f1','#f43f5e'];
+    const r = 50, cx = 60, cy = 60;
+    let startAngle = 0;
+    let paths = '';
+    sorted.forEach(([cat, count], i) => {
+        const slice = (count / total) * Math.PI * 2;
+        const endAngle = startAngle + slice;
+        const x1 = cx + r * Math.cos(startAngle);
+        const y1 = cy + r * Math.sin(startAngle);
+        const x2 = cx + r * Math.cos(endAngle);
+        const y2 = cy + r * Math.sin(endAngle);
+        const large = slice > Math.PI ? 1 : 0;
+        const color = colors[i % colors.length];
+        paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} Z" fill="${color}"/>`;
+        startAngle = endAngle;
+    });
+
+    let legend = sorted.map(([cat, count], i) => {
+        const color = colors[i % colors.length];
+        const pct = Math.round((count / total) * 100);
+        return `<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span>${cat} (${count}, ${pct}%)</div>`;
+    }).join('');
+
+    return `<div style="display:flex;align-items:center;gap:16px;margin-top:10px;padding:0 8px">
+        <svg width="120" height="120" viewBox="0 0 120 120" style="flex-shrink:0">${paths}</svg>
+        <div style="display:flex;flex-direction:column;gap:3px">${legend}</div>
+    </div>`;
+}
+
 let acquiredRotationTimer = null;
 
 function startAcquiredRotation() {
@@ -2317,7 +2396,7 @@ function getFilterHeading() {
     const labels = {
         unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
         hot: { icon: '🔥', title: 'Hot Companies', desc: '$100M+ funding' },
-        new: { icon: '🆕', title: 'New Additions', desc: 'Added in last 30 days' },
+        new: { icon: '🆕', title: 'New Additions', desc: 'Added in last 7 days' },
         acquired: { icon: '💰', title: 'Sold / Acquired', desc: 'Acquired or closed' }
     };
     return activeHealthFilter ? labels[activeHealthFilter] || null : null;
@@ -2339,9 +2418,50 @@ function renderListView() {
                 `<div class="stat-item active"><span>${stats.count}</span> companies acquired</div>` +
                 `<div class="stat-item"><span>${stats.totalStr}</span> total deal value</div>` +
                 `<div class="stat-item"><span>${stats.avgStr}</span> avg. acquisition price</div>` +
-                `</div></div>`;
+                `</div>` + renderAcquiredPieChart() + `</div>`;
         } else {
-            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span></div>`;
+            // Calculate w/w growth for current filter
+            const now = new Date();
+            const oneWeekAgo = new Date(now); oneWeekAgo.setDate(now.getDate() - 7);
+            const twoWeeksAgo = new Date(now); twoWeeksAgo.setDate(now.getDate() - 14);
+
+            let thisWeek = 0, lastWeek = 0;
+            const allPrivate = companies.filter(c => !(c.funding || '').toLowerCase().includes('public'));
+
+            allPrivate.forEach(c => {
+                // Check if company qualifies for current filter
+                let qualifies = true;
+                if (activeHealthFilter === 'unicorn') qualifies = parseFundingAmount(c.funding) >= 1000;
+                else if (activeHealthFilter === 'hot') qualifies = parseFundingAmount(c.funding) >= 100;
+                else if (activeHealthFilter === 'new') {
+                    if (!c.dateAdded) return;
+                    const added = new Date(c.dateAdded);
+                    if (added >= oneWeekAgo) { thisWeek++; }
+                    return;
+                }
+                if (!qualifies) return;
+                if (c.dateAdded) {
+                    const added = new Date(c.dateAdded);
+                    if (added >= oneWeekAgo) thisWeek++;
+                    else if (added >= twoWeeksAgo) lastWeek++;
+                }
+            });
+
+            let growthHtml = '';
+            if (activeHealthFilter === 'new') {
+                const prevTotal = deck.length > 0 ? allPrivate.length - deck.length : allPrivate.length;
+                const pct = prevTotal > 0 ? ((deck.length / prevTotal) * 100).toFixed(1) : '0';
+                const color = deck.length > 0 ? 'var(--save)' : 'var(--pass)';
+                growthHtml = `<span class="filter-count" style="color:${color};margin-top:2px">+${pct}% w/w growth</span>`;
+            } else if (thisWeek > 0 || lastWeek > 0) {
+                const diff = thisWeek - lastWeek;
+                const pct = lastWeek > 0 ? ((diff / lastWeek) * 100).toFixed(0) : (thisWeek > 0 ? '+100' : '0');
+                const sign = diff >= 0 ? '+' : '';
+                const color = diff >= 0 ? 'var(--save)' : 'var(--pass)';
+                growthHtml = `<span class="filter-count" style="color:${color};margin-top:2px">${sign}${pct}% w/w (${thisWeek} added this week)</span>`;
+            }
+
+            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
         }
     }
 
@@ -2440,14 +2560,26 @@ function renderAZSidebar() {
         lCounts[letter] = (lCounts[letter] || 0) + 1;
     });
 
+    // Sort buttons at top
+    const azActive = deckSortMode === 'alpha' ? ' active' : '';
+    const azLabel = deckSortMode === 'alpha' ? (deckSortOrder === 'asc' ? 'A↓' : 'Z↓') : 'AZ';
+    const fundActive = deckSortMode === 'funding' ? ' active' : '';
+    const fundLabel = deckSortMode === 'funding' ? (deckSortOrder === 'desc' ? '$↓' : '$↑') : '$';
+
+    let html = `<button class="az-sort-btn${azActive}" id="sb-sort-az" onclick="sortDeck('alpha')">${azLabel}</button>`;
+    html += `<button class="az-sort-btn${fundActive}" id="sb-sort-funding" onclick="sortDeck('funding')">${fundLabel}</button>`;
+    html += `<div class="az-sort-divider"></div>`;
+
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    sidebar.innerHTML = letters.map(letter => {
+    html += letters.map(letter => {
         const has = lCounts[letter];
         const cls = activeLetterFilter === letter ? ' class="active"' : '';
         return has
             ? `<a href="#section-${letter}"${cls} onclick="event.preventDefault();scrollToLetter('${letter}')">${letter}</a>`
             : `<span style="font-size:14px;color:rgba(255,255,255,0.15);padding:0;line-height:1.15">${letter}</span>`;
     }).join('');
+
+    sidebar.innerHTML = html;
 }
 
 function scrollToLetter(letter) {
@@ -2505,7 +2637,6 @@ function updateVanityStats() {
 
     document.getElementById('stat-companies').textContent = deck.length;
     document.getElementById('stat-funding').textContent = fundingDisplay;
-    document.getElementById('stat-ma').textContent = maTargets;
 
     // Show today's date as last updated
     const now = new Date();
@@ -2557,7 +2688,7 @@ function buildDeck() {
                 if (!c.dateAdded) return false;
                 const added = new Date(c.dateAdded);
                 const cutoff = new Date();
-                cutoff.setDate(cutoff.getDate() - 30);
+                cutoff.setDate(cutoff.getDate() - 7);
                 return added >= cutoff;
             } else if (activeHealthFilter === 'acquired') {
                 return c.status === 'acquired' || c.status === 'closed';
@@ -2766,13 +2897,25 @@ function updateSortButtons() {
     document.getElementById('sort-az').classList.toggle('active', deckSortMode === 'alpha');
     document.getElementById('sort-funding').classList.toggle('active', deckSortMode === 'funding');
 
-    // Update button text with arrow
+    // Update filter-bar button text
     document.getElementById('sort-az').textContent = deckSortMode === 'alpha'
         ? (deckSortOrder === 'asc' ? 'A→Z' : 'Z→A')
         : 'A-Z';
     document.getElementById('sort-funding').textContent = deckSortMode === 'funding'
         ? (deckSortOrder === 'desc' ? '$$$ ↓' : '$$$ ↑')
         : '$$$';
+
+    // Update sidebar sort buttons
+    const sbAz = document.getElementById('sb-sort-az');
+    const sbFund = document.getElementById('sb-sort-funding');
+    if (sbAz) {
+        sbAz.classList.toggle('active', deckSortMode === 'alpha');
+        sbAz.textContent = deckSortMode === 'alpha' ? (deckSortOrder === 'asc' ? 'A↓' : 'Z↓') : 'AZ';
+    }
+    if (sbFund) {
+        sbFund.classList.toggle('active', deckSortMode === 'funding');
+        sbFund.textContent = deckSortMode === 'funding' ? (deckSortOrder === 'desc' ? '$↓' : '$↑') : '$';
+    }
 }
 
 // 3-Wheel letter spinner state
@@ -2963,6 +3106,7 @@ function createCard(c, isCurrent) {
                 <div class="stat-value">${c.ceo}</div>
             </div>` : ''}
         </div>
+        <div class="card-info-hint">click for ℹ</div>
     `;
 
     return card;
@@ -3214,50 +3358,12 @@ function setupSwipeGestures(card) {
         currentX = x - startX;
         currentY = y - startY;
 
-        // Check if swiping up (for SAVE)
-        if (currentY < -50 && Math.abs(currentX) < 50) {
-            const saveUpProgress = Math.min(1, Math.abs(currentY) / 150);
-            card.style.transform = `translateY(${currentY}px) scale(${1 - saveUpProgress * 0.1})`;
-            card.style.opacity = 1 - saveUpProgress * 0.3;
-            let saveUpOverlay = card.querySelector('.card-overlay.save-up');
-            if (!saveUpOverlay) {
-                saveUpOverlay = document.createElement('div');
-                saveUpOverlay.className = 'card-overlay save-up';
-                saveUpOverlay.innerHTML = '<span>♥ SAVE</span>';
-                saveUpOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(34,197,94,0.9);display:flex;align-items:center;justify-content:center;border-radius:20px;opacity:0;transition:opacity 0.2s;z-index:10;';
-                saveUpOverlay.querySelector('span').style.cssText = 'color:#fff;font-size:32px;font-weight:800;';
-                card.appendChild(saveUpOverlay);
-            }
-            saveUpOverlay.style.opacity = saveUpProgress;
-        }
-        // Check if swiping down (back to list)
-        else if (currentY > 50 && Math.abs(currentX) < 50) {
-            const backProgress = Math.min(1, currentY / 150);
-            card.style.transform = `translateY(${currentY}px) scale(${1 - backProgress * 0.1})`;
-            card.style.opacity = 1 - backProgress * 0.3;
-            // Show back overlay
-            let backOverlay = card.querySelector('.card-overlay.back');
-            if (!backOverlay) {
-                backOverlay = document.createElement('div');
-                backOverlay.className = 'card-overlay back';
-                backOverlay.innerHTML = '<span>← LIST</span>';
-                backOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,206,209,0.9);display:flex;align-items:center;justify-content:center;border-radius:20px;opacity:0;transition:opacity 0.2s;z-index:10;';
-                backOverlay.querySelector('span').style.cssText = 'color:#fff;font-size:32px;font-weight:800;';
-                card.appendChild(backOverlay);
-            }
-            backOverlay.style.opacity = backProgress;
-        } else {
-            // Normal horizontal swipe
+        // Horizontal swipe only
             const rotate = currentX * 0.04;
             card.style.transform = `translateX(${currentX}px) rotate(${rotate}deg)`;
-            card.style.opacity = '';
 
             const passOverlay = card.querySelector('.card-overlay.pass');
             const saveOverlay = card.querySelector('.card-overlay.save');
-            const saveUpOverlay = card.querySelector('.card-overlay.save-up');
-            const backOverlay = card.querySelector('.card-overlay.back');
-            if (saveUpOverlay) saveUpOverlay.style.opacity = 0;
-            if (backOverlay) backOverlay.style.opacity = 0;
 
             if (currentX < -40) {
                 passOverlay.style.opacity = Math.min(1, Math.abs(currentX) / 120);
@@ -3269,7 +3375,6 @@ function setupSwipeGestures(card) {
                 passOverlay.style.opacity = 0;
                 saveOverlay.style.opacity = 0;
             }
-        }
     };
 
     const onEnd = () => {
@@ -3277,27 +3382,7 @@ function setupSwipeGestures(card) {
         isDragging = false;
         card.classList.remove('dragging');
 
-        // Check for swipe up (SAVE)
-        if (currentY < -100 && Math.abs(currentX) < 50) {
-            card.classList.add('flying');
-            card.style.transition = 'transform 0.35s, opacity 0.35s';
-            card.style.transform = 'translateY(-100vh)';
-            card.style.opacity = '0';
-            const company = deck[index];
-            history.push({ company, direction: 'right' });
-            saved.push(company);
-            localStorage.setItem('ai_tracker_saved', JSON.stringify(saved));
-            setTimeout(() => { index++; renderCards(); updateUI(); }, 350);
-        }
-        // Check for swipe down (back to list)
-        else if (currentY > 100 && Math.abs(currentX) < 50) {
-            card.style.transition = 'transform 0.3s, opacity 0.3s';
-            card.style.transform = 'translateY(100vh)';
-            card.style.opacity = '0';
-            setTimeout(() => {
-                exitSwipeMode();
-            }, 200);
-        } else if (currentX < -100) {
+        if (currentX < -100) {
             flyCard('left');
         } else if (currentX > 100) {
             flyCard('right');
