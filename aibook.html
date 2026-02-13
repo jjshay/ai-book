@@ -403,7 +403,7 @@
             padding: 0 var(--space-md);
         }
         .accordion-item.open .accordion-content {
-            max-height: 200px;
+            max-height: 400px;
             padding: 0 var(--space-md) var(--space-md);
         }
         .accordion-content ul {
@@ -436,6 +436,33 @@
         .accordion-content li.intel::before {
             content: '→';
             color: var(--cyan);
+        }
+        .leadership-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .leadership-row:last-child { border-bottom: none; }
+        .leadership-role {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 90px;
+        }
+        .leadership-name {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+            text-align: right;
+        }
+        .leadership-name.empty {
+            color: var(--text-dim);
+            font-style: italic;
+            font-size: 12px;
         }
 
         /* ========== VIEW MODES ========== */
@@ -3506,11 +3533,31 @@ function openDetail(company) {
                     </div>
                 </div>
             </div>
-            <div class="detail-section">
-                <div class="detail-section-title">Leadership</div>
-                <div class="detail-section-content">${company.ceo ? `CEO: ${company.ceo}` : 'Not available'}</div>
-            </div>
             <div class="card-accordion" style="margin-top:16px;">
+                <div class="accordion-item" onclick="toggleAccordion(event)">
+                    <div class="accordion-header">
+                        <span>Leadership</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="leadership-row">
+                            <span class="leadership-role">CEO</span>
+                            <span class="leadership-name${company.ceo ? '' : ' empty'}">${company.ceo || '—'}</span>
+                        </div>
+                        <div class="leadership-row">
+                            <span class="leadership-role">CFO</span>
+                            <span class="leadership-name${company.cfo ? '' : ' empty'}">${company.cfo || '—'}</span>
+                        </div>
+                        <div class="leadership-row">
+                            <span class="leadership-role">Head of Product</span>
+                            <span class="leadership-name${company.headOfProduct ? '' : ' empty'}">${company.headOfProduct || '—'}</span>
+                        </div>
+                        <div class="leadership-row">
+                            <span class="leadership-role">Head of AI/Tech</span>
+                            <span class="leadership-name${company.headOfTech ? '' : ' empty'}">${company.headOfTech || '—'}</span>
+                        </div>
+                    </div>
+                </div>
                 ${company.fundingRounds && company.fundingRounds.length > 0 ? `
                 <div class="accordion-item" onclick="toggleAccordion(event)">
                     <div class="accordion-header">
