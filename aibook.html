@@ -3506,25 +3506,30 @@ function openDetail(company) {
                     </div>
                 </div>
             </div>
-            ${company.fundingRounds && company.fundingRounds.length > 0 ? `
-            <div class="detail-section">
-                <div class="detail-section-title">Funding Timeline</div>
-                <div class="funding-timeline">
-                    ${company.fundingRounds.slice().reverse().map(r => `
-                        <div class="timeline-item">
-                            <div class="timeline-stage">${r.stage}</div>
-                            <div class="timeline-amount">${r.amount}</div>
-                            <div class="timeline-meta">${r.date ? r.date : ''}${r.investors ? ' · ' + r.investors : ''}</div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            ` : ''}
             <div class="detail-section">
                 <div class="detail-section-title">Leadership</div>
                 <div class="detail-section-content">${company.ceo ? `CEO: ${company.ceo}` : 'Not available'}</div>
             </div>
             <div class="card-accordion" style="margin-top:16px;">
+                ${company.fundingRounds && company.fundingRounds.length > 0 ? `
+                <div class="accordion-item" onclick="toggleAccordion(event)">
+                    <div class="accordion-header">
+                        <span>Funding Timeline</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="funding-timeline">
+                            ${company.fundingRounds.slice().reverse().map(r => `
+                                <div class="timeline-item">
+                                    <div class="timeline-stage">${r.stage}</div>
+                                    <div class="timeline-amount">${r.amount}</div>
+                                    <div class="timeline-meta">${r.date ? r.date : ''}${r.investors ? ' · ' + r.investors : ''}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
                 ${generateAccordion(company)}
             </div>
             ${renderSimilarCompanies(company)}
