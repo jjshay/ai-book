@@ -134,6 +134,73 @@
             font-weight: 800;
             letter-spacing: 1px;
             color: #fff;
+            cursor: pointer;
+        }
+
+        .app-info-popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 400;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .app-info-popup.active { display: flex; }
+        .app-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 28px 24px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+        }
+        .app-info-card h2 {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 6px;
+        }
+        .app-info-card .tagline {
+            color: var(--text);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .app-info-steps {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .app-info-steps li {
+            color: var(--text);
+            font-size: 14px;
+            padding: 8px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .app-info-steps li .step-num {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 16px;
+            min-width: 24px;
+        }
+        .app-info-close {
+            margin-top: 20px;
+            background: var(--gold);
+            color: var(--bg);
+            border: none;
+            padding: 10px 32px;
+            border-radius: 20px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         .header-search {
@@ -173,24 +240,34 @@
             background: var(--gold);
             color: var(--bg);
             border: none;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: var(--fs-xs);
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: var(--fs-base);
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             flex-shrink: 0;
+            letter-spacing: 0.3px;
         }
 
         .saved-btn .badge {
             background: var(--bg);
             color: var(--gold);
-            padding: 1px 5px;
-            border-radius: 8px;
-            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 12px;
             font-weight: 700;
+        }
+
+        @keyframes savedPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            50% { transform: scale(1.15); box-shadow: 0 0 12px 4px rgba(212,175,55,0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+        }
+        .saved-btn.pulse {
+            animation: savedPulse 0.6s ease-in-out 2;
         }
 
         /* ========== FILTER BAR ========== */
@@ -733,11 +810,20 @@
 
         .swipe-actions {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: center;
             padding: 6px 16px 8px;
             border-top: 1px solid var(--border);
             background: var(--bg-card);
+            position: relative;
+        }
+        .swipe-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            width: 100%;
         }
         .swipe-action-item {
             display: flex;
@@ -767,8 +853,10 @@
             font-size: 11px;
             color: var(--text-dim);
             font-weight: 600;
-            min-width: 50px;
-            text-align: center;
+            text-align: right;
+            width: 100%;
+            padding-right: 4px;
+            margin-top: 2px;
         }
 
         .card {
@@ -1927,7 +2015,7 @@
         <div class="header">
             <a href="https://jjshay.com" class="logo" target="_blank">
                 <img src="https://jjshay.com/logo.png" alt="JS" class="logo-icon" style="width:32px;height:32px;border-radius:6px">
-                <span class="logo-text">AI BOOK</span>
+                <span class="logo-text" onclick="event.preventDefault();event.stopPropagation();openAppInfo()">AI BOOK</span>
                 <span class="logo-tooltip">jjshay.com</span>
             </a>
             <div class="header-search">
@@ -1937,6 +2025,21 @@
             <button class="saved-btn" onclick="openSaved()">
                 Saved <span class="badge" id="saved-count">0</span>
             </button>
+        </div>
+
+        <!-- APP INFO POPUP -->
+        <div class="app-info-popup" id="app-info-popup" onclick="if(event.target===this)closeAppInfo()">
+            <div class="app-info-card">
+                <h2>AI BOOK</h2>
+                <div class="tagline">Your pocket guide to 600+ private AI companies — real data, zero noise.</div>
+                <ul class="app-info-steps">
+                    <li><span class="step-num">1</span> Filter by category, funding tier, or search by name</li>
+                    <li><span class="step-num">2</span> Tap a company to enter swipe mode</li>
+                    <li><span class="step-num">3</span> Swipe right to save, left to pass</li>
+                    <li><span class="step-num">4</span> Open your Saved list and email yourself the results</li>
+                </ul>
+                <button class="app-info-close" onclick="closeAppInfo()">Got it</button>
+            </div>
         </div>
 
         <!-- FILTER BAR -->
@@ -1987,19 +2090,21 @@
             </div>
             <div class="card-area" id="card-area"></div>
             <div class="swipe-actions" id="swipe-actions">
-                <div class="swipe-action-item pass" onclick="doSwipe('left')">
-                    <span class="swipe-action-icon">←</span>
-                    <span class="swipe-action-label">Pass</span>
-                </div>
-                <div class="swipe-action-item back" onclick="exitSwipeMode()">
-                    <span class="swipe-action-icon">↑</span>
-                    <span class="swipe-action-label">Back</span>
+                <div class="swipe-actions-row">
+                    <div class="swipe-action-item pass" onclick="doSwipe('left')">
+                        <span class="swipe-action-icon">←</span>
+                        <span class="swipe-action-label">Pass</span>
+                    </div>
+                    <div class="swipe-action-item back" onclick="exitSwipeMode()">
+                        <span class="swipe-action-icon">↑</span>
+                        <span class="swipe-action-label">Back</span>
+                    </div>
+                    <div class="swipe-action-item save" onclick="doSwipe('right')">
+                        <span class="swipe-action-icon">→</span>
+                        <span class="swipe-action-label">Save</span>
+                    </div>
                 </div>
                 <span class="swipe-counter" id="swipe-counter"></span>
-                <div class="swipe-action-item save" onclick="doSwipe('right')">
-                    <span class="swipe-action-icon">→</span>
-                    <span class="swipe-action-label">Save</span>
-                </div>
             </div>
         </div>
 
@@ -2269,6 +2374,13 @@ function closeRatingModal() {
     document.getElementById('rating-modal').classList.remove('active');
 }
 
+function openAppInfo() {
+    document.getElementById('app-info-popup').classList.add('active');
+}
+function closeAppInfo() {
+    document.getElementById('app-info-popup').classList.remove('active');
+}
+
 // ========== INIT ==========
 function init() {
     buildFilterDropdown();
@@ -2289,7 +2401,9 @@ function init() {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
         if (e.key === 'Escape') {
-            if (document.getElementById('saved-modal').classList.contains('active')) {
+            if (document.getElementById('app-info-popup').classList.contains('active')) {
+                closeAppInfo();
+            } else if (document.getElementById('saved-modal').classList.contains('active')) {
                 closeSaved();
             } else if (document.getElementById('stat-modal').classList.contains('active')) {
                 closeStatModal();
@@ -2459,11 +2573,16 @@ function renderListView() {
                 const color = deck.length > 0 ? 'var(--save)' : 'var(--pass)';
                 growthHtml = `<span class="filter-count" style="color:${color};margin-top:2px">+${pct}% w/w growth</span>`;
             } else if (thisWeek > 0 || lastWeek > 0) {
-                const diff = thisWeek - lastWeek;
-                const pct = lastWeek > 0 ? ((diff / lastWeek) * 100).toFixed(0) : (thisWeek > 0 ? '+100' : '0');
-                const sign = diff >= 0 ? '+' : '';
-                const color = diff >= 0 ? 'var(--save)' : 'var(--pass)';
-                growthHtml = `<span class="filter-count" style="color:${color};margin-top:2px">${sign}${pct}% w/w (${thisWeek} added this week)</span>`;
+                if (lastWeek === 0 && thisWeek > 0) {
+                    // All new — show count instead of meaningless +100%
+                    growthHtml = `<span class="filter-count" style="color:var(--save);margin-top:2px">${thisWeek} new this week</span>`;
+                } else {
+                    const diff = thisWeek - lastWeek;
+                    const pct = ((diff / lastWeek) * 100).toFixed(0);
+                    const sign = diff >= 0 ? '+' : '';
+                    const color = diff >= 0 ? 'var(--save)' : 'var(--pass)';
+                    growthHtml = `<span class="filter-count" style="color:${color};margin-top:2px">${sign}${pct}% w/w (${thisWeek} added this week)</span>`;
+                }
             }
 
             html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
@@ -3366,14 +3485,17 @@ function setupSwipeGestures(card) {
         currentX = x - startX;
         currentY = y - startY;
 
-        // Horizontal swipe only
-            const rotate = currentX * 0.04;
-            card.style.transform = `translateX(${currentX}px) rotate(${rotate}deg)`;
+        const rotate = currentX * 0.04;
+            card.style.transform = `translateX(${currentX}px) translateY(${Math.min(0, currentY)}px) rotate(${rotate}deg)`;
 
             const passOverlay = card.querySelector('.card-overlay.pass');
             const saveOverlay = card.querySelector('.card-overlay.save');
 
-            if (currentX < -40) {
+            if (currentY < -40 && Math.abs(currentY) > Math.abs(currentX)) {
+                // Swiping up — show LIST overlay
+                passOverlay.style.opacity = 0;
+                saveOverlay.style.opacity = 0;
+            } else if (currentX < -40) {
                 passOverlay.style.opacity = Math.min(1, Math.abs(currentX) / 120);
                 saveOverlay.style.opacity = 0;
             } else if (currentX > 40) {
@@ -3390,7 +3512,13 @@ function setupSwipeGestures(card) {
         isDragging = false;
         card.classList.remove('dragging');
 
-        if (currentX < -100) {
+        if (currentY < -100 && Math.abs(currentY) > Math.abs(currentX)) {
+            // Swipe up = back to list
+            card.style.transition = 'transform 0.3s, opacity 0.3s';
+            card.style.transform = 'translateY(-150vh)';
+            card.style.opacity = '0';
+            setTimeout(() => exitSwipeMode(), 250);
+        } else if (currentX < -100) {
             flyCard('left');
         } else if (currentX > 100) {
             flyCard('right');
@@ -3400,10 +3528,6 @@ function setupSwipeGestures(card) {
             card.style.opacity = '';
             card.querySelector('.card-overlay.pass').style.opacity = 0;
             card.querySelector('.card-overlay.save').style.opacity = 0;
-            const saveUpOverlay = card.querySelector('.card-overlay.save-up');
-            if (saveUpOverlay) saveUpOverlay.style.opacity = 0;
-            const backOverlay = card.querySelector('.card-overlay.back');
-            if (backOverlay) backOverlay.style.opacity = 0;
             setTimeout(() => card.style.transition = '', 300);
         }
 
@@ -3429,6 +3553,11 @@ function flyCard(direction) {
     if (direction === 'right') {
         saved.push(company);
         localStorage.setItem('ai_tracker_saved', JSON.stringify(saved));
+        // Pulse the Saved button on first 2 saves to guide new users
+        if (saved.length <= 2) {
+            const btn = document.querySelector('.saved-btn');
+            if (btn) { btn.classList.remove('pulse'); void btn.offsetWidth; btn.classList.add('pulse'); }
+        }
     }
 
     card.classList.add('flying');
