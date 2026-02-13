@@ -286,7 +286,8 @@
     ],
     "status": "acquired",
     "acquiredBy": "Amazon",
-    "investors": "General Catalyst, Spark Capital, Addition, Greylock"
+    "investors": "General Catalyst, Spark Capital, Addition, Greylock",
+    "acquiredDate": "2024-06-01"
   },
   {
     "id": 10,
@@ -921,7 +922,7 @@
     "website": "anyword.com",
     "hq": "New York, NY",
     "employees": "80-100",
-    "investors": "Entrée Capital, Innovation Endeavors",
+    "investors": "Entr\u00e9e Capital, Innovation Endeavors",
     "customers": "Marketers, agencies",
     "competitors": "Jasper, Copy.ai, Writer",
     "secretSauce": "AI copywriting + predictive performance + Israeli",
@@ -1006,7 +1007,8 @@
       "Went bankrupt",
       "Unit economics"
     ],
-    "linkedin": "https://linkedin.com/company/appharvest"
+    "linkedin": "https://linkedin.com/company/appharvest",
+    "acquiredDate": "2023-07-01"
   },
   {
     "name": "Applied Intuition",
@@ -1460,7 +1462,7 @@
     "employees": "100-150",
     "investors": "DCVC, Monsanto Growth, Y Combinator",
     "customers": "Bayer, Eli Lilly partnerships",
-    "competitors": "Schrödinger, Insitro, Recursion",
+    "competitors": "Schr\u00f6dinger, Insitro, Recursion",
     "secretSauce": "AI molecular screening + structure-based drug design",
     "description": "AI platform using deep learning for small molecule drug discovery.",
     "maInsight": "Early AI drug discovery player. Pharma or CRO acquisition.",
@@ -1930,7 +1932,8 @@
       "SoftBank exit",
       "Major retailer customers"
     ],
-    "linkedin": "https://linkedin.com/company/berkshire-grey"
+    "linkedin": "https://linkedin.com/company/berkshire-grey",
+    "acquiredDate": "2024-01-01"
   },
   {
     "id": 58,
@@ -2041,7 +2044,7 @@
     "category": "consumer-creative",
     "founded": 2024,
     "ceo": "Robin Rombach",
-    "funding": "€100M+",
+    "funding": "\u20ac100M+",
     "fundingValue": 110000000,
     "valuation": "$500M+",
     "lastRound": "Series A (2024)",
@@ -2971,7 +2974,8 @@
     "risks": [
       "Now part of GE"
     ],
-    "linkedin": "https://linkedin.com/company/caption-health"
+    "linkedin": "https://linkedin.com/company/caption-health",
+    "acquiredDate": "2023-02-01"
   },
   {
     "id": 89,
@@ -5031,7 +5035,8 @@
       "PE ownership changes",
       "Competition"
     ],
-    "linkedin": "https://linkedin.com/company/darktrace"
+    "linkedin": "https://linkedin.com/company/darktrace",
+    "acquiredDate": "2024-10-01"
   },
   {
     "id": 152,
@@ -5711,7 +5716,7 @@
     "product": "Digital Human AI",
     "category": "consumer-creative",
     "founded": 2016,
-    "ceo": "Verónica Orvalho",
+    "ceo": "Ver\u00f3nica Orvalho",
     "funding": "$10M",
     "fundingValue": 10000000,
     "revenue": "$3M+ ARR",
@@ -6426,7 +6431,8 @@
     ],
     "linkedin": "https://linkedin.com/company/exscientia",
     "status": "acquired",
-    "acquiredBy": "Recursion Pharma"
+    "acquiredBy": "Recursion Pharma",
+    "acquiredDate": "2026-01-22"
   },
   {
     "id": 194,
@@ -8584,7 +8590,8 @@
     ],
     "status": "acquired",
     "acquiredBy": "Microsoft",
-    "investors": "Microsoft, Reid Hoffman, Bill Gates, Eric Schmidt"
+    "investors": "Microsoft, Reid Hoffman, Bill Gates, Eric Schmidt",
+    "acquiredDate": "2024-03-01"
   },
   {
     "id": 261,
@@ -9623,7 +9630,7 @@
     "website": "landr.com",
     "hq": "Montreal, Canada",
     "employees": "100-150",
-    "investors": "Warner Music, Investissement Québec",
+    "investors": "Warner Music, Investissement Qu\u00e9bec",
     "customers": "Independent musicians",
     "competitors": "DistroKid, iZotope Ozone",
     "secretSauce": "AI mastering + distribution + music tools",
@@ -11240,7 +11247,7 @@
     "hq": "Paris, France",
     "employees": "50-100",
     "secretSauce": "European AI champion + efficient open models + speed to market",
-    "description": "French AI lab building open-weight models. Largest European AI funding round ever at €1.7B. ASML led.",
+    "description": "French AI lab building open-weight models. Largest European AI funding round ever at \u20ac1.7B. ASML led.",
     "maInsight": "European AI champion. Open-weight model strategy. Potential IPO or strategic acquisition target.",
     "successFactors": [
       "EU regulatory advantage",
@@ -11248,7 +11255,7 @@
       "DeepMind/Google Brain alumni founding team"
     ],
     "valuation": "$14B",
-    "lastRound": "Series C (€1.7B, Sep 2025)",
+    "lastRound": "Series C (\u20ac1.7B, Sep 2025)",
     "investors": "ASML, DST Global, a16z, Bpifrance, General Catalyst, Nvidia, Lightspeed"
   },
   {
@@ -11348,7 +11355,7 @@
     "product": "Game AI Testing",
     "category": "consumer-creative",
     "founded": 2018,
-    "ceo": "Christoffer Holmgård",
+    "ceo": "Christoffer Holmg\u00e5rd",
     "funding": "$10M",
     "fundingValue": 10000000,
     "revenue": "$3M+ ARR",
@@ -12169,7 +12176,7 @@
     "product": "E-commerce Personalization",
     "category": "enterprise",
     "founded": 2011,
-    "ceo": "Jim Ekbäck",
+    "ceo": "Jim Ekb\u00e4ck",
     "funding": "$29M",
     "fundingValue": 29000000,
     "revenue": "$30M+ ARR",
@@ -12218,7 +12225,7 @@
     "secretSauce": "Giuseppe AI + plant-based food formulation + taste matching",
     "description": "AI-powered plant-based food company using Giuseppe algorithm.",
     "maInsight": "Plant-based AI unicorn. Kraft Heinz, Unilever potential.",
-    "acquirers": "Kraft Heinz, Unilever, Nestlé",
+    "acquirers": "Kraft Heinz, Unilever, Nestl\u00e9",
     "maValue": "Food tech AI",
     "successFactors": [
       "LatAm leader",
@@ -12925,11 +12932,11 @@
     "employees": "60-80",
     "investors": "OCV Partners, Mizmaa Ventures",
     "customers": "MOL, Eastern Pacific Shipping",
-    "competitors": "Sea Machines, Wärtsilä",
+    "competitors": "Sea Machines, W\u00e4rtsil\u00e4",
     "secretSauce": "AI collision avoidance + ship vision + autonomous navigation",
     "description": "AI-powered maritime navigation system preventing ship collisions. Uses computer vision and sensors to detect obstacles and provide real-time alerts.",
-    "maInsight": "Ship AI navigation. Wärtsilä, shipping M&A potential.",
-    "acquirers": "Wärtsilä, Kongsberg, shipping lines",
+    "maInsight": "Ship AI navigation. W\u00e4rtsil\u00e4, shipping M&A potential.",
+    "acquirers": "W\u00e4rtsil\u00e4, Kongsberg, shipping lines",
     "maValue": "Ship navigation AI",
     "successFactors": [
       "Safety critical",
@@ -14350,7 +14357,8 @@
       "Salesforce dependency"
     ],
     "linkedin": "https://linkedin.com/company/qualifiedcom",
-    "valuation": "Acquired"
+    "valuation": "Acquired",
+    "acquiredDate": "2026-01-15"
   },
   {
     "id": 438,
@@ -14561,7 +14569,7 @@
     "product": "Avatar Platform",
     "category": "consumer-creative",
     "founded": 2014,
-    "ceo": "Timmu Tõke",
+    "ceo": "Timmu T\u00f5ke",
     "funding": "$56M",
     "fundingValue": 56000000,
     "valuation": "$200M+",
@@ -14668,7 +14676,8 @@
       "Threat intelligence leader",
       "Government customers"
     ],
-    "linkedin": "https://linkedin.com/company/recorded-future"
+    "linkedin": "https://linkedin.com/company/recorded-future",
+    "acquiredDate": "2026-02-01"
   },
   {
     "id": 448,
@@ -16086,7 +16095,7 @@
     "employees": "80-100",
     "investors": "Accomplice, Brunswick",
     "customers": "Maersk, US Navy",
-    "competitors": "Orca AI, Wärtsilä Voyage",
+    "competitors": "Orca AI, W\u00e4rtsil\u00e4 Voyage",
     "secretSauce": "Autonomous vessel control + Maersk partnership + Boston robotics",
     "description": "Autonomous navigation systems for commercial vessels.",
     "maInsight": "Autonomous ships. Maersk, Brunswick potential.",
@@ -17175,7 +17184,7 @@
     "product": "3D Design + AI",
     "category": "consumer-creative",
     "founded": 2020,
-    "ceo": "Alejandro León",
+    "ceo": "Alejandro Le\u00f3n",
     "funding": "$20M",
     "fundingValue": 20000000,
     "revenue": "$8M+ ARR",
@@ -17945,12 +17954,12 @@
     "hq": "Tel Aviv, Israel",
     "employees": "100-150",
     "investors": "Disruptive AI, Team8, Pereg Ventures",
-    "customers": "PepsiCo, Nestlé, Campbell's",
+    "customers": "PepsiCo, Nestl\u00e9, Campbell's",
     "competitors": "Spoonshot, Foodpairing",
     "secretSauce": "Food trend AI + consumer insights + restaurant data",
     "description": "AI platform analyzing food trends and consumer preferences.",
-    "maInsight": "Food AI intelligence. Nestlé, IRI potential.",
-    "acquirers": "Nestlé, IRI, Nielsen",
+    "maInsight": "Food AI intelligence. Nestl\u00e9, IRI potential.",
+    "acquirers": "Nestl\u00e9, IRI, Nielsen",
     "maValue": "Food trend AI",
     "successFactors": [
       "CPG adoption",
@@ -18760,7 +18769,7 @@
     "product": "AI Forms & Surveys",
     "category": "enterprise",
     "founded": 2012,
-    "ceo": "Joaquim Lechá",
+    "ceo": "Joaquim Lech\u00e1",
     "funding": "$187M",
     "fundingValue": 187000000,
     "valuation": "$1B+",
@@ -19924,7 +19933,8 @@
     "risks": [
       "EU regulatory review pending"
     ],
-    "linkedin": "https://linkedin.com/company/waboratories"
+    "linkedin": "https://linkedin.com/company/waboratories",
+    "acquiredDate": "2026-01-08"
   },
   {
     "id": 607,
@@ -20180,7 +20190,7 @@
     "product": "Shrimp Farm AI",
     "category": "industrial",
     "founded": 2015,
-    "ceo": "Valérie Robitaille",
+    "ceo": "Val\u00e9rie Robitaille",
     "funding": "$25M",
     "fundingValue": 25000000,
     "revenue": "$5M+ ARR",
@@ -20225,7 +20235,7 @@
     "employees": "500-700",
     "investors": "Tencent, SoftBank, Sequoia China",
     "customers": "Pfizer, AstraZeneca, Chinese pharma",
-    "competitors": "Schrödinger, Recursion, Insilico",
+    "competitors": "Schr\u00f6dinger, Recursion, Insilico",
     "secretSauce": "Crystal structure prediction + quantum physics + China",
     "description": "AI platform for small molecule drug discovery and design.",
     "maInsight": "China AI pharma leader. Chinese pharma M&A.",
@@ -20449,7 +20459,8 @@
       "Salesforce competition",
       "PE optimization"
     ],
-    "linkedin": "https://linkedin.com/company/zendesk"
+    "linkedin": "https://linkedin.com/company/zendesk",
+    "acquiredDate": "2022-11-01"
   },
   {
     "id": 622,
@@ -20515,6 +20526,7 @@
       "Amazon backing",
       "Purpose-built vehicle"
     ],
-    "linkedin": "https://linkedin.com/company/zoox-inc"
+    "linkedin": "https://linkedin.com/company/zoox-inc",
+    "acquiredDate": "2020-06-01"
   }
 ]

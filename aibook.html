@@ -2397,7 +2397,7 @@ function getFilterHeading() {
         unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
         hot: { icon: '🔥', title: 'Hot Companies', desc: '$100M+ funding' },
         new: { icon: '🆕', title: 'New Additions', desc: 'Added in last 7 days' },
-        acquired: { icon: '💰', title: 'Sold / Acquired', desc: 'Acquired or closed' }
+        acquired: { icon: '💰', title: 'Sold / Acquired', desc: new Date().getFullYear() + ' YTD' }
     };
     return activeHealthFilter ? labels[activeHealthFilter] || null : null;
 }
@@ -2413,7 +2413,7 @@ function renderListView() {
     if (heading) {
         if (activeHealthFilter === 'acquired') {
             const stats = getAcquiredStats();
-            html += `<div class="filter-heading">${heading.icon} ${heading.title}` +
+            html += `<div class="filter-heading">${heading.icon} ${heading.title} <span style="font-size:13px;font-weight:400;color:var(--text-dim)">${heading.desc}</span>` +
                 `<div class="rotating-stats" id="acquired-rotating">` +
                 `<div class="stat-item active"><span>${stats.count}</span> companies acquired</div>` +
                 `<div class="stat-item"><span>${stats.totalStr}</span> total deal value</div>` +
@@ -2691,7 +2691,10 @@ function buildDeck() {
                 cutoff.setDate(cutoff.getDate() - 7);
                 return added >= cutoff;
             } else if (activeHealthFilter === 'acquired') {
-                return c.status === 'acquired' || c.status === 'closed';
+                if (c.status !== 'acquired' && c.status !== 'closed') return false;
+                if (!c.acquiredDate) return false;
+                const yr = new Date().getFullYear();
+                return new Date(c.acquiredDate) >= new Date(yr, 0, 1);
             }
             return true;
         });
