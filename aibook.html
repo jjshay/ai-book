@@ -2105,11 +2105,11 @@
     <div class="app">
         <!-- HEADER -->
         <div class="header">
-            <a href="https://jjshay.com" class="logo" target="_blank">
-                <img src="https://jjshay.com/logo.png" alt="JS" class="logo-icon" style="width:32px;height:32px;border-radius:6px">
-                <span class="logo-text" onclick="event.preventDefault();event.stopPropagation();openAppInfo()">AI BOOK</span>
-                <span class="logo-tooltip">jjshay.com</span>
-            </a>
+            <div class="logo" onclick="openAppInfo()">
+                <img src="icon-192.png" alt="AI Book" class="logo-icon" style="width:32px;height:32px;border-radius:6px">
+                <span class="logo-text">AI BOOK</span>
+                <span class="logo-tooltip">Tap for guide</span>
+            </div>
             <div class="header-search">
                 <span class="search-icon">⌕</span>
                 <input type="text" class="search-input" id="search-input" placeholder="Search..." oninput="handleSearch(this.value)">
@@ -3543,18 +3543,6 @@ function openDetail(company) {
                         <div class="leadership-row">
                             <span class="leadership-role">CEO</span>
                             <span class="leadership-name${company.ceo ? '' : ' empty'}">${company.ceo || '—'}</span>
-                        </div>
-                        <div class="leadership-row">
-                            <span class="leadership-role">CFO</span>
-                            <span class="leadership-name${company.cfo ? '' : ' empty'}">${company.cfo || '—'}</span>
-                        </div>
-                        <div class="leadership-row">
-                            <span class="leadership-role">Head of Product</span>
-                            <span class="leadership-name${company.headOfProduct ? '' : ' empty'}">${company.headOfProduct || '—'}</span>
-                        </div>
-                        <div class="leadership-row">
-                            <span class="leadership-role">Head of AI/Tech</span>
-                            <span class="leadership-name${company.headOfTech ? '' : ' empty'}">${company.headOfTech || '—'}</span>
                         </div>
                     </div>
                 </div>
