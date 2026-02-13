@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ai-tracker-v1';
+const CACHE_NAME = 'ai-tracker-v2';
 const ASSETS = [
   './aibook.html',
   './companies.json',
@@ -18,8 +18,8 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Network first for JSON data, cache first for everything else
-  if (e.request.url.includes('companies.json')) {
+  // Network first for HTML and JSON, cache fallback for offline
+  if (e.request.url.includes('companies.json') || e.request.url.includes('aibook.html')) {
     e.respondWith(
       fetch(e.request).then(r => {
         const clone = r.clone();
