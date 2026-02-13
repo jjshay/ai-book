@@ -1072,30 +1072,34 @@
         .card-links {
             display: flex;
             justify-content: center;
-            gap: var(--space-md);
-            padding-top: var(--space-md);
+            gap: 24px;
+            padding-top: var(--space-lg);
             border-top: 1px solid var(--border);
         }
 
         .link-circle {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: var(--bg);
-            border: 1px solid var(--border);
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: var(--fs-md);
-            color: var(--text);
+            color: #fff;
             transition: all 0.2s;
+            cursor: pointer;
+        }
+        .link-circle svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
         }
 
         .link-circle:hover {
-            background: var(--cyan);
-            color: var(--bg);
-            border-color: var(--cyan);
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
         }
 
         .stat-label {
@@ -3308,9 +3312,9 @@ function openDetail(company) {
                 ${generateAccordion(company)}
             </div>
             <div class="card-links" style="margin-top:16px;">
-                ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}">🌐</a>` : ''}
-                <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn">in</a>
-                <button class="link-circle" onclick="shareCompany(${company.id})" title="Copy summary">📋</button>
+                ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>` : ''}
+                <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+                <button class="link-circle" onclick="shareCompany(${company.id})" title="Share"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 0-6 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.89 2.89 0 0 0 2.89 2.89 2.89 2.89 0 0 0 2.89-2.89A2.89 2.89 0 0 0 18 16.08z"/></svg></button>
             </div>
         </div>
         <div class="detail-actions">
@@ -3339,7 +3343,7 @@ function shareCompany(id) {
     } else {
         navigator.clipboard.writeText(text.trim()).then(() => {
             const btn = event.target.closest('button');
-            if (btn) { btn.textContent = '✓'; setTimeout(() => btn.textContent = '📋', 1500); }
+            if (btn) { btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#4ade80"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'; setTimeout(() => btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 0-6 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.89 2.89 0 0 0 2.89 2.89 2.89 2.89 0 0 0 2.89-2.89A2.89 2.89 0 0 0 18 16.08z"/></svg>', 1500); }
         });
     }
 }
