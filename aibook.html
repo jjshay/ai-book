@@ -1117,12 +1117,13 @@
             text-align: center;
             margin-top: 8px;
             font-family: var(--font);
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gold);
-            background: rgba(255,255,255,0.9);
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+            background: var(--gold);
             border-radius: 10px;
-            padding: 4px 0;
+            padding: 8px 0;
+            letter-spacing: 0.5px;
         }
 
         .card-meta {
@@ -3109,7 +3110,7 @@ function createCard(c, isCurrent) {
                 <div class="stat-value">${c.ceo}</div>
             </div>` : ''}
         </div>
-        <div class="card-info-hint">click for ℹ</div>
+        <div class="card-info-hint">TAP FOR FULL PROFILE ➤</div>
     `;
 
     return card;
