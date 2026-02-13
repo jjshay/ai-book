@@ -2838,7 +2838,7 @@ function renderMiniCard(c) {
             </div>
             <div class="mini-info">
                 <div class="mini-name">${name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}${acquiredBadge}</div>
-                <div class="mini-product">${product}</div>
+                <div class="mini-product">${product}${c.founded ? ' · Est. ' + c.founded : ''}</div>
             </div>
             <div class="mini-funding">${c.funding || ''}</div>
             <div class="mini-arrow">›</div>
