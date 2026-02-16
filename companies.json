@@ -7880,18 +7880,18 @@
     "ceo": "George Sivulka",
     "funding": "$130M",
     "fundingValue": 130000000,
-    "valuation": "$700M+",
+    "valuation": "$700M",
     "revenue": "$10M+ ARR",
-    "lastRound": "Series B (2024)",
+    "lastRound": "Series B (2026-02-10)",
     "rating": 5,
     "website": "hebbia.ai",
     "hq": "New York, NY",
     "employees": "40-60",
-    "investors": "a16z, Index Ventures, Peter Thiel",
+    "investors": "Andreessen Horowitz, Peter Thiel, Index Ventures",
     "customers": "Finance, legal firms",
     "competitors": "Perplexity, Glean, custom RAG",
     "secretSauce": "AI for knowledge work + financial analysis + legal research",
-    "description": "AI platform for knowledge work, popular in finance and legal.",
+    "description": "AI-powered document search and analysis platform raised Series B funding",
     "maInsight": "Knowledge work AI. Bloomberg, Thomson Reuters potential.",
     "acquirers": "Bloomberg, Thomson Reuters, Google",
     "maValue": "Knowledge work AI",
@@ -7904,7 +7904,16 @@
       "Perplexity competition",
       "Enterprise complexity"
     ],
-    "linkedin": "https://linkedin.com/company/hebbia"
+    "linkedin": "https://linkedin.com/company/hebbia",
+    "lastAutoUpdate": "2026-02-16",
+    "fundingRounds": [
+      {
+        "stage": "Series B",
+        "amount": "$130M",
+        "date": "2026-02-10",
+        "investors": "Andreessen Horowitz, Peter Thiel, Index Ventures"
+      }
+    ]
   },
   {
     "id": 241,
