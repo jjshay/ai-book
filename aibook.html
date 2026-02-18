@@ -2232,7 +2232,7 @@
             </div>
             <div class="vanity-stat clickable" onclick="openStatModal('funding')">
                 <span class="vanity-value" id="stat-funding">$150B+</span>
-                <span class="vanity-label">Total Raised</span>
+                <span class="vanity-label" id="stat-funding-label">Total Raised</span>
             </div>
             <div class="vanity-stat">
                 <span class="vanity-value" id="stat-updated" style="color:var(--cyan)">--</span>
@@ -2405,21 +2405,63 @@ function buildFilterDropdown() {
 }
 
 // ========== STAT MODAL ==========
+function getFilteredStatsPool() {
+    let pool = currentFilter === 'all'
+        ? [...companies]
+        : companies.filter(c => c.category === currentFilter);
+
+    pool = pool.filter(c => {
+        const funding = (c.funding || '').toLowerCase();
+        return !funding.includes('public');
+    });
+
+    if (activeHealthFilter) {
+        pool = pool.filter(c => {
+            const funding = parseFundingAmount(c.funding);
+            if (activeHealthFilter === 'unicorn') return funding >= 1000;
+            if (activeHealthFilter === 'hot') return funding >= 100;
+            if (activeHealthFilter === 'new') {
+                if (!c.dateAdded) return false;
+                const added = new Date(c.dateAdded);
+                const cutoff = new Date();
+                cutoff.setDate(cutoff.getDate() - 7);
+                return added >= cutoff;
+            }
+            if (activeHealthFilter === 'acquired') {
+                if (c.status !== 'acquired' && c.status !== 'closed') return false;
+                if (!c.acquiredDate) return false;
+                const yr = new Date().getFullYear();
+                return new Date(c.acquiredDate) >= new Date(yr, 0, 1);
+            }
+            return true;
+        });
+    }
+
+    if (searchQuery) {
+        pool = pool.filter(c => c._searchText && c._searchText.includes(searchQuery));
+    }
+
+    return pool;
+}
+
 function openStatModal(type) {
     const modal = document.getElementById('stat-modal');
     const title = document.getElementById('stat-modal-title');
     const body = document.getElementById('stat-modal-body');
 
+    // Get filtered company pool (respects category + health filters)
+    const filteredPool = getFilteredStatsPool();
+
     if (type === 'companies') {
-        const allCompanies = [...companies].filter(c => {
-            const funding = (c.funding || '').toLowerCase();
-            return !funding.includes('public');
-        });
-        title.textContent = 'All Companies (' + allCompanies.length + ')';
-        body.innerHTML = renderCompanyListForStatModal(allCompanies);
+        const heading = getFilterHeading();
+        const label = heading ? heading.title : 'All Companies';
+        title.textContent = label + ' (' + filteredPool.length + ')';
+        body.innerHTML = renderCompanyListForStatModal(filteredPool);
     } else if (type === 'funding') {
-        title.textContent = 'Funding by Category';
-        body.innerHTML = renderFundingBarChart();
+        const heading = getFilterHeading();
+        const label = heading ? heading.title + ' — ' : '';
+        title.textContent = label + 'Funding by Category';
+        body.innerHTML = renderFundingBarChart(filteredPool);
     } else if (type === 'ma') {
         title.textContent = 'M&A Targets by Category';
         body.innerHTML = renderMABarChart();
@@ -2473,11 +2515,9 @@ function statModalScrollToLetter(letter) {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function renderFundingBarChart() {
+function renderFundingBarChart(pool) {
     const fundingByCat = {};
-    companies.forEach(c => {
-        const funding = (c.funding || '').toLowerCase();
-        if (funding.includes('public')) return;
+    (pool || getFilteredStatsPool()).forEach(c => {
         const catLabel = getCategoryLabel(c.category, true);
         if (!fundingByCat[catLabel]) fundingByCat[catLabel] = 0;
         fundingByCat[catLabel] += parseFundingAmount(c.funding);
@@ -2918,14 +2958,26 @@ function exitSwipeMode() {
 }
 
 function updateVanityStats() {
-    // Use current filtered deck for stats
-    let totalFunding = 0;
-    let maTargets = 0;
+    // Use full filtered set (category + health + search) WITHOUT removing saved companies
+    const statsPool = getFilteredStatsPool();
 
-    deck.forEach(c => {
-        totalFunding += parseFundingAmount(c.funding);
-        if (isMATarget(c)) {
-            maTargets++;
+    // Calculate total funding
+    let totalFunding = 0;
+    statsPool.forEach(c => {
+        if (activeHealthFilter === 'acquired') {
+            // For sold/acquired, use deal value (valuation) if available
+            const val = c.valuation || c.funding || '';
+            const match = val.match(/\$?([\d.]+)\s*(B|M|T|K)?/i);
+            if (match) {
+                let amount = parseFloat(match[1]);
+                const unit = (match[2] || '').toUpperCase();
+                if (unit === 'B') amount *= 1000;
+                else if (unit === 'T') amount *= 1000000;
+                else if (unit === 'K') amount /= 1000;
+                totalFunding += amount;
+            }
+        } else {
+            totalFunding += parseFundingAmount(c.funding);
         }
     });
 
@@ -2933,8 +2985,14 @@ function updateVanityStats() {
         ? `$${Math.round(totalFunding / 1000)}B+`
         : `$${Math.round(totalFunding)}M+`;
 
-    document.getElementById('stat-companies').textContent = deck.length;
+    document.getElementById('stat-companies').textContent = statsPool.length;
     document.getElementById('stat-funding').textContent = fundingDisplay;
+
+    // Update label based on active filter
+    const fundingLabel = document.getElementById('stat-funding-label');
+    if (fundingLabel) {
+        fundingLabel.textContent = activeHealthFilter === 'acquired' ? 'Deal Value' : 'Total Raised';
+    }
 
     // Show today's date as last updated
     const now = new Date();
