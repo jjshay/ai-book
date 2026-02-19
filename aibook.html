@@ -2010,6 +2010,165 @@
             background: linear-gradient(90deg, var(--cyan), #00e5e8);
         }
 
+        /* ========== VC MODAL ========== */
+        .vc-disclaimer {
+            font-size: 11px;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .vc-row {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .vc-row.open { border-color: var(--gold); }
+        .vc-main {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .vc-main:active { background: rgba(255,255,255,0.03); }
+        .vc-rank {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-dim);
+            min-width: 24px;
+            text-align: center;
+        }
+        .vc-rank.top3 { color: var(--gold); }
+        .vc-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .vc-name {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .vc-meta {
+            font-family: var(--font);
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .vc-capital {
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+        .vc-chevron {
+            font-size: 14px;
+            color: var(--text-dim);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .vc-row.open .vc-chevron { transform: rotate(90deg); }
+        .vc-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0,0,0,0.15);
+        }
+        .vc-row.open .vc-detail { max-height: 600px; }
+        .vc-detail-inner {
+            padding: 0 14px 14px;
+        }
+        .vc-section-label {
+            font-family: var(--font);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 10px 0 6px;
+        }
+        .vc-company-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .vc-company-chip:active { background: rgba(212,175,55,0.1); }
+        .vc-chip-name {
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .vc-chip-funding {
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+        .vc-segment-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .vc-segment-name {
+            font-family: var(--font);
+            font-size: 11px;
+            color: var(--text-dim);
+            min-width: 70px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .vc-segment-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .vc-segment-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), #00e5e8);
+            border-radius: 3px;
+            min-width: 2px;
+        }
+        .vc-segment-count {
+            font-family: var(--font);
+            font-size: 11px;
+            color: var(--cyan);
+            min-width: 16px;
+            text-align: right;
+        }
+
         /* ========== STAT COMPANY LIST ========== */
         .stat-letter-header {
             position: sticky;
@@ -2234,6 +2393,10 @@
                 <span class="vanity-value" id="stat-funding">$150B+</span>
                 <span class="vanity-label" id="stat-funding-label">Total Raised</span>
             </div>
+            <div class="vanity-stat clickable" onclick="openStatModal('vcs')">
+                <span class="vanity-value" id="stat-vcs">Top 25</span>
+                <span class="vanity-label">Top VCs</span>
+            </div>
             <div class="vanity-stat">
                 <span class="vanity-value" id="stat-updated" style="color:var(--cyan)">--</span>
                 <span class="vanity-label">Last Updated</span>
@@ -2373,6 +2536,86 @@ let history = [];
 let userEmail = localStorage.getItem('ai_tracker_email') || '';
 
 // ========== CATEGORY LABELS ==========
+// ========== INVESTOR NORMALIZATION ==========
+const INVESTOR_ALIASES = {
+    'a16z': 'Andreessen Horowitz',
+    'a16z Bio': 'Andreessen Horowitz',
+    'a16z crypto': 'Andreessen Horowitz',
+    'Sequoia': 'Sequoia Capital',
+    'GV': 'GV (Google Ventures)',
+    'Google Ventures': 'GV (Google Ventures)',
+    'Nvidia': 'NVIDIA',
+    'NVentures': 'NVIDIA',
+    'NVIDIA NVentures': 'NVIDIA',
+    'Nventures (Nvidia)': 'NVIDIA',
+    'M12': 'M12 (Microsoft)',
+    'Microsoft M12': 'M12 (Microsoft)',
+    'Microsoft': 'M12 (Microsoft)',
+    'Softbank': 'SoftBank',
+    'SoftBank Vision Fund': 'SoftBank',
+    'SoftBank Group': 'SoftBank',
+    'Softbank Vision Fund': 'SoftBank',
+    'ICONIQ': 'ICONIQ Growth',
+    'ICONIQ Capital': 'ICONIQ Growth',
+    'Index': 'Index Ventures',
+    'Khosla': 'Khosla Ventures',
+    'Bessemer': 'Bessemer Venture Partners',
+    'YC': 'Y Combinator',
+    'Y Combinator (W21)': 'Y Combinator',
+    'Y Combinator (S21)': 'Y Combinator',
+    'Y Combinator (W22)': 'Y Combinator',
+    'Y Combinator (S22)': 'Y Combinator',
+    'Y Combinator (W23)': 'Y Combinator',
+    'Y Combinator (S23)': 'Y Combinator',
+    'Y Combinator (W24)': 'Y Combinator',
+    'Y Combinator (S24)': 'Y Combinator',
+    'Coatue': 'Coatue Management',
+    'Insight': 'Insight Partners',
+    'NEA': 'New Enterprise Associates',
+    'GC': 'General Catalyst',
+    'Felicis': 'Felicis Ventures',
+    'IVP': 'Institutional Venture Partners',
+    'Founders Fund': 'Founders Fund',
+    'DST': 'DST Global',
+    'DST Global Fund': 'DST Global',
+    'Spark': 'Spark Capital',
+    'Thrive': 'Thrive Capital',
+    'Samsung': 'Samsung Next',
+    'Samsung Ventures': 'Samsung Next',
+    'Menlo': 'Menlo Ventures',
+    'Lightspeed': 'Lightspeed Venture Partners',
+    'Lightspeed Ventures': 'Lightspeed Venture Partners',
+    'Lux': 'Lux Capital',
+    'Intel Capital': 'Intel Capital',
+    'Amazon': 'Amazon',
+    'Salesforce': 'Salesforce Ventures',
+    'Salesforce Venture': 'Salesforce Ventures',
+    'Madrona': 'Madrona Ventures',
+    'Madrona Venture Group': 'Madrona Ventures',
+    'Greylock': 'Greylock Partners',
+    'Greylock Partners': 'Greylock Partners',
+    'Addition': 'Addition',
+    'Elad Gil': 'Elad Gil',
+    'Jeff Bezos': 'Jeff Bezos',
+    'CRV': 'CRV',
+    'Wing': 'Wing VC',
+    'Wing Venture Capital': 'Wing VC'
+};
+
+// Junk entries to skip
+const INVESTOR_SKIP = new Set([
+    'top-tier vcs', 'bootstrapped', 'undisclosed', 'private equity',
+    'various investors', 'self-funded', 'government', 'n/a', 'tbd',
+    'angel investors', 'unknown', 'stealth', 'confidential'
+]);
+
+function normalizeInvestor(raw) {
+    const trimmed = raw.trim();
+    if (!trimmed) return null;
+    if (INVESTOR_SKIP.has(trimmed.toLowerCase())) return null;
+    return INVESTOR_ALIASES[trimmed] || trimmed;
+}
+
 const CATEGORY_LABELS = {
     'foundation-infra': { short: 'Foundation', long: 'Foundation & Infra' },
     'enterprise': { short: 'Enterprise', long: 'Enterprise AI' },
@@ -2444,6 +2687,47 @@ function getFilteredStatsPool() {
     return pool;
 }
 
+function getTopVCData(pool) {
+    const vcMap = {}; // canonical name -> { capital, companies: [], categories: {} }
+
+    pool.forEach(c => {
+        if (!c.investors) return;
+        const fundingAmt = parseFundingAmount(c.funding);
+        const parts = c.investors.split(',');
+        const seen = new Set(); // avoid double-counting same VC for same company
+
+        parts.forEach(raw => {
+            const name = normalizeInvestor(raw);
+            if (!name) return;
+            if (seen.has(name)) return;
+            seen.add(name);
+
+            if (!vcMap[name]) {
+                vcMap[name] = { capital: 0, companies: [], categories: {} };
+            }
+            vcMap[name].capital += fundingAmt;
+            vcMap[name].companies.push({
+                id: c.id,
+                name: c.name,
+                funding: c.funding || '',
+                category: c.category
+            });
+            const catLabel = getCategoryLabel(c.category);
+            vcMap[name].categories[catLabel] = (vcMap[name].categories[catLabel] || 0) + 1;
+        });
+    });
+
+    return Object.entries(vcMap)
+        .map(([name, data]) => ({
+            name,
+            capital: data.capital,
+            companyCount: data.companies.length,
+            companies: data.companies.sort((a, b) => parseFundingAmount(b.funding) - parseFundingAmount(a.funding)),
+            categories: data.categories
+        }))
+        .sort((a, b) => b.capital - a.capital);
+}
+
 function openStatModal(type) {
     const modal = document.getElementById('stat-modal');
     const title = document.getElementById('stat-modal-title');
@@ -2465,6 +2749,11 @@ function openStatModal(type) {
     } else if (type === 'ma') {
         title.textContent = 'M&A Targets by Category';
         body.innerHTML = renderMABarChart();
+    } else if (type === 'vcs') {
+        const heading = getFilterHeading();
+        const label = heading ? heading.title + ' — ' : '';
+        title.textContent = label + 'Top VCs by Capital Deployed';
+        body.innerHTML = renderVCModal(filteredPool);
     }
 
     modal.classList.add('active');
@@ -2569,6 +2858,89 @@ function renderMABarChart() {
     });
     html += '</div>';
     return html;
+}
+
+// ========== VC MODAL ==========
+function renderVCModal(pool) {
+    const vcData = getTopVCData(pool);
+
+    if (vcData.length === 0) {
+        return '<p style="text-align:center;color:var(--text-dim);padding:40px 0">No investor data available for the current filters.</p>';
+    }
+
+    const top25 = vcData.slice(0, 25);
+
+    let html = '<div class="vc-disclaimer">';
+    html += 'Capital deployed = total funding of portfolio companies where the VC is listed as an investor. ';
+    html += 'Actual investment amounts per firm are not disclosed.';
+    html += '</div>';
+
+    top25.forEach((vc, i) => {
+        const rank = i + 1;
+        const rankClass = rank <= 3 ? ' top3' : '';
+        const capitalDisplay = formatVCCapital(vc.capital);
+
+        // Top 2 segments for meta line
+        const topSegs = Object.entries(vc.categories)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 2)
+            .map(([name]) => name);
+        const metaText = vc.companyCount + ' companies' + (topSegs.length ? ' · ' + topSegs.join(', ') : '');
+
+        html += '<div class="vc-row" id="vc-row-' + rank + '">';
+        html += '<div class="vc-main" onclick="toggleVCRow(' + rank + ')">';
+        html += '<div class="vc-rank' + rankClass + '">' + rank + '</div>';
+        html += '<div class="vc-info">';
+        html += '<div class="vc-name">' + vc.name + '</div>';
+        html += '<div class="vc-meta">' + metaText + '</div>';
+        html += '</div>';
+        html += '<div class="vc-capital">' + capitalDisplay + '</div>';
+        html += '<div class="vc-chevron">&#9654;</div>';
+        html += '</div>';
+
+        // Detail panel
+        html += '<div class="vc-detail"><div class="vc-detail-inner">';
+
+        // Portfolio companies (top 4 by funding)
+        html += '<div class="vc-section-label">Top Portfolio Companies</div>';
+        const topCompanies = vc.companies.slice(0, 4);
+        topCompanies.forEach(comp => {
+            html += '<div class="vc-company-chip" onclick="closeStatModal(); enterSwipeMode(' + comp.id + ')">';
+            html += '<span class="vc-chip-name">' + comp.name + '</span>';
+            html += '<span class="vc-chip-funding">' + comp.funding + '</span>';
+            html += '</div>';
+        });
+
+        // Segment focus bars
+        const catEntries = Object.entries(vc.categories).sort((a, b) => b[1] - a[1]);
+        if (catEntries.length > 0) {
+            const maxCat = catEntries[0][1];
+            html += '<div class="vc-section-label">Segment Focus</div>';
+            catEntries.forEach(([seg, count]) => {
+                const pct = (count / maxCat) * 100;
+                html += '<div class="vc-segment-row">';
+                html += '<span class="vc-segment-name">' + seg + '</span>';
+                html += '<div class="vc-segment-bar"><div class="vc-segment-fill" style="width:' + pct + '%"></div></div>';
+                html += '<span class="vc-segment-count">' + count + '</span>';
+                html += '</div>';
+            });
+        }
+
+        html += '</div></div>'; // close detail-inner, detail
+        html += '</div>'; // close vc-row
+    });
+
+    return html;
+}
+
+function formatVCCapital(amountM) {
+    if (amountM >= 1000) return '$' + Math.round(amountM / 100) / 10 + 'B';
+    return '$' + Math.round(amountM) + 'M';
+}
+
+function toggleVCRow(rank) {
+    const row = document.getElementById('vc-row-' + rank);
+    if (row) row.classList.toggle('open');
 }
 
 // ========== STAR RATING DEFINITIONS ==========
@@ -2992,6 +3364,13 @@ function updateVanityStats() {
     const fundingLabel = document.getElementById('stat-funding-label');
     if (fundingLabel) {
         fundingLabel.textContent = activeHealthFilter === 'acquired' ? 'Deal Value' : 'Total Raised';
+    }
+
+    // Update Top VCs count
+    const vcEl = document.getElementById('stat-vcs');
+    if (vcEl) {
+        const vcData = getTopVCData(statsPool);
+        vcEl.textContent = vcData.length >= 25 ? 'Top 25' : vcData.length;
     }
 
     // Show today's date as last updated
