@@ -422,7 +422,8 @@
             padding: 0 var(--space-md);
         }
         .accordion-item.open .accordion-content {
-            max-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
             padding: 0 var(--space-md) var(--space-md);
         }
         .accordion-content ul {
@@ -455,6 +456,13 @@
         .accordion-content li.intel::before {
             content: '→';
             color: var(--cyan);
+        }
+        .accordion-content li.intel {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            padding-left: var(--space-xl);
         }
         .leadership-row {
             display: flex;
@@ -3857,7 +3865,10 @@ function generateAccordion(c) {
     // M&A Intelligence from enriched data (5-bullet analysis per company)
     const maIntel = [];
     if (c.maBullets && c.maBullets.length > 0) {
-        c.maBullets.forEach(b => maIntel.push(`<strong>${b.label}:</strong> ${b.text}`));
+        c.maBullets.forEach(b => {
+            const short = b.text.length > 80 ? b.text.substring(0, 77) + '...' : b.text;
+            maIntel.push(`<strong>${b.label}:</strong> ${short}`);
+        });
     } else {
         // Fallback for any companies without enriched data
         if (funding > 500) maIntel.push('Prime acquisition target for big tech');
