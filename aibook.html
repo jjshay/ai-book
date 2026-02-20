@@ -3854,15 +3854,20 @@ function generateAccordion(c) {
     const funding = parseFundingAmount(c.funding);
     const fundingTier = funding > 1000 ? 'mega' : funding > 100 ? 'growth' : 'early';
 
-    // Generate M&A Intelligence based on company data
+    // M&A Intelligence from enriched data (5-bullet analysis per company)
     const maIntel = [];
-    if (funding > 500) maIntel.push('Prime acquisition target for big tech');
-    if (funding > 1000) maIntel.push('IPO candidate within 2-3 years');
-    if (c.category === 'foundation-models') maIntel.push('Strategic asset for AI capabilities');
-    if (c.category === 'ai-infrastructure') maIntel.push('Infrastructure play attractive to cloud providers');
-    if (c.category === 'coding-ai') maIntel.push('Developer tools attract enterprise acquirers');
-    if (c.employees && c.employees.includes('1,000')) maIntel.push('Scale attracts PE interest');
-    if (maIntel.length === 0) maIntel.push('Early-stage, building strategic value');
+    if (c.maBullets && c.maBullets.length > 0) {
+        c.maBullets.forEach(b => maIntel.push(`<strong>${b.label}:</strong> ${b.text}`));
+    } else {
+        // Fallback for any companies without enriched data
+        if (funding > 500) maIntel.push('Prime acquisition target for big tech');
+        if (funding > 1000) maIntel.push('IPO candidate within 2-3 years');
+        if (c.category === 'foundation-models') maIntel.push('Strategic asset for AI capabilities');
+        if (c.category === 'ai-infrastructure') maIntel.push('Infrastructure play attractive to cloud providers');
+        if (c.category === 'coding-ai') maIntel.push('Developer tools attract enterprise acquirers');
+        if (c.employees && c.employees.includes('1,000')) maIntel.push('Scale attracts PE interest');
+        if (maIntel.length === 0) maIntel.push('Early-stage, building strategic value');
+    }
 
     // Generate Success Factors
     const successFactors = [];
@@ -3890,7 +3895,7 @@ function generateAccordion(c) {
                 <span class="accordion-icon">▼</span>
             </div>
             <div class="accordion-content">
-                <ul>${maIntel.slice(0, 3).map(i => `<li class="intel">${i}</li>`).join('')}</ul>
+                <ul>${maIntel.slice(0, 5).map(i => `<li class="intel">${i}</li>`).join('')}</ul>
             </div>
         </div>
         <div class="accordion-item" onclick="toggleAccordion(event)">
