@@ -462,7 +462,9 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            text-overflow: ellipsis;
             padding-left: var(--space-xl);
+            word-break: break-word;
         }
         .leadership-row {
             display: flex;
@@ -3866,8 +3868,7 @@ function generateAccordion(c) {
     const maIntel = [];
     if (c.maBullets && c.maBullets.length > 0) {
         c.maBullets.forEach(b => {
-            const short = b.text.length > 80 ? b.text.substring(0, 77) + '...' : b.text;
-            maIntel.push(`<strong>${b.label}:</strong> ${short}`);
+            maIntel.push(`<strong>${b.label}:</strong> ${b.text}`);
         });
     } else {
         // Fallback for any companies without enriched data
