@@ -3869,9 +3869,7 @@ function generateAccordion(c) {
         const shortLabels = {'Strategic Rationale':'Rationale','Likely Acquirers':'Acquirers','Estimated Price Range':'Price Range','Unique Assets':'Assets','Deal Profile':'Deal'};
         c.maBullets.forEach(b => {
             const lbl = shortLabels[b.label] || b.label;
-            const max = 100 - lbl.length;
-            const txt = b.text.length > max ? b.text.substring(0, max).replace(/[\s,;:]+$/, '') + '.' : b.text;
-            maIntel.push(`<strong>${lbl}:</strong> ${txt}`);
+            maIntel.push(`<strong>${lbl}:</strong> ${b.text}`);
         });
     } else {
         // Fallback for any companies without enriched data
