@@ -458,9 +458,10 @@
             color: var(--cyan);
         }
         .accordion-content li.intel {
+            white-space: nowrap;
             overflow: hidden;
+            text-overflow: ellipsis;
             padding-left: var(--space-xl);
-            word-break: break-word;
         }
         .leadership-row {
             display: flex;
@@ -3864,24 +3865,9 @@ function generateAccordion(c) {
     const maIntel = [];
     if (c.maBullets && c.maBullets.length > 0) {
         c.maBullets.forEach(b => {
-            // Smart trim to fit ~2 lines: end at sentence/clause boundary
-            const maxLen = Math.max(65, 110 - b.label.length);
-            let text = b.text;
-            if (text.length > maxLen) {
-                const chunk = text.substring(0, maxLen + 15);
-                const sentEnd = Math.max(chunk.lastIndexOf('. ', maxLen), chunk.lastIndexOf('; ', maxLen));
-                if (sentEnd > maxLen * 0.45) {
-                    text = chunk.substring(0, sentEnd + 1);
-                } else {
-                    const commaEnd = chunk.lastIndexOf(', ', maxLen);
-                    if (commaEnd > maxLen * 0.45) {
-                        text = chunk.substring(0, commaEnd + 1);
-                    } else {
-                        text = text.substring(0, maxLen).replace(/\s+\S*$/, '') + '.';
-                    }
-                }
-            }
-            maIntel.push(`<strong>${b.label}:</strong> ${text}`);
+            const shortLabels = {'Strategic Rationale':'Rationale','Likely Acquirers':'Acquirers','Estimated Price Range':'Price Range','Unique Assets':'Assets','Deal Profile':'Deal'};
+            const lbl = shortLabels[b.label] || b.label;
+            maIntel.push(`<strong>${lbl}:</strong> ${b.text}`);
         });
     } else {
         // Fallback for any companies without enriched data
