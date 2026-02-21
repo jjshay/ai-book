@@ -422,7 +422,7 @@
             padding: 0 var(--space-md);
         }
         .accordion-item.open .accordion-content {
-            max-height: 800px;
+            max-height: 1200px;
             overflow-y: auto;
             padding: 0 var(--space-md) var(--space-md);
         }
@@ -458,10 +458,12 @@
             color: var(--cyan);
         }
         .accordion-content li.intel {
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
             padding-left: var(--space-xl);
+            word-break: break-word;
         }
         .leadership-row {
             display: flex;
@@ -3867,7 +3869,9 @@ function generateAccordion(c) {
         const shortLabels = {'Strategic Rationale':'Rationale','Likely Acquirers':'Acquirers','Estimated Price Range':'Price Range','Unique Assets':'Assets','Deal Profile':'Deal'};
         c.maBullets.forEach(b => {
             const lbl = shortLabels[b.label] || b.label;
-            maIntel.push(`<strong>${lbl}:</strong> ${b.text}`);
+            const max = 100 - lbl.length;
+            const txt = b.text.length > max ? b.text.substring(0, max).replace(/[\s,;:]+$/, '') + '.' : b.text;
+            maIntel.push(`<strong>${lbl}:</strong> ${txt}`);
         });
     } else {
         // Fallback for any companies without enriched data
