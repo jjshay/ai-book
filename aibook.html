@@ -422,7 +422,7 @@
             padding: 0 var(--space-md);
         }
         .accordion-item.open .accordion-content {
-            max-height: 500px;
+            max-height: 800px;
             overflow-y: auto;
             padding: 0 var(--space-md) var(--space-md);
         }
@@ -3868,7 +3868,8 @@ function generateAccordion(c) {
     const maIntel = [];
     if (c.maBullets && c.maBullets.length > 0) {
         c.maBullets.forEach(b => {
-            maIntel.push(`<strong>${b.label}:</strong> ${b.text}`);
+            const short = b.text.length > 45 ? b.text.substring(0, 42) + '...' : b.text;
+            maIntel.push(`<strong>${b.label}:</strong> ${short}`);
         });
     } else {
         // Fallback for any companies without enriched data
