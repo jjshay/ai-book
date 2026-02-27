@@ -466,8 +466,8 @@
             word-break: break-word;
         }
         .accordion-content li.github::before {
-            content: '\2B50';
-            color: #f0c040;
+            content: '\2022';
+            color: var(--text-dim);
         }
         .accordion-content li.github {
             padding-left: var(--space-xl);
@@ -4012,8 +4012,8 @@ function createCard(c, isCurrent) {
             <span class="card-funding-label">Investment Raised</span>
             <span class="card-funding-value">${c.funding || 'N/A'}</span>
         </div>
-        ${(c.github_org || (c.recentNews && c.recentNews.length > 0)) ? `<div class="card-signals">
-            ${c.github_org && c.github_total_stars ? `<span class="signal-pill github">\u2605 ${formatStars(c.github_total_stars)} stars</span>` : ''}
+        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0)) ? `<div class="card-signals">
+            ${c.github_total_stars > 0 ? `<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>` : ''}
             ${c.github_weekly_commits ? `<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>` : ''}
             ${c.recentNews && c.recentNews.length > 0 ? `<span class="signal-pill news">In the News</span>` : ''}
         </div>` : ''}
@@ -4094,12 +4094,14 @@ async function fetchSECLive(cik) {
 }
 
 function renderGitHubContent(data, org) {
-    if (!data || !data.repos || data.repos.length === 0) return '<li class="github">No public repos found</li>';
-    let html = data.repos.map(r =>
-        `<li class="github">${r.name} — \u2605 ${r.stars.toLocaleString()}${r.language ? ' — ' + r.language : ''}</li>`
-    ).join('');
-    html += `<div class="github-total-stars">\u2605 ${data.totalStars.toLocaleString()} total stars</div>`;
-    html += `<a href="https://github.com/${org}" target="_blank" class="accordion-link">View on GitHub \u2197</a>`;
+    if (!data || !data.repos || data.repos.length === 0) return '';
+    const filtered = data.repos.filter(r => r.stars > 0);
+    if (filtered.length === 0 && data.totalStars === 0) return '';
+    let html = '<ul>' + filtered.map(r =>
+        `<li class="github">${r.name} — ${r.stars.toLocaleString()} stars${r.language ? ' — ' + r.language : ''}</li>`
+    ).join('') + '</ul>';
+    html += `<div class="github-total-stars">${data.totalStars.toLocaleString()} total stars</div>`;
+    html += `<a href="https://github.com/${org}" target="_blank" class="accordion-link">View on GitHub ↗</a>`;
     return html;
 }
 
@@ -4185,29 +4187,27 @@ function generateAccordion(c) {
                 <ul>${risks.slice(0, 3).map(i => `<li class="risk">${i}</li>`).join('')}</ul>
             </div>
         </div>
-        ${c.github_org ? `
+        ${c.github_org && c.github_total_stars > 0 ? `
         <div class="accordion-item" onclick="toggleAccordion(event)" data-github-org="${c.github_org}">
             <div class="accordion-header">
-                <span>\u{1F4BB} GitHub Activity</span>
+                <span>GitHub Activity</span>
                 <span class="accordion-icon">▼</span>
             </div>
-            <div class="accordion-content">
-                <ul id="github-accordion-content">
-                    ${c.github_repos && c.github_repos.length > 0
-                        ? c.github_repos.map(r => `<li class="github">${r.name} — \u2605 ${r.stars.toLocaleString()}${r.language ? ' — ' + r.language : ''}</li>`).join('')
-                        : '<li class="github">Loading...</li>'}
+            <div class="accordion-content" id="github-accordion-all">
+                <ul>
+                    ${c.github_repos.filter(r => r.stars > 0).map(r => `<li class="github">${r.name} — ${r.stars.toLocaleString()} stars${r.language ? ' — ' + r.language : ''}</li>`).join('')}
                 </ul>
-                ${c.github_total_stars ? `<div class="github-total-stars">\u2605 ${c.github_total_stars.toLocaleString()} total stars</div>` : ''}
+                <div class="github-total-stars">${c.github_total_stars.toLocaleString()} total stars</div>
                 ${c.github_weekly_commits ? `<div class="github-commit-velocity">${c.github_weekly_commits} commits/week (avg last 4 wks)</div>` : ''}
                 ${c.github_last_push ? `<div class="github-last-push">Last push: ${formatRelativeDate(c.github_last_push)}</div>` : ''}
-                <a href="https://github.com/${c.github_org}" target="_blank" class="accordion-link">View on GitHub \u2197</a>
+                <a href="https://github.com/${c.github_org}" target="_blank" class="accordion-link">View on GitHub ↗</a>
             </div>
         </div>
         ` : ''}
         ${c.recentNews && c.recentNews.length > 0 ? `
         <div class="accordion-item" onclick="toggleAccordion(event)">
             <div class="accordion-header">
-                <span>\u{1F4F0} Recent News</span>
+                <span>Recent News</span>
                 <span class="accordion-icon">▼</span>
             </div>
             <div class="accordion-content">
@@ -4424,11 +4424,14 @@ function openDetail(company) {
     modal.classList.add('active');
 
     // Live fetch: update GitHub + SEC data
-    if (company.github_org) {
+    if (company.github_org && company.github_total_stars > 0) {
         fetchGitHubLive(company.github_org).then(data => {
             if (!data) return;
-            const el = content.querySelector('#github-accordion-content');
-            if (el) el.innerHTML = renderGitHubContent(data, company.github_org);
+            const el = content.querySelector('#github-accordion-all');
+            if (el) {
+                const rendered = renderGitHubContent(data, company.github_org);
+                if (rendered) el.innerHTML = rendered;
+            }
         });
     }
     if (company.sec_cik) {
