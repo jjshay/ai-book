@@ -465,6 +465,92 @@
             padding-left: var(--space-xl);
             word-break: break-word;
         }
+        .accordion-content li.github::before {
+            content: '\2B50';
+            color: #f0c040;
+        }
+        .accordion-content li.github {
+            padding-left: var(--space-xl);
+        }
+        .accordion-content li.sec::before {
+            content: '\1F4C4';
+            color: var(--text-dim);
+        }
+        .accordion-content li.sec {
+            padding-left: var(--space-xl);
+        }
+        .github-total-stars {
+            color: #f0c040;
+            font-weight: 600;
+            font-size: var(--fs-sm);
+            margin-top: var(--space-sm);
+            text-align: right;
+        }
+        .accordion-link {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            color: var(--cyan);
+            font-size: var(--fs-sm);
+            text-decoration: none;
+        }
+        .accordion-link:hover {
+            text-decoration: underline;
+        }
+        /* Signal Pills on Cards */
+        .card-signals {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 6px 16px 0;
+        }
+        .signal-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .signal-pill.github {
+            background: rgba(240, 192, 64, 0.15);
+            color: #f0c040;
+        }
+        .signal-pill.news {
+            background: rgba(0, 206, 209, 0.15);
+            color: var(--cyan);
+        }
+        /* News Accordion Items */
+        .news-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-headline-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            line-height: 1.4;
+            display: block;
+        }
+        .news-headline-link:hover { color: var(--cyan); text-decoration: underline; }
+        .news-meta {
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+        .github-commit-velocity {
+            color: #22c55e;
+            font-weight: 600;
+            font-size: var(--fs-sm);
+            margin-top: var(--space-sm);
+        }
+        .github-last-push {
+            color: var(--text-dim);
+            font-size: 11px;
+            margin-top: 2px;
+        }
         .leadership-row {
             display: flex;
             justify-content: space-between;
@@ -2763,9 +2849,87 @@ function openStatModal(type) {
         const label = heading ? heading.title + ' — ' : '';
         title.textContent = label + 'Top VCs by Capital Deployed';
         body.innerHTML = renderVCModal(filteredPool);
+    } else if (type === 'geography') {
+        const heading = getFilterHeading();
+        const label = heading ? heading.title + ' — ' : '';
+        title.textContent = label + 'Geography (' + filteredPool.length + ' companies)';
+        body.innerHTML = renderGeographyBreakdown(filteredPool);
     }
 
     modal.classList.add('active');
+}
+
+function renderGeographyBreakdown(pool) {
+    // Group by geography (state/country from HQ field)
+    const geoMap = {};
+    pool.forEach(c => {
+        if (!c.hq) { geoMap['Unknown'] = (geoMap['Unknown'] || 0) + 1; return; }
+        // Extract state or country from HQ
+        const parts = c.hq.split(',').map(s => s.trim());
+        let geo;
+        if (parts.length >= 2) {
+            // "San Francisco, CA" → "CA", "London, UK" → "UK", "Tel Aviv, Israel" → "Israel"
+            const last = parts[parts.length - 1];
+            // Check if it's a US state abbreviation
+            const usStates = {AL:1,AK:1,AZ:1,AR:1,CA:1,CO:1,CT:1,DE:1,FL:1,GA:1,HI:1,ID:1,IL:1,IN:1,IA:1,KS:1,KY:1,LA:1,ME:1,MD:1,MA:1,MI:1,MN:1,MS:1,MO:1,MT:1,NE:1,NV:1,NH:1,NJ:1,NM:1,NY:1,NC:1,ND:1,OH:1,OK:1,OR:1,PA:1,RI:1,SC:1,SD:1,TN:1,TX:1,UT:1,VT:1,VA:1,WA:1,WV:1,WI:1,WY:1,DC:1};
+            if (usStates[last]) {
+                geo = last; // US state abbreviation
+            } else {
+                geo = last; // Country or non-US region
+            }
+        } else {
+            geo = parts[0];
+        }
+        geoMap[geo] = (geoMap[geo] || 0) + 1;
+    });
+
+    // Sort by count descending
+    const sorted = Object.entries(geoMap).sort((a, b) => b[1] - a[1]);
+    const total = pool.length;
+
+    // Build bar chart
+    let html = '<div style="max-height:60vh;overflow-y:auto">';
+    sorted.forEach(([geo, count]) => {
+        const pct = ((count / total) * 100).toFixed(1);
+        const barWidth = Math.max(2, (count / sorted[0][1]) * 100);
+        html += `
+            <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="min-width:70px;font-size:13px;font-weight:600;color:var(--text)">${geo}</div>
+                <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:4px;height:22px;overflow:hidden">
+                    <div style="width:${barWidth}%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:4px;display:flex;align-items:center;padding-left:8px">
+                        ${barWidth > 20 ? `<span style="font-size:11px;color:#000;font-weight:600">${count}</span>` : ''}
+                    </div>
+                </div>
+                ${barWidth <= 20 ? `<span style="font-size:11px;color:var(--text-dim);min-width:24px">${count}</span>` : ''}
+                <div style="min-width:45px;text-align:right;font-size:12px;color:var(--gold);font-weight:600">${pct}%</div>
+            </div>`;
+    });
+    html += '</div>';
+
+    // Summary stats at top
+    const usCount = sorted.filter(([g]) => {
+        const usStates = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
+        return usStates.includes(g);
+    }).reduce((sum, [, c]) => sum + c, 0);
+    const intlCount = total - usCount - (geoMap['Unknown'] || 0);
+
+    const summaryHtml = `
+        <div style="display:flex;gap:16px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(212,175,55,0.2)">
+            <div style="text-align:center;flex:1">
+                <div style="font-size:20px;font-weight:700;color:var(--gold)">${((usCount/total)*100).toFixed(0)}%</div>
+                <div style="font-size:11px;color:var(--text-dim)">US (${usCount})</div>
+            </div>
+            <div style="text-align:center;flex:1">
+                <div style="font-size:20px;font-weight:700;color:var(--cyan)">${((intlCount/total)*100).toFixed(0)}%</div>
+                <div style="font-size:11px;color:var(--text-dim)">International (${intlCount})</div>
+            </div>
+            <div style="text-align:center;flex:1">
+                <div style="font-size:20px;font-weight:700;color:var(--text-dim)">${sorted.length}</div>
+                <div style="font-size:11px;color:var(--text-dim)">Regions</div>
+            </div>
+        </div>`;
+
+    return summaryHtml + html;
 }
 
 function closeStatModal() {
@@ -3180,8 +3344,11 @@ function renderListView() {
                 }
             }
 
-            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
+            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count clickable" onclick="event.stopPropagation(); openStatModal('geography')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
         }
+    } else {
+        // Default: show clickable count for geography even with no filter
+        html += `<div class="filter-heading" style="padding:10px 16px 6px"><span class="filter-count clickable" onclick="event.stopPropagation(); openStatModal('geography')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted;font-size:14px">${deck.length} AI Companies</span></div>`;
     }
 
     // Use the already-sorted deck (from applyDeckSort)
@@ -3577,6 +3744,24 @@ function parseFundingAmount(funding) {
     return amount;
 }
 
+function formatStars(n) {
+    if (!n || n === 0) return '0';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return n.toString();
+}
+
+function formatRelativeDate(iso) {
+    if (!iso) return '';
+    const diff = Date.now() - new Date(iso).getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (days === 0) return 'today';
+    if (days === 1) return 'yesterday';
+    if (days < 7) return days + 'd ago';
+    if (days < 30) return Math.floor(days / 7) + 'w ago';
+    if (days < 365) return Math.floor(days / 30) + 'mo ago';
+    return Math.floor(days / 365) + 'y ago';
+}
+
 function getCompanyHealth(c) {
     // Acquired companies
     if (c.status === 'acquired') {
@@ -3827,6 +4012,11 @@ function createCard(c, isCurrent) {
             <span class="card-funding-label">Investment Raised</span>
             <span class="card-funding-value">${c.funding || 'N/A'}</span>
         </div>
+        ${(c.github_org || (c.recentNews && c.recentNews.length > 0)) ? `<div class="card-signals">
+            ${c.github_org && c.github_total_stars ? `<span class="signal-pill github">\u2605 ${formatStars(c.github_total_stars)} stars</span>` : ''}
+            ${c.github_weekly_commits ? `<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>` : ''}
+            ${c.recentNews && c.recentNews.length > 0 ? `<span class="signal-pill news">In the News</span>` : ''}
+        </div>` : ''}
         ${c.secretSauce ? `<div class="card-secret-sauce">
             <span class="sauce-icon">🔥</span>
             <span class="sauce-text">${c.secretSauce}</span>
@@ -3857,6 +4047,72 @@ function createCard(c, isCurrent) {
     `;
 
     return card;
+}
+
+// ========== LIVE API FETCH (GitHub + SEC) ==========
+
+async function fetchGitHubLive(org) {
+    const cacheKey = `gh_${org}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+    try {
+        const res = await fetch(`https://api.github.com/orgs/${org}/repos?per_page=10&sort=stars&direction=desc`);
+        if (!res.ok) return null;
+        const repos = await res.json();
+        const top3 = repos.slice(0, 3).map(r => ({
+            name: r.name, stars: r.stargazers_count, language: r.language
+        }));
+        const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
+        const data = { repos: top3, totalStars };
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
+    } catch { return null; }
+}
+
+async function fetchSECLive(cik) {
+    const cacheKey = `sec_${cik}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+    try {
+        const paddedCik = cik.padStart(10, '0');
+        const res = await fetch(`https://data.sec.gov/submissions/CIK${paddedCik}.json`, {
+            headers: { 'User-Agent': 'AI-Book-Tracker/1.0 jjshay@gmail.com' }
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        const recent = data.filings?.recent;
+        if (!recent) return null;
+        const filingCount = recent.form?.length || 0;
+        const recentFilings = [];
+        for (let i = 0; i < Math.min(5, filingCount); i++) {
+            recentFilings.push({ form: recent.form[i], date: recent.filingDate[i] });
+        }
+        const result = { filingCount, recentFilings };
+        sessionStorage.setItem(cacheKey, JSON.stringify(result));
+        return result;
+    } catch { return null; }
+}
+
+function renderGitHubContent(data, org) {
+    if (!data || !data.repos || data.repos.length === 0) return '<li class="github">No public repos found</li>';
+    let html = data.repos.map(r =>
+        `<li class="github">${r.name} — \u2605 ${r.stars.toLocaleString()}${r.language ? ' — ' + r.language : ''}</li>`
+    ).join('');
+    html += `<div class="github-total-stars">\u2605 ${data.totalStars.toLocaleString()} total stars</div>`;
+    html += `<a href="https://github.com/${org}" target="_blank" class="accordion-link">View on GitHub \u2197</a>`;
+    return html;
+}
+
+function renderSECContent(data, cik) {
+    if (!data) return '<li class="sec">No filing data available</li>';
+    let html = `<li class="sec">${data.filingCount} total filings</li>`;
+    if (data.recentFilings && data.recentFilings.length > 0) {
+        data.recentFilings.forEach(f => {
+            html += `<li class="sec">${f.form} — ${f.date}</li>`;
+        });
+    }
+    html += `<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${cik}&type=&dateb=&owner=include&count=40" target="_blank" class="accordion-link">View on EDGAR \u2197</a>`;
+    return html;
 }
 
 function generateAccordion(c) {
@@ -3929,6 +4185,54 @@ function generateAccordion(c) {
                 <ul>${risks.slice(0, 3).map(i => `<li class="risk">${i}</li>`).join('')}</ul>
             </div>
         </div>
+        ${c.github_org ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)" data-github-org="${c.github_org}">
+            <div class="accordion-header">
+                <span>\u{1F4BB} GitHub Activity</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <ul id="github-accordion-content">
+                    ${c.github_repos && c.github_repos.length > 0
+                        ? c.github_repos.map(r => `<li class="github">${r.name} — \u2605 ${r.stars.toLocaleString()}${r.language ? ' — ' + r.language : ''}</li>`).join('')
+                        : '<li class="github">Loading...</li>'}
+                </ul>
+                ${c.github_total_stars ? `<div class="github-total-stars">\u2605 ${c.github_total_stars.toLocaleString()} total stars</div>` : ''}
+                ${c.github_weekly_commits ? `<div class="github-commit-velocity">${c.github_weekly_commits} commits/week (avg last 4 wks)</div>` : ''}
+                ${c.github_last_push ? `<div class="github-last-push">Last push: ${formatRelativeDate(c.github_last_push)}</div>` : ''}
+                <a href="https://github.com/${c.github_org}" target="_blank" class="accordion-link">View on GitHub \u2197</a>
+            </div>
+        </div>
+        ` : ''}
+        ${c.recentNews && c.recentNews.length > 0 ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span>\u{1F4F0} Recent News</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                ${c.recentNews.map(n => `<div class="news-item">
+                    ${n.url ? `<a href="${n.url}" target="_blank" class="news-headline-link">${n.headline}</a>` : `<span class="news-headline-link">${n.headline}</span>`}
+                    <div class="news-meta">${n.source ? n.source + ' · ' : ''}${n.date || ''}</div>
+                </div>`).join('')}
+            </div>
+        </div>
+        ` : ''}
+        ${c.sec_cik ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)" data-sec-cik="${c.sec_cik}">
+            <div class="accordion-header">
+                <span>\u{1F4C4} SEC Filings</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <ul id="sec-accordion-content">
+                    <li class="sec">${c.sec_filing_count || 0} total filings</li>
+                    ${c.sec_latest_filing ? `<li class="sec">Latest: ${c.sec_latest_filing.form} — ${c.sec_latest_filing.date}</li>` : ''}
+                </ul>
+                <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${c.sec_cik}&type=&dateb=&owner=include&count=40" target="_blank" class="accordion-link">View on EDGAR \u2197</a>
+            </div>
+        </div>
+        ` : ''}
     `;
 }
 
@@ -4118,6 +4422,22 @@ function openDetail(company) {
     `;
 
     modal.classList.add('active');
+
+    // Live fetch: update GitHub + SEC data
+    if (company.github_org) {
+        fetchGitHubLive(company.github_org).then(data => {
+            if (!data) return;
+            const el = content.querySelector('#github-accordion-content');
+            if (el) el.innerHTML = renderGitHubContent(data, company.github_org);
+        });
+    }
+    if (company.sec_cik) {
+        fetchSECLive(company.sec_cik).then(data => {
+            if (!data) return;
+            const el = content.querySelector('#sec-accordion-content');
+            if (el) el.innerHTML = renderSECContent(data, company.sec_cik);
+        });
+    }
 }
 
 function closeDetail() {

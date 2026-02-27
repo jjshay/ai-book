@@ -1,7 +1,9 @@
 const express = require('express');
 const cron = require('node-cron');
 const { runDailyUpdate } = require('./updater');
-const { getUpdateHistory } = require('./github');
+const { getUpdateHistory, updateCompaniesJson } = require('./github');
+const { enrichGitHubIncremental, loadCompanies, saveCompaniesLocal } = require('./enrich-apis');
+const { refreshNewsRSS } = require('./enrich-news');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,6 +37,10 @@ app.post('/trigger', async (req, res) => {
     const result = await runDailyUpdate();
     updateLogs.push({ timestamp: new Date().toISOString(), ...result });
     console.log('[Update] Completed:', result.summary);
+
+    // Run signal enrichment after main update
+    const signals = await runSignalEnrichment();
+    console.log(`[Update] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news`);
   } catch (error) {
     console.error('[Update] Failed:', error.message);
     updateLogs.push({ timestamp: new Date().toISOString(), error: error.message });
@@ -141,6 +147,35 @@ app.get('/dashboard', (req, res) => {
 </html>`);
 });
 
+// Run signal enrichment (GitHub + News) after main update
+async function runSignalEnrichment() {
+  const companies = await loadCompanies();
+  let ghCount = 0, newsCount = 0;
+
+  try {
+    ghCount = await enrichGitHubIncremental(companies);
+  } catch (err) {
+    console.error('[Signal] GitHub enrichment error:', err.message);
+  }
+
+  try {
+    newsCount = await refreshNewsRSS(companies);
+  } catch (err) {
+    console.error('[Signal] News enrichment error:', err.message);
+  }
+
+  if (ghCount + newsCount > 0) {
+    saveCompaniesLocal(companies);
+    if (process.env.CI || process.env.GITHUB_TOKEN) {
+      await updateCompaniesJson(companies, [
+        { action: 'signal-enrichment', company: `${ghCount} GitHub + ${newsCount} news updates` },
+      ]);
+    }
+  }
+
+  return { ghCount, newsCount };
+}
+
 // Schedule daily update at 6:00 AM UTC
 cron.schedule('0 6 * * *', async () => {
   console.log('[Cron] Starting daily update at', new Date().toISOString());
@@ -148,6 +183,11 @@ cron.schedule('0 6 * * *', async () => {
     const result = await runDailyUpdate();
     updateLogs.push({ timestamp: new Date().toISOString(), ...result });
     console.log('[Cron] Update complete:', result.summary);
+
+    // Run signal enrichment after main update
+    console.log('[Cron] Starting signal enrichment...');
+    const signals = await runSignalEnrichment();
+    console.log(`[Cron] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news`);
   } catch (error) {
     console.error('[Cron] Update failed:', error.message);
     updateLogs.push({ timestamp: new Date().toISOString(), error: error.message });
