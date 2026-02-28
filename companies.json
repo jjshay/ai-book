@@ -121,10 +121,11 @@
       },
       {
         "role": "CTO",
-        "name": "Dani Reiss"
+        "name": "Anish Rajpurohit"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 2,
@@ -221,7 +222,8 @@
         "name": "Bernt Bornich"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 3,
@@ -330,7 +332,8 @@
         "name": "Jason Zintak"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 4,
@@ -453,7 +456,8 @@
         "name": "Ulf Persson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 5,
@@ -560,13 +564,10 @@
       {
         "role": "CEO",
         "name": "Evan Reiser"
-      },
-      {
-        "role": "CTO",
-        "name": "Saumitra Das"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 6,
@@ -675,7 +676,8 @@
         "name": "Shiv Rao"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 7,
@@ -783,7 +785,8 @@
         "name": "Sean McClain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Acuvity",
@@ -991,7 +994,8 @@
         "name": "Mike Murchison"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 10,
@@ -1090,7 +1094,8 @@
         "name": "David Luan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 11,
@@ -1215,7 +1220,8 @@
         "name": "Damion Shelton"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 12,
@@ -1330,7 +1336,8 @@
         "name": "Ori Goshen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 13,
@@ -1453,7 +1460,8 @@
         "name": "Thejo Kote"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Airbyte",
@@ -1558,7 +1566,8 @@
         "name": "Michel Tricot"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 15,
@@ -1683,7 +1692,8 @@
         "name": "Howie Liu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 16,
@@ -1791,7 +1801,8 @@
         "name": "Muddu Sudhakar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 17,
@@ -1897,7 +1908,8 @@
         "name": "Pierre Barreau"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 18,
@@ -1993,7 +2005,8 @@
         "name": "Jonas Andrulis"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 19,
@@ -2118,7 +2131,8 @@
         "name": "Bernadette Nixon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 20,
@@ -2224,7 +2238,8 @@
         "name": "Graham Neubig"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:37.183Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:44.244Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 21,
@@ -2332,7 +2347,8 @@
         "name": "Tommy Nicholas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.019Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 22,
@@ -2439,7 +2455,8 @@
         "name": "Mike Ng"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.019Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 23,
@@ -2608,7 +2625,8 @@
         "name": "Palmer Luckey"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 24,
@@ -2786,7 +2804,8 @@
         "name": "Tom Brown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 25,
@@ -2903,7 +2922,8 @@
         "name": "Ion Stoica"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 26,
@@ -3043,7 +3063,8 @@
         "name": "Michael Truell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 27,
@@ -3149,7 +3170,8 @@
         "name": "Yaniv Makover"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 28,
@@ -3273,7 +3295,8 @@
         "name": "Tim Zheng"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 29,
@@ -3381,7 +3404,8 @@
         "name": "Liquidating"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "fallback"
   },
   {
     "name": "Applied Intuition",
@@ -3483,10 +3507,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Wasim Malik"
+        "name": "Jianxun Cui"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 31,
@@ -3608,7 +3633,8 @@
         "name": "Gil Sever"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 32,
@@ -3715,7 +3741,8 @@
         "name": "Abhishek Nayak"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 33,
@@ -3824,7 +3851,8 @@
         "name": "Jeffrey Cardenas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 34,
@@ -3930,7 +3958,8 @@
         "name": "Bryton Shang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 35,
@@ -4053,7 +4082,8 @@
         "name": "Jim Ethington"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Arctic Wolf",
@@ -4134,14 +4164,7 @@
       }
     ],
     "news_enriched_at": "2026-02-27T20:21:40.567Z",
-    "wikidata_id": null,
-    "leadership": [
-      {
-        "role": "CEO",
-        "name": "Kunal Anand"
-      }
-    ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "wikidata_id": null
   },
   {
     "id": 37,
@@ -4248,7 +4271,8 @@
         "name": "Daniel Vila"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 38,
@@ -4355,7 +4379,8 @@
         "name": "Jason Lopatecki"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 39,
@@ -4457,11 +4482,12 @@
     "wikidata_id": null,
     "leadership": [
       {
-        "role": "CEO",
+        "role": "Founder",
         "name": "Joel Simon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 40,
@@ -4568,7 +4594,8 @@
         "name": "Brian Clark"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:41.499Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:48.020Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 41,
@@ -4676,10 +4703,11 @@
       },
       {
         "role": "CTO",
-        "name": "Benjamin Encz"
+        "name": "Ben Parkison"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 42,
@@ -4800,9 +4828,14 @@
       {
         "role": "CEO",
         "name": "Dylan Fox"
+      },
+      {
+        "role": "CTO",
+        "name": "Keith Ito"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 43,
@@ -4916,7 +4949,8 @@
         "name": "Rotem Iram"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 44,
@@ -5023,7 +5057,8 @@
         "name": "Abraham Heifets"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 45,
@@ -5146,7 +5181,8 @@
         "name": "Brigham Hyde"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 46,
@@ -5254,7 +5290,8 @@
         "name": "Amit Jhawar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 47,
@@ -5312,7 +5349,8 @@
         "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 48,
@@ -5436,7 +5474,8 @@
         "name": "Scott Dietzen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 49,
@@ -5562,10 +5601,11 @@
       },
       {
         "role": "CTO",
-        "name": "Neeti Mehta"
+        "name": "Kofax"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 50,
@@ -5681,7 +5721,8 @@
         "name": "Aditya Kothadiya"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 51,
@@ -5802,7 +5843,8 @@
         "name": "Restructured"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 52,
@@ -5908,7 +5950,8 @@
         "name": "Artem Skorokhod"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 53,
@@ -6016,7 +6059,8 @@
         "name": "Tuhin Srivastava"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 54,
@@ -6124,7 +6168,8 @@
         "name": "Abakar Saidov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 55,
@@ -6231,7 +6276,8 @@
         "name": "Mansoor Rahimat Khan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.085Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 56,
@@ -6338,7 +6384,8 @@
         "name": "Ian Crosby"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.086Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 57,
@@ -6463,7 +6510,8 @@
         "name": "Joerg Moeller"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.086Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 58,
@@ -6580,7 +6628,8 @@
         "name": "Peter Van Haur"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.086Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 59,
@@ -6686,7 +6735,8 @@
         "name": "Mark DePristo"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.086Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 60,
@@ -6795,7 +6845,8 @@
         "name": "Dimitri Sirota"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:45.086Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:51.728Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 61,
@@ -6902,7 +6953,8 @@
         "name": "Kuldeep Singh Rajput"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.788Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 62,
@@ -7010,7 +7062,8 @@
         "name": "Robin Rombach"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.788Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 63,
@@ -7118,7 +7171,8 @@
         "name": "Isaiah Granet"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 64,
@@ -7242,7 +7296,8 @@
         "name": "Raj De Datta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 65,
@@ -7351,7 +7406,8 @@
         "name": "Duncan Angove"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 66,
@@ -7472,7 +7528,8 @@
         "name": "Maju Kuruvilla"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 67,
@@ -7581,7 +7638,8 @@
         "name": "Steve Lucas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 68,
@@ -7688,7 +7746,8 @@
         "name": "Alex Mitchell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Boston Dynamics",
@@ -7775,13 +7834,10 @@
       {
         "role": "CEO",
         "name": "Robert Playter"
-      },
-      {
-        "role": "CTO",
-        "name": "Aaron Saunders"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 70,
@@ -7904,7 +7960,8 @@
         "name": "Noah Isaacs"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.466Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 71,
@@ -8017,7 +8074,8 @@
         "name": "Ankur Goyal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 72,
@@ -8130,13 +8188,10 @@
       {
         "role": "CEO",
         "name": "Henrique Dubugras"
-      },
-      {
-        "role": "CTO",
-        "name": "Karim Faris"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 73,
@@ -8242,7 +8297,8 @@
         "name": "Audrey Evans"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 74,
@@ -8348,7 +8404,8 @@
         "name": "Dima Tishin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 75,
@@ -8470,7 +8527,8 @@
         "name": "Paul Klein IV"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 76,
@@ -8577,7 +8635,8 @@
         "name": "Sachin Dev Duggal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 77,
@@ -8685,7 +8744,8 @@
         "name": "Roy Danon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.789Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 78,
@@ -8793,7 +8853,8 @@
         "name": "Chase Gilbert"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.790Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 79,
@@ -8916,7 +8977,8 @@
         "name": "Noah Ready-Campbell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.790Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Bun (Oven)",
@@ -8976,7 +9038,8 @@
         "name": "Jarred Sumner"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:48.790Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:55.467Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 81,
@@ -9097,9 +9160,14 @@
       {
         "role": "CEO",
         "name": "Joe DeVivo"
+      },
+      {
+        "role": "CTO",
+        "name": "Shriram Bhashyam"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.823Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 82,
@@ -9204,10 +9272,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Liang Rubo (ByteDance)"
+        "name": "Liang Rubo"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "C3.ai",
@@ -9297,10 +9366,11 @@
       },
       {
         "role": "CTO",
-        "name": "Richard Soley"
+        "name": "Houman Safai"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 84,
@@ -9425,7 +9495,8 @@
         "name": "David Ko"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Canopus AI",
@@ -9508,7 +9579,15 @@
       }
     ],
     "news_enriched_at": "2026-02-27T20:22:09.575Z",
-    "wikidata_id": null
+    "wikidata_id": null,
+    "leadership": [
+      {
+        "role": "CEO",
+        "name": "Suhail Doshi"
+      }
+    ],
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 86,
@@ -9681,7 +9760,8 @@
         "name": "Cameron Adams"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 87,
@@ -9803,7 +9883,8 @@
         "name": "Kevin Albert"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Capacity AI",
@@ -9884,7 +9965,15 @@
       }
     ],
     "news_enriched_at": "2026-02-27T20:22:11.769Z",
-    "wikidata_id": null
+    "wikidata_id": null,
+    "leadership": [
+      {
+        "role": "CEO",
+        "name": "Christopher Ahlberg"
+      }
+    ],
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 89,
@@ -9992,7 +10081,8 @@
         "name": "Part of ByteDance"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 90,
@@ -10114,7 +10204,8 @@
         "name": "Payam Banazadeh"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 91,
@@ -10222,7 +10313,8 @@
         "name": "Kim Raich"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 92,
@@ -10329,7 +10421,8 @@
         "name": "Gaurav Misra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Carbon Health",
@@ -10532,9 +10625,14 @@
       {
         "role": "CEO",
         "name": "Paul Mikesell"
+      },
+      {
+        "role": "CTO",
+        "name": "Alexander Kister"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 95,
@@ -10657,7 +10755,8 @@
         "name": "Barry Malkin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 96,
@@ -10780,7 +10879,8 @@
         "name": "Henry Ward"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 97,
@@ -10888,7 +10988,8 @@
         "name": "Karan Goel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 98,
@@ -10998,7 +11099,8 @@
         "name": "David Lazovsky"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 99,
@@ -11121,7 +11223,8 @@
         "name": "Jan Arendtsz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 100,
@@ -11244,9 +11347,14 @@
       {
         "role": "CEO",
         "name": "Alex Rinke"
+      },
+      {
+        "role": "CTO",
+        "name": "Mathias Wesk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:52.099Z"
+    "leadershipEnrichedAt": "2026-02-27T23:57:59.824Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 101,
@@ -11371,10 +11479,11 @@
       },
       {
         "role": "CTO",
-        "name": "Kashish Gupta"
+        "name": "Brian Park"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.462Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 102,
@@ -11481,7 +11590,8 @@
         "name": "Priya Lakhani"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.462Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 103,
@@ -11605,7 +11715,8 @@
         "name": "Sean McBride"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.462Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 104,
@@ -11727,7 +11838,8 @@
         "name": "Ash Madgavkar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 105,
@@ -11840,7 +11952,8 @@
         "name": "Joshua Meier"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 106,
@@ -11948,7 +12061,8 @@
         "name": "Dan Lorenc"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 107,
@@ -12047,13 +12161,10 @@
       {
         "role": "CEO",
         "name": "Noam Shazeer"
-      },
-      {
-        "role": "CTO",
-        "name": "Daniel De Freitas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 108,
@@ -12160,7 +12271,8 @@
         "name": "Guy Gadney"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 109,
@@ -12283,7 +12395,8 @@
         "name": "Evan Wong"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 110,
@@ -12390,7 +12503,8 @@
         "name": "Guillaume Pousaz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 111,
@@ -12497,7 +12611,8 @@
         "name": "L.D. Salmanson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 112,
@@ -12621,7 +12736,8 @@
         "name": "Chris Britt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 113,
@@ -12734,7 +12850,8 @@
         "name": "Jeff Huber"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Chronosphere",
@@ -12826,7 +12943,8 @@
         "name": "Martin Mao"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 115,
@@ -12950,7 +13068,8 @@
         "name": "Jim Rose"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 116,
@@ -13073,7 +13192,8 @@
         "name": "Justin Maier"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 117,
@@ -13199,7 +13319,8 @@
         "name": "Andy Byrne"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 118,
@@ -13324,7 +13445,8 @@
         "name": "Matt Zeiler"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Clay",
@@ -13546,7 +13668,8 @@
         "name": "Curtis Northcutt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:55.825Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:03.463Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 121,
@@ -13668,7 +13791,8 @@
         "name": "Kyle Nakatsuji"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 122,
@@ -13775,7 +13899,8 @@
         "name": "James Min"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 123,
@@ -13900,7 +14025,8 @@
         "name": "Zeb Evans"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 124,
@@ -14012,7 +14138,8 @@
         "name": "Himanshu Gupta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 125,
@@ -14122,7 +14249,8 @@
         "name": "Matt Martin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 126,
@@ -14246,7 +14374,8 @@
         "name": "Adam Harris"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 127,
@@ -14354,7 +14483,8 @@
         "name": "Joshua Motta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 128,
@@ -14479,7 +14609,8 @@
         "name": "Shishir Mehrotra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 129,
@@ -14592,7 +14723,8 @@
         "name": "Varun Mohan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 130,
@@ -14710,7 +14842,8 @@
         "name": "Illion Cruz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 131,
@@ -14834,7 +14967,8 @@
         "name": "Philipp Heltewig"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 132,
@@ -14931,7 +15065,8 @@
         "name": "Scott Wu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 133,
@@ -15082,13 +15217,10 @@
       {
         "role": "CEO",
         "name": "Aidan Gomez"
-      },
-      {
-        "role": "CTO",
-        "name": "Nick Frosst"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 134,
@@ -15195,7 +15327,8 @@
         "name": "Gideon Mendels"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Common Sense Machines",
@@ -15419,7 +15552,8 @@
         "name": "Robert Reffkin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 137,
@@ -15526,7 +15660,8 @@
         "name": "Kayvan Alikhani"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 138,
@@ -15634,7 +15769,8 @@
         "name": "Eli Finkelshteyn"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 139,
@@ -15756,7 +15892,8 @@
         "name": "Purnendu Mukherjee"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:02:59.263Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:06.681Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Convogo",
@@ -15960,7 +16097,8 @@
         "name": "Shut down"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 142,
@@ -16056,7 +16194,8 @@
         "name": "Paul Yacoubian"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 143,
@@ -16182,7 +16321,8 @@
         "name": "Mike Intrator"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 144,
@@ -16300,7 +16440,8 @@
         "name": "Phil Edmundson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 145,
@@ -16397,7 +16538,8 @@
         "name": "Peter Chen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 146,
@@ -16521,7 +16663,8 @@
         "name": "Louis Tetu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 147,
@@ -16628,7 +16771,8 @@
         "name": "Balint Orosz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 148,
@@ -16753,7 +16897,8 @@
         "name": "Zayd Enam"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.279Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 149,
@@ -16875,7 +17020,8 @@
         "name": "Tomer Tzach"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 150,
@@ -16982,7 +17128,8 @@
         "name": "Marc Whitten"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 151,
@@ -17090,7 +17237,8 @@
         "name": "Chase Lochmiller"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 152,
@@ -17172,7 +17320,8 @@
         "name": "Armen Avetisyan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 153,
@@ -17296,7 +17445,8 @@
         "name": "Didier Elzinga"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 154,
@@ -17419,7 +17569,8 @@
         "name": "Colin Nederkoorn"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "CyberArk",
@@ -17529,7 +17680,8 @@
         "name": "Matt Cohen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 156,
@@ -17637,7 +17789,8 @@
         "name": "Eric Gan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 157,
@@ -17744,7 +17897,8 @@
         "name": "Sid Sheth"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 158,
@@ -17872,7 +18026,8 @@
         "name": "Poppy Gustafsson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 159,
@@ -18058,13 +18213,10 @@
       {
         "role": "CTO",
         "name": "Matei Zaharia"
-      },
-      {
-        "role": "Chief Strategy Officer",
-        "name": "Joel Fernandes"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Datadog",
@@ -18170,10 +18322,11 @@
       },
       {
         "role": "CTO",
-        "name": "David Ostrowski"
+        "name": "David Obstfeld"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:03.280Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:10.639Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 161,
@@ -18299,10 +18452,11 @@
       },
       {
         "role": "CTO",
-        "name": "Marc Batty"
+        "name": "Clément Stenac"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 162,
@@ -18421,7 +18575,8 @@
         "name": "Chris Moody"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 163,
@@ -18547,11 +18702,12 @@
         "name": "Debanjan Saha"
       },
       {
-        "role": "CRO",
-        "name": "Bill Winters"
+        "role": "CTO",
+        "name": "Peter Castrogiovanni"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "dbt Labs",
@@ -18652,14 +18808,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Ellen Orsmond"
-      },
-      {
-        "role": "CTO",
-        "name": "Jeremy Cohen"
+        "name": "Jeremiah Lowin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 165,
@@ -18767,7 +18920,8 @@
         "name": "Jesse Zhang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 166,
@@ -18873,13 +19027,10 @@
       {
         "role": "CEO",
         "name": "Alex Bouaziz"
-      },
-      {
-        "role": "COO",
-        "name": "Shaine Fitzgerald"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 167,
@@ -19001,13 +19152,10 @@
       {
         "role": "CEO",
         "name": "Lane Bess"
-      },
-      {
-        "role": "CTO",
-        "name": "Itzik Kotler"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.083Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 168,
@@ -19129,13 +19277,10 @@
       {
         "role": "CEO",
         "name": "Scott Stephenson"
-      },
-      {
-        "role": "CTO",
-        "name": "Noah Kristofer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 169,
@@ -19244,7 +19389,8 @@
         "name": "Jaroslaw Kutylowski"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 170,
@@ -19367,7 +19513,8 @@
         "name": "Matthew Ko"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 171,
@@ -19500,7 +19647,8 @@
         "name": "Liang Wenfeng"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 172,
@@ -19607,7 +19755,8 @@
         "name": "Senan Ebrahim"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 173,
@@ -19727,13 +19876,10 @@
       {
         "role": "CEO",
         "name": "Gabe Rogol"
-      },
-      {
-        "role": "CRO",
-        "name": "Rachel Whetstone"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 174,
@@ -19839,7 +19985,8 @@
         "name": "Mark Johnson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 175,
@@ -19945,13 +20092,10 @@
       {
         "role": "CEO",
         "name": "Andrew Mason"
-      },
-      {
-        "role": "CTO",
-        "name": "Stevie Clifton"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 176,
@@ -20075,7 +20219,8 @@
         "name": "Todd Park"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 177,
@@ -20180,13 +20325,10 @@
       {
         "role": "CEO",
         "name": "Samir Menon"
-      },
-      {
-        "role": "CTO",
-        "name": "Peter Welinder"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 178,
@@ -20293,7 +20435,8 @@
         "name": "Verónica Orvalho"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 179,
@@ -20399,7 +20542,8 @@
         "name": "Felix Sherrell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 180,
@@ -20522,7 +20666,8 @@
         "name": "Jean Paoli"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:08.084Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:14.537Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 181,
@@ -20646,10 +20791,11 @@
       },
       {
         "role": "CTO",
-        "name": "Matthew Graim"
+        "name": "Matthew Granade"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 182,
@@ -20769,9 +20915,14 @@
       {
         "role": "CEO",
         "name": "Saurabh Ladha"
+      },
+      {
+        "role": "CTO",
+        "name": "Paul Debevec"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Drata",
@@ -20872,10 +21023,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Mitratech"
+        "name": "Micho Spring"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 184,
@@ -20986,9 +21138,14 @@
       {
         "role": "CEO",
         "name": "Luis von Ahn"
+      },
+      {
+        "role": "CTO",
+        "name": "Gina Gotthilf"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 185,
@@ -21093,9 +21250,14 @@
       {
         "role": "CEO",
         "name": "Stanislas Polu"
+      },
+      {
+        "role": "CTO",
+        "name": "Gabriel Schiwietz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 186,
@@ -21201,7 +21363,8 @@
         "name": "Vasek Mlejnsky"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 187,
@@ -21324,7 +21487,8 @@
         "name": "Gibran Huzaifah"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 188,
@@ -21444,10 +21608,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Lewis Liu"
+        "name": "Dr. Lewis Liu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 189,
@@ -21571,7 +21736,8 @@
         "name": "Ashutosh Garg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Elastic",
@@ -21676,7 +21842,8 @@
         "name": "Stone Patteson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 191,
@@ -21790,9 +21957,14 @@
       {
         "role": "CEO",
         "name": "Mati Staniszewski"
+      },
+      {
+        "role": "CTO",
+        "name": "Piotr Dabkowski"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 192,
@@ -21899,7 +22071,8 @@
         "name": "Minna Song"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.910Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 193,
@@ -22006,7 +22179,8 @@
         "name": "Vu Van"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 194,
@@ -22113,7 +22287,8 @@
         "name": "Surojit Chatterjee"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 195,
@@ -22219,7 +22394,8 @@
         "name": "Oleg Stavitsky"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 196,
@@ -22326,7 +22502,8 @@
         "name": "Viswa Colluru"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 197,
@@ -22432,7 +22609,8 @@
         "name": "Bobby Pinero"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 198,
@@ -22539,7 +22717,8 @@
         "name": "Jerry Ting"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 199,
@@ -22651,7 +22830,8 @@
         "name": "Will Bryk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 200,
@@ -22778,7 +22958,8 @@
         "name": "Andrew Hopkins"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:11.911Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:19.088Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 201,
@@ -22884,7 +23065,8 @@
         "name": "Matan Grinberg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.372Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Faculty",
@@ -22976,7 +23158,8 @@
         "name": "Marc Warner"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.372Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 203,
@@ -23100,7 +23283,8 @@
         "name": "Max Rhodes"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 204,
@@ -23224,7 +23408,8 @@
         "name": "Amol Deshpande"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 205,
@@ -23330,7 +23515,8 @@
         "name": "Richard White"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 206,
@@ -23448,7 +23634,8 @@
         "name": "Pelu Tran"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 207,
@@ -23571,7 +23758,8 @@
         "name": "Andres Blank"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 208,
@@ -23678,7 +23866,8 @@
         "name": "Krishna Gade"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Figma",
@@ -23780,9 +23969,14 @@
       {
         "role": "CEO",
         "name": "Dylan Field"
+      },
+      {
+        "role": "COO",
+        "name": "Aarjav Trivedi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 210,
@@ -23891,7 +24085,8 @@
         "name": "Brett Adcock"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 211,
@@ -24014,7 +24209,8 @@
         "name": "Ryan Anderson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 212,
@@ -24138,7 +24334,8 @@
         "name": "Krish Ramineni"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 213,
@@ -24245,7 +24442,8 @@
         "name": "Lin Qiao"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Fivetran",
@@ -24349,7 +24547,8 @@
         "name": "George Fraser"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 215,
@@ -24455,7 +24654,8 @@
         "name": "Matt Welsh"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.742Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 216,
@@ -24579,7 +24779,8 @@
         "name": "Ryan Petersen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.743Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 217,
@@ -24686,7 +24887,8 @@
         "name": "Kurt Mackey"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.743Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 218,
@@ -24792,7 +24994,8 @@
         "name": "Deon Nicholas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.743Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Forward Health",
@@ -24873,7 +25076,15 @@
       }
     ],
     "news_enriched_at": "2026-02-27T20:23:30.129Z",
-    "wikidata_id": null
+    "wikidata_id": null,
+    "leadership": [
+      {
+        "role": "CEO",
+        "name": "Adrian Aoun"
+      }
+    ],
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.743Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 220,
@@ -24987,7 +25198,8 @@
         "name": "Mathew Elenjickal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:15.373Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:22.743Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 221,
@@ -25094,7 +25306,8 @@
         "name": "Mike Nolan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.069Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 222,
@@ -25217,7 +25430,8 @@
         "name": "Don Baxter"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 223,
@@ -25323,7 +25537,8 @@
         "name": "Tamas Cser"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Galileo AI",
@@ -25426,10 +25641,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Anmol Anand"
+        "name": "Anmol Rawat"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 225,
@@ -25536,7 +25752,8 @@
         "name": "Grant Lee"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 226,
@@ -25643,7 +25860,8 @@
         "name": "Gautam Narang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 227,
@@ -25767,7 +25985,8 @@
         "name": "Steve Bartel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 228,
@@ -25874,7 +26093,8 @@
         "name": "Mike Nally"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 229,
@@ -25981,7 +26201,8 @@
         "name": "Paras Jain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 230,
@@ -26088,7 +26309,8 @@
         "name": "Alex Combessie"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 231,
@@ -26214,7 +26436,8 @@
         "name": "Arvind Jain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.070Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 232,
@@ -26321,7 +26544,8 @@
         "name": "David Siegel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 233,
@@ -26429,7 +26653,8 @@
         "name": "Ben Reuveni"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 234,
@@ -26537,9 +26762,14 @@
       {
         "role": "CEO",
         "name": "Amit Bendov"
+      },
+      {
+        "role": "COO",
+        "name": "Bikram Banerjee"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Goodfire",
@@ -26645,7 +26875,8 @@
         "name": "Eric Ho"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Google DeepMind",
@@ -26750,11 +26981,12 @@
         "name": "Demis Hassabis"
       },
       {
-        "role": "Chief Scientist",
-        "name": "Yann LeCun"
+        "role": "Chief Research Officer",
+        "name": "Oriol Vinyals"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 237,
@@ -26862,7 +27094,8 @@
         "name": "Raj Dutt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 238,
@@ -26969,7 +27202,8 @@
         "name": "Mike Adams"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 239,
@@ -27082,7 +27316,8 @@
         "name": "Rahul Roy-Chowdhury"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 240,
@@ -27206,7 +27441,8 @@
         "name": "Nigel Toon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:19.071Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:26.510Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 241,
@@ -27314,10 +27550,11 @@
       },
       {
         "role": "CTO",
-        "name": "Neha Narkhede"
+        "name": "Jeff Hammerbacher"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 242,
@@ -27436,10 +27673,11 @@
       },
       {
         "role": "CTO",
-        "name": "Mark Schmisseur"
+        "name": "Darío Amodei"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 243,
@@ -27563,10 +27801,11 @@
       },
       {
         "role": "CTO",
-        "name": "Alex Lines"
+        "name": "Edward Kim"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "H2O.ai",
@@ -27672,10 +27911,11 @@
       },
       {
         "role": "CTO",
-        "name": "Arno Candel"
+        "name": "Cliff Click"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 245,
@@ -27800,10 +28040,11 @@
       },
       {
         "role": "CTO",
-        "name": "Avi Baum"
+        "name": "Ran Razeq"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 246,
@@ -27929,10 +28170,11 @@
       },
       {
         "role": "CTO",
-        "name": "Debbie Forster"
+        "name": "Rishi Mohindra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 247,
@@ -28036,7 +28278,8 @@
         "name": "Gabriel Pereyra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 248,
@@ -28143,7 +28386,8 @@
         "name": "Harry Sheraton"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 249,
@@ -28250,7 +28494,8 @@
         "name": "Part of Headspace Health"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 250,
@@ -28382,13 +28627,10 @@
       {
         "role": "CEO",
         "name": "George Sivulka"
-      },
-      {
-        "role": "CTO",
-        "name": "Chris Donohoe"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 251,
@@ -28494,7 +28736,8 @@
         "name": "Michael Villar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 252,
@@ -28602,7 +28845,8 @@
         "name": "Gundbert Scherf"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 253,
@@ -28710,7 +28954,8 @@
         "name": "Joshua Xu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 254,
@@ -28831,13 +29076,10 @@
       {
         "role": "CEO",
         "name": "Robert Wahbe"
-      },
-      {
-        "role": "COO",
-        "name": "Danielle Royston"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 255,
@@ -28946,10 +29188,11 @@
       },
       {
         "role": "CTO",
-        "name": "Mike Sall"
+        "name": "Yuhao Zhang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 256,
@@ -29057,7 +29300,8 @@
         "name": "Munjal Shah"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 257,
@@ -29164,7 +29408,8 @@
         "name": "Adam Robinson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 258,
@@ -29287,7 +29532,8 @@
         "name": "Anthony Reynolds"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 259,
@@ -29413,10 +29659,11 @@
       },
       {
         "role": "CTO",
-        "name": "Gilles Ubertini"
+        "name": "Joelle Kaufman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 260,
@@ -29562,10 +29809,11 @@
       },
       {
         "role": "CTO",
-        "name": "Julien Chaumond"
+        "name": "Thomas Wolf"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:23.983Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:31.094Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Humans&",
@@ -29679,13 +29927,10 @@
       {
         "role": "CEO",
         "name": "Unknown"
-      },
-      {
-        "role": "CTO",
-        "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Hume AI",
@@ -29789,14 +30034,15 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Evan Senter"
+        "name": "Albert Huang"
       },
       {
         "role": "CTO",
         "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 263,
@@ -29903,7 +30149,8 @@
         "name": "Uri May"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 264,
@@ -30028,7 +30275,8 @@
         "name": "Andrew Joiner"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 265,
@@ -30137,7 +30385,8 @@
         "name": "Samir Bodas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 266,
@@ -30245,7 +30494,8 @@
         "name": "Rafal Modrzewski"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 267,
@@ -30353,7 +30603,8 @@
         "name": "Mohammad Norouzi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 268,
@@ -30460,7 +30711,8 @@
         "name": "Kanjun Qiu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 269,
@@ -30568,7 +30820,8 @@
         "name": "Ron Hovsepian"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 270,
@@ -30690,7 +30943,8 @@
         "name": "Aryan Sharma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 271,
@@ -30789,7 +31043,8 @@
         "name": "Sean White"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Informatica",
@@ -30882,7 +31137,8 @@
         "name": "Amit Walia"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 273,
@@ -31006,7 +31262,8 @@
         "name": "Alex Zhavoronkov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 274,
@@ -31130,7 +31387,8 @@
         "name": "Daphne Koller"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 275,
@@ -31255,7 +31513,8 @@
         "name": "Anant Bhardwaj"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 276,
@@ -31380,7 +31639,8 @@
         "name": "Eoghan McCabe"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 277,
@@ -31488,7 +31748,8 @@
         "name": "Sanket Shah"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 278,
@@ -31597,7 +31858,8 @@
         "name": "Ilya Gelfenbeyn"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "io Products",
@@ -31690,7 +31952,8 @@
         "name": "Jony Ive"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.919Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 280,
@@ -31803,7 +32066,8 @@
         "name": "Jason Boehmig"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:27.920Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:34.740Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 281,
@@ -31927,7 +32191,8 @@
         "name": "John Jumper"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.639Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 282,
@@ -32053,10 +32318,11 @@
       },
       {
         "role": "CTO",
-        "name": "Nilan Peiris"
+        "name": "Sergei Petrunenkov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 283,
@@ -32151,9 +32417,14 @@
       {
         "role": "CEO",
         "name": "Timothy Young"
+      },
+      {
+        "role": "COO",
+        "name": "Brian O'Kelley"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 284,
@@ -32258,9 +32529,14 @@
       {
         "role": "CEO",
         "name": "Rich Sorkin"
+      },
+      {
+        "role": "CTO",
+        "name": "Seema Haq"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 285,
@@ -32366,7 +32642,8 @@
         "name": "Luca Zambello"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 286,
@@ -32489,9 +32766,14 @@
       {
         "role": "CEO",
         "name": "Allon Bloch"
+      },
+      {
+        "role": "COO",
+        "name": "Ran Nussbaum"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 287,
@@ -32613,7 +32895,8 @@
         "name": "Konstantina Psoma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 288,
@@ -32721,7 +33004,8 @@
         "name": "Victor Wang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 289,
@@ -32828,7 +33112,8 @@
         "name": "Mike Laufer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 290,
@@ -32951,7 +33236,8 @@
         "name": "Julia Enthoven"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 291,
@@ -33048,7 +33334,8 @@
         "name": "Sal Khan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 292,
@@ -33156,7 +33443,8 @@
         "name": "Sean Harper"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 293,
@@ -33282,10 +33570,11 @@
       },
       {
         "role": "COO",
-        "name": "Aneel Chima"
+        "name": "David Sandström"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 294,
@@ -33392,7 +33681,8 @@
         "name": "Nilay Oza"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 295,
@@ -33512,7 +33802,8 @@
         "name": "Don Burnette"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Koi Security",
@@ -33720,7 +34011,8 @@
         "name": "Arif Nathoo"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 298,
@@ -33845,7 +34137,8 @@
         "name": "Augusto Marietti"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 299,
@@ -33954,7 +34247,8 @@
         "name": "Raj Koneru"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:32.640Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Koyeb",
@@ -34054,7 +34348,15 @@
       }
     ],
     "news_enriched_at": "2026-02-27T20:24:18.258Z",
-    "wikidata_id": null
+    "wikidata_id": null,
+    "leadership": [
+      {
+        "role": "CEO",
+        "name": "Julien Lemoine"
+      }
+    ],
+    "leadershipEnrichedAt": "2026-02-27T23:58:38.940Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 301,
@@ -34161,7 +34463,8 @@
         "name": "Karl Kenny"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 302,
@@ -34269,7 +34572,8 @@
         "name": "Bhavish Aggarwal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 303,
@@ -34382,7 +34686,8 @@
         "name": "Manu Sharma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 304,
@@ -34507,7 +34812,8 @@
         "name": "Jay Parikh"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 305,
@@ -34631,7 +34937,8 @@
         "name": "Stephen Balaban"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 306,
@@ -34753,7 +35060,8 @@
         "name": "Asad Khan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.051Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 307,
@@ -34859,7 +35167,8 @@
         "name": "Pascal Pilon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 308,
@@ -34972,7 +35281,8 @@
         "name": "Harrison Chase"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 309,
@@ -35095,7 +35405,8 @@
         "name": "Lennard Schmidt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 310,
@@ -35202,7 +35513,8 @@
         "name": "Harrison Chase"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 311,
@@ -35308,7 +35620,8 @@
         "name": "Nick Walton"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 312,
@@ -35432,7 +35745,8 @@
         "name": "Jack Altman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 313,
@@ -35556,7 +35870,8 @@
         "name": "Edith Harbaugh"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 314,
@@ -35653,7 +35968,8 @@
         "name": "Will Allred"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 315,
@@ -35760,7 +36076,8 @@
         "name": "Yuki Fukuda"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 316,
@@ -35867,7 +36184,8 @@
         "name": "Adit Jain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 317,
@@ -35973,7 +36291,8 @@
         "name": "Mahesh Balaji"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 318,
@@ -36079,7 +36398,8 @@
         "name": "Part of Prisma Labs"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 319,
@@ -36185,7 +36505,8 @@
         "name": "Dan Ceperley"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 320,
@@ -36292,7 +36613,8 @@
         "name": "JJ Fiasson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:36.052Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:42.543Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 321,
@@ -36400,7 +36722,8 @@
         "name": "Jay McKee"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 322,
@@ -36506,7 +36829,8 @@
         "name": "Charles Packer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 323,
@@ -36613,7 +36937,8 @@
         "name": "Sam Corcos"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 324,
@@ -36719,7 +37044,8 @@
         "name": "Nathan Baschez"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 325,
@@ -36842,7 +37168,8 @@
         "name": "Nick Harris"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 326,
@@ -36966,7 +37293,8 @@
         "name": "Zeev Farbman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 327,
@@ -37073,7 +37401,8 @@
         "name": "Evan Feinberg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 328,
@@ -37195,7 +37524,8 @@
         "name": "Spence Green"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 329,
@@ -37302,7 +37632,8 @@
         "name": "Purva Gupta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 330,
@@ -37409,7 +37740,8 @@
         "name": "Flo Crivello"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 331,
@@ -37533,7 +37865,8 @@
         "name": "Karri Saarinen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Liquid AI",
@@ -37727,7 +38060,8 @@
         "name": "Jerry Liu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.301Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "LMArena",
@@ -37947,7 +38281,8 @@
         "name": "Felipe Capella"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 336,
@@ -38071,7 +38406,8 @@
         "name": "Rick Faulk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.987Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 337,
@@ -38179,7 +38515,8 @@
         "name": "Anton Osika"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.988Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 338,
@@ -38302,7 +38639,8 @@
         "name": "Mike Sinoway"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.988Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 339,
@@ -38409,7 +38747,8 @@
         "name": "Amit Jain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.988Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 340,
@@ -38532,7 +38871,8 @@
         "name": "Daniel Tal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:39.302Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:45.988Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 341,
@@ -38640,7 +38980,8 @@
         "name": "Eleanor Weaver"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 342,
@@ -38748,7 +39089,8 @@
         "name": "Yoni Tserruya"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 343,
@@ -38855,7 +39197,8 @@
         "name": "Izzy Azeri"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 344,
@@ -38977,7 +39320,8 @@
         "name": "Edward Mehr"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 345,
@@ -39085,7 +39429,8 @@
         "name": "Eric Steinberger"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 346,
@@ -39168,7 +39513,8 @@
         "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "fallback"
   },
   {
     "name": "Manus AI",
@@ -39360,7 +39706,8 @@
         "name": "Shriyash Upadhyay"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Material Security",
@@ -39564,7 +39911,8 @@
         "name": "Quentin de Quelen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 351,
@@ -39687,7 +40035,8 @@
         "name": "Matan Bar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 352,
@@ -39793,7 +40142,8 @@
         "name": "Dennis Xu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Mentee Robotics",
@@ -39984,7 +40334,8 @@
         "name": "Immad Akhund"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Merge Labs",
@@ -40074,7 +40425,8 @@
         "name": "Alex Blania"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 356,
@@ -40181,7 +40533,8 @@
         "name": "Chen Qian"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Metronome",
@@ -40384,7 +40737,8 @@
         "name": "Matthijs Welle"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 359,
@@ -40497,7 +40851,8 @@
         "name": "David Holz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.365Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 360,
@@ -40594,7 +40949,8 @@
         "name": "Charles Xie"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:42.366Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:48.977Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 361,
@@ -40719,10 +41075,11 @@
       },
       {
         "role": "CTO",
-        "name": "Abhinav Asthana"
+        "name": "Sanjay Swamy"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.109Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 362,
@@ -40838,10 +41195,11 @@
       },
       {
         "role": "CTO",
-        "name": "Guillaume Lample"
+        "name": "Timothée Lacroix"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 363,
@@ -40963,7 +41321,8 @@
         "name": "Amir Movafaghi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 364,
@@ -41076,10 +41435,11 @@
       },
       {
         "role": "CTO",
-        "name": "Evan Machine"
+        "name": "Evan Huus"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Modella AI",
@@ -41270,7 +41630,8 @@
         "name": "Dimitri Dadiomov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 367,
@@ -41376,7 +41737,8 @@
         "name": "Christoffer Holmgård"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 368,
@@ -41501,7 +41863,8 @@
         "name": "Chris Lattner"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 369,
@@ -41608,7 +41971,8 @@
         "name": "Jonathan Laity"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 370,
@@ -41715,7 +42079,8 @@
         "name": "Tobias Hann"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 371,
@@ -41838,7 +42203,8 @@
         "name": "Noam Brown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 372,
@@ -41961,7 +42327,8 @@
         "name": "Karl Iagnemma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Motive",
@@ -42167,7 +42534,8 @@
         "name": "Vivek Sharma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 375,
@@ -42273,7 +42641,8 @@
         "name": "Niall Hendry"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 376,
@@ -42394,7 +42763,8 @@
         "name": "Varun Singh"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 377,
@@ -42518,7 +42888,8 @@
         "name": "Michael Katz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 378,
@@ -42625,7 +42996,8 @@
         "name": "Div Garg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 379,
@@ -42732,7 +43104,8 @@
         "name": "Sneha Roy"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 380,
@@ -42856,7 +43229,8 @@
         "name": "Jaleh Rezaei"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:46.110Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:52.595Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 381,
@@ -42981,10 +43355,11 @@
       },
       {
         "role": "CTO",
-        "name": "Vlad Catrinescu"
+        "name": "Nicolas Seitz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 382,
@@ -43109,10 +43484,11 @@
       },
       {
         "role": "CTO",
-        "name": "Amit Jain"
+        "name": "Abhishek Dutta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 383,
@@ -43219,13 +43595,10 @@
       {
         "role": "CEO",
         "name": "Ariel Cohen"
-      },
-      {
-        "role": "CTO",
-        "name": "Raj Nambiar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 384,
@@ -43334,10 +43707,11 @@
       },
       {
         "role": "CTO",
-        "name": "Heikki Linnakangas"
+        "name": "Ants Aasma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 385,
@@ -43443,13 +43817,10 @@
       {
         "role": "CEO",
         "name": "Piotr Niedzwiedz"
-      },
-      {
-        "role": "CTO",
-        "name": "Wojciech Mormul"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 386,
@@ -43571,13 +43942,10 @@
       {
         "role": "CEO",
         "name": "Matt Biilmann"
-      },
-      {
-        "role": "CTO",
-        "name": "David East"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 387,
@@ -43702,7 +44070,8 @@
         "name": "Elon Musk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 388,
@@ -43825,13 +44194,10 @@
       {
         "role": "CEO",
         "name": "Bill Staples"
-      },
-      {
-        "role": "CTO",
-        "name": "Lew Cirne"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 389,
@@ -43939,7 +44305,8 @@
         "name": "Angus Russell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.370Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 390,
@@ -44063,7 +44430,8 @@
         "name": "Saeju Jeong"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 391,
@@ -44170,7 +44538,8 @@
         "name": "Alexsandra Guerra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 392,
@@ -44293,7 +44662,8 @@
         "name": "Jim Ekbäck"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 393,
@@ -44402,7 +44772,8 @@
         "name": "Matias Muchnick"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 394,
@@ -44499,7 +44870,8 @@
         "name": "Ivan Zhao"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 395,
@@ -44623,7 +44995,8 @@
         "name": "Nhon Ma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 396,
@@ -44732,7 +45105,8 @@
         "name": "Dave Ferguson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 397,
@@ -44841,7 +45215,8 @@
         "name": "Chakri Gottemukkala"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Observe Inc",
@@ -45047,7 +45422,8 @@
         "name": "Neil Sherrin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 400,
@@ -45154,7 +45530,8 @@
         "name": "Oliver Plunkett"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:50.371Z"
+    "leadershipEnrichedAt": "2026-02-27T23:58:56.420Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 401,
@@ -45278,10 +45655,11 @@
       },
       {
         "role": "CTO",
-        "name": "Guna Seetharaman"
+        "name": "Gennady Pekhimenko"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.136Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 402,
@@ -45385,7 +45763,8 @@
         "name": "Sean Lane"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.136Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 403,
@@ -45508,7 +45887,8 @@
         "name": "Sean Duffy"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 404,
@@ -45631,7 +46011,8 @@
         "name": "Ahmad Wani"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 405,
@@ -45738,7 +46119,8 @@
         "name": "Eric Elfman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 406,
@@ -45851,7 +46233,8 @@
         "name": "Aaron Fulkerson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 407,
@@ -46025,11 +46408,16 @@
         "name": "Mira Murati"
       },
       {
+        "role": "COO",
+        "name": "Brad Lightcap"
+      },
+      {
         "role": "Chief Strategy Officer",
         "name": "Jason Kwon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "OpenClaw",
@@ -46137,7 +46525,8 @@
         "name": "Peter Steinberger"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 409,
@@ -46262,7 +46651,8 @@
         "name": "Daniel Nadler"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 410,
@@ -46337,7 +46727,8 @@
         "name": "Ben Kinnaman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 411,
@@ -46461,7 +46852,8 @@
         "name": "Jeevan Kalanithi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 412,
@@ -46567,7 +46959,8 @@
         "name": "JJ Tang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 413,
@@ -46684,7 +47077,8 @@
         "name": "Kevin O'Brien"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 414,
@@ -46791,7 +47185,8 @@
         "name": "William Lu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 415,
@@ -46897,7 +47292,8 @@
         "name": "Yarden Gross"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 416,
@@ -47022,7 +47418,8 @@
         "name": "Avi Shua"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Osmos",
@@ -47215,7 +47612,8 @@
         "name": "Sam Liang"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 419,
@@ -47324,7 +47722,8 @@
         "name": "Tom Hale"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 420,
@@ -47432,7 +47831,8 @@
         "name": "Manny Medina"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:54.137Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:00.254Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 421,
@@ -47560,7 +47960,8 @@
         "name": "Gilles Wainrib"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.864Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 422,
@@ -47666,7 +48067,8 @@
         "name": "Ritesh Agarwal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 423,
@@ -47778,7 +48180,8 @@
         "name": "Diego Saez-Gil"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 424,
@@ -47886,7 +48289,8 @@
         "name": "Leo Grady"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Palantir",
@@ -47993,9 +48397,14 @@
       {
         "role": "CTO",
         "name": "Shyam Sankar"
+      },
+      {
+        "role": "COO",
+        "name": "Shan Sinha"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Palo Alto Networks",
@@ -48101,10 +48510,11 @@
       },
       {
         "role": "CTO",
-        "name": "Andrew Honig"
+        "name": "amit Yoran"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 427,
@@ -48212,7 +48622,8 @@
         "name": "Aaron Matos"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 428,
@@ -48323,7 +48734,8 @@
         "name": "Andy Lonsberry"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 429,
@@ -48420,7 +48832,8 @@
         "name": "Andy Beck"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 430,
@@ -48527,7 +48940,8 @@
         "name": "Anand Kannappan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 431,
@@ -48650,7 +49064,8 @@
         "name": "Ruzwana Bashir"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 432,
@@ -48759,7 +49174,8 @@
         "name": "Oleg Rogynskyy"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 433,
@@ -48902,7 +49318,8 @@
         "name": "Aravind Srinivas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 434,
@@ -49025,7 +49442,8 @@
         "name": "Assaf Baciu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 435,
@@ -49134,7 +49552,8 @@
         "name": "Rick Song"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 436,
@@ -49243,7 +49662,8 @@
         "name": "Mahe Bayireddi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 437,
@@ -49368,7 +49788,8 @@
         "name": "Matthieu Rouif"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 438,
@@ -49474,7 +49895,8 @@
         "name": "Parry Malm"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 439,
@@ -49583,7 +50005,8 @@
         "name": "Karol Hausman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 440,
@@ -49690,7 +50113,8 @@
         "name": "Vikram Chalana"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:03:58.865Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:04.345Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 441,
@@ -49796,9 +50220,14 @@
       {
         "role": "CEO",
         "name": "Demi Guo"
+      },
+      {
+        "role": "CTO",
+        "name": "Chenlin Meng"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.379Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 442,
@@ -49904,9 +50333,14 @@
       {
         "role": "CEO",
         "name": "Waseem Daher"
+      },
+      {
+        "role": "CTO",
+        "name": "Nate Smith"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.379Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 443,
@@ -50017,9 +50451,14 @@
       {
         "role": "CEO",
         "name": "Edo Liberty"
+      },
+      {
+        "role": "CTO",
+        "name": "Gidi Grinstein"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 444,
@@ -50143,7 +50582,8 @@
         "name": "Karsten Temme"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 445,
@@ -50249,7 +50689,8 @@
         "name": "Awais Ahmed"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 446,
@@ -50372,9 +50813,14 @@
       {
         "role": "CEO",
         "name": "Zach Perret"
+      },
+      {
+        "role": "CTO",
+        "name": "William Hockey"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 447,
@@ -50498,7 +50944,8 @@
         "name": "Sam Lambert"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 448,
@@ -50605,7 +51052,8 @@
         "name": "Arama Kukutai"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 449,
@@ -50713,7 +51161,8 @@
         "name": "David Liu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 450,
@@ -50826,7 +51275,8 @@
         "name": "Artavazd Yeritsyan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 451,
@@ -50923,7 +51373,8 @@
         "name": "Adam D'Angelo"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.380Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Pony.ai",
@@ -51026,9 +51477,14 @@
       {
         "role": "CEO",
         "name": "James Peng"
+      },
+      {
+        "role": "CTO",
+        "name": "Tiancheng Lou"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 453,
@@ -51137,7 +51593,8 @@
         "name": "Eiso Kant"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 454,
@@ -51246,7 +51703,8 @@
         "name": "Abhinav Asthana"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 455,
@@ -51352,7 +51810,8 @@
         "name": "Alexey Moiseenkov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 456,
@@ -51458,7 +51917,8 @@
         "name": "Alex Fielding"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 457,
@@ -51582,7 +52042,8 @@
         "name": "Jett McCandless"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Q.ai",
@@ -51779,7 +52240,8 @@
         "name": "Andre Zayarni"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 460,
@@ -51886,7 +52348,8 @@
         "name": "Hyungsik Kim"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:02.381Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:08.355Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 461,
@@ -52013,7 +52476,8 @@
         "name": "Kraig Swensrud"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 462,
@@ -52137,7 +52601,8 @@
         "name": "Lex Bayer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 463,
@@ -52244,7 +52709,8 @@
         "name": "Doktor Gurson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 464,
@@ -52351,7 +52817,8 @@
         "name": "Jake Cooper"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 465,
@@ -52457,7 +52924,8 @@
         "name": "Gordon Wilson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 466,
@@ -52566,7 +53034,8 @@
         "name": "Eric Glyman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.853Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 467,
@@ -52689,7 +53158,8 @@
         "name": "David Shim"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 468,
@@ -52813,7 +53283,8 @@
         "name": "Timmu Tõke"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Rebellion Defense",
@@ -53000,7 +53471,8 @@
         "name": "Henry Shapiro"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 471,
@@ -53123,7 +53595,8 @@
         "name": "Christopher Ahlberg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 472,
@@ -53232,7 +53705,8 @@
         "name": "Chris Gibson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 473,
@@ -53355,7 +53829,8 @@
         "name": "Misha Laskin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 474,
@@ -53451,7 +53926,8 @@
         "name": "Matt Millen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 475,
@@ -53558,7 +54034,8 @@
         "name": "Dani Yogatama"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 476,
@@ -53667,7 +54144,8 @@
         "name": "Mike Gamson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.721Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 477,
@@ -53789,7 +54267,8 @@
         "name": "Daniel Vassilev"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.722Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 478,
@@ -53897,7 +54376,8 @@
         "name": "Job van der Voort"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.722Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 479,
@@ -54005,7 +54485,8 @@
         "name": "Anurag Goel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.722Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 480,
@@ -54111,7 +54592,8 @@
         "name": "Richard Sarkis"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:05.854Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:11.722Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 481,
@@ -54225,10 +54707,11 @@
       },
       {
         "role": "CTO",
-        "name": "Tom Brown"
+        "name": "Andreas Jansson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 482,
@@ -54335,7 +54818,8 @@
         "name": "Eugenia Kuyda"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 483,
@@ -54448,7 +54932,8 @@
         "name": "Amjad Masad"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 484,
@@ -54554,7 +55039,8 @@
         "name": "Zohaib Ahmed"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 485,
@@ -54677,7 +55163,8 @@
         "name": "Alex Serdiuk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 486,
@@ -54802,7 +55289,8 @@
         "name": "David Hsu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 487,
@@ -54908,7 +55396,8 @@
         "name": "Jason Chicola"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Ricursive Intelligence",
@@ -54998,7 +55487,8 @@
         "name": "Anna Goldie"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 489,
@@ -55120,7 +55610,8 @@
         "name": "Leif Jentoft"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 490,
@@ -55243,7 +55734,8 @@
         "name": "YJ Cho"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 491,
@@ -55368,7 +55860,8 @@
         "name": "Parker Conrad"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 492,
@@ -55491,7 +55984,8 @@
         "name": "Nadav Keyson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 493,
@@ -55599,7 +56093,8 @@
         "name": "Zachariah Reitano"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "RobCo",
@@ -55688,7 +56183,8 @@
         "name": "Roman Holzl"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 495,
@@ -55796,7 +56292,8 @@
         "name": "Richard Robinson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 496,
@@ -55918,7 +56415,8 @@
         "name": "Jakob Balslev"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 497,
@@ -56025,7 +56523,8 @@
         "name": "Tomas Gogar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 498,
@@ -56148,7 +56647,8 @@
         "name": "Henrique Cruz"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.385Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 499,
@@ -56255,7 +56755,8 @@
         "name": "Soumyadeb Mitra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.386Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 500,
@@ -56361,7 +56862,8 @@
         "name": "Marty Odlin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:09.386Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:15.353Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 501,
@@ -56512,7 +57014,8 @@
         "name": "Alejandro Matamala"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 502,
@@ -56621,7 +57124,8 @@
         "name": "Ilya Sutskever"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 503,
@@ -56726,7 +57230,8 @@
         "name": "Dmitry Sagalov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 504,
@@ -56849,7 +57354,8 @@
         "name": "Richard Jenkins"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 505,
@@ -56974,7 +57480,8 @@
         "name": "David Ha"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 506,
@@ -57098,7 +57605,8 @@
         "name": "David Obrand"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 507,
@@ -57224,10 +57732,11 @@
       },
       {
         "role": "CTO",
-        "name": "Radha Pandey"
+        "name": "Kunle Olukotun"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Samsara",
@@ -57329,14 +57838,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Sanjit Biswas"
-      },
-      {
-        "role": "CTO",
-        "name": "Jai Ranganathan"
+        "name": "Sanjit Birudavolu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 509,
@@ -57464,7 +57970,8 @@
         "name": "Joel Hellermark"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 510,
@@ -57571,7 +58078,8 @@
         "name": "Geordie Rose"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.437Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 511,
@@ -57694,7 +58202,8 @@
         "name": "Vivek Raghavan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 512,
@@ -57812,7 +58321,8 @@
         "name": "Sachin Nayyar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 513,
@@ -57978,10 +58488,11 @@
       },
       {
         "role": "CTO",
-        "name": "Peter Konetes"
+        "name": "Peter Bailis"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 514,
@@ -58087,7 +58598,8 @@
         "name": "Emmanuel de Maistre"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 515,
@@ -58194,7 +58706,8 @@
         "name": "Michael Johnson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Secureframe",
@@ -58400,7 +58913,8 @@
         "name": "Rehan Jalil"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 518,
@@ -58514,7 +59028,8 @@
         "name": "Anoop Gupta"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 519,
@@ -58623,7 +59138,8 @@
         "name": "Doug Winter"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 520,
@@ -58738,7 +59254,8 @@
         "name": "Xu Li"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:13.438Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:19.303Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 521,
@@ -58843,13 +59360,10 @@
       {
         "role": "CEO",
         "name": "Jonathon Irwin"
-      },
-      {
-        "role": "CTO",
-        "name": "Daniel Luo"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 522,
@@ -58955,7 +59469,8 @@
         "name": "Eric Taipale"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "SentinelOne",
@@ -59045,10 +59560,11 @@
       },
       {
         "role": "CTO",
-        "name": "Itzik Kotler"
+        "name": "Almog Cohen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 524,
@@ -59155,13 +59671,10 @@
       {
         "role": "CEO",
         "name": "Milin Desai"
-      },
-      {
-        "role": "CTO",
-        "name": "Sam Saccone"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 525,
@@ -59268,7 +59781,8 @@
         "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 526,
@@ -59419,13 +59933,10 @@
       {
         "role": "CEO",
         "name": "Ryan Tseng"
-      },
-      {
-        "role": "CTO",
-        "name": "Brandon Tseng"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 527,
@@ -59539,7 +60050,8 @@
         "name": "Jeremy Jawish"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 528,
@@ -59645,13 +60157,10 @@
       {
         "role": "CEO",
         "name": "Bret Taylor"
-      },
-      {
-        "role": "CTO",
-        "name": "Craig Cannon"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Sierra AI",
@@ -59743,7 +60252,8 @@
         "name": "Bret Taylor"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 530,
@@ -59865,7 +60375,8 @@
         "name": "Alexandre Bilger"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 531,
@@ -59974,7 +60485,8 @@
         "name": "Deepak Pathak"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 532,
@@ -60097,13 +60609,10 @@
       {
         "role": "CEO",
         "name": "Adam Bry"
-      },
-      {
-        "role": "CTO",
-        "name": "Paul Beard"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 533,
@@ -60209,7 +60718,8 @@
         "name": "Parthsarathi Trivedi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 534,
@@ -60315,7 +60825,8 @@
         "name": "Melanie Stricklan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 535,
@@ -60438,7 +60949,8 @@
         "name": "Andy Cohen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 536,
@@ -60549,13 +61061,10 @@
       {
         "role": "CEO",
         "name": "Alex Ratner"
-      },
-      {
-        "role": "CTO",
-        "name": "Paroma Varma"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Snowflake",
@@ -60645,10 +61154,15 @@
       },
       {
         "role": "CTO",
-        "name": "Paul Staehle"
+        "name": "Paul Hsieh"
+      },
+      {
+        "role": "COO",
+        "name": "Mike Scarpelli"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.034Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 538,
@@ -60771,13 +61285,10 @@
       {
         "role": "CEO",
         "name": "Peter McKay"
-      },
-      {
-        "role": "CTO",
-        "name": "Guy Podjarny"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.035Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 539,
@@ -60900,13 +61411,10 @@
       {
         "role": "CEO",
         "name": "Johnny Ayers"
-      },
-      {
-        "role": "CTO",
-        "name": "Suresh Srinivasan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.035Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 540,
@@ -61028,7 +61536,8 @@
         "name": "Tim Janssen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:18.035Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:23.307Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 541,
@@ -61142,7 +61651,8 @@
         "name": "Yuki Muto"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 542,
@@ -61270,7 +61780,8 @@
         "name": "Beyang Liu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 543,
@@ -61392,7 +61903,8 @@
         "name": "Amir Husain"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 544,
@@ -61516,7 +62028,8 @@
         "name": "Connor Zwick"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 545,
@@ -61639,7 +62152,8 @@
         "name": "Will Williams"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 546,
@@ -61763,7 +62277,8 @@
         "name": "Scott Chicken"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 547,
@@ -61886,7 +62401,8 @@
         "name": "Peter Platzer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 548,
@@ -61992,7 +62508,8 @@
         "name": "Stephen Phillips"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 549,
@@ -62110,7 +62627,8 @@
         "name": "Alejandro León"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 550,
@@ -62218,7 +62736,8 @@
         "name": "Sarosh Waghmar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 551,
@@ -62325,7 +62844,8 @@
         "name": "Derek Haoyang Li"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 552,
@@ -62438,7 +62958,8 @@
         "name": "Prem Akkaraju"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 553,
@@ -62545,7 +63066,8 @@
         "name": "Eyal Feldman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.656Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Statsig",
@@ -62638,7 +63160,8 @@
         "name": "Vijaye Raji"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 555,
@@ -62761,7 +63284,8 @@
         "name": "Matt Baer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 556,
@@ -62885,7 +63409,8 @@
         "name": "Michael Horvath"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 557,
@@ -63064,13 +63589,10 @@
       {
         "role": "CEO",
         "name": "Patrick Collison"
-      },
-      {
-        "role": "COO",
-        "name": "Claire Hughes Johnson"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 558,
@@ -63158,7 +63680,8 @@
         "name": "Eric Elliott"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 559,
@@ -63276,7 +63799,8 @@
         "name": "James Yu"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 560,
@@ -63373,7 +63897,8 @@
         "name": "Mikey Shulman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:21.657Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:26.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 561,
@@ -63499,10 +64024,11 @@
       },
       {
         "role": "CTO",
-        "name": "Alaister Young"
+        "name": "Inian Parameshwaran"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 562,
@@ -63624,7 +64150,8 @@
         "name": "Ismail Pelaseyed"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 563,
@@ -63749,7 +64276,8 @@
         "name": "Rahul Vohra"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 564,
@@ -63846,13 +64374,10 @@
       {
         "role": "CEO",
         "name": "Victor Riparbelli"
-      },
-      {
-        "role": "CTO",
-        "name": "Danielle Rothermel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 565,
@@ -63964,7 +64489,8 @@
         "name": "Yashar Behzadi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 566,
@@ -64071,7 +64597,8 @@
         "name": "Hakob Astabatsyan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 567,
@@ -64178,7 +64705,8 @@
         "name": "Lihi Pinto Fryman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 568,
@@ -64291,7 +64819,8 @@
         "name": "Dror Weiss"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 569,
@@ -64398,7 +64927,8 @@
         "name": "TBD"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 570,
@@ -64523,11 +65053,12 @@
         "name": "Tiago Paiva"
       },
       {
-        "role": "CTO",
-        "name": "Avanesyan Armen"
+        "role": "COO",
+        "name": "Cristina Fonseca"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 571,
@@ -64633,7 +65164,8 @@
         "name": "Ofir Schlam"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.778Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 572,
@@ -64755,7 +65287,8 @@
         "name": "Alon Chen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 573,
@@ -64863,7 +65396,8 @@
         "name": "Hassaan Raza"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 574,
@@ -64970,9 +65504,14 @@
       {
         "role": "CEO",
         "name": "Mike Del Balso"
+      },
+      {
+        "role": "CTO",
+        "name": "Kevin Stumpf"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 575,
@@ -65078,7 +65617,8 @@
         "name": "Moawia Eldeeb"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 576,
@@ -65175,7 +65715,8 @@
         "name": "Eric Lefkofsky"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 577,
@@ -65299,7 +65840,8 @@
         "name": "Jim Keller"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 578,
@@ -65405,7 +65947,8 @@
         "name": "Judson Kauffman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 579,
@@ -65511,7 +66054,8 @@
         "name": "Clifton Harness"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 580,
@@ -65619,7 +66163,8 @@
         "name": "Kieran Snyder"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:25.918Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:30.779Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 581,
@@ -65726,7 +66271,8 @@
         "name": "Mira Murati"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 582,
@@ -65851,10 +66397,11 @@
       },
       {
         "role": "CTO",
-        "name": "Saurabh Sukla"
+        "name": "Ashish Goel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 583,
@@ -65971,9 +66518,14 @@
       {
         "role": "CEO",
         "name": "Chen Amit"
+      },
+      {
+        "role": "CTO",
+        "name": "Yuri Tsitrinbaum"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 584,
@@ -66080,7 +66632,8 @@
         "name": "Raphael Allstadt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 585,
@@ -66195,7 +66748,8 @@
         "name": "Vipul Ved Prakash"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 586,
@@ -66303,7 +66857,8 @@
         "name": "Keith Peiris"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 587,
@@ -66410,7 +66965,8 @@
         "name": "Krystal Zell"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 588,
@@ -66533,7 +67089,8 @@
         "name": "Ian Coe"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 589,
@@ -66640,7 +67197,8 @@
         "name": "Peter Vaughan Schmidt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Torch Health",
@@ -66829,7 +67387,8 @@
         "name": "Poornima Parameswaran"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 592,
@@ -66944,7 +67503,8 @@
         "name": "Alex Dalyac"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 593,
@@ -67068,7 +67628,8 @@
         "name": "Gabriel Lameirinhas"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 594,
@@ -67192,7 +67753,8 @@
         "name": "Avi Meir"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 595,
@@ -67316,7 +67878,8 @@
         "name": "Rich Waldron"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 596,
@@ -67440,7 +68003,8 @@
         "name": "Alan Mamedi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 597,
@@ -67548,7 +68112,8 @@
         "name": "Abhay Parasnis"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 598,
@@ -67672,7 +68237,8 @@
         "name": "Joaquim Lechá"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 599,
@@ -67788,7 +68354,8 @@
         "name": "Kishore Nallan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 600,
@@ -67885,7 +68452,8 @@
         "name": "David Ding"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:29.534Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:34.521Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "UiPath",
@@ -67992,13 +68560,10 @@
       {
         "role": "President",
         "name": "Rob Enslin"
-      },
-      {
-        "role": "Chief Financial Officer",
-        "name": "Ashim Nanda"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.630Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 602,
@@ -68102,13 +68667,10 @@
       {
         "role": "CEO",
         "name": "David Korpi"
-      },
-      {
-        "role": "CTO",
-        "name": "Mark Rigolle"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.630Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 603,
@@ -68232,10 +68794,11 @@
       },
       {
         "role": "CTO",
-        "name": "Jorge Paulo"
+        "name": "André Martins"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.630Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 604,
@@ -68341,13 +68904,10 @@
       {
         "role": "CEO",
         "name": "Naveen Rao"
-      },
-      {
-        "role": "CTO",
-        "name": "Mark Segal"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 605,
@@ -68470,7 +69030,8 @@
         "name": "Daniel Lenton"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 606,
@@ -68587,13 +69148,10 @@
       {
         "role": "CEO",
         "name": "Umesh Sachdev"
-      },
-      {
-        "role": "President and COO",
-        "name": "Ashish Bhatnagar"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 607,
@@ -68699,13 +69257,10 @@
       {
         "role": "CEO",
         "name": "Itai Damti"
-      },
-      {
-        "role": "CTO",
-        "name": "Moti Teperman"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Unstructured",
@@ -68791,14 +69346,11 @@
     "leadership": [
       {
         "role": "CEO",
-        "name": "Yiannis Karachalios"
-      },
-      {
-        "role": "CTO",
-        "name": "Brandon Duderstadt"
+        "name": "Chiamaka Okafor"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 609,
@@ -68919,13 +69471,10 @@
       {
         "role": "CEO",
         "name": "Brad Keywell"
-      },
-      {
-        "role": "Chief Technology Officer",
-        "name": "Rushit Desai"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 610,
@@ -69035,13 +69584,10 @@
       {
         "role": "CEO",
         "name": "Tom Marrin"
-      },
-      {
-        "role": "CTO",
-        "name": "Anurag Srivastava"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "Vanta",
@@ -69128,13 +69674,10 @@
       {
         "role": "CEO",
         "name": "Christina Cacioppo"
-      },
-      {
-        "role": "CTO",
-        "name": "Kevin Bocek"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 612,
@@ -69258,7 +69801,8 @@
         "name": "Jordan Dearsley"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 613,
@@ -69364,13 +69908,10 @@
       {
         "role": "CEO",
         "name": "Renen Hallak"
-      },
-      {
-        "role": "CTO",
-        "name": "Eran Nir"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 614,
@@ -69491,13 +70032,10 @@
       {
         "role": "CEO",
         "name": "Aaron Chen"
-      },
-      {
-        "role": "CTO",
-        "name": "James Lowery"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 615,
@@ -69618,13 +70156,10 @@
       {
         "role": "CEO",
         "name": "Amr Awadallah"
-      },
-      {
-        "role": "CTO",
-        "name": "Matei Zaharia"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 616,
@@ -69731,13 +70266,10 @@
       {
         "role": "CEO",
         "name": "Hitesh Sheth"
-      },
-      {
-        "role": "President",
-        "name": "Kevin Mandia"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 617,
@@ -69844,7 +70376,8 @@
         "name": "Sabba Keynejad"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 618,
@@ -69948,13 +70481,10 @@
       {
         "role": "CEO",
         "name": "Patrick Sobalvarro"
-      },
-      {
-        "role": "CTO",
-        "name": "Dr. Stefano Carpin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 619,
@@ -70061,13 +70591,10 @@
       {
         "role": "CEO",
         "name": "Tom Livne"
-      },
-      {
-        "role": "CTO",
-        "name": "Tal Sheafer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 620,
@@ -70190,13 +70717,10 @@
       {
         "role": "CEO",
         "name": "Guillermo Rauch"
-      },
-      {
-        "role": "CTO",
-        "name": "Tim Neutkens"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:35.631Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:38.347Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 621,
@@ -70304,10 +70828,11 @@
       },
       {
         "role": "CTO",
-        "name": "Daniel Kottmann"
+        "name": "Daniel Mahaffy"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 622,
@@ -70414,7 +70939,8 @@
         "name": "Alexander Hagerup"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 623,
@@ -70536,7 +71062,8 @@
         "name": "Sami Inkinen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 624,
@@ -70632,7 +71159,8 @@
         "name": "Chris Mansi"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 625,
@@ -70740,7 +71268,8 @@
         "name": "Nick Romito"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 626,
@@ -70846,7 +71375,8 @@
         "name": "Ashwini Asokan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 627,
@@ -70956,10 +71486,11 @@
       },
       {
         "role": "CTO",
-        "name": "Dmitri Dolgov"
+        "name": "Drago Anguelov"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 628,
@@ -71072,7 +71603,8 @@
         "name": "Bob van Luijt"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 629,
@@ -71185,7 +71717,8 @@
         "name": "Lukas Biewald"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 630,
@@ -71292,7 +71825,8 @@
         "name": "Michael Petrochuk"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.414Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "name": "WeRide",
@@ -71380,14 +71914,7 @@
     ],
     "newsEnrichedAt": "2026-02-27T20:05:47.603Z",
     "news_enriched_at": "2026-02-27T20:27:36.690Z",
-    "wikidata_id": null,
-    "leadership": [
-      {
-        "role": "CEO",
-        "name": "Tony Han"
-      }
-    ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "wikidata_id": null
   },
   {
     "id": 632,
@@ -71495,7 +72022,8 @@
         "name": "Will Ahmed"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 633,
@@ -71605,7 +72133,8 @@
         "name": "Varun Mohan"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 634,
@@ -71711,7 +72240,8 @@
         "name": "Ami Daniel"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 635,
@@ -71822,7 +72352,8 @@
         "name": "Assaf Rappaport"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 636,
@@ -71929,7 +72460,8 @@
         "name": "Unknown"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "fallback"
   },
   {
     "id": 637,
@@ -72054,7 +72586,8 @@
         "name": "Vijay Tella"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 638,
@@ -72161,7 +72694,8 @@
         "name": "Fei-Fei Li"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 639,
@@ -72276,7 +72810,8 @@
         "name": "May Habib"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 640,
@@ -72398,7 +72933,8 @@
         "name": "Samanyou Garg"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:39.415Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:41.958Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 641,
@@ -72550,7 +73086,8 @@
         "name": "Chris Lattner"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 642,
@@ -72625,7 +73162,8 @@
         "name": "Patrick Brouwer"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 643,
@@ -72747,7 +73285,8 @@
         "name": "Valérie Robitaille"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 644,
@@ -72855,7 +73394,8 @@
         "name": "Shuhao Wen"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 645,
@@ -72962,7 +73502,8 @@
         "name": "Raghu Ravinutala"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 646,
@@ -73070,7 +73611,8 @@
         "name": "Tomer Tagrin"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 647,
@@ -73176,7 +73718,8 @@
         "name": "Richard Socher"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 648,
@@ -73284,7 +73827,8 @@
         "name": "Christopher Savoie"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 649,
@@ -73409,10 +73953,11 @@
       },
       {
         "role": "COO",
-        "name": "Justin Nassim"
+        "name": "Mike Knoop"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 650,
@@ -73539,7 +74084,8 @@
         "name": "Tom Eggemeier"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 651,
@@ -73662,7 +74208,8 @@
         "name": "Henry Schuck"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   },
   {
     "id": 652,
@@ -73768,6 +74315,7 @@
         "name": "Aicha Evans"
       }
     ],
-    "leadershipEnrichedAt": "2026-02-27T21:04:42.562Z"
+    "leadershipEnrichedAt": "2026-02-27T23:59:44.961Z",
+    "leadershipSource": "claude"
   }
 ]
