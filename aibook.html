@@ -3435,11 +3435,8 @@ function renderListView() {
                 }
             }
 
-            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count clickable" onclick="event.stopPropagation(); openStatModal('geography')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
+            html += `<div class="filter-heading">${heading.icon} ${heading.title}<span class="filter-count">${deck.length} companies &middot; ${heading.desc}</span>${growthHtml}</div>`;
         }
-    } else {
-        // Default: show clickable count for geography even with no filter
-        html += `<div class="filter-heading" style="padding:10px 16px 6px"><span class="filter-count clickable" onclick="event.stopPropagation(); openStatModal('geography')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted;font-size:14px">${deck.length} AI Companies</span></div>`;
     }
 
     // Use the already-sorted deck (from applyDeckSort)
