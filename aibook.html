@@ -816,28 +816,24 @@
             flex-shrink: 0;
         }
         /* Mini-card expand */
-        .mini-card-wrapper { position: relative; }
         .mini-expand-btn {
-            position: absolute;
-            right: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            font-size: 10px;
+            width: 28px;
+            height: 28px;
+            background: rgba(212,175,55,0.12);
+            border: 1px solid rgba(212,175,55,0.25);
+            color: var(--gold);
+            font-size: 11px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            z-index: 2;
-            transition: transform 0.2s, color 0.2s;
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-left: 6px;
+            transition: transform 0.2s, background 0.2s;
         }
-        .mini-expand-btn:hover { color: var(--gold); }
-        .mini-card-wrapper.expanded .mini-expand-btn { transform: translateY(-50%) rotate(180deg); color: var(--gold); }
+        .mini-expand-btn:hover { background: rgba(212,175,55,0.25); }
+        .mini-card-wrapper.expanded .mini-expand-btn { transform: rotate(180deg); background: rgba(212,175,55,0.3); }
         .mini-card-wrapper.expanded .mini-card { background: rgba(212,175,55,0.06); }
         .mini-card-accordion {
             display: none;
