@@ -540,6 +540,11 @@
             color: var(--text-dim);
             margin-top: 2px;
         }
+        .signal-pill.hn { background: rgba(255,102,0,0.15); color: #ff6600; }
+        .signal-pill.wiki { background: rgba(96,165,250,0.15); color: #60a5fa; }
+        .signal-pill.patents { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .signal-pill.ph { background: rgba(218,89,56,0.15); color: #da5938; }
+        .signal-pill.papers { background: rgba(34,197,94,0.15); color: #22c55e; }
         .github-commit-velocity {
             color: #22c55e;
             font-weight: 600;
@@ -3506,7 +3511,7 @@ function renderMiniCard(c) {
     const product = searchQuery ? highlightMatch(c.product || '', searchQuery) : (c.product || '');
 
     // Build accordion sections
-    const hasAccordion = c.github_org || (c.recentNews && c.recentNews.length > 0) || c.sec_cik || c.wikidata_id;
+    const hasAccordion = c.github_org || (c.recentNews && c.recentNews.length > 0) || c.sec_cik || c.wikidata_id || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0;
     let accHtml = '';
     if (hasAccordion) {
         accHtml = '<div class="mini-card-accordion">';
@@ -3517,6 +3522,11 @@ function renderMiniCard(c) {
         if (c.github_weekly_commits) pills.push(`<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>`);
         if (c.recentNews && c.recentNews.length > 0) pills.push(`<span class="signal-pill news">${c.recentNews.length} articles</span>`);
         if (c.sec_cik) pills.push(`<span class="signal-pill" style="background:rgba(148,163,184,0.15);color:var(--text-dim)">${c.sec_filing_count || 0} SEC filings</span>`);
+        if (c.hn_mentions > 0) pills.push(`<span class="signal-pill hn">${c.hn_mentions} HN</span>`);
+        if (c.wiki_monthly_views > 0) pills.push(`<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>`);
+        if (c.patents_count > 0) pills.push(`<span class="signal-pill patents">${c.patents_count} patents</span>`);
+        if (c.ph_launches && c.ph_launches.length > 0) pills.push(`<span class="signal-pill ph">Product Hunt</span>`);
+        if (c.papers_count > 0) pills.push(`<span class="signal-pill papers">${c.papers_count} papers</span>`);
         if (pills.length > 0) accHtml += `<div class="mini-acc-pills">${pills.join('')}</div>`;
 
         // GitHub repos
@@ -3547,6 +3557,61 @@ function renderMiniCard(c) {
             accHtml += `<div class="mini-acc-item">${c.sec_filing_count || 0} filings on record</div>`;
             if (c.sec_latest_filing) accHtml += `<div class="mini-acc-item">Latest: ${c.sec_latest_filing.form} \u2014 ${c.sec_latest_filing.date}</div>`;
             accHtml += `<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${c.sec_cik}&type=&dateb=&owner=include&count=40" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on EDGAR \u2197</a></div>`;
+        }
+
+        // Hacker News
+        if (c.hn_mentions > 0) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#ff6600">&#x1F525; Hacker News</div>';
+            accHtml += `<div class="mini-acc-item">${c.hn_mentions.toLocaleString()} mentions</div>`;
+            if (c.hn_top_story) {
+                accHtml += `<div class="mini-acc-item"><a href="${c.hn_top_story.url}" target="_blank" onclick="event.stopPropagation()">${c.hn_top_story.title}</a> <span style="color:var(--text-dim);font-size:10px">${c.hn_top_story.points} pts</span></div>`;
+            }
+            accHtml += `<a href="https://hn.algolia.com/?q=%22${encodeURIComponent(c.name)}%22&type=story" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">Search HN \u2197</a></div>`;
+        }
+
+        // Wikipedia
+        if (c.wiki_monthly_views > 0 && c.wiki_title) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#60a5fa">&#x1F4D6; Wikipedia</div>';
+            accHtml += `<div class="mini-acc-item">${c.wiki_monthly_views.toLocaleString()} views/month</div>`;
+            accHtml += `<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(c.wiki_title.replace(/ /g, '_'))}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View Article \u2197</a></div>`;
+        }
+
+        // Patents
+        if (c.patents_count > 0) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#a855f7">&#x1F4DC; Patents</div>';
+            accHtml += `<div class="mini-acc-item">${c.patents_count.toLocaleString()} patents</div>`;
+            if (c.patents_recent) {
+                c.patents_recent.slice(0, 3).forEach(p => {
+                    accHtml += `<div class="mini-acc-item">${p.title}${p.date ? ' \u2014 ' + p.date : ''}</div>`;
+                });
+            }
+            accHtml += `<a href="https://patentsview.org/search?q=${encodeURIComponent(c.name)}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on PatentsView \u2197</a></div>`;
+        }
+
+        // Product Hunt
+        if (c.ph_launches && c.ph_launches.length > 0) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#da5938">&#x1F680; Product Hunt</div>';
+            c.ph_launches.slice(0, 3).forEach(p => {
+                if (p.url) {
+                    accHtml += `<div class="mini-acc-item"><a href="${p.url}" target="_blank" onclick="event.stopPropagation()">${p.name}</a> <span style="color:var(--text-dim);font-size:10px">\u25B2 ${p.votes}</span></div>`;
+                } else {
+                    accHtml += `<div class="mini-acc-item">${p.name} <span style="color:var(--text-dim);font-size:10px">\u25B2 ${p.votes}</span></div>`;
+                }
+            });
+            accHtml += '</div>';
+        }
+
+        // Academic Papers
+        if (c.papers_count > 0) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#22c55e">&#x1F4DA; Academic Papers</div>';
+            accHtml += `<div class="mini-acc-item">${c.papers_count.toLocaleString()} papers</div>`;
+            if (c.papers_recent) {
+                c.papers_recent.slice(0, 3).forEach(p => {
+                    const doiLink = p.doi ? `<a href="${p.doi}" target="_blank" onclick="event.stopPropagation()">${p.title}</a>` : p.title;
+                    accHtml += `<div class="mini-acc-item">${doiLink} <span style="color:var(--text-dim);font-size:10px">${p.cited_by} citations${p.year ? ' \u2014 ' + p.year : ''}</span></div>`;
+                });
+            }
+            accHtml += `<a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(c.name)}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on OpenAlex \u2197</a></div>`;
         }
 
         accHtml += '</div>';
@@ -3894,6 +3959,13 @@ function formatStars(n) {
     return n.toString();
 }
 
+function formatViews(n) {
+    if (!n || n === 0) return '0';
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return n.toString();
+}
+
 function formatRelativeDate(iso) {
     if (!iso) return '';
     const diff = Date.now() - new Date(iso).getTime();
@@ -4156,10 +4228,15 @@ function createCard(c, isCurrent) {
             <span class="card-funding-label">Investment Raised</span>
             <span class="card-funding-value">${c.funding || 'N/A'}</span>
         </div>
-        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0)) ? `<div class="card-signals">
+        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0) || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0) ? `<div class="card-signals">
             ${c.github_total_stars > 0 ? `<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>` : ''}
             ${c.github_weekly_commits ? `<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>` : ''}
             ${c.recentNews && c.recentNews.length > 0 ? `<span class="signal-pill news">In the News</span>` : ''}
+            ${c.hn_mentions > 0 ? `<span class="signal-pill hn">${c.hn_mentions} HN</span>` : ''}
+            ${c.wiki_monthly_views > 0 ? `<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>` : ''}
+            ${c.patents_count > 0 ? `<span class="signal-pill patents">${c.patents_count} patents</span>` : ''}
+            ${c.ph_launches && c.ph_launches.length > 0 ? `<span class="signal-pill ph">Product Hunt</span>` : ''}
+            ${c.papers_count > 0 ? `<span class="signal-pill papers">${c.papers_count} papers</span>` : ''}
         </div>` : ''}
         ${c.secretSauce ? `<div class="card-secret-sauce">
             <span class="sauce-icon">🔥</span>
@@ -4359,6 +4436,69 @@ function generateAccordion(c) {
                     ${n.url ? `<a href="${n.url}" target="_blank" class="news-headline-link">${n.headline}</a>` : `<span class="news-headline-link">${n.headline}</span>`}
                     <div class="news-meta">${n.source ? n.source + ' · ' : ''}${n.date || ''}</div>
                 </div>`).join('')}
+            </div>
+        </div>
+        ` : ''}
+        ${c.hn_mentions > 0 ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#ff6600">&#x1F525; Hacker News (${c.hn_mentions.toLocaleString()} mentions)</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                ${c.hn_top_story ? `<div class="news-item"><a href="${c.hn_top_story.url}" target="_blank" class="news-headline-link">${c.hn_top_story.title}</a><div class="news-meta">${c.hn_top_story.points} points${c.hn_top_story.date ? ' \u00b7 ' + c.hn_top_story.date : ''}</div></div>` : ''}
+                <a href="https://hn.algolia.com/?q=%22${encodeURIComponent(c.name)}%22&type=story" target="_blank" class="accordion-link">Search Hacker News \u2197</a>
+            </div>
+        </div>
+        ` : ''}
+        ${c.wiki_monthly_views > 0 && c.wiki_title ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#60a5fa">&#x1F4D6; Wikipedia (${c.wiki_monthly_views.toLocaleString()} views/mo)</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul><li>${c.wiki_monthly_views.toLocaleString()} average monthly page views</li></ul>
+                <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(c.wiki_title.replace(/ /g, '_'))}" target="_blank" class="accordion-link">View Wikipedia Article \u2197</a>
+            </div>
+        </div>
+        ` : ''}
+        ${c.patents_count > 0 ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#a855f7">&#x1F4DC; Patents (${c.patents_count.toLocaleString()})</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    ${(c.patents_recent || []).map(p => `<li>${p.title}${p.date ? ' \u2014 ' + p.date : ''}${p.number ? ' (' + p.number + ')' : ''}</li>`).join('')}
+                </ul>
+                <a href="https://patentsview.org/search?q=${encodeURIComponent(c.name)}" target="_blank" class="accordion-link">View on PatentsView \u2197</a>
+            </div>
+        </div>
+        ` : ''}
+        ${c.ph_launches && c.ph_launches.length > 0 ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#da5938">&#x1F680; Product Hunt (${c.ph_launches.length} launch${c.ph_launches.length > 1 ? 'es' : ''})</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                ${c.ph_launches.slice(0, 5).map(p => `<div class="news-item">${p.url ? `<a href="${p.url}" target="_blank" class="news-headline-link">${p.name}</a>` : `<span class="news-headline-link">${p.name}</span>`}<div class="news-meta">\u25B2 ${p.votes} votes${p.date ? ' \u00b7 ' + p.date : ''}${p.tagline ? ' \u00b7 ' + p.tagline : ''}</div></div>`).join('')}
+            </div>
+        </div>
+        ` : ''}
+        ${c.papers_count > 0 ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#22c55e">&#x1F4DA; Academic Papers (${c.papers_count.toLocaleString()})</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    ${(c.papers_recent || []).map(p => `<li>${p.doi ? `<a href="${p.doi}" target="_blank" style="color:var(--text);text-decoration:none">${p.title}</a>` : p.title} <span style="color:var(--text-dim);font-size:11px">${p.cited_by} citations${p.year ? ' \u00b7 ' + p.year : ''}</span></li>`).join('')}
+                </ul>
+                <a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(c.name)}" target="_blank" class="accordion-link">View on OpenAlex \u2197</a>
             </div>
         </div>
         ` : ''}
@@ -5162,7 +5302,10 @@ function exportCSV(source) {
                 c.investors, c.hq, c.customers,
                 getCategoryLabel(c.category), getCategoryLabel(c.category, true),
                 c.status, c.acquiredBy,
-                ...(c.leadership || []).map(l => l.name)
+                ...(c.leadership || []).map(l => l.name),
+                ...(c.patents_recent || []).map(p => p.title),
+                ...(c.papers_recent || []).map(p => p.title),
+                ...(c.ph_launches || []).map(p => p.name),
             ].filter(Boolean).join(' ').toLowerCase();
         });
         console.log('[AI Book] Loaded ' + companies.length + ' companies from JSON');

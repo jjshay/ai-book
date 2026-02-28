@@ -4,6 +4,7 @@ const { runDailyUpdate } = require('./updater');
 const { getUpdateHistory, updateCompaniesJson } = require('./github');
 const { enrichGitHubIncremental, loadCompanies, saveCompaniesLocal } = require('./enrich-apis');
 const { refreshNewsRSS } = require('./enrich-news');
+const { enrichAll: enrichSignals } = require('./enrich-signals');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -40,7 +41,7 @@ app.post('/trigger', async (req, res) => {
 
     // Run signal enrichment after main update
     const signals = await runSignalEnrichment();
-    console.log(`[Update] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news`);
+    console.log(`[Update] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news, ${signals.signalCount} signals`);
   } catch (error) {
     console.error('[Update] Failed:', error.message);
     updateLogs.push({ timestamp: new Date().toISOString(), error: error.message });
@@ -147,10 +148,10 @@ app.get('/dashboard', (req, res) => {
 </html>`);
 });
 
-// Run signal enrichment (GitHub + News) after main update
+// Run signal enrichment (GitHub + News + 5 new sources) after main update
 async function runSignalEnrichment() {
   const companies = await loadCompanies();
-  let ghCount = 0, newsCount = 0;
+  let ghCount = 0, newsCount = 0, signalCount = 0;
 
   try {
     ghCount = await enrichGitHubIncremental(companies);
@@ -164,16 +165,22 @@ async function runSignalEnrichment() {
     console.error('[Signal] News enrichment error:', err.message);
   }
 
-  if (ghCount + newsCount > 0) {
+  try {
+    signalCount = await enrichSignals(companies);
+  } catch (err) {
+    console.error('[Signal] Signal enrichment error:', err.message);
+  }
+
+  if (ghCount + newsCount + signalCount > 0) {
     saveCompaniesLocal(companies);
     if (process.env.CI || process.env.GITHUB_TOKEN) {
       await updateCompaniesJson(companies, [
-        { action: 'signal-enrichment', company: `${ghCount} GitHub + ${newsCount} news updates` },
+        { action: 'signal-enrichment', company: `${ghCount} GitHub + ${newsCount} news + ${signalCount} signals` },
       ]);
     }
   }
 
-  return { ghCount, newsCount };
+  return { ghCount, newsCount, signalCount };
 }
 
 // Schedule daily update at 6:00 AM UTC
@@ -187,7 +194,7 @@ cron.schedule('0 6 * * *', async () => {
     // Run signal enrichment after main update
     console.log('[Cron] Starting signal enrichment...');
     const signals = await runSignalEnrichment();
-    console.log(`[Cron] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news`);
+    console.log(`[Cron] Signals: ${signals.ghCount} GitHub, ${signals.newsCount} news, ${signals.signalCount} signals`);
   } catch (error) {
     console.error('[Cron] Update failed:', error.message);
     updateLogs.push({ timestamp: new Date().toISOString(), error: error.message });
