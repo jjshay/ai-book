@@ -105,21 +105,52 @@ async function enrichHN(companies, force = false) {
 // ========== 2. WIKIPEDIA PAGE VIEWS ==========
 
 async function findWikiTitle(companyName) {
-  const query = encodeURIComponent(`${companyName} artificial intelligence company`);
-  const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&srlimit=1&origin=*`;
+  // Step 1: Try exact title match via opensearch (most accurate)
+  const exactUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(companyName)}&limit=5&format=json&origin=*`;
   try {
-    const res = await fetch(url, {
+    const res = await fetch(exactUrl, {
       headers: { 'User-Agent': 'AI-Book-Tracker/1.0 (jjshay@gmail.com)' },
     });
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (data.query?.search?.length > 0) {
-      return data.query.search[0].title;
+    if (res.ok) {
+      const data = await res.json();
+      // data[1] is array of title strings
+      const titles = data[1] || [];
+      const nameLower = companyName.toLowerCase();
+      // Look for a title that closely matches the company name
+      for (const title of titles) {
+        const titleLower = title.toLowerCase();
+        if (titleLower === nameLower ||
+            titleLower === nameLower + ' (company)' ||
+            titleLower === nameLower + ', inc.' ||
+            titleLower.startsWith(nameLower + ' (') ||
+            titleLower.replace(/[^a-z0-9]/g, '') === nameLower.replace(/[^a-z0-9]/g, '')) {
+          return title;
+        }
+      }
     }
-    return null;
-  } catch {
-    return null;
-  }
+  } catch { /* fall through */ }
+
+  // Step 2: Try search with "(company)" qualifier
+  const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(companyName + ' (company)')}&format=json&srlimit=3&origin=*`;
+  try {
+    const res = await fetch(searchUrl, {
+      headers: { 'User-Agent': 'AI-Book-Tracker/1.0 (jjshay@gmail.com)' },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const results = data.query?.search || [];
+      const nameLower = companyName.toLowerCase();
+      for (const r of results) {
+        const titleLower = r.title.toLowerCase();
+        // Only accept if the title contains the company name
+        if (titleLower.includes(nameLower) || nameLower.includes(titleLower.replace(/ \(.*\)$/, ''))) {
+          return r.title;
+        }
+      }
+    }
+  } catch { /* fall through */ }
+
+  return null;
 }
 
 async function fetchWikiPageviews(title) {
@@ -190,27 +221,24 @@ async function enrichWikipedia(companies, force = false) {
 // ========== 3. USPTO PATENTS (PatentsView API) ==========
 
 async function fetchPatents(companyName) {
-  const url = 'https://api.patentsview.org/patents/query';
-  const body = JSON.stringify({
-    q: { _contains: { assignee_organization: companyName } },
-    f: ['patent_title', 'patent_date', 'patent_number'],
-    o: { per_page: 5, page: 1 },
-    s: [{ patent_date: 'desc' }],
-  });
+  // PatentsView v1 is discontinued (410). Use the new search.patentsview.org API.
+  const q = JSON.stringify({ _contains: { "assignees.assignee_organization": companyName } });
+  const f = 'patent_id,patent_title,patent_date,patent_number';
+  const s = JSON.stringify([{ patent_date: "desc" }]);
+  const o = JSON.stringify({ size: 5 });
+  const url = `https://search.patentsview.org/api/v1/patent/?q=${encodeURIComponent(q)}&f=${encodeURIComponent(f)}&s=${encodeURIComponent(s)}&o=${encodeURIComponent(o)}`;
 
   try {
     const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body,
+      headers: process.env.PATENTSVIEW_API_KEY ? { 'X-Api-Key': process.env.PATENTSVIEW_API_KEY } : {},
     });
     if (!res.ok) return null;
     const data = await res.json();
-    const count = data.total_patent_count || 0;
+    const count = data.total_hits || 0;
     const recent = (data.patents || []).slice(0, 3).map(p => ({
       title: p.patent_title,
       date: p.patent_date,
-      number: p.patent_number,
+      number: p.patent_number || p.patent_id,
     }));
     return { count, recent };
   } catch {
@@ -256,48 +284,27 @@ async function enrichPatents(companies, force = false) {
 // ========== 4. PRODUCT HUNT ==========
 
 async function fetchProductHunt(companyName) {
-  // Use the Product Hunt website search — public, no auth needed
-  const query = encodeURIComponent(companyName);
-  const url = `https://www.producthunt.com/search/posts?q=${query}`;
-  try {
-    // Use the PH API v2 alternatives endpoint (public)
-    const apiUrl = `https://www.producthunt.com/frontend/graphql`;
-    const body = JSON.stringify({
-      operationName: 'SearchPostsQuery',
-      variables: { query: companyName, first: 5 },
-      query: `query SearchPostsQuery($query: String!, $first: Int) {
-        search(query: $query, type: POST, first: $first) {
-          edges {
-            node {
-              ... on Post {
-                name
-                tagline
-                votesCount
-                slug
-                createdAt
-              }
-            }
-          }
-        }
-      }`,
-    });
+  // Product Hunt's frontend GraphQL is Cloudflare-protected.
+  // Use their public API v2 with a developer token if available,
+  // otherwise skip gracefully.
+  const token = process.env.PH_TOKEN;
+  if (!token) return [];
 
-    const res = await fetch(apiUrl, {
+  try {
+    const res = await fetch('https://api.producthunt.com/v2/api/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'AI-Book-Tracker/1.0',
+        'Authorization': `Bearer ${token}`,
       },
-      body,
+      body: JSON.stringify({
+        query: `{ posts(search: "${companyName.replace(/"/g, '\\"')}", first: 5) { edges { node { name tagline votesCount slug createdAt } } } }`,
+      }),
     });
 
-    if (!res.ok) {
-      // Fallback: try scraping the search results page
-      return await fetchProductHuntFallback(companyName);
-    }
-
+    if (!res.ok) return [];
     const data = await res.json();
-    const edges = data?.data?.search?.edges;
+    const edges = data?.data?.posts?.edges;
     if (!edges || edges.length === 0) return [];
 
     return edges
@@ -310,14 +317,8 @@ async function fetchProductHunt(companyName) {
         url: e.node.slug ? `https://www.producthunt.com/posts/${e.node.slug}` : null,
       }));
   } catch {
-    return await fetchProductHuntFallback(companyName);
+    return [];
   }
-}
-
-async function fetchProductHuntFallback(companyName) {
-  // Simple fallback — just mark as attempted, no data
-  // PH GraphQL may require auth; we gracefully degrade
-  return [];
 }
 
 async function enrichProductHunt(companies, force = false) {
@@ -350,16 +351,44 @@ async function enrichProductHunt(companies, force = false) {
 
 // ========== 5. OPENALEX ACADEMIC PAPERS ==========
 
-async function fetchOpenAlex(companyName) {
-  const encoded = encodeURIComponent(companyName);
-  const url = `https://api.openalex.org/works?filter=authorships.institutions.display_name:${encoded}&sort=cited_by_count:desc&per_page=5&mailto=jjshay@gmail.com`;
+async function findOpenAlexInstitution(companyName) {
+  // Find the OpenAlex institution ID for the company
+  const url = `https://api.openalex.org/institutions?search=${encodeURIComponent(companyName)}&per_page=5&mailto=jjshay@gmail.com`;
   try {
     const res = await fetch(url, {
       headers: { 'User-Agent': 'AI-Book-Tracker/1.0 (jjshay@gmail.com)' },
     });
     if (!res.ok) return null;
     const data = await res.json();
-    const count = data.meta?.count || 0;
+    const results = data.results || [];
+    const nameLower = companyName.toLowerCase();
+    // Find best match — prefer exact or close name match with works > 0
+    for (const inst of results) {
+      const instLower = (inst.display_name || '').toLowerCase();
+      if ((instLower.includes(nameLower) || nameLower.includes(instLower)) && inst.works_count > 0) {
+        return { id: inst.id?.split('/')?.pop(), works_count: inst.works_count };
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchOpenAlex(companyName) {
+  // Step 1: Find institution
+  const inst = await findOpenAlexInstitution(companyName);
+  if (!inst || !inst.id) return null;
+
+  // Step 2: Get top works by that institution
+  const url = `https://api.openalex.org/works?filter=authorships.institutions.id:${inst.id}&sort=cited_by_count:desc&per_page=5&mailto=jjshay@gmail.com`;
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'AI-Book-Tracker/1.0 (jjshay@gmail.com)' },
+    });
+    if (!res.ok) return { count: inst.works_count, recent: [] };
+    const data = await res.json();
+    const count = data.meta?.count || inst.works_count;
     const recent = (data.results || []).slice(0, 3).map(w => ({
       title: w.title || 'Untitled',
       year: w.publication_year || null,
@@ -368,7 +397,7 @@ async function fetchOpenAlex(companyName) {
     }));
     return { count, recent };
   } catch {
-    return null;
+    return { count: inst.works_count, recent: [] };
   }
 }
 
@@ -383,7 +412,7 @@ async function enrichOpenAlex(companies, force = false) {
     }
 
     const data = await fetchOpenAlex(c.name);
-    await sleep(SLEEP_MS);
+    await sleep(SLEEP_MS * 2); // 2 API calls per company
 
     if (data) {
       c.papers_count = data.count;
