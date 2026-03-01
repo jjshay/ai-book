@@ -215,6 +215,104 @@
             cursor: pointer;
         }
 
+        /* Tutorial Overlay */
+        .tutorial-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 500;
+            background: rgba(0,0,0,0.75);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 24px;
+        }
+        .tutorial-overlay.active { display: flex; }
+        .tutorial-container { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .tutorial-card-stack {
+            position: relative;
+            width: 340px;
+            max-width: 90vw;
+            height: 420px;
+        }
+        .tutorial-card {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            touch-action: none;
+            user-select: none;
+        }
+        .tutorial-card.dragging { transition: none; }
+        .tutorial-card h2 {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 16px;
+            text-align: center;
+        }
+        .tutorial-card .tutorial-subtitle {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin: 0 0 14px;
+            line-height: 1.4;
+        }
+        .tutorial-card .tutorial-footer {
+            color: var(--text-dim);
+            font-size: 12px;
+            margin-top: 16px;
+            line-height: 1.4;
+        }
+        .tutorial-steps, .tutorial-sources {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tutorial-steps li, .tutorial-sources li {
+            color: var(--text);
+            font-size: 14px;
+            padding: 8px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            line-height: 1.4;
+        }
+        .tutorial-steps .step-num {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 16px;
+            min-width: 24px;
+        }
+        .tutorial-dots { display: flex; gap: 8px; }
+        .tutorial-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(212,175,55,0.3);
+            transition: background 0.3s;
+        }
+        .tutorial-dot.active { background: var(--gold); }
+        .tutorial-dismiss-hint {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+        .tutorial-link {
+            color: var(--gold);
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
         .header-search {
             flex: 1;
             position: relative;
@@ -545,6 +643,9 @@
         .signal-pill.patents { background: rgba(168,85,247,0.15); color: #a855f7; }
         .signal-pill.ph { background: rgba(218,89,56,0.15); color: #da5938; }
         .signal-pill.papers { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .signal-pill.tranco { background: rgba(251,191,36,0.15); color: #fbbf24; }
+        .signal-pill.appstore { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .signal-pill.packages { background: rgba(239,68,68,0.15); color: #ef4444; }
         .github-commit-velocity {
             color: #22c55e;
             font-weight: 600;
@@ -2551,6 +2652,41 @@
                 </ul>
                 <div style="margin-top:16px;font-size:12px;color:var(--text-dim);line-height:1.5">Over 70 reports and counting on AI.<br><a href="https://jjshay.com" target="_blank" style="color:var(--gold);font-weight:700;text-decoration:none">jjshay.com</a> — See all projects</div>
                 <button class="app-info-close" onclick="closeAppInfo()">Got it</button>
+                <br><a class="tutorial-link" onclick="closeAppInfo();showTutorial()">Show tutorial again</a>
+            </div>
+        </div>
+
+        <!-- TUTORIAL OVERLAY -->
+        <div class="tutorial-overlay" id="tutorial-overlay" onclick="if(event.target===this)closeTutorial()">
+            <div class="tutorial-container">
+                <div class="tutorial-card-stack" id="tutorial-card-stack">
+                    <div class="tutorial-card" id="tutorial-card-2" style="z-index:1">
+                        <h2>DATA SOURCES</h2>
+                        <p class="tutorial-subtitle">Each company is enriched with live data from:</p>
+                        <ul class="tutorial-sources">
+                            <li>⭐ <strong>GitHub</strong> — top repos, star counts, commit activity</li>
+                            <li>📰 <strong>Google News</strong> — latest headlines & press coverage</li>
+                            <li>📄 <strong>SEC EDGAR</strong> — public filings for listed companies</li>
+                            <li>🌐 <strong>Wikidata</strong> — founding date, HQ, company details</li>
+                        </ul>
+                        <p class="tutorial-footer">Tap the ▼ button on any card to expand details</p>
+                    </div>
+                    <div class="tutorial-card" id="tutorial-card-1" style="z-index:2">
+                        <h2>HOW TO USE</h2>
+                        <ul class="tutorial-steps">
+                            <li><span class="step-num">1</span> Filter by category, funding tier, or search by name</li>
+                            <li><span class="step-num">2</span> Tap a company card to enter swipe mode</li>
+                            <li><span class="step-num">3</span> Swipe right to save, left to pass</li>
+                            <li><span class="step-num">4</span> Swipe up to go back to the list</li>
+                            <li><span class="step-num">5</span> Open Saved to review & email your list</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tutorial-dots">
+                    <span class="tutorial-dot active" id="tutorial-dot-1"></span>
+                    <span class="tutorial-dot" id="tutorial-dot-2"></span>
+                </div>
+                <div class="tutorial-dismiss-hint">Swipe to dismiss</div>
             </div>
         </div>
 
@@ -3224,6 +3360,91 @@ function closeAppInfo() {
     document.getElementById('app-info-popup').classList.remove('active');
 }
 
+// ========== TUTORIAL ==========
+function showTutorial() {
+    const overlay = document.getElementById('tutorial-overlay');
+    const card1 = document.getElementById('tutorial-card-1');
+    const card2 = document.getElementById('tutorial-card-2');
+    // Reset cards
+    card1.style.transform = ''; card1.style.opacity = '1'; card1.style.zIndex = '2';
+    card1.classList.remove('dragging');
+    card2.style.transform = ''; card2.style.opacity = '1'; card2.style.zIndex = '1';
+    card2.classList.remove('dragging');
+    document.getElementById('tutorial-dot-1').classList.add('active');
+    document.getElementById('tutorial-dot-2').classList.remove('active');
+    overlay.classList.add('active');
+
+    setupTutorialSwipe(card1, function() {
+        // Card 1 dismissed — promote card 2
+        card2.style.zIndex = '2';
+        document.getElementById('tutorial-dot-1').classList.remove('active');
+        document.getElementById('tutorial-dot-2').classList.add('active');
+        localStorage.setItem('ai-book-tutorial-seen', '1');
+        setupTutorialSwipe(card2, function() {
+            // Card 2 dismissed — close tutorial
+            setTimeout(function() { overlay.classList.remove('active'); }, 300);
+        });
+    });
+}
+
+function setupTutorialSwipe(card, onDismiss) {
+    var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+
+    function onStart(e) {
+        var pt = e.touches ? e.touches[0] : e;
+        startX = pt.clientX; startY = pt.clientY; dx = 0; dy = 0;
+        dragging = true;
+        card.classList.add('dragging');
+    }
+    function onMove(e) {
+        if (!dragging) return;
+        var pt = e.touches ? e.touches[0] : e;
+        dx = pt.clientX - startX;
+        dy = pt.clientY - startY;
+        card.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + (dx * 0.04) + 'deg)';
+        e.preventDefault();
+    }
+    function onEnd() {
+        if (!dragging) return;
+        dragging = false;
+        card.classList.remove('dragging');
+        if (Math.abs(dx) > 80 || dy < -80) {
+            // Fly off in drag direction
+            var flyX = dx > 0 ? 600 : dx < -10 ? -600 : dx * 4;
+            var flyY = dy < -80 ? -800 : dy * 2;
+            card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            card.style.transform = 'translate(' + flyX + 'px,' + flyY + 'px) rotate(' + (dx * 0.1) + 'deg)';
+            card.style.opacity = '0';
+            cleanup();
+            setTimeout(onDismiss, 300);
+        } else {
+            card.style.transition = 'transform 0.3s ease';
+            card.style.transform = '';
+            setTimeout(function() { card.classList.remove('dragging'); }, 300);
+        }
+    }
+    function cleanup() {
+        card.removeEventListener('touchstart', onStart);
+        card.removeEventListener('touchmove', onMove);
+        card.removeEventListener('touchend', onEnd);
+        card.removeEventListener('mousedown', onStart);
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onEnd);
+    }
+    // Remove any prior listeners by re-cloning (simple approach)
+    card.addEventListener('touchstart', onStart, {passive: true});
+    card.addEventListener('touchmove', onMove, {passive: false});
+    card.addEventListener('touchend', onEnd);
+    card.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+}
+
+function closeTutorial() {
+    document.getElementById('tutorial-overlay').classList.remove('active');
+    localStorage.setItem('ai-book-tutorial-seen', '1');
+}
+
 // ========== INIT ==========
 function dismissSplash() {
     const splash = document.getElementById('splash');
@@ -3252,7 +3473,9 @@ function init() {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
         if (e.key === 'Escape') {
-            if (document.getElementById('app-info-popup').classList.contains('active')) {
+            if (document.getElementById('tutorial-overlay').classList.contains('active')) {
+                closeTutorial();
+            } else if (document.getElementById('app-info-popup').classList.contains('active')) {
                 closeAppInfo();
             } else if (document.getElementById('saved-modal').classList.contains('active')) {
                 closeSaved();
@@ -3507,7 +3730,7 @@ function renderMiniCard(c) {
     const product = searchQuery ? highlightMatch(c.product || '', searchQuery) : (c.product || '');
 
     // Build accordion sections
-    const hasAccordion = c.github_org || (c.recentNews && c.recentNews.length > 0) || c.sec_cik || c.wikidata_id || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0;
+    const hasAccordion = c.github_org || (c.recentNews && c.recentNews.length > 0) || c.sec_cik || c.wikidata_id || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0 || c.tranco_rank || c.app_rating || c.npm_downloads || c.pypi_downloads;
     let accHtml = '';
     if (hasAccordion) {
         accHtml = '<div class="mini-card-accordion">';
@@ -3523,6 +3746,9 @@ function renderMiniCard(c) {
         if (c.patents_count > 0) pills.push(`<span class="signal-pill patents">${c.patents_count} patents</span>`);
         if (c.ph_launches && c.ph_launches.length > 0) pills.push(`<span class="signal-pill ph">Product Hunt</span>`);
         if (c.papers_count > 0) pills.push(`<span class="signal-pill papers">${c.papers_count} papers</span>`);
+        if (c.tranco_rank) pills.push(`<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>`);
+        if (c.app_rating) pills.push(`<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>`);
+        if (c.npm_downloads || c.pypi_downloads) pills.push(`<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>`);
         if (pills.length > 0) accHtml += `<div class="mini-acc-pills">${pills.join('')}</div>`;
 
         // GitHub repos
@@ -3608,6 +3834,30 @@ function renderMiniCard(c) {
                 });
             }
             accHtml += `<a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(c.name)}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on OpenAlex \u2197</a></div>`;
+        }
+
+        // Tranco Web Ranking
+        if (c.tranco_rank) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#fbbf24">&#x1F310; Web Traffic</div>';
+            accHtml += `<div class="mini-acc-item">Tranco rank: #${c.tranco_rank.toLocaleString()} of top 1M sites</div>`;
+            if (c.tranco_domain) accHtml += `<div class="mini-acc-item" style="color:var(--text-dim);font-size:10px">${c.tranco_domain}</div>`;
+            accHtml += '</div>';
+        }
+
+        // App Store
+        if (c.app_rating) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#3b82f6">&#x1F4F1; App Store</div>';
+            accHtml += `<div class="mini-acc-item">${c.app_name || c.name} \u2014 ${c.app_rating}\u2605 (${(c.app_rating_count || 0).toLocaleString()} ratings)</div>`;
+            if (c.app_url) accHtml += `<a href="${c.app_url}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View in App Store \u2197</a>`;
+            accHtml += '</div>';
+        }
+
+        // npm/PyPI Downloads
+        if (c.npm_downloads || c.pypi_downloads) {
+            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#ef4444">&#x1F4E6; Package Downloads</div>';
+            if (c.npm_downloads) accHtml += `<div class="mini-acc-item">npm: ${c.npm_downloads.toLocaleString()}/mo <span style="color:var(--text-dim);font-size:10px">(${c.npm_package})</span></div>`;
+            if (c.pypi_downloads) accHtml += `<div class="mini-acc-item">PyPI: ${c.pypi_downloads.toLocaleString()}/mo <span style="color:var(--text-dim);font-size:10px">(${c.pypi_package})</span></div>`;
+            accHtml += '</div>';
         }
 
         accHtml += '</div>';
@@ -4224,7 +4474,7 @@ function createCard(c, isCurrent) {
             <span class="card-funding-label">Investment Raised</span>
             <span class="card-funding-value">${c.funding || 'N/A'}</span>
         </div>
-        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0) || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0) ? `<div class="card-signals">
+        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0) || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0 || c.tranco_rank || c.app_rating || c.npm_downloads || c.pypi_downloads) ? `<div class="card-signals">
             ${c.github_total_stars > 0 ? `<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>` : ''}
             ${c.github_weekly_commits ? `<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>` : ''}
             ${c.recentNews && c.recentNews.length > 0 ? `<span class="signal-pill news">In the News</span>` : ''}
@@ -4233,6 +4483,9 @@ function createCard(c, isCurrent) {
             ${c.patents_count > 0 ? `<span class="signal-pill patents">${c.patents_count} patents</span>` : ''}
             ${c.ph_launches && c.ph_launches.length > 0 ? `<span class="signal-pill ph">Product Hunt</span>` : ''}
             ${c.papers_count > 0 ? `<span class="signal-pill papers">${c.papers_count} papers</span>` : ''}
+            ${c.tranco_rank ? `<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>` : ''}
+            ${c.app_rating ? `<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>` : ''}
+            ${(c.npm_downloads || c.pypi_downloads) ? `<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>` : ''}
         </div>` : ''}
         ${c.secretSauce ? `<div class="card-secret-sauce">
             <span class="sauce-icon">🔥</span>
@@ -4495,6 +4748,46 @@ function generateAccordion(c) {
                     ${(c.papers_recent || []).map(p => `<li>${p.doi ? `<a href="${p.doi}" target="_blank" style="color:var(--text);text-decoration:none">${p.title}</a>` : p.title} <span style="color:var(--text-dim);font-size:11px">${p.cited_by} citations${p.year ? ' \u00b7 ' + p.year : ''}</span></li>`).join('')}
                 </ul>
                 <a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(c.name)}" target="_blank" class="accordion-link">View on OpenAlex \u2197</a>
+            </div>
+        </div>
+        ` : ''}
+        ${c.tranco_rank ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#fbbf24">&#x1F310; Web Traffic (Tranco #${c.tranco_rank.toLocaleString()})</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul><li>Ranked #${c.tranco_rank.toLocaleString()} of top 1 million websites globally</li></ul>
+                ${c.tranco_domain ? `<a href="https://${c.tranco_domain}" target="_blank" class="accordion-link">Visit ${c.tranco_domain} \u2197</a>` : ''}
+            </div>
+        </div>
+        ` : ''}
+        ${c.app_rating ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#3b82f6">&#x1F4F1; App Store (${c.app_rating}\u2605)</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    <li>${c.app_name || c.name} \u2014 ${c.app_rating} stars from ${(c.app_rating_count || 0).toLocaleString()} ratings</li>
+                </ul>
+                ${c.app_url ? `<a href="${c.app_url}" target="_blank" class="accordion-link">View in App Store \u2197</a>` : ''}
+            </div>
+        </div>
+        ` : ''}
+        ${(c.npm_downloads || c.pypi_downloads) ? `
+        <div class="accordion-item" onclick="toggleAccordion(event)">
+            <div class="accordion-header">
+                <span style="color:#ef4444">&#x1F4E6; Package Downloads (${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))}/mo)</span>
+                <span class="accordion-icon">\u25BC</span>
+            </div>
+            <div class="accordion-content">
+                <ul>
+                    ${c.npm_downloads ? `<li>npm: ${c.npm_downloads.toLocaleString()} downloads/mo (${c.npm_package})</li>` : ''}
+                    ${c.pypi_downloads ? `<li>PyPI: ${c.pypi_downloads.toLocaleString()} downloads/mo (${c.pypi_package})</li>` : ''}
+                </ul>
             </div>
         </div>
         ` : ''}
@@ -5302,11 +5595,16 @@ function exportCSV(source) {
                 ...(c.patents_recent || []).map(p => p.title),
                 ...(c.papers_recent || []).map(p => p.title),
                 ...(c.ph_launches || []).map(p => p.name),
+                c.npm_package, c.pypi_package, c.app_name,
             ].filter(Boolean).join(' ').toLowerCase();
         });
         console.log('[AI Book] Loaded ' + companies.length + ' companies from JSON');
         init();
         setTimeout(dismissSplash, 1200);
+        // Show tutorial on first visit, after splash finishes
+        if (!localStorage.getItem('ai-book-tutorial-seen')) {
+            setTimeout(showTutorial, 1800);
+        }
         // Register service worker for PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(() => {});

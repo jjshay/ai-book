@@ -1,15 +1,19 @@
 // Signal Enrichment Script for AI Book
-// Enriches companies.json with 5 free data sources:
+// Enriches companies.json with 8 free data sources:
 //   1. Hacker News mentions (HN Algolia API)
 //   2. Wikipedia page views (Wikimedia REST API)
-//   3. USPTO patents (PatentsView API)
-//   4. Product Hunt launches (PH website search)
+//   3. USPTO patents (PatentsView API — needs API key)
+//   4. Product Hunt launches (PH API — needs token)
 //   5. OpenAlex academic papers (OpenAlex API)
+//   6. Tranco web traffic ranking (CSV download)
+//   7. iTunes App Store ratings (Apple Search API)
+//   8. npm + PyPI package downloads
 //
 // Usage:
-//   node enrich-signals.js                        # All 5 sources
-//   node enrich-signals.js --source=hn            # Single source
-//   node enrich-signals.js --source=wiki --force  # Force refresh all
+//   node enrich-signals.js                           # All sources
+//   node enrich-signals.js --source=hn               # Single source
+//   node enrich-signals.js --source=tranco --force   # Force refresh all
+//   Valid sources: hn, wiki, patents, ph, papers, tranco, itunes, packages
 
 const fs = require('fs');
 const path = require('path');
@@ -436,6 +440,249 @@ async function enrichOpenAlex(companies, force = false) {
   return enriched;
 }
 
+// ========== 6. TRANCO WEB RANKING ==========
+
+let _trancoMap = null;
+
+async function loadTrancoList() {
+  if (_trancoMap) return _trancoMap;
+  console.log('[Tranco] Downloading latest top-1M list...');
+  // Get latest list ID
+  const metaRes = await fetch('https://tranco-list.eu/api/lists/date/latest');
+  if (!metaRes.ok) throw new Error('Failed to fetch Tranco list metadata');
+  const meta = await metaRes.json();
+
+  // Download CSV
+  const csvRes = await fetch(meta.download);
+  if (!csvRes.ok) throw new Error('Failed to download Tranco CSV');
+  const csv = await csvRes.text();
+
+  // Parse into map: domain -> rank
+  _trancoMap = new Map();
+  csv.split('\n').forEach(line => {
+    const [rank, domain] = line.split(',');
+    if (domain) _trancoMap.set(domain.trim().toLowerCase(), parseInt(rank));
+  });
+  console.log(`[Tranco] Loaded ${_trancoMap.size} domains`);
+  return _trancoMap;
+}
+
+async function enrichTranco(companies, force = false) {
+  console.log('\n[Tranco] Starting web ranking enrichment...');
+  const trancoMap = await loadTrancoList();
+  let enriched = 0, skipped = 0, noResults = 0;
+
+  for (const c of companies) {
+    if (!force && c.hasOwnProperty('tranco_rank') && !isStale(c.tranco_enriched_at, STALE_DAYS)) {
+      skipped++;
+      continue;
+    }
+
+    if (!c.website) { noResults++; continue; }
+    const domain = c.website.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '');
+    const rank = trancoMap.get(domain) || null;
+
+    c.tranco_rank = rank;
+    c.tranco_domain = domain;
+    c.tranco_enriched_at = new Date().toISOString();
+
+    if (rank) {
+      enriched++;
+      console.log(`  [+] ${c.name} -> #${rank.toLocaleString()} (${domain})`);
+    } else {
+      noResults++;
+    }
+  }
+
+  console.log(`[Tranco] Done: ${enriched} ranked, ${skipped} skipped, ${noResults} not in top 1M`);
+  return enriched;
+}
+
+// ========== 7. ITUNES APP STORE ==========
+
+async function searchiTunes(companyName) {
+  const url = `https://itunes.apple.com/search?term=${encodeURIComponent(companyName)}&entity=software&limit=5&country=us`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data.results || data.results.length === 0) return null;
+
+    // Find the best match — prefer exact seller name match
+    const nameLower = companyName.toLowerCase();
+    const match = data.results.find(r =>
+      (r.sellerName || '').toLowerCase().includes(nameLower) ||
+      (r.trackName || '').toLowerCase().includes(nameLower) ||
+      nameLower.includes((r.sellerName || '').toLowerCase().replace(/,? ?(inc|llc|ltd|corp)\.?$/i, '').trim())
+    ) || null;
+
+    if (!match) return null;
+    return {
+      app_name: match.trackName,
+      rating: Math.round((match.averageUserRating || 0) * 100) / 100,
+      rating_count: match.userRatingCount || 0,
+      app_url: match.trackViewUrl || null,
+      seller: match.sellerName || null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function enrichiTunes(companies, force = false) {
+  console.log('\n[iTunes] Starting App Store enrichment...');
+  let enriched = 0, skipped = 0, noResults = 0;
+
+  for (const c of companies) {
+    if (!force && c.hasOwnProperty('app_rating') && !isStale(c.app_enriched_at, STALE_DAYS)) {
+      skipped++;
+      continue;
+    }
+
+    const data = await searchiTunes(c.name);
+    await sleep(SLEEP_MS * 2); // iTunes is sensitive to rate
+
+    if (data) {
+      c.app_name = data.app_name;
+      c.app_rating = data.rating;
+      c.app_rating_count = data.rating_count;
+      c.app_url = data.app_url;
+      c.app_seller = data.seller;
+      c.app_enriched_at = new Date().toISOString();
+      enriched++;
+      console.log(`  [+] ${c.name} -> ${data.app_name} (${data.rating} stars, ${data.rating_count.toLocaleString()} ratings)`);
+    } else {
+      c.app_rating = null;
+      c.app_enriched_at = new Date().toISOString();
+      noResults++;
+    }
+  }
+
+  console.log(`[iTunes] Done: ${enriched} with apps, ${skipped} skipped, ${noResults} no match`);
+  return enriched;
+}
+
+// ========== 8. NPM + PYPI DOWNLOADS ==========
+
+// Map company names to their known npm/pypi package names
+const PACKAGE_MAP = {
+  'Anthropic': { npm: 'anthropic', pypi: 'anthropic' },
+  'OpenAI': { npm: 'openai', pypi: 'openai' },
+  'LangChain': { npm: 'langchain', pypi: 'langchain' },
+  'LlamaIndex': { npm: 'llamaindex', pypi: 'llama-index' },
+  'Cohere': { npm: 'cohere-ai', pypi: 'cohere' },
+  'Hugging Face': { npm: null, pypi: 'transformers' },
+  'Mistral AI': { npm: '@mistralai/mistralai', pypi: 'mistralai' },
+  'AI21 Labs': { npm: 'ai21', pypi: 'ai21' },
+  'Pinecone': { npm: '@pinecone-database/pinecone', pypi: 'pinecone-client' },
+  'Weaviate': { npm: 'weaviate-ts-client', pypi: 'weaviate-client' },
+  'Qdrant': { npm: '@qdrant/js-client-rest', pypi: 'qdrant-client' },
+  'Chroma': { npm: 'chromadb', pypi: 'chromadb' },
+  'Replicate': { npm: 'replicate', pypi: 'replicate' },
+  'Weights & Biases': { npm: null, pypi: 'wandb' },
+  'Dagster': { npm: null, pypi: 'dagster' },
+  'Prefect': { npm: null, pypi: 'prefect' },
+  'Airbyte': { npm: null, pypi: 'airbyte' },
+  'dbt Labs': { npm: null, pypi: 'dbt-core' },
+  'Great Expectations': { npm: null, pypi: 'great-expectations' },
+  'Stability AI': { npm: null, pypi: 'stability-sdk' },
+  'Together AI': { npm: 'together-ai', pypi: 'together' },
+  'Groq': { npm: 'groq-sdk', pypi: 'groq' },
+  'Fireworks AI': { npm: null, pypi: 'fireworks-ai' },
+  'Modal': { npm: null, pypi: 'modal' },
+  'Baseten': { npm: null, pypi: 'truss' },
+  'Lightning AI': { npm: null, pypi: 'lightning' },
+  'Cleanlab': { npm: null, pypi: 'cleanlab' },
+  'Arize AI': { npm: null, pypi: 'arize' },
+  'Deepgram': { npm: '@deepgram/sdk', pypi: 'deepgram-sdk' },
+  'ElevenLabs': { npm: 'elevenlabs', pypi: 'elevenlabs' },
+  'AssemblyAI': { npm: 'assemblyai', pypi: 'assemblyai' },
+  'Clarifai': { npm: 'clarifai', pypi: 'clarifai' },
+  'Vercel': { npm: 'vercel', pypi: null },
+  'Supabase': { npm: '@supabase/supabase-js', pypi: 'supabase' },
+  'Algolia': { npm: 'algoliasearch', pypi: 'algoliasearch' },
+  'Postman': { npm: 'postman-collection', pypi: null },
+  'Zapier': { npm: 'zapier-platform-core', pypi: null },
+  'Intercom': { npm: 'intercom-client', pypi: null },
+  'Twilio': { npm: 'twilio', pypi: 'twilio' },
+  'Stripe': { npm: 'stripe', pypi: 'stripe' },
+  'Plaid': { npm: 'plaid', pypi: 'plaid-python' },
+  'CircleCI': { npm: null, pypi: 'circleci' },
+  'Snyk': { npm: 'snyk', pypi: null },
+  'Cerebras': { npm: null, pypi: 'cerebras-cloud-sdk' },
+  'xAI': { npm: null, pypi: 'xai-sdk' },
+  'Braintrust': { npm: 'braintrust', pypi: 'braintrust' },
+  'Cartesia': { npm: '@cartesia/cartesia-js', pypi: 'cartesia' },
+  'Unstructured': { npm: null, pypi: 'unstructured' },
+};
+
+async function fetchNpmDownloads(pkg) {
+  try {
+    const res = await fetch(`https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(pkg)}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.downloads || null;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchPypiDownloads(pkg) {
+  try {
+    const res = await fetch(`https://pypistats.org/api/packages/${encodeURIComponent(pkg)}/recent`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data?.last_month || null;
+  } catch {
+    return null;
+  }
+}
+
+async function enrichPackages(companies, force = false) {
+  console.log('\n[Packages] Starting npm/PyPI download enrichment...');
+  let enriched = 0, skipped = 0, noResults = 0;
+
+  for (const c of companies) {
+    const pkgs = PACKAGE_MAP[c.name];
+    if (!pkgs) { noResults++; continue; }
+
+    if (!force && c.hasOwnProperty('npm_downloads') && !isStale(c.pkg_enriched_at, STALE_DAYS)) {
+      skipped++;
+      continue;
+    }
+
+    let npmDl = null, pypiDl = null;
+
+    if (pkgs.npm) {
+      npmDl = await fetchNpmDownloads(pkgs.npm);
+      await sleep(SLEEP_MS);
+    }
+    if (pkgs.pypi) {
+      pypiDl = await fetchPypiDownloads(pkgs.pypi);
+      await sleep(2500); // PyPI rate limit: 30/min
+    }
+
+    c.npm_package = pkgs.npm;
+    c.npm_downloads = npmDl;
+    c.pypi_package = pkgs.pypi;
+    c.pypi_downloads = pypiDl;
+    c.pkg_enriched_at = new Date().toISOString();
+
+    if (npmDl || pypiDl) {
+      enriched++;
+      const parts = [];
+      if (npmDl) parts.push(`npm: ${npmDl.toLocaleString()}`);
+      if (pypiDl) parts.push(`pypi: ${pypiDl.toLocaleString()}`);
+      console.log(`  [+] ${c.name} -> ${parts.join(', ')}`);
+    } else {
+      noResults++;
+    }
+  }
+
+  console.log(`[Packages] Done: ${enriched} with downloads, ${skipped} skipped, ${noResults} no data`);
+  return enriched;
+}
+
 // ========== MAIN ==========
 
 const SOURCE_MAP = {
@@ -444,6 +691,9 @@ const SOURCE_MAP = {
   patents: enrichPatents,
   ph: enrichProductHunt,
   papers: enrichOpenAlex,
+  tranco: enrichTranco,
+  itunes: enrichiTunes,
+  packages: enrichPackages,
 };
 
 async function enrichAll(companies, force = false) {
@@ -506,4 +756,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, SOURCE_MAP };
+module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, enrichTranco, enrichiTunes, enrichPackages, SOURCE_MAP };
