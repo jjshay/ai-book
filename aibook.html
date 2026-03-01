@@ -646,6 +646,7 @@
         .signal-pill.tranco { background: rgba(251,191,36,0.15); color: #fbbf24; }
         .signal-pill.appstore { background: rgba(59,130,246,0.15); color: #3b82f6; }
         .signal-pill.packages { background: rgba(239,68,68,0.15); color: #ef4444; }
+        .signal-pill.yc { background: rgba(255,101,0,0.2); color: #ff6500; }
         .github-commit-velocity {
             color: #22c55e;
             font-weight: 600;
@@ -3749,6 +3750,7 @@ function renderMiniCard(c) {
         if (c.tranco_rank) pills.push(`<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>`);
         if (c.app_rating) pills.push(`<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>`);
         if (c.npm_downloads || c.pypi_downloads) pills.push(`<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>`);
+        if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
         if (pills.length > 0) accHtml += `<div class="mini-acc-pills">${pills.join('')}</div>`;
 
         // GitHub repos
@@ -4486,6 +4488,7 @@ function createCard(c, isCurrent) {
             ${c.tranco_rank ? `<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>` : ''}
             ${c.app_rating ? `<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>` : ''}
             ${(c.npm_downloads || c.pypi_downloads) ? `<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>` : ''}
+            ${c.yc_batch ? `<span class="signal-pill yc">YC ${c.yc_batch}</span>` : ''}
         </div>` : ''}
         ${c.secretSauce ? `<div class="card-secret-sauce">
             <span class="sauce-icon">🔥</span>

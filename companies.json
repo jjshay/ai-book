@@ -5920,7 +5920,9 @@
     "tranco_domain": "ashbyhq.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.514Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:23:31.549Z"
+    "app_enriched_at": "2026-03-01T16:23:31.549Z",
+    "yc_batch": "W19",
+    "yc_url": "https://www.ycombinator.com/companies/ashby"
   },
   {
     "id": 42,
@@ -6072,7 +6074,9 @@
     "tranco_domain": "assemblyai.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.514Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:23:32.204Z"
+    "app_enriched_at": "2026-03-01T16:23:32.204Z",
+    "yc_batch": "S17",
+    "yc_url": "https://www.ycombinator.com/companies/assemblyai"
   },
   {
     "id": 43,
@@ -6343,7 +6347,9 @@
     "tranco_domain": "atomwise.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.514Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:23:33.487Z"
+    "app_enriched_at": "2026-03-01T16:23:33.487Z",
+    "yc_batch": "W15",
+    "yc_url": "https://www.ycombinator.com/companies/atomwise"
   },
   {
     "id": 45,
@@ -8934,7 +8940,9 @@
     "app_rating_count": 0,
     "app_url": "https://apps.apple.com/us/app/bland-ai/id6670348792?uo=4",
     "app_seller": "Isaiah Granet",
-    "app_enriched_at": "2026-03-01T16:23:43.819Z"
+    "app_enriched_at": "2026-03-01T16:23:43.819Z",
+    "yc_batch": "S23",
+    "yc_url": "https://www.ycombinator.com/companies/bland-ai"
   },
   {
     "id": 64,
@@ -10207,7 +10215,9 @@
     "tranco_domain": "brex.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.515Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:23:47.940Z"
+    "app_enriched_at": "2026-03-01T16:23:47.940Z",
+    "yc_batch": "W17",
+    "yc_url": "https://www.ycombinator.com/companies/brex"
   },
   {
     "id": 73,
@@ -23589,7 +23599,9 @@
     "tranco_domain": "deel.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.515Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:24:35.123Z"
+    "app_enriched_at": "2026-03-01T16:24:35.123Z",
+    "yc_batch": "W19",
+    "yc_url": "https://www.ycombinator.com/companies/deel"
   },
   {
     "id": 167,
@@ -23887,7 +23899,9 @@
     "tranco_domain": "deepgram.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.515Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:24:36.100Z"
+    "app_enriched_at": "2026-03-01T16:24:36.100Z",
+    "yc_batch": "W16",
+    "yc_url": "https://www.ycombinator.com/companies/deepgram"
   },
   {
     "id": 169,
@@ -33683,7 +33697,9 @@
     "app_rating_count": 212,
     "app_url": "https://apps.apple.com/us/app/grainlab-film-grain-editor/id6630375395?uo=4",
     "app_seller": "Marvin Krueger",
-    "app_enriched_at": "2026-03-01T16:25:10.037Z"
+    "app_enriched_at": "2026-03-01T16:25:10.037Z",
+    "yc_batch": "W20",
+    "yc_url": "https://www.ycombinator.com/companies/grain"
   },
   {
     "id": 239,
@@ -36138,7 +36154,9 @@
     "tranco_domain": "hightouch.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.520Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:25:18.624Z"
+    "app_enriched_at": "2026-03-01T16:25:18.624Z",
+    "yc_batch": "S19",
+    "yc_url": "https://www.ycombinator.com/companies/hightouch"
   },
   {
     "id": 256,
@@ -39707,7 +39725,9 @@
     "tranco_domain": "ironclad.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.520Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:25:31.596Z"
+    "app_enriched_at": "2026-03-01T16:25:31.596Z",
+    "yc_batch": "S15",
+    "yc_url": "https://www.ycombinator.com/companies/ironclad"
   },
   {
     "id": 281,
@@ -43787,7 +43807,9 @@
     "tranco_domain": "langdock.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.520Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:25:44.808Z"
+    "app_enriched_at": "2026-03-01T16:25:44.808Z",
+    "yc_batch": "S23",
+    "yc_url": "https://www.ycombinator.com/companies/langdock"
   },
   {
     "id": 310,
@@ -51167,7 +51189,9 @@
     "tranco_domain": "mixpanel.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:26:10.307Z"
+    "app_enriched_at": "2026-03-01T16:26:10.307Z",
+    "yc_batch": "S09",
+    "yc_url": "https://www.ycombinator.com/companies/mixpanel"
   },
   {
     "id": 364,
@@ -51559,7 +51583,9 @@
     "tranco_domain": "moderntreasury.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:26:12.093Z"
+    "app_enriched_at": "2026-03-01T16:26:12.093Z",
+    "yc_batch": "S18",
+    "yc_url": "https://www.ycombinator.com/companies/modern-treasury"
   },
   {
     "id": 367,
@@ -51995,7 +52021,9 @@
     "tranco_domain": "moonvalley.ai",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:26:13.612Z"
+    "app_enriched_at": "2026-03-01T16:26:13.612Z",
+    "yc_batch": "W21",
+    "yc_url": "https://www.ycombinator.com/companies/moonvalley"
   },
   {
     "id": 370,
@@ -53846,7 +53874,9 @@
     "tranco_domain": "nanonets.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:26:19.963Z"
+    "app_enriched_at": "2026-03-01T16:26:19.963Z",
+    "yc_batch": "W17",
+    "yc_url": "https://www.ycombinator.com/companies/nanonets"
   },
   {
     "id": 383,
@@ -61606,7 +61636,9 @@
     "tranco_domain": "photoroom.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:26:48.133Z"
+    "app_enriched_at": "2026-03-01T16:26:48.133Z",
+    "yc_batch": "S20",
+    "yc_url": "https://www.ycombinator.com/companies/photoroom"
   },
   {
     "id": 438,
@@ -67725,7 +67757,9 @@
     "tranco_domain": "replicate.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:27:10.000Z"
+    "app_enriched_at": "2026-03-01T16:27:10.000Z",
+    "yc_batch": "W20",
+    "yc_url": "https://www.ycombinator.com/companies/replicate"
   },
   {
     "id": 482,
@@ -67857,7 +67891,9 @@
     "tranco_domain": "replika.ai",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:27:10.440Z"
+    "app_enriched_at": "2026-03-01T16:27:10.440Z",
+    "yc_batch": "W15",
+    "yc_url": "https://www.ycombinator.com/companies/replika"
   },
   {
     "id": 483,
@@ -67995,7 +68031,9 @@
     "tranco_domain": "replit.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.521Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:27:10.873Z"
+    "app_enriched_at": "2026-03-01T16:27:10.873Z",
+    "yc_batch": "W18",
+    "yc_url": "https://www.ycombinator.com/companies/replit"
   },
   {
     "id": 484,
@@ -79030,7 +79068,9 @@
     "tranco_domain": "supabase.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.522Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:27:48.558Z"
+    "app_enriched_at": "2026-03-01T16:27:48.558Z",
+    "yc_batch": "S20",
+    "yc_url": "https://www.ycombinator.com/companies/supabase"
   },
   {
     "id": 562,
@@ -79177,7 +79217,9 @@
     "tranco_domain": "superagent.sh",
     "tranco_enriched_at": "2026-03-01T16:22:59.522Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:27:48.984Z"
+    "app_enriched_at": "2026-03-01T16:27:48.984Z",
+    "yc_batch": "W24",
+    "yc_url": "https://www.ycombinator.com/companies/superagent"
   },
   {
     "id": 563,
@@ -85141,7 +85183,9 @@
     "tranco_domain": "unify.ai",
     "tranco_enriched_at": "2026-03-01T16:22:59.522Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:28:08.879Z"
+    "app_enriched_at": "2026-03-01T16:28:08.879Z",
+    "yc_batch": "W23",
+    "yc_url": "https://www.ycombinator.com/companies/unify"
   },
   {
     "id": 606,
@@ -85958,7 +86002,9 @@
     "app_rating_count": 6,
     "app_url": "https://apps.apple.com/us/app/vanta-athletics/id6502641279?uo=4",
     "app_seller": "Vanta Athletics ATX LLC",
-    "app_enriched_at": "2026-03-01T16:28:12.167Z"
+    "app_enriched_at": "2026-03-01T16:28:12.167Z",
+    "yc_batch": "W18",
+    "yc_url": "https://www.ycombinator.com/companies/vanta"
   },
   {
     "id": 612,
@@ -86107,7 +86153,9 @@
     "tranco_domain": "vapi.ai",
     "tranco_enriched_at": "2026-03-01T16:22:59.522Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:28:12.596Z"
+    "app_enriched_at": "2026-03-01T16:28:12.596Z",
+    "yc_batch": "W21",
+    "yc_url": "https://www.ycombinator.com/companies/vapi"
   },
   {
     "id": 613,
@@ -89942,7 +89990,9 @@
     "tranco_domain": "writesonic.com",
     "tranco_enriched_at": "2026-03-01T16:22:59.522Z",
     "app_rating": null,
-    "app_enriched_at": "2026-03-01T16:28:28.264Z"
+    "app_enriched_at": "2026-03-01T16:28:28.264Z",
+    "yc_batch": "S21",
+    "yc_url": "https://www.ycombinator.com/companies/writesonic"
   },
   {
     "id": 641,
