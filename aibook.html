@@ -5565,10 +5565,113 @@ function exportCSV(source) {
     const list = source === 'saved' ? saved : deck;
     if (list.length === 0) return;
 
-    const headers = ['Name', 'Product', 'Category', 'Funding', 'Rating', 'HQ', 'Founded', 'Website', 'Investors', 'Description'];
+    const headers = [
+        // Core
+        'Name', 'Product', 'Category', 'Status', 'Founded', 'HQ', 'Website', 'LinkedIn',
+        'Rating', 'Description', 'Secret Sauce', 'Employees',
+        // Financial
+        'Funding', 'Funding Value', 'Last Round', 'Valuation', 'Revenue', 'Investors',
+        // M&A
+        'Acquired By', 'Acquired Date',
+        'MA - Strategic Rationale', 'MA - Likely Acquirers', 'MA - Estimated Price Range',
+        'MA - Unique Assets', 'MA - Deal Profile',
+        // Qualitative
+        'Success Factors', 'Risks', 'Customers', 'Competitors',
+        // Leadership
+        'CEO', 'Leadership',
+        // Signals
+        'GitHub Org', 'GitHub Total Stars', 'GitHub Weekly Commits', 'GitHub Last Push',
+        'GitHub Top Repos',
+        'HN Mentions', 'HN Top Story Title', 'HN Top Story Points', 'HN Top Story URL',
+        'Wikipedia Title', 'Wikipedia Monthly Views',
+        'Tranco Web Rank', 'Tranco Domain',
+        'App Store Name', 'App Store Rating', 'App Store Rating Count', 'App Store URL',
+        'npm Package', 'npm Downloads/Mo', 'PyPI Package', 'PyPI Downloads/Mo',
+        'Patents Count', 'Academic Papers Count', 'Top Papers',
+        'SEC Filing Count',
+        'YC Batch', 'YC URL',
+        // News
+        'Recent News',
+        // Meta
+        'Date Added', 'Crunchbase'
+    ];
+
+    const getBullet = (c, label) => {
+        if (!c.maBullets) return '';
+        const b = c.maBullets.find(b => b.label === label);
+        return b ? b.text : '';
+    };
+
     const rows = list.map(c => [
-        c.name, c.product, getCategoryLabel(c.category), c.funding,
-        c.rating || '', c.hq, c.founded, c.website, c.investors, c.description
+        // Core
+        c.name,
+        c.product,
+        getCategoryLabel(c.category),
+        c.status || 'active',
+        c.founded,
+        c.hq,
+        c.website,
+        c.linkedin || '',
+        c.rating || '',
+        c.description,
+        c.secretSauce || '',
+        c.employees || '',
+        // Financial
+        c.funding,
+        c.fundingValue || '',
+        c.lastRound || '',
+        c.valuation || '',
+        c.revenue || '',
+        c.investors || '',
+        // M&A
+        c.acquiredBy || '',
+        c.acquiredDate || '',
+        getBullet(c, 'Strategic Rationale'),
+        getBullet(c, 'Likely Acquirers'),
+        getBullet(c, 'Estimated Price Range'),
+        getBullet(c, 'Unique Assets'),
+        getBullet(c, 'Deal Profile'),
+        // Qualitative
+        (c.successFactors || []).join(' | '),
+        (c.risks || []).join(' | '),
+        c.customers || '',
+        c.competitors || '',
+        // Leadership
+        c.ceo || '',
+        (c.leadership || []).map(l => `${l.role}: ${l.name}`).join(' | '),
+        // Signals
+        c.github_org || '',
+        c.github_total_stars || '',
+        c.github_weekly_commits || '',
+        c.github_last_push || '',
+        (c.github_repos || []).map(r => `${r.name} (${r.stars}★)`).join(' | '),
+        c.hn_mentions || '',
+        c.hn_top_story ? c.hn_top_story.title : '',
+        c.hn_top_story ? c.hn_top_story.points : '',
+        c.hn_top_story ? c.hn_top_story.url : '',
+        c.wiki_title || '',
+        c.wiki_monthly_views || '',
+        c.tranco_rank || '',
+        c.tranco_domain || '',
+        c.app_name || '',
+        c.app_rating || '',
+        c.app_rating_count || '',
+        c.app_url || '',
+        c.npm_package || '',
+        c.npm_downloads || '',
+        c.pypi_package || '',
+        c.pypi_downloads || '',
+        c.patents_count || '',
+        c.papers_count || '',
+        (c.papers_recent || []).map(p => `${p.title} (${p.year}, ${p.cited_by} cites)`).join(' | '),
+        c.sec_filing_count || '',
+        c.yc_batch || '',
+        c.yc_url || '',
+        // News
+        (c.recentNews || []).map(n => `${n.headline} [${n.source}, ${n.date}]`).join(' | '),
+        // Meta
+        c.dateAdded || '',
+        c.crunchbase || ''
     ]);
 
     const csv = [headers, ...rows].map(r => r.map(v => `"${(v || '').toString().replace(/"/g, '""')}"`).join(',')).join('\n');
