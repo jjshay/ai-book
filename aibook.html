@@ -392,8 +392,17 @@
         .filter-left, .filter-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
+        .filter-left {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            flex: 1;
+            min-width: 0;
+        }
+        .filter-left::-webkit-scrollbar { display: none; }
+        .filter-right { flex-shrink: 0; }
         .filter-select {
             font-family: var(--font);
             background: var(--bg);
@@ -413,9 +422,11 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 5px 8px;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.15s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .filter-btn:hover {
             border-color: var(--gold);
@@ -447,35 +458,51 @@
             color: var(--bg);
         }
 
-        /* ========== VANITY STATS ========== */
-        .vanity-stats {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding: var(--space-md) var(--space-lg);
+        /* ========== ACTIVITY FEED ========== */
+        .activity-feed {
             background: linear-gradient(135deg, var(--navy) 0%, #2d4a6f 100%);
             border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
         }
-        .vanity-stat {
-            text-align: center;
+        .activity-feed-inner {
             display: flex;
-            flex-direction: column;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 0;
+            padding: 6px 12px;
+        }
+        .activity-feed-inner::-webkit-scrollbar { display: none; }
+        .activity-item {
+            display: flex;
             align-items: center;
-            justify-content: flex-end;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            min-width: 0;
         }
-        .vanity-value {
-            display: block;
-            font-size: var(--fs-xl);
+        .activity-item:hover { background: rgba(255,255,255,0.08); }
+        .activity-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .activity-text {
+            font-size: 12px;
+            color: var(--text);
+            white-space: nowrap;
+            line-height: 1.3;
+        }
+        .activity-text .activity-name {
             font-weight: 700;
-            color: var(--gold);
-            line-height: 1.2;
+            color: var(--gold-light);
         }
-        .vanity-label {
-            font-size: var(--fs-xs);
-            font-weight: 500;
-            color: rgba(255,255,255,0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .activity-text .activity-detail {
+            color: var(--text-dim);
+            font-size: 11px;
         }
 
         /* ========== ACCORDION ========== */
@@ -647,6 +674,8 @@
         .signal-pill.appstore { background: rgba(59,130,246,0.15); color: #3b82f6; }
         .signal-pill.packages { background: rgba(239,68,68,0.15); color: #ef4444; }
         .signal-pill.yc { background: rgba(255,101,0,0.2); color: #ff6500; }
+        .signal-pill.emp-growth { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .signal-pill.emp-decline { background: rgba(239,68,68,0.15); color: #ef4444; }
         .github-commit-velocity {
             color: #22c55e;
             font-weight: 600;
@@ -699,13 +728,30 @@
             font-size: 10px;
             opacity: 0.5;
         }
+        .leadership-date {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-left: 4px;
+        }
+        .leadership-new-badge {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            background: rgba(34,197,94,0.2);
+            color: #22c55e;
+            margin-left: 6px;
+            vertical-align: middle;
+            letter-spacing: 0.3px;
+        }
 
         /* ========== VIEW MODES ========== */
         .list-view { display: block; }
         .swipe-view { display: none; }
         body.swipe-mode .list-view { display: none; }
         body.swipe-mode .swipe-view { display: flex; flex-direction: column; flex: 1; }
-        body.swipe-mode .vanity-stats { display: none; }
+        body.swipe-mode .activity-feed { display: none; }
 
         /* ========== A-Z SIDEBAR + LIST ========== */
         .list-container {
@@ -978,15 +1024,15 @@
             text-decoration: none;
         }
         .mini-acc-link:hover { text-decoration: underline; }
-        .mini-acc-pills {
+        .mini-card-pills {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
             margin-top: 4px;
         }
-        .mini-acc-pills .signal-pill {
-            font-size: 10px;
-            padding: 2px 6px;
+        .mini-card-pills .signal-pill {
+            font-size: 9px;
+            padding: 1px 5px;
         }
 
         /* ========== BACK BUTTON ========== */
@@ -1471,6 +1517,30 @@
             font-weight: 600;
             margin-bottom: 0;
         }
+        .card-badges {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .card-product-line {
+            color: var(--text-dim);
+            font-size: var(--fs-sm);
+            line-height: 1.4;
+            padding: 0 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-stats-3col {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--space-sm);
+        }
+        .card-stats-3col .stat-box {
+            padding: var(--space-sm) var(--space-md);
+            text-align: center;
+        }
 
         .card-desc {
             color: var(--text-dim);
@@ -1808,6 +1878,56 @@
 
         .saved-name { font-weight: 700; font-size: var(--fs-md); margin-bottom: var(--space-xs); }
         .saved-info { color: var(--text-dim); font-size: var(--fs-sm); }
+
+        /* ========== COMPARISON TABLE ========== */
+        .compare-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 16px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            min-width: 500px;
+        }
+        .compare-table th {
+            background: var(--navy);
+            color: var(--gold);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            padding: 8px 10px;
+            text-align: left;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 2px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .compare-table th:hover { color: var(--gold-light); }
+        .compare-table th.sorted { color: var(--cyan); }
+        .compare-table th .sort-arrow { margin-left: 3px; font-size: 9px; }
+        .compare-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .compare-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .compare-table .growth-high { color: #22c55e; font-weight: 700; }
+        .compare-table .growth-growing { color: #22c55e; }
+        .compare-table .growth-steady { color: var(--text-dim); }
+        .compare-table .growth-declining { color: #ef4444; font-weight: 700; }
+        .compare-table .company-name-cell {
+            font-weight: 700;
+            color: var(--gold-light);
+            cursor: pointer;
+        }
+        .compare-table .company-name-cell:hover { text-decoration: underline; }
 
         .analytics-box {
             background: linear-gradient(135deg, var(--navy) 0%, #2d4a6f 100%);
@@ -2168,6 +2288,49 @@
             letter-spacing: 3px;
         }
 
+        /* ========== DETAIL TABS ========== */
+        .detail-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            background: rgba(0,0,0,0.2);
+        }
+        .detail-tab {
+            flex: 1;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--text-dim);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.15s, border-color 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-tab:hover { color: var(--text); }
+        .detail-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .detail-tab-panel { display: none; }
+        .detail-tab-panel.active { display: block; }
+
+        /* Signals section (no accordions) */
+        .signal-section {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .signal-section:last-child { border-bottom: none; }
+        .signal-section-title {
+            font-size: var(--fs-xs);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+        }
+
         .detail-actions {
             display: flex;
             gap: var(--space-md);
@@ -2457,6 +2620,51 @@
             min-width: 16px;
             text-align: right;
         }
+        .vc-stage-badge {
+            display: inline-block;
+            padding: 1px 7px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .vc-stage-badge.early { background: rgba(34,197,94,0.18); color: #22c55e; }
+        .vc-stage-badge.growth { background: rgba(59,130,246,0.18); color: #3b82f6; }
+        .vc-stage-badge.late { background: rgba(168,85,247,0.18); color: #a855f7; }
+        .vc-stage-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 3px 0;
+        }
+        .vc-stage-bar-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            min-width: 52px;
+        }
+        .vc-stage-bar {
+            flex: 1;
+            height: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .vc-stage-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            min-width: 2px;
+        }
+        .vc-stage-bar-fill.early { background: #22c55e; }
+        .vc-stage-bar-fill.growth { background: #3b82f6; }
+        .vc-stage-bar-fill.late { background: #a855f7; }
+        .vc-stage-bar-count {
+            font-size: 11px;
+            color: var(--text-dim);
+            min-width: 16px;
+            text-align: right;
+        }
 
         /* ========== STAT COMPANY LIST ========== */
         .stat-letter-header {
@@ -2699,6 +2907,10 @@
                 <button class="filter-btn" id="filter-hot" onclick="toggleFilter('hot')" title="Hot: $100M+ funding">🔥 HOT</button>
                 <button class="filter-btn" id="filter-new" onclick="toggleFilter('new')" title="New additions">🆕 NEW</button>
                 <button class="filter-btn" id="filter-acquired" onclick="toggleFilter('acquired')" title="Acquired / Sold">💰 SOLD</button>
+                <button class="filter-btn" id="filter-hiring" onclick="toggleFilter('hiring')" title="Active hiring / growing teams">📈 HIRING</button>
+                <button class="filter-btn" id="filter-newleaders" onclick="toggleFilter('newleaders')" title="New leadership in last 12 months">👤 NEW LEADERS</button>
+                <button class="filter-btn" id="filter-activedev" onclick="toggleFilter('activedev')" title="Active GitHub development">⚡ ACTIVE DEV</button>
+                <button class="filter-btn" id="filter-declining" onclick="toggleFilter('declining')" title="Declining employee count">📉 DECLINING</button>
             </div>
             <div class="filter-right">
                 <button class="sort-btn" id="sort-az" onclick="sortDeck('alpha')" title="Sort alphabetically A-Z">A-Z</button>
@@ -2707,25 +2919,16 @@
             </div>
         </div>
 
-        <!-- VANITY STATS -->
-        <div class="vanity-stats" id="vanity-stats">
-            <div class="vanity-stat clickable" onclick="openStatModal('geography')">
-                <span class="vanity-value" id="stat-companies">800</span>
-                <span class="vanity-label">Companies</span>
-            </div>
-            <div class="vanity-stat clickable" onclick="openStatModal('funding')">
-                <span class="vanity-value" id="stat-funding">$150B+</span>
-                <span class="vanity-label" id="stat-funding-label">Total Raised</span>
-            </div>
-            <div class="vanity-stat clickable" onclick="openStatModal('vcs')">
-                <span class="vanity-value" id="stat-vcs">Top 25</span>
-                <span class="vanity-label">Top VCs</span>
-            </div>
-            <div class="vanity-stat">
-                <span class="vanity-value" id="stat-updated" style="color:var(--cyan)">--</span>
-                <span class="vanity-label">Last Updated</span>
-            </div>
+        <!-- ACTIVITY FEED (replaces vanity stats) -->
+        <div class="activity-feed" id="activity-feed">
+            <div class="activity-feed-inner" id="activity-feed-inner"></div>
         </div>
+        <!-- Hidden vanity stat holders for existing code compatibility -->
+        <span id="stat-companies" style="display:none">0</span>
+        <span id="stat-funding" style="display:none">$0</span>
+        <span id="stat-funding-label" style="display:none">Total Raised</span>
+        <span id="stat-vcs" style="display:none">0</span>
+        <span id="stat-updated" style="display:none">--</span>
 
         <!-- LIST VIEW (Landing Page) -->
         <div class="list-view list-container">
@@ -3000,6 +3203,10 @@ function getFilteredStatsPool() {
                 const yr = new Date().getFullYear();
                 return new Date(c.acquiredDate) >= new Date(yr, 0, 1);
             }
+            if (activeHealthFilter === 'hiring') return c.employeeGrowth === 'high-growth' || c.employeeGrowth === 'growing';
+            if (activeHealthFilter === 'newleaders') return (c.leadership || []).some(l => isRecentLeader(l.startDate));
+            if (activeHealthFilter === 'activedev') return c.github_weekly_commits > 0 && c.github_last_push;
+            if (activeHealthFilter === 'declining') return c.employeeGrowth === 'declining';
             return true;
         });
     }
@@ -3011,8 +3218,36 @@ function getFilteredStatsPool() {
     return pool;
 }
 
+function parseStageFromLastRound(lastRound) {
+    if (!lastRound) return null;
+    const s = lastRound.toLowerCase();
+    if (/seed|pre-seed|angel/.test(s)) return 'Seed';
+    if (/series\s*a/i.test(s)) return 'Series A';
+    if (/series\s*b/i.test(s)) return 'Series B';
+    if (/series\s*c/i.test(s)) return 'Series C';
+    if (/series\s*d/i.test(s)) return 'Series D';
+    if (/series\s*e/i.test(s)) return 'Series E';
+    if (/series\s*f/i.test(s)) return 'Series F';
+    if (/series\s*g/i.test(s)) return 'Series G';
+    if (/series\s*[h-z]/i.test(s)) return 'Late';
+    if (/ipo|spac|public/i.test(s)) return 'Public';
+    if (/pe[ -]|private equity|growth equity/i.test(s)) return 'Late';
+    if (/bootstrapped|private$/.test(s)) return null;
+    return null;
+}
+
+function getStageBucket(stage) {
+    if (!stage) return null;
+    if (['Seed', 'Series A'].includes(stage)) return 'early';
+    if (['Series B', 'Series C', 'Series D'].includes(stage)) return 'growth';
+    return 'late'; // Series E+, Public, Late
+}
+
+const STAGE_BUCKET_LABELS = { early: 'Early', growth: 'Growth', late: 'Late' };
+const STAGE_BUCKET_ORDER = ['early', 'growth', 'late'];
+
 function getTopVCData(pool) {
-    const vcMap = {}; // canonical name -> { capital, companies: [], categories: {} }
+    const vcMap = {}; // canonical name -> { capital, companies: [], categories: {}, stageBuckets: {} }
 
     pool.forEach(c => {
         if (!c.investors) return;
@@ -3027,14 +3262,18 @@ function getTopVCData(pool) {
             seen.add(name);
 
             if (!vcMap[name]) {
-                vcMap[name] = { capital: 0, companies: [], categories: {} };
+                vcMap[name] = { capital: 0, companies: [], categories: {}, stageBuckets: {} };
             }
             vcMap[name].capital += fundingAmt;
+            const stage = parseStageFromLastRound(c.lastRound);
+            const bucket = getStageBucket(stage);
+            if (bucket) vcMap[name].stageBuckets[bucket] = (vcMap[name].stageBuckets[bucket] || 0) + 1;
             vcMap[name].companies.push({
                 id: c.id,
                 name: c.name,
                 funding: c.funding || '',
-                category: c.category
+                category: c.category,
+                lastRound: c.lastRound || ''
             });
             const catLabel = getCategoryLabel(c.category);
             vcMap[name].categories[catLabel] = (vcMap[name].categories[catLabel] || 0) + 1;
@@ -3042,13 +3281,22 @@ function getTopVCData(pool) {
     });
 
     return Object.entries(vcMap)
-        .map(([name, data]) => ({
-            name,
-            capital: data.capital,
-            companyCount: data.companies.length,
-            companies: data.companies.sort((a, b) => parseFundingAmount(b.funding) - parseFundingAmount(a.funding)),
-            categories: data.categories
-        }))
+        .map(([name, data]) => {
+            // Determine primary stage bucket
+            const stageEntries = Object.entries(data.stageBuckets);
+            const primaryStage = stageEntries.length > 0
+                ? stageEntries.sort((a, b) => b[1] - a[1])[0][0]
+                : null;
+            return {
+                name,
+                capital: data.capital,
+                companyCount: data.companies.length,
+                companies: data.companies.sort((a, b) => parseFundingAmount(b.funding) - parseFundingAmount(a.funding)),
+                categories: data.categories,
+                stageBuckets: data.stageBuckets,
+                primaryStage
+            };
+        })
         .sort((a, b) => b.capital - a.capital);
 }
 
@@ -3293,7 +3541,8 @@ function renderVCModal(pool) {
         html += '<div class="vc-main" onclick="toggleVCRow(' + rank + ')">';
         html += '<div class="vc-rank' + rankClass + '">' + rank + '</div>';
         html += '<div class="vc-info">';
-        html += '<div class="vc-name">' + vc.name + '</div>';
+        const stageBadge = vc.primaryStage ? '<span class="vc-stage-badge ' + vc.primaryStage + '">' + STAGE_BUCKET_LABELS[vc.primaryStage] + '</span>' : '';
+        html += '<div class="vc-name">' + vc.name + stageBadge + '</div>';
         html += '<div class="vc-meta">' + metaText + '</div>';
         html += '</div>';
         html += '<div class="vc-capital">' + capitalDisplay + '</div>';
@@ -3324,6 +3573,23 @@ function renderVCModal(pool) {
                 html += '<span class="vc-segment-name">' + seg + '</span>';
                 html += '<div class="vc-segment-bar"><div class="vc-segment-fill" style="width:' + pct + '%"></div></div>';
                 html += '<span class="vc-segment-count">' + count + '</span>';
+                html += '</div>';
+            });
+        }
+
+        // Investment stage bars
+        const stageEntries = STAGE_BUCKET_ORDER
+            .filter(b => vc.stageBuckets[b])
+            .map(b => [b, vc.stageBuckets[b]]);
+        if (stageEntries.length > 0) {
+            const maxStage = Math.max(...stageEntries.map(([, v]) => v));
+            html += '<div class="vc-section-label">Investment Stage</div>';
+            stageEntries.forEach(([bucket, count]) => {
+                const pct = (count / maxStage) * 100;
+                html += '<div class="vc-stage-bar-row">';
+                html += '<span class="vc-stage-bar-label">' + STAGE_BUCKET_LABELS[bucket] + '</span>';
+                html += '<div class="vc-stage-bar"><div class="vc-stage-bar-fill ' + bucket + '" style="width:' + pct + '%"></div></div>';
+                html += '<span class="vc-stage-bar-count">' + count + '</span>';
                 html += '</div>';
             });
         }
@@ -3467,6 +3733,7 @@ function init() {
     renderAZSidebar();
     updateUI();
     updateVanityStats();
+    buildActivityFeed();
 
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
@@ -3591,7 +3858,11 @@ function getFilterHeading() {
         unicorn: { icon: '🦄', title: 'Unicorns', desc: '$1B+ valuation' },
         hot: { icon: '🔥', title: 'Hot Companies', desc: '$100M+ funding' },
         new: { icon: '🆕', title: 'New Additions', desc: 'Added in last 7 days' },
-        acquired: { icon: '💰', title: 'Sold / Acquired', desc: new Date().getFullYear() + ' YTD' }
+        acquired: { icon: '💰', title: 'Sold / Acquired', desc: new Date().getFullYear() + ' YTD' },
+        hiring: { icon: '📈', title: 'Hiring', desc: 'Active hiring & growing teams' },
+        newleaders: { icon: '👤', title: 'New Leaders', desc: 'Leadership changes in last 12 months' },
+        activedev: { icon: '⚡', title: 'Active Dev', desc: 'Active GitHub development' },
+        declining: { icon: '📉', title: 'Declining', desc: 'Shrinking headcount' }
     };
     return activeHealthFilter ? labels[activeHealthFilter] || null : null;
 }
@@ -3730,140 +4001,16 @@ function renderMiniCard(c) {
     const name = searchQuery ? highlightMatch(c.name, searchQuery) : c.name;
     const product = searchQuery ? highlightMatch(c.product || '', searchQuery) : (c.product || '');
 
-    // Build accordion sections
-    const hasAccordion = c.github_org || (c.recentNews && c.recentNews.length > 0) || c.sec_cik || c.wikidata_id || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0 || c.tranco_rank || c.app_rating || c.npm_downloads || c.pypi_downloads;
-    let accHtml = '';
-    if (hasAccordion) {
-        accHtml = '<div class="mini-card-accordion">';
-
-        // Signal pills row
-        const pills = [];
-        if (c.github_org && c.github_total_stars) pills.push(`<span class="signal-pill github">\u2605 ${formatStars(c.github_total_stars)}</span>`);
-        if (c.github_weekly_commits) pills.push(`<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>`);
-        if (c.recentNews && c.recentNews.length > 0) pills.push(`<span class="signal-pill news">${c.recentNews.length} articles</span>`);
-        if (c.sec_cik) pills.push(`<span class="signal-pill" style="background:rgba(148,163,184,0.15);color:var(--text-dim)">${c.sec_filing_count || 0} SEC filings</span>`);
-        if (c.hn_mentions > 0) pills.push(`<span class="signal-pill hn">${c.hn_mentions} HN</span>`);
-        if (c.wiki_monthly_views > 0) pills.push(`<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>`);
-        if (c.patents_count > 0) pills.push(`<span class="signal-pill patents">${c.patents_count} patents</span>`);
-        if (c.ph_launches && c.ph_launches.length > 0) pills.push(`<span class="signal-pill ph">Product Hunt</span>`);
-        if (c.papers_count > 0) pills.push(`<span class="signal-pill papers">${c.papers_count} papers</span>`);
-        if (c.tranco_rank) pills.push(`<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>`);
-        if (c.app_rating) pills.push(`<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>`);
-        if (c.npm_downloads || c.pypi_downloads) pills.push(`<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>`);
-        if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
-        if (pills.length > 0) accHtml += `<div class="mini-acc-pills">${pills.join('')}</div>`;
-
-        // GitHub repos
-        if (c.github_org && c.github_repos && c.github_repos.length > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title">\u{1F4BB} GitHub</div>';
-            c.github_repos.forEach(r => {
-                accHtml += `<div class="mini-acc-item">${r.name} \u2014 \u2605 ${r.stars.toLocaleString()}${r.language ? ' \u2014 ' + r.language : ''}</div>`;
-            });
-            accHtml += `<a href="https://github.com/${c.github_org}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on GitHub \u2197</a></div>`;
-        }
-
-        // Recent News
-        if (c.recentNews && c.recentNews.length > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title">\u{1F4F0} Recent News</div>';
-            c.recentNews.slice(0, 3).forEach(n => {
-                if (n.url) {
-                    accHtml += `<div class="mini-acc-item news-link"><a href="${n.url}" target="_blank" onclick="event.stopPropagation()">${n.headline}</a>${n.source ? ' <span style="color:var(--text-dim);font-size:10px">\u2014 ' + n.source + '</span>' : ''}</div>`;
-                } else {
-                    accHtml += `<div class="mini-acc-item">${n.headline}</div>`;
-                }
-            });
-            accHtml += '</div>';
-        }
-
-        // SEC Filings
-        if (c.sec_cik) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title">\u{1F4C4} SEC Filings</div>';
-            accHtml += `<div class="mini-acc-item">${c.sec_filing_count || 0} filings on record</div>`;
-            if (c.sec_latest_filing) accHtml += `<div class="mini-acc-item">Latest: ${c.sec_latest_filing.form} \u2014 ${c.sec_latest_filing.date}</div>`;
-            accHtml += `<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${c.sec_cik}&type=&dateb=&owner=include&count=40" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on EDGAR \u2197</a></div>`;
-        }
-
-        // Hacker News
-        if (c.hn_mentions > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#ff6600">&#x1F525; Hacker News</div>';
-            accHtml += `<div class="mini-acc-item">${c.hn_mentions.toLocaleString()} mentions</div>`;
-            if (c.hn_top_story) {
-                accHtml += `<div class="mini-acc-item"><a href="${c.hn_top_story.url}" target="_blank" onclick="event.stopPropagation()">${c.hn_top_story.title}</a> <span style="color:var(--text-dim);font-size:10px">${c.hn_top_story.points} pts</span></div>`;
-            }
-            accHtml += `<a href="https://hn.algolia.com/?q=%22${encodeURIComponent(c.name)}%22&type=story" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">Search HN \u2197</a></div>`;
-        }
-
-        // Wikipedia
-        if (c.wiki_monthly_views > 0 && c.wiki_title) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#60a5fa">&#x1F4D6; Wikipedia</div>';
-            accHtml += `<div class="mini-acc-item">${c.wiki_monthly_views.toLocaleString()} views/month</div>`;
-            accHtml += `<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(c.wiki_title.replace(/ /g, '_'))}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View Article \u2197</a></div>`;
-        }
-
-        // Patents
-        if (c.patents_count > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#a855f7">&#x1F4DC; Patents</div>';
-            accHtml += `<div class="mini-acc-item">${c.patents_count.toLocaleString()} patents</div>`;
-            if (c.patents_recent) {
-                c.patents_recent.slice(0, 3).forEach(p => {
-                    accHtml += `<div class="mini-acc-item">${p.title}${p.date ? ' \u2014 ' + p.date : ''}</div>`;
-                });
-            }
-            accHtml += `<a href="https://patentsview.org/search?q=${encodeURIComponent(c.name)}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on PatentsView \u2197</a></div>`;
-        }
-
-        // Product Hunt
-        if (c.ph_launches && c.ph_launches.length > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#da5938">&#x1F680; Product Hunt</div>';
-            c.ph_launches.slice(0, 3).forEach(p => {
-                if (p.url) {
-                    accHtml += `<div class="mini-acc-item"><a href="${p.url}" target="_blank" onclick="event.stopPropagation()">${p.name}</a> <span style="color:var(--text-dim);font-size:10px">\u25B2 ${p.votes}</span></div>`;
-                } else {
-                    accHtml += `<div class="mini-acc-item">${p.name} <span style="color:var(--text-dim);font-size:10px">\u25B2 ${p.votes}</span></div>`;
-                }
-            });
-            accHtml += '</div>';
-        }
-
-        // Academic Papers
-        if (c.papers_count > 0) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#22c55e">&#x1F4DA; Academic Papers</div>';
-            accHtml += `<div class="mini-acc-item">${c.papers_count.toLocaleString()} papers</div>`;
-            if (c.papers_recent) {
-                c.papers_recent.slice(0, 3).forEach(p => {
-                    const doiLink = p.doi ? `<a href="${p.doi}" target="_blank" onclick="event.stopPropagation()">${p.title}</a>` : p.title;
-                    accHtml += `<div class="mini-acc-item">${doiLink} <span style="color:var(--text-dim);font-size:10px">${p.cited_by} citations${p.year ? ' \u2014 ' + p.year : ''}</span></div>`;
-                });
-            }
-            accHtml += `<a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(c.name)}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View on OpenAlex \u2197</a></div>`;
-        }
-
-        // Tranco Web Ranking
-        if (c.tranco_rank) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#fbbf24">&#x1F310; Web Traffic</div>';
-            accHtml += `<div class="mini-acc-item">Tranco rank: #${c.tranco_rank.toLocaleString()} of top 1M sites</div>`;
-            if (c.tranco_domain) accHtml += `<div class="mini-acc-item" style="color:var(--text-dim);font-size:10px">${c.tranco_domain}</div>`;
-            accHtml += '</div>';
-        }
-
-        // App Store
-        if (c.app_rating) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#3b82f6">&#x1F4F1; App Store</div>';
-            accHtml += `<div class="mini-acc-item">${c.app_name || c.name} \u2014 ${c.app_rating}\u2605 (${(c.app_rating_count || 0).toLocaleString()} ratings)</div>`;
-            if (c.app_url) accHtml += `<a href="${c.app_url}" target="_blank" class="mini-acc-link" onclick="event.stopPropagation()">View in App Store \u2197</a>`;
-            accHtml += '</div>';
-        }
-
-        // npm/PyPI Downloads
-        if (c.npm_downloads || c.pypi_downloads) {
-            accHtml += '<div class="mini-acc-section"><div class="mini-acc-title" style="color:#ef4444">&#x1F4E6; Package Downloads</div>';
-            if (c.npm_downloads) accHtml += `<div class="mini-acc-item">npm: ${c.npm_downloads.toLocaleString()}/mo <span style="color:var(--text-dim);font-size:10px">(${c.npm_package})</span></div>`;
-            if (c.pypi_downloads) accHtml += `<div class="mini-acc-item">PyPI: ${c.pypi_downloads.toLocaleString()}/mo <span style="color:var(--text-dim);font-size:10px">(${c.pypi_package})</span></div>`;
-            accHtml += '</div>';
-        }
-
-        accHtml += '</div>';
-    }
+    // Build signal pills — only recent/growth-relevant signals
+    const pills = [];
+    const sixMonthsAgo = new Date(); sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    const isRecent = (iso) => iso && new Date(iso) >= sixMonthsAgo;
+    if (c.github_org && c.github_weekly_commits > 0 && isRecent(c.github_last_push)) pills.push(`<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>`);
+    if (c.recentNews && c.recentNews.length > 0 && c.recentNews.some(n => isRecent(n.date))) pills.push(`<span class="signal-pill news">In the News</span>`);
+    if (c.employeeGrowth === 'high-growth') pills.push(`<span class="signal-pill emp-growth">Hiring Surge</span>`);
+    if (c.employeeGrowth === 'growing') pills.push(`<span class="signal-pill emp-growth">Growing Team</span>`);
+    if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
+    const pillsHtml = pills.length > 0 ? `<div class="mini-card-pills">${pills.join('')}</div>` : '';
 
     return `
         <div class="mini-card-wrapper" id="mc-${c.id}">
@@ -3877,18 +4024,13 @@ function renderMiniCard(c) {
                 <div class="mini-info">
                     <div class="mini-name">${name}${updated ? '<span style="display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-left:6px;vertical-align:middle" title="Recently updated"></span>' : ''}${acquiredBadge}</div>
                     <div class="mini-product">${product}${c.founded ? ' \u00b7 Est. ' + c.founded : ''}</div>
+                    ${pillsHtml}
                 </div>
                 <div class="mini-funding">${c.funding || ''}</div>
-                ${hasAccordion ? `<button class="mini-expand-btn" onclick="event.stopPropagation(); toggleMiniAccordion(${c.id})" title="Expand details">\u25BC</button>` : '<div class="mini-arrow">\u203A</div>'}
+                <div class="mini-arrow">\u203A</div>
             </div>
-            ${accHtml}
         </div>
     `;
-}
-
-function toggleMiniAccordion(id) {
-    const wrapper = document.getElementById('mc-' + id);
-    if (wrapper) wrapper.classList.toggle('expanded');
 }
 
 let activeLetterFilter = '';
@@ -3960,6 +4102,95 @@ function exitSwipeMode() {
     document.body.classList.remove('swipe-mode');
     renderListView();
     renderAZSidebar();
+}
+
+function buildActivityFeed() {
+    const feed = document.getElementById('activity-feed-inner');
+    if (!feed) return;
+    const events = [];
+    const now = new Date();
+    const twelveMonthsAgo = new Date(); twelveMonthsAgo.setMonth(now.getMonth() - 12);
+
+    companies.forEach(c => {
+        // New leadership
+        if (c.leadership && c.leadership.length > 0) {
+            c.leadership.forEach(l => {
+                if (isRecentLeader(l.startDate)) {
+                    const dateStr = formatLeadershipDate(l.startDate);
+                    events.push({
+                        icon: '👤', name: c.name, text: `hired new ${l.role}: ${l.name}`,
+                        detail: dateStr, companyId: c.id, sort: l.startDate || '0'
+                    });
+                }
+            });
+        }
+        // Hiring surge
+        if (c.employeeGrowth === 'high-growth' && c.employees) {
+            events.push({
+                icon: '📈', name: c.name, text: `Hiring Surge (${c.employees} employees)`,
+                detail: '', companyId: c.id, sort: 'z-hire'
+            });
+        }
+        // Recent news
+        if (c.recentNews && c.recentNews.length > 0) {
+            const n = c.recentNews[0];
+            events.push({
+                icon: '📰', name: c.name, text: `${c.recentNews.length} recent news article${c.recentNews.length > 1 ? 's' : ''}`,
+                detail: n.date || '', companyId: c.id, sort: n.date || 'z-news'
+            });
+        }
+        // Recent funding
+        if (c.lastRound && c.funding) {
+            const stage = parseStageFromLastRound(c.lastRound);
+            if (stage) {
+                events.push({
+                    icon: '💰', name: c.name, text: `raised ${c.funding} (${c.lastRound})`,
+                    detail: '', companyId: c.id, sort: 'z-fund-' + parseFundingAmount(c.funding)
+                });
+            }
+        }
+        // Active GitHub
+        if (c.github_weekly_commits > 50) {
+            events.push({
+                icon: '⚡', name: c.name, text: `${c.github_weekly_commits} commits/week`,
+                detail: c.github_last_push ? formatRelativeDate(c.github_last_push) : '',
+                companyId: c.id, sort: 'z-dev'
+            });
+        }
+        // Declining
+        if (c.employeeGrowth === 'declining') {
+            events.push({
+                icon: '📉', name: c.name, text: 'Declining headcount',
+                detail: '', companyId: c.id, sort: 'z-decline'
+            });
+        }
+    });
+
+    // Sort: leadership dates first (most recent), then everything else
+    events.sort((a, b) => b.sort.localeCompare(a.sort));
+
+    // Limit to 50 items for performance
+    const limited = events.slice(0, 50);
+
+    if (limited.length === 0) {
+        feed.innerHTML = '<div class="activity-item"><span class="activity-icon">📊</span><span class="activity-text">' + companies.length + ' companies tracked</span></div>';
+        return;
+    }
+
+    feed.innerHTML = limited.map(e => `
+        <div class="activity-item" onclick="openDetailById(${e.companyId})">
+            <span class="activity-icon">${e.icon}</span>
+            <span class="activity-text">
+                <span class="activity-name">${e.name}</span> ${e.text}
+                ${e.detail ? `<span class="activity-detail"> &middot; ${e.detail}</span>` : ''}
+            </span>
+        </div>
+    `).join('');
+}
+
+function openDetailById(id) {
+    const c = companies.find(x => x.id === id);
+    if (c) openDetail(c);
 }
 
 function updateVanityStats() {
@@ -4063,6 +4294,14 @@ function buildDeck() {
                 if (!c.acquiredDate) return false;
                 const yr = new Date().getFullYear();
                 return new Date(c.acquiredDate) >= new Date(yr, 0, 1);
+            } else if (activeHealthFilter === 'hiring') {
+                return c.employeeGrowth === 'high-growth' || c.employeeGrowth === 'growing';
+            } else if (activeHealthFilter === 'newleaders') {
+                return (c.leadership || []).some(l => isRecentLeader(l.startDate));
+            } else if (activeHealthFilter === 'activedev') {
+                return c.github_weekly_commits > 0 && c.github_last_push;
+            } else if (activeHealthFilter === 'declining') {
+                return c.employeeGrowth === 'declining';
             }
             return true;
         });
@@ -4212,6 +4451,78 @@ function formatViews(n) {
     if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
     if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
     return n.toString();
+}
+
+const PATENT_CLASS_LABELS = {
+    'G06N': 'Machine Learning', 'G06F': 'Computing', 'G06Q': 'Business Systems',
+    'G06V': 'Computer Vision', 'G06T': 'Image Processing', 'G10L': 'Speech/Audio',
+    'H04L': 'Data Networks', 'G16H': 'Healthcare IT', 'G16B': 'Bioinformatics',
+    'H04N': 'Video', 'G01N': 'Materials Analysis', 'B25J': 'Robotics',
+    'G05B': 'Control Systems', 'G06K': 'Data Recognition', 'A61B': 'Medical Devices',
+    'H04W': 'Wireless', 'G01S': 'Radar/Lidar', 'B60W': 'Vehicle Control',
+    'G06E': 'Optical Computing', 'H01L': 'Semiconductors'
+};
+
+function getPatentClassLabel(code) {
+    return PATENT_CLASS_LABELS[code] || code;
+}
+
+function formatPatentClassifications(classifications) {
+    if (!classifications || Object.keys(classifications).length === 0) return '';
+    return Object.entries(classifications)
+        .sort((a, b) => b[1] - a[1])
+        .map(([code, count]) => getPatentClassLabel(code) + ' (' + count + ')')
+        .join(', ');
+}
+
+function formatLeadershipDate(yyyymm) {
+    if (!yyyymm || typeof yyyymm !== 'string') return '';
+    const parts = yyyymm.split('-');
+    if (parts.length < 2) return '';
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthIdx = parseInt(parts[1]) - 1;
+    if (monthIdx < 0 || monthIdx > 11) return '';
+    return months[monthIdx] + ' ' + parts[0];
+}
+
+function isRecentLeader(startDate) {
+    if (!startDate) return false;
+    const parts = startDate.split('-');
+    if (parts.length < 2) return false;
+    const leaderDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1);
+    const twelveMonthsAgo = new Date();
+    twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
+    return leaderDate >= twelveMonthsAgo;
+}
+
+function parseEmployeeString(str) {
+    if (!str || typeof str !== 'string') return null;
+    const s = str.replace(/,/g, '').trim();
+    // "1000+" or "1000 +"
+    const plusMatch = s.match(/^(\d+)\s*\+/);
+    if (plusMatch) return parseInt(plusMatch[1]);
+    // "500-600" or "500 - 600"
+    const rangeMatch = s.match(/^(\d+)\s*[-–]\s*(\d+)/);
+    if (rangeMatch) return Math.round((parseInt(rangeMatch[1]) + parseInt(rangeMatch[2])) / 2);
+    // plain number
+    const numMatch = s.match(/^(\d+)$/);
+    if (numMatch) return parseInt(numMatch[1]);
+    return null;
+}
+
+function formatEmployeeCount(n) {
+    if (!n || n === 0) return null;
+    if (n >= 10000) return (n / 1000).toFixed(0) + 'k';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return n.toString();
+}
+
+function getEmployeeGrowthIcon(growth) {
+    if (growth === 'high-growth') return '<span style="color:#22c55e" title="High Growth (40%+ YoY)">&#9650;&#9650;</span>';
+    if (growth === 'growing') return '<span style="color:#22c55e" title="Growing (10-40% YoY)">&#9650;</span>';
+    if (growth === 'steady') return '';
+    if (growth === 'declining') return '<span style="color:#ef4444" title="Declining (>10% decrease)">&#9660;</span>';
+    return '';
 }
 
 function formatRelativeDate(iso) {
@@ -4437,6 +4748,26 @@ function renderCards() {
     area.appendChild(card);
 }
 
+function getTopSignalPills(c, max = 3) {
+    // Ranked by signal importance for quick scanning
+    const pills = [];
+    if (c.employeeGrowth === 'high-growth') pills.push(`<span class="signal-pill emp-growth">Hiring Surge</span>`);
+    if (c.employeeGrowth === 'growing') pills.push(`<span class="signal-pill emp-growth">Growing Team</span>`);
+    if (c.recentNews && c.recentNews.length > 0) pills.push(`<span class="signal-pill news">In the News</span>`);
+    if (c.github_total_stars > 0) pills.push(`<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>`);
+    if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
+    if (c.patents_count > 0) pills.push(`<span class="signal-pill patents">${c.patents_count} patents</span>`);
+    if (c.hn_mentions > 0) pills.push(`<span class="signal-pill hn">${c.hn_mentions} HN</span>`);
+    if (c.tranco_rank) pills.push(`<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>`);
+    if (c.app_rating) pills.push(`<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>`);
+    if ((c.npm_downloads || c.pypi_downloads)) pills.push(`<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>`);
+    if (c.papers_count > 0) pills.push(`<span class="signal-pill papers">${c.papers_count} papers</span>`);
+    if (c.wiki_monthly_views > 0) pills.push(`<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>`);
+    if (c.ph_launches && c.ph_launches.length > 0) pills.push(`<span class="signal-pill ph">Product Hunt</span>`);
+    if (c.employeeGrowth === 'declining') pills.push(`<span class="signal-pill emp-decline">Declining</span>`);
+    return pills.slice(0, max);
+}
+
 function createCard(c, isCurrent) {
     const card = document.createElement('div');
     card.className = 'card';
@@ -4450,12 +4781,12 @@ function createCard(c, isCurrent) {
         card.style.zIndex = '2';
     }
 
-    const stars = '★'.repeat(c.rating || 4) + '☆'.repeat(5 - (c.rating || 4));
     const catLabel = getCategoryLabel(c.category);
     const health = getCompanyHealth(c);
 
     const logoUrl = c.website ? `https://www.google.com/s2/favicons?domain=${c.website}&sz=128` : null;
     const fallbackInitial = c.name.charAt(0);
+    const topPills = getTopSignalPills(c, 3);
 
     card.innerHTML = `
         <div class="card-overlay pass">PASS</div>
@@ -4466,56 +4797,34 @@ function createCard(c, isCurrent) {
             </div>
             <div style="flex:1">
                 <div class="card-name">${c.name}</div>
-                <div class="card-product">${c.product || ''}</div>
+                <div class="card-badges">
+                    <span class="card-category">${catLabel}</span>
+                    <span class="health-badge ${health.class}" data-tooltip="${health.tooltip}">
+                        <span class="health-icon">${health.icon}</span>${health.label}
+                    </span>
+                </div>
             </div>
-            <span class="health-badge ${health.class}" data-tooltip="${health.tooltip}">
-                <span class="health-icon">${health.icon}</span>${health.label}
-            </span>
         </div>
+        <div class="card-product-line">${c.product || ''}</div>
         <div class="card-funding-banner">
             <span class="card-funding-label">Investment Raised</span>
             <span class="card-funding-value">${c.funding || 'N/A'}</span>
         </div>
-        ${((c.github_total_stars > 0) || (c.recentNews && c.recentNews.length > 0) || c.hn_mentions > 0 || c.wiki_monthly_views > 0 || c.patents_count > 0 || (c.ph_launches && c.ph_launches.length > 0) || c.papers_count > 0 || c.tranco_rank || c.app_rating || c.npm_downloads || c.pypi_downloads) ? `<div class="card-signals">
-            ${c.github_total_stars > 0 ? `<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>` : ''}
-            ${c.github_weekly_commits ? `<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>` : ''}
-            ${c.recentNews && c.recentNews.length > 0 ? `<span class="signal-pill news">In the News</span>` : ''}
-            ${c.hn_mentions > 0 ? `<span class="signal-pill hn">${c.hn_mentions} HN</span>` : ''}
-            ${c.wiki_monthly_views > 0 ? `<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>` : ''}
-            ${c.patents_count > 0 ? `<span class="signal-pill patents">${c.patents_count} patents</span>` : ''}
-            ${c.ph_launches && c.ph_launches.length > 0 ? `<span class="signal-pill ph">Product Hunt</span>` : ''}
-            ${c.papers_count > 0 ? `<span class="signal-pill papers">${c.papers_count} papers</span>` : ''}
-            ${c.tranco_rank ? `<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>` : ''}
-            ${c.app_rating ? `<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>` : ''}
-            ${(c.npm_downloads || c.pypi_downloads) ? `<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>` : ''}
-            ${c.yc_batch ? `<span class="signal-pill yc">YC ${c.yc_batch}</span>` : ''}
-        </div>` : ''}
-        ${c.secretSauce ? `<div class="card-secret-sauce">
-            <span class="sauce-icon">🔥</span>
-            <span class="sauce-text">${c.secretSauce}</span>
-        </div>` : ''}
-        <div class="card-header">
-            <span class="card-rating clickable" onclick="event.stopPropagation(); openRatingModal()">${stars}</span>
-            <span class="card-category">${catLabel}</span>
-        </div>
-        <div class="card-stats">
+        <div class="card-stats card-stats-3col">
             <div class="stat-box">
                 <div class="stat-label">Employees</div>
-                <div class="stat-value">${c.employees || 'N/A'}</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">HQ</div>
-                <div class="stat-value">${c.hq || 'N/A'}</div>
+                <div class="stat-value">${c.employees || 'N/A'} ${getEmployeeGrowthIcon(c.employeeGrowth)}</div>
             </div>
             <div class="stat-box">
                 <div class="stat-label">Founded</div>
                 <div class="stat-value">${c.founded || 'N/A'}</div>
             </div>
-            ${c.ceo ? `<div class="stat-box">
-                <div class="stat-label">CEO</div>
-                <div class="stat-value">${c.ceo}</div>
-            </div>` : ''}
+            <div class="stat-box">
+                <div class="stat-label">HQ</div>
+                <div class="stat-value">${c.hq || 'N/A'}</div>
+            </div>
         </div>
+        ${topPills.length > 0 ? `<div class="card-signals">${topPills.join('')}</div>` : ''}
         <div class="card-info-hint">TAP FOR FULL PROFILE ➤</div>
     `;
 
@@ -4722,6 +5031,7 @@ function generateAccordion(c) {
                 <span class="accordion-icon">\u25BC</span>
             </div>
             <div class="accordion-content">
+                ${c.patents_classifications && Object.keys(c.patents_classifications).length > 0 ? `<div style="margin-bottom:8px;font-size:12px;color:var(--text-dim)">Focus: ${formatPatentClassifications(c.patents_classifications)}</div>` : ''}
                 <ul>
                     ${(c.patents_recent || []).map(p => `<li>${p.title}${p.date ? ' \u2014 ' + p.date : ''}${p.number ? ' (' + p.number + ')' : ''}</li>`).join('')}
                 </ul>
@@ -4897,6 +5207,129 @@ function openDetail(company) {
     const stars = '★'.repeat(company.rating || 4) + '☆'.repeat(5 - (company.rating || 4));
     const catLabel = getCategoryLabel(company.category, true);
 
+    // Build signals tab content (only sections with data, no accordions)
+    let signalsHtml = '';
+    if (company.github_org && company.github_total_stars > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title">GitHub Activity</div>
+            <ul>${company.github_repos.filter(r => r.stars > 0).map(r => `<li class="github">${r.name} — ${r.stars.toLocaleString()} stars${r.language ? ' — ' + r.language : ''}</li>`).join('')}</ul>
+            <div class="github-total-stars">${company.github_total_stars.toLocaleString()} total stars</div>
+            ${company.github_weekly_commits ? `<div class="github-commit-velocity">${company.github_weekly_commits} commits/week</div>` : ''}
+            ${company.github_last_push ? `<div class="github-last-push">Last push: ${formatRelativeDate(company.github_last_push)}</div>` : ''}
+            <a href="https://github.com/${company.github_org}" target="_blank" class="accordion-link">View on GitHub ↗</a>
+        </div>`;
+    }
+    if (company.recentNews && company.recentNews.length > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title">Recent News</div>
+            ${company.recentNews.map(n => `<div class="news-item">${n.url ? `<a href="${n.url}" target="_blank" class="news-headline-link">${n.headline}</a>` : `<span class="news-headline-link">${n.headline}</span>`}<div class="news-meta">${n.source ? n.source + ' · ' : ''}${n.date || ''}</div></div>`).join('')}
+        </div>`;
+    }
+    if (company.hn_mentions > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#ff6600">Hacker News (${company.hn_mentions.toLocaleString()} mentions)</div>
+            ${company.hn_top_story ? `<div class="news-item"><a href="${company.hn_top_story.url}" target="_blank" class="news-headline-link">${company.hn_top_story.title}</a><div class="news-meta">${company.hn_top_story.points} points${company.hn_top_story.date ? ' · ' + company.hn_top_story.date : ''}</div></div>` : ''}
+            <a href="https://hn.algolia.com/?q=%22${encodeURIComponent(company.name)}%22&type=story" target="_blank" class="accordion-link">Search Hacker News ↗</a>
+        </div>`;
+    }
+    if (company.patents_count > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#a855f7">Patents (${company.patents_count.toLocaleString()})</div>
+            ${company.patents_classifications && Object.keys(company.patents_classifications).length > 0 ? `<div style="margin-bottom:8px;font-size:12px;color:var(--text-dim)">Focus: ${formatPatentClassifications(company.patents_classifications)}</div>` : ''}
+            <ul>${(company.patents_recent || []).map(p => `<li>${p.title}${p.date ? ' — ' + p.date : ''}${p.number ? ' (' + p.number + ')' : ''}</li>`).join('')}</ul>
+            <a href="https://patentsview.org/search?q=${encodeURIComponent(company.name)}" target="_blank" class="accordion-link">View on PatentsView ↗</a>
+        </div>`;
+    }
+    if (company.papers_count > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#22c55e">Academic Papers (${company.papers_count.toLocaleString()})</div>
+            <ul>${(company.papers_recent || []).map(p => `<li>${p.doi ? `<a href="${p.doi}" target="_blank" style="color:var(--text);text-decoration:none">${p.title}</a>` : p.title} <span style="color:var(--text-dim);font-size:11px">${p.cited_by} citations${p.year ? ' · ' + p.year : ''}</span></li>`).join('')}</ul>
+            <a href="https://openalex.org/works?filter=authorships.institutions.display_name:${encodeURIComponent(company.name)}" target="_blank" class="accordion-link">View on OpenAlex ↗</a>
+        </div>`;
+    }
+    if (company.wiki_monthly_views > 0 && company.wiki_title) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#60a5fa">Wikipedia (${company.wiki_monthly_views.toLocaleString()} views/mo)</div>
+            <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(company.wiki_title.replace(/ /g, '_'))}" target="_blank" class="accordion-link">View Wikipedia Article ↗</a>
+        </div>`;
+    }
+    if (company.app_rating) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#3b82f6">App Store (${company.app_rating}★)</div>
+            <ul><li>${company.app_name || company.name} — ${company.app_rating} stars from ${(company.app_rating_count || 0).toLocaleString()} ratings</li></ul>
+            ${company.app_url ? `<a href="${company.app_url}" target="_blank" class="accordion-link">View in App Store ↗</a>` : ''}
+        </div>`;
+    }
+    if (company.npm_downloads || company.pypi_downloads) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#ef4444">Package Downloads (${formatViews((company.npm_downloads || 0) + (company.pypi_downloads || 0))}/mo)</div>
+            <ul>
+                ${company.npm_downloads ? `<li>npm: ${company.npm_downloads.toLocaleString()} downloads/mo (${company.npm_package})</li>` : ''}
+                ${company.pypi_downloads ? `<li>PyPI: ${company.pypi_downloads.toLocaleString()} downloads/mo (${company.pypi_package})</li>` : ''}
+            </ul>
+        </div>`;
+    }
+    if (company.ph_launches && company.ph_launches.length > 0) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#da5938">Product Hunt (${company.ph_launches.length} launch${company.ph_launches.length > 1 ? 'es' : ''})</div>
+            ${company.ph_launches.slice(0, 5).map(p => `<div class="news-item">${p.url ? `<a href="${p.url}" target="_blank" class="news-headline-link">${p.name}</a>` : `<span class="news-headline-link">${p.name}</span>`}<div class="news-meta">▲ ${p.votes} votes${p.date ? ' · ' + p.date : ''}${p.tagline ? ' · ' + p.tagline : ''}</div></div>`).join('')}
+        </div>`;
+    }
+    if (company.tranco_rank) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title" style="color:#fbbf24">Web Traffic (Tranco #${company.tranco_rank.toLocaleString()})</div>
+            <ul><li>Ranked #${company.tranco_rank.toLocaleString()} of top 1 million websites globally</li></ul>
+            ${company.tranco_domain ? `<a href="https://${company.tranco_domain}" target="_blank" class="accordion-link">Visit ${company.tranco_domain} ↗</a>` : ''}
+        </div>`;
+    }
+    if (company.sec_cik) {
+        signalsHtml += `<div class="signal-section">
+            <div class="signal-section-title">SEC Filings</div>
+            <ul><li>${company.sec_filing_count || 0} total filings</li>
+            ${company.sec_latest_filing ? `<li>Latest: ${company.sec_latest_filing.form} — ${company.sec_latest_filing.date}</li>` : ''}</ul>
+            <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${company.sec_cik}&type=&dateb=&owner=include&count=40" target="_blank" class="accordion-link">View on EDGAR ↗</a>
+        </div>`;
+    }
+
+    if (!signalsHtml) {
+        signalsHtml = '<div style="color:var(--text-dim);text-align:center;padding:24px">No signal data available for this company.</div>';
+    }
+
+    // Build analysis tab content (M&A, Success, Risks, Similar)
+    const funding = parseFundingAmount(company.funding);
+    const maIntel = [];
+    if (company.maBullets && company.maBullets.length > 0) {
+        const shortLabels = {'Strategic Rationale':'Rationale','Likely Acquirers':'Acquirers','Estimated Price Range':'Price Range','Unique Assets':'Assets','Deal Profile':'Deal'};
+        company.maBullets.forEach(b => {
+            const lbl = shortLabels[b.label] || b.label;
+            maIntel.push(`<strong>${lbl}:</strong> ${b.text}`);
+        });
+    } else {
+        if (funding > 500) maIntel.push('Prime acquisition target for big tech');
+        if (funding > 1000) maIntel.push('IPO candidate within 2-3 years');
+        if (company.category === 'foundation-models') maIntel.push('Strategic asset for AI capabilities');
+        if (company.category === 'ai-infrastructure') maIntel.push('Infrastructure play attractive to cloud providers');
+        if (company.category === 'coding-ai') maIntel.push('Developer tools attract enterprise acquirers');
+        if (maIntel.length === 0) maIntel.push('Early-stage, building strategic value');
+    }
+
+    const successFactors = [];
+    if (company.secretSauce) successFactors.push(company.secretSauce.split('+')[0].trim());
+    if (company.ceo) successFactors.push(`Experienced leadership (${company.ceo})`);
+    if (funding > 100) successFactors.push('Strong funding runway');
+    if (company.rating >= 4) successFactors.push('High market momentum');
+    if (company.category === 'enterprise-ai') successFactors.push('Enterprise revenue stability');
+    if (successFactors.length < 3) successFactors.push('Growing market opportunity');
+
+    const risks = [];
+    if (company.category === 'foundation-models') risks.push('Intense competition from OpenAI/Google');
+    if (funding < 50) risks.push('Limited runway for scaling');
+    if (company.employees && company.employees.includes('50-')) risks.push('Team scaling challenges');
+    if (company.category === 'consumer-ai') risks.push('User acquisition costs');
+    if (company.category === 'ai-chips') risks.push('Hardware commoditization risk');
+    risks.push('Regulatory uncertainty in AI');
+    if (risks.length < 3) risks.push('Market timing dependency');
+
     content.innerHTML = `
         <div class="detail-header">
             <button class="detail-close" onclick="closeDetail()">×</button>
@@ -4910,89 +5343,108 @@ function openDetail(company) {
                 </div>
             </div>
         </div>
-        <div class="detail-body">
-            <div class="detail-section">
-                <div class="detail-section-title">Rating</div>
-                <div class="detail-rating" style="cursor:pointer" onclick="openRatingModal()">${stars}</div>
-            </div>
-            <div class="detail-section">
-                <div class="detail-section-title">Category</div>
-                <div class="detail-section-content">${catLabel}</div>
-            </div>
-            ${company.secretSauce ? `
-            <div class="detail-section">
-                <div class="detail-section-title">🔥 Secret Sauce</div>
-                <div class="detail-section-content" style="color:var(--gold-light);font-weight:500">${company.secretSauce}</div>
-            </div>
-            ` : ''}
-            <div class="detail-section">
-                <div class="detail-section-title">About</div>
-                <div class="detail-section-content">${company.description || 'No description available.'}</div>
-            </div>
-            <div class="detail-section">
-                <div class="detail-section-title">Key Metrics</div>
-                <div class="detail-grid">
-                    <div class="detail-stat">
-                        <div class="detail-stat-label">Funding</div>
-                        <div class="detail-stat-value highlight">${company.funding || 'N/A'}</div>
-                    </div>
-                    <div class="detail-stat">
-                        <div class="detail-stat-label">Employees</div>
-                        <div class="detail-stat-value">${company.employees || 'N/A'}</div>
-                    </div>
-                    <div class="detail-stat">
-                        <div class="detail-stat-label">Founded</div>
-                        <div class="detail-stat-value">${company.founded || 'N/A'}</div>
-                    </div>
-                    <div class="detail-stat">
-                        <div class="detail-stat-label">HQ</div>
-                        <div class="detail-stat-value">${company.hq || 'N/A'}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-accordion" style="margin-top:16px;">
-                <div class="accordion-item" onclick="toggleAccordion(event)">
-                    <div class="accordion-header">
-                        <span>Leadership</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        ${(company.leadership && company.leadership.length > 0
-                          ? company.leadership
-                          : (company.ceo ? [{role: 'CEO', name: company.ceo}] : [])
-                        ).map(l => `<div class="leadership-row">
-                            <span class="leadership-role">${l.role}</span>
-                            <span class="leadership-name"><a href="https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(l.name + ' ' + company.name)}" target="_blank" rel="noopener">${l.name}</a></span>
-                        </div>`).join('') || `<div class="leadership-row"><span class="leadership-role">CEO</span><span class="leadership-name empty">—</span></div>`}
-                    </div>
-                </div>
-                ${company.fundingRounds && company.fundingRounds.length > 0 ? `
-                <div class="accordion-item" onclick="toggleAccordion(event)">
-                    <div class="accordion-header">
-                        <span>Funding Timeline</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="funding-timeline">
-                            ${company.fundingRounds.slice().reverse().map(r => `
-                                <div class="timeline-item">
-                                    <div class="timeline-stage">${r.stage}</div>
-                                    <div class="timeline-amount">${r.amount}</div>
-                                    <div class="timeline-meta">${r.date ? r.date : ''}${r.investors ? ' · ' + r.investors : ''}</div>
-                                </div>
-                            `).join('')}
+
+        <!-- TABS -->
+        <div class="detail-tabs">
+            <div class="detail-tab active" onclick="switchDetailTab('overview', this)">Overview</div>
+            <div class="detail-tab" onclick="switchDetailTab('signals', this)">Signals</div>
+            <div class="detail-tab" onclick="switchDetailTab('analysis', this)">Analysis</div>
+        </div>
+
+        <!-- OVERVIEW TAB -->
+        <div class="detail-tab-panel active" id="detail-panel-overview">
+            <div class="detail-body">
+                <div class="detail-section">
+                    <div class="detail-section-title">Key Metrics</div>
+                    <div class="detail-grid">
+                        <div class="detail-stat">
+                            <div class="detail-stat-label">Funding</div>
+                            <div class="detail-stat-value highlight">${company.funding || 'N/A'}</div>
+                        </div>
+                        <div class="detail-stat">
+                            <div class="detail-stat-label">Employees</div>
+                            <div class="detail-stat-value">${company.employees || 'N/A'} ${getEmployeeGrowthIcon(company.employeeGrowth)}</div>
+                        </div>
+                        <div class="detail-stat">
+                            <div class="detail-stat-label">Founded</div>
+                            <div class="detail-stat-value">${company.founded || 'N/A'}</div>
+                        </div>
+                        <div class="detail-stat">
+                            <div class="detail-stat-label">HQ</div>
+                            <div class="detail-stat-value">${company.hq || 'N/A'}</div>
                         </div>
                     </div>
                 </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Leadership</div>
+                    ${(company.leadership && company.leadership.length > 0
+                      ? company.leadership
+                      : (company.ceo ? [{role: 'CEO', name: company.ceo}] : [])
+                    ).map(l => `<div class="leadership-row">
+                        <span class="leadership-role">${l.role}</span>
+                        <span class="leadership-name"><a href="https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(l.name + ' ' + company.name)}" target="_blank" rel="noopener">${l.name}</a>${l.startDate ? '<span class="leadership-date">(' + formatLeadershipDate(l.startDate) + ')</span>' : ''}${isRecentLeader(l.startDate) ? '<span class="leadership-new-badge">NEW</span>' : ''}</span>
+                    </div>`).join('') || `<div class="leadership-row"><span class="leadership-role">CEO</span><span class="leadership-name empty">—</span></div>`}
+                </div>
+                ${company.fundingRounds && company.fundingRounds.length > 0 ? `
+                <div class="detail-section">
+                    <div class="detail-section-title">Funding Timeline</div>
+                    <div class="funding-timeline">
+                        ${company.fundingRounds.slice().reverse().map(r => `
+                            <div class="timeline-item">
+                                <div class="timeline-stage">${r.stage}</div>
+                                <div class="timeline-amount">${r.amount}</div>
+                                <div class="timeline-meta">${r.date ? r.date : ''}${r.investors ? ' · ' + r.investors : ''}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
                 ` : ''}
-                ${generateAccordion(company)}
+                ${company.secretSauce ? `
+                <div class="detail-section">
+                    <div class="detail-section-title">Secret Sauce</div>
+                    <div class="detail-section-content" style="color:var(--gold-light);font-weight:500">${company.secretSauce}</div>
+                </div>
+                ` : ''}
+                <div class="detail-section">
+                    <div class="detail-section-title">About</div>
+                    <div class="detail-section-content">${company.description || 'No description available.'}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Rating</div>
+                    <div class="detail-rating" style="cursor:pointer" onclick="openRatingModal()">${stars}</div>
+                    <div style="font-size:11px;color:var(--text-dim);margin-top:4px">${catLabel}</div>
+                </div>
             </div>
-            ${renderSimilarCompanies(company)}
-            <div class="card-links" style="margin-top:16px;">
-                ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>` : ''}
-                <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
-                <button class="link-circle" onclick="shareCompany(${company.id})" title="Share"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 0-6 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.89 2.89 0 0 0 2.89 2.89 2.89 2.89 0 0 0 2.89-2.89A2.89 2.89 0 0 0 18 16.08z"/></svg></button>
+        </div>
+
+        <!-- SIGNALS TAB -->
+        <div class="detail-tab-panel" id="detail-panel-signals">
+            <div class="detail-body">${signalsHtml}</div>
+        </div>
+
+        <!-- ANALYSIS TAB -->
+        <div class="detail-tab-panel" id="detail-panel-analysis">
+            <div class="detail-body">
+                <div class="detail-section">
+                    <div class="detail-section-title">M&A Intelligence</div>
+                    <ul>${maIntel.slice(0, 5).map(i => `<li class="intel">${i}</li>`).join('')}</ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Success Factors</div>
+                    <ul>${successFactors.slice(0, 3).map(i => `<li class="success">${i}</li>`).join('')}</ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-section-title">Risks</div>
+                    <ul>${risks.slice(0, 3).map(i => `<li class="risk">${i}</li>`).join('')}</ul>
+                </div>
+                ${renderSimilarCompanies(company)}
             </div>
+        </div>
+
+        <div class="card-links" style="padding:0 24px 8px;">
+            ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>` : ''}
+            <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+            <button class="link-circle" onclick="shareCompany(${company.id})" title="Share"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 0-6 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.89 2.89 0 0 0 2.89 2.89 2.89 2.89 0 0 0 2.89-2.89A2.89 2.89 0 0 0 18 16.08z"/></svg></button>
         </div>
         <div class="detail-actions">
             <button class="detail-btn pass-btn" onclick="closeDetail(); doSwipe('left')">✕ Pass</button>
@@ -5002,28 +5454,17 @@ function openDetail(company) {
 
     modal.classList.add('active');
 
-    // Live fetch: update GitHub + SEC data
-    if (company.github_org && company.github_total_stars > 0) {
-        fetchGitHubLive(company.github_org).then(data => {
-            if (!data) return;
-            const el = content.querySelector('#github-accordion-all');
-            if (el) {
-                const rendered = renderGitHubContent(data, company.github_org);
-                if (rendered) el.innerHTML = rendered;
-            }
-        });
-    }
-    if (company.sec_cik) {
-        fetchSECLive(company.sec_cik).then(data => {
-            if (!data) return;
-            const el = content.querySelector('#sec-accordion-content');
-            if (el) el.innerHTML = renderSECContent(data, company.sec_cik);
-        });
-    }
 }
 
 function closeDetail() {
     document.getElementById('detail-modal').classList.remove('active');
+}
+
+function switchDetailTab(tab, el) {
+    document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.detail-tab-panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('detail-panel-' + tab).classList.add('active');
 }
 
 function shareCompany(id) {
@@ -5205,6 +5646,82 @@ function parseFunding(funding) {
     return amount;
 }
 
+let compareSortCol = 'name';
+let compareSortDir = 'asc';
+
+function sortCompareTable(col) {
+    if (compareSortCol === col) {
+        compareSortDir = compareSortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+        compareSortCol = col;
+        compareSortDir = col === 'name' ? 'asc' : 'desc';
+    }
+    renderSavedList();
+}
+
+function renderCompareTable(list) {
+    // Sort list by current compare column
+    const sorted = [...list].sort((a, b) => {
+        let cmp = 0;
+        if (compareSortCol === 'name') {
+            cmp = a.name.localeCompare(b.name);
+        } else if (compareSortCol === 'employees') {
+            cmp = (parseEmployeeString(a.employees) || 0) - (parseEmployeeString(b.employees) || 0);
+        } else if (compareSortCol === 'growth') {
+            const order = { 'high-growth': 3, 'growing': 2, 'steady': 1, 'declining': 0 };
+            cmp = (order[a.employeeGrowth] || 1) - (order[b.employeeGrowth] || 1);
+        } else if (compareSortCol === 'funding') {
+            cmp = parseFunding(a.funding) - parseFunding(b.funding);
+        } else if (compareSortCol === 'round') {
+            cmp = (a.lastRound || '').localeCompare(b.lastRound || '');
+        } else if (compareSortCol === 'leaders') {
+            const aNew = (a.leadership || []).filter(l => isRecentLeader(l.startDate)).length;
+            const bNew = (b.leadership || []).filter(l => isRecentLeader(l.startDate)).length;
+            cmp = aNew - bNew;
+        }
+        return compareSortDir === 'asc' ? cmp : -cmp;
+    });
+
+    const arrow = (col) => compareSortCol === col ? `<span class="sort-arrow">${compareSortDir === 'asc' ? '▲' : '▼'}</span>` : '';
+    const cls = (col) => compareSortCol === col ? ' sorted' : '';
+
+    let html = '<div class="compare-table-wrap"><table class="compare-table"><thead><tr>';
+    html += `<th class="${cls('name')}" onclick="sortCompareTable('name')">Name${arrow('name')}</th>`;
+    html += `<th class="${cls('employees')}" onclick="sortCompareTable('employees')">Employees${arrow('employees')}</th>`;
+    html += `<th class="${cls('growth')}" onclick="sortCompareTable('growth')">Growth${arrow('growth')}</th>`;
+    html += `<th class="${cls('funding')}" onclick="sortCompareTable('funding')">Funding${arrow('funding')}</th>`;
+    html += `<th class="${cls('round')}" onclick="sortCompareTable('round')">Last Round${arrow('round')}</th>`;
+    html += `<th class="${cls('leaders')}" onclick="sortCompareTable('leaders')">Leadership${arrow('leaders')}</th>`;
+    html += '</tr></thead><tbody>';
+
+    sorted.forEach(c => {
+        const growthClass = c.employeeGrowth === 'high-growth' ? 'growth-high'
+            : c.employeeGrowth === 'growing' ? 'growth-growing'
+            : c.employeeGrowth === 'declining' ? 'growth-declining'
+            : 'growth-steady';
+        const growthLabel = c.employeeGrowth === 'high-growth' ? '▲▲ Surge'
+            : c.employeeGrowth === 'growing' ? '▲ Growing'
+            : c.employeeGrowth === 'declining' ? '▼ Declining'
+            : '— Steady';
+        const newLeaders = (c.leadership || []).filter(l => isRecentLeader(l.startDate));
+        const leaderHtml = newLeaders.length > 0
+            ? newLeaders.map(l => `${l.name} <span class="leadership-new-badge">NEW</span>`).join(', ')
+            : (c.ceo || '—');
+
+        html += `<tr>
+            <td class="company-name-cell" onclick="closeSaved();openDetailById(${c.id})">${c.name}</td>
+            <td>${c.employees || '—'}</td>
+            <td class="${growthClass}">${growthLabel}</td>
+            <td>${c.funding || '—'}</td>
+            <td>${c.lastRound || '—'}</td>
+            <td>${leaderHtml}</td>
+        </tr>`;
+    });
+
+    html += '</tbody></table></div>';
+    return html;
+}
+
 function renderSavedList() {
     const list = document.getElementById('saved-list');
     const footer = document.getElementById('modal-footer');
@@ -5256,6 +5773,7 @@ function renderSavedList() {
             <div class="view-toggle">
                 <button class="${savedViewMode === 'list' ? 'active' : ''}" onclick="setViewMode('list')">List</button>
                 <button class="${savedViewMode === 'grouped' ? 'active' : ''}" onclick="setViewMode('grouped')">Category</button>
+                <button class="${savedViewMode === 'compare' ? 'active' : ''}" onclick="setViewMode('compare')">Compare</button>
             </div>
             <button type="button" id="clear-all-btn" style="background:rgba(220,38,38,0.1);border:1px solid #dc2626;color:#dc2626;font-size:13px;cursor:pointer;padding:6px 12px;border-radius:6px;font-weight:600">Clear All</button>
         </div>
@@ -5285,7 +5803,9 @@ function renderSavedList() {
     }
 
     // Render based on view mode
-    if (savedViewMode === 'grouped') {
+    if (savedViewMode === 'compare') {
+        html += renderCompareTable(displayList);
+    } else if (savedViewMode === 'grouped') {
         const grouped = {};
         saved.forEach(c => {
             const cat = getCategoryLabel(c.category);
@@ -5568,7 +6088,7 @@ function exportCSV(source) {
     const headers = [
         // Core
         'Name', 'Product', 'Category', 'Status', 'Founded', 'HQ', 'Website', 'LinkedIn',
-        'Rating', 'Description', 'Secret Sauce', 'Employees',
+        'Rating', 'Description', 'Secret Sauce', 'Employees', 'Employee Count', 'Employee Growth',
         // Financial
         'Funding', 'Funding Value', 'Last Round', 'Valuation', 'Revenue', 'Investors',
         // M&A
@@ -5587,7 +6107,7 @@ function exportCSV(source) {
         'Tranco Web Rank', 'Tranco Domain',
         'App Store Name', 'App Store Rating', 'App Store Rating Count', 'App Store URL',
         'npm Package', 'npm Downloads/Mo', 'PyPI Package', 'PyPI Downloads/Mo',
-        'Patents Count', 'Academic Papers Count', 'Top Papers',
+        'Patents Count', 'Patent Classifications', 'Academic Papers Count', 'Top Papers',
         'SEC Filing Count',
         'YC Batch', 'YC URL',
         // News
@@ -5616,6 +6136,8 @@ function exportCSV(source) {
         c.description,
         c.secretSauce || '',
         c.employees || '',
+        c.employeeCount || (parseEmployeeString(c.employees) || ''),
+        c.employeeGrowth || '',
         // Financial
         c.funding,
         c.fundingValue || '',
@@ -5638,7 +6160,7 @@ function exportCSV(source) {
         c.competitors || '',
         // Leadership
         c.ceo || '',
-        (c.leadership || []).map(l => `${l.role}: ${l.name}`).join(' | '),
+        (c.leadership || []).map(l => `${l.role}: ${l.name}${l.startDate ? ' (' + l.startDate + ')' : ''}`).join(' | '),
         // Signals
         c.github_org || '',
         c.github_total_stars || '',
@@ -5662,6 +6184,7 @@ function exportCSV(source) {
         c.pypi_package || '',
         c.pypi_downloads || '',
         c.patents_count || '',
+        c.patents_classifications ? formatPatentClassifications(c.patents_classifications) : '',
         c.papers_count || '',
         (c.papers_recent || []).map(p => `${p.title} (${p.year}, ${p.cited_by} cites)`).join(' | '),
         c.sec_filing_count || '',
