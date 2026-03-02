@@ -129,25 +129,32 @@ async function fetchGitHubRepos(org) {
 }
 
 async function fetchWeeklyCommits(repoFullName) {
-  // Returns total commits in the last 4 weeks from the stats/commit_activity endpoint
-  // This endpoint returns an array of 52 weekly commit counts
-  try {
-    const res = await fetch(
-      `${GITHUB_API}/repos/${repoFullName}/stats/commit_activity`,
-      { headers: getGitHubHeaders() }
-    );
-    if (!res.ok) return null;
-    // GitHub may return 202 (computing) — treat as unavailable
-    if (res.status === 202) return null;
-    const weeks = await res.json();
-    if (!Array.isArray(weeks) || weeks.length === 0) return null;
-    // Sum the last 4 weeks
-    const recent = weeks.slice(-4);
-    const total = recent.reduce((sum, w) => sum + (w.total || 0), 0);
-    return Math.round(total / 4); // average weekly commits
-  } catch {
-    return null;
+  // Returns avg commits/week over last 4 weeks from stats/commit_activity endpoint
+  // GitHub returns 202 (computing) on first request — must retry after delay
+  const MAX_RETRIES = 3;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    try {
+      const res = await fetch(
+        `${GITHUB_API}/repos/${repoFullName}/stats/commit_activity`,
+        { headers: getGitHubHeaders() }
+      );
+      if (res.status === 202) {
+        // GitHub is computing stats — wait and retry
+        await sleep(2000);
+        continue;
+      }
+      if (!res.ok) return null;
+      const weeks = await res.json();
+      if (!Array.isArray(weeks) || weeks.length === 0) return null;
+      // Sum the last 4 weeks
+      const recent = weeks.slice(-4);
+      const total = recent.reduce((sum, w) => sum + (w.total || 0), 0);
+      return Math.round(total / 4); // average weekly commits
+    } catch {
+      return null;
+    }
   }
+  return null; // Exhausted retries
 }
 
 async function enrichGitHub(companies) {
@@ -191,12 +198,15 @@ async function enrichGitHub(companies) {
       const data = await fetchGitHubRepos(org);
       await sleep(100);
       if (data) {
-        // Fetch commit velocity for top repo
-        let weeklyCommits = null;
-        if (data.topRepoFullName) {
-          weeklyCommits = await fetchWeeklyCommits(data.topRepoFullName);
-          await sleep(100);
+        // Fetch commit velocity across top 3 repos (sum of averages)
+        let weeklyCommits = 0;
+        const repoNames = data.repos.map(r => `${org}/${r.name}`).slice(0, 3);
+        for (const repo of repoNames) {
+          const commits = await fetchWeeklyCommits(repo);
+          if (commits) weeklyCommits += commits;
+          await sleep(150);
         }
+        weeklyCommits = weeklyCommits > 0 ? weeklyCommits : null;
 
         c.github_org = org;
         c.github_repos = data.repos;
@@ -252,15 +262,17 @@ async function enrichGitHubIncremental(companies, batchSize = 93) {
     const data = await fetchGitHubRepos(c.github_org);
     await sleep(100);
     if (data) {
-      let weeklyCommits = null;
-      if (data.topRepoFullName) {
-        weeklyCommits = await fetchWeeklyCommits(data.topRepoFullName);
-        await sleep(100);
+      let weeklyCommits = 0;
+      const repoNames = data.repos.map(r => `${c.github_org}/${r.name}`).slice(0, 3);
+      for (const repo of repoNames) {
+        const commits = await fetchWeeklyCommits(repo);
+        if (commits) weeklyCommits += commits;
+        await sleep(150);
       }
       c.github_repos = data.repos;
       c.github_total_stars = data.totalStars;
       c.github_last_push = data.lastPush;
-      c.github_weekly_commits = weeklyCommits;
+      c.github_weekly_commits = weeklyCommits > 0 ? weeklyCommits : null;
       c.github_enriched_at = new Date().toISOString();
       refreshed++;
     }
@@ -542,12 +554,17 @@ async function enrichWikidata(companies) {
       if (!c.description && wiki.description) {
         c.description = wiki.description;
       }
+      if (!c.employeeCount && wiki.employeeCount) {
+        c.employeeCount = wiki.employeeCount;
+        c.employee_source = 'wikidata';
+      }
 
       enriched++;
       const filled = [];
       if (wiki.inception) filled.push('founded');
       if (wiki.hq) filled.push('hq');
       if (wiki.description) filled.push('desc');
+      if (wiki.employeeCount) filled.push('employees: ' + wiki.employeeCount);
       console.log(`  [+] ${c.name} → ${wiki.wikidata_id} (${filled.join(', ') || 'id only'})`);
     } else {
       c.wikidata_id = null;

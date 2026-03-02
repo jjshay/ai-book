@@ -8,12 +8,15 @@
 //   node enrich-leadership.js --model=all         (consensus: runs all 4, keeps names 2+ agree on)
 //   Add --dry-run to preview without saving
 //   Add --force to re-enrich companies that already have leadership data
+//   Add --enrich-dates-only to re-enrich companies missing startDate values
+//   Add --enrich-employees to also run employee growth enrichment
+//   Add --enrich-employees-only to run ONLY employee growth enrichment
 
 const fs = require('fs');
 const path = require('path');
 
 const BATCH_SIZE = 20;
-const ROLES = ['CEO', 'CTO', 'COO', 'Chief Strategy Officer', 'CPO', 'CRO'];
+const ROLES = ['CEO', 'CFO', 'CTO', 'COO', 'CPO'];
 
 // ========== API KEYS ==========
 const KEYS = {
@@ -49,10 +52,11 @@ Most of these are well-known AI companies — you should know at least 2-3 execu
 
 Return ONLY valid JSON — no markdown, no backticks, no commentary.
 
-Format: {"CompanyName": [{"role": "CEO", "name": "Full Name"}, {"role": "CTO", "name": "Full Name"}, ...], ...}
+Format: {"CompanyName": [{"role": "CEO", "name": "Full Name", "startDate": "YYYY-MM"}, ...], ...}
 
 Rules:
 - Include every role where you have a reasonable belief about the current holder
+- For "startDate", provide the approximate month they started in that role (YYYY-MM format). Use null if unknown.
 - If a company has a known CEO hint in brackets, confirm or correct it
 - For well-known companies, you should return at LEAST 2 executives
 - Use the exact company name as the key
@@ -170,7 +174,7 @@ const PROVIDERS = {
 
 function mergeLeadership(resultsByProvider, companyName) {
   // Count how many providers agree on each role+name pair
-  const votes = {}; // "role::normalizedName" -> { role, name, count, providers }
+  const votes = {}; // "role::normalizedName" -> { role, name, startDate, count, providers }
   for (const [provider, parsed] of Object.entries(resultsByProvider)) {
     const leaders = parsed[companyName];
     if (!Array.isArray(leaders)) continue;
@@ -178,8 +182,10 @@ function mergeLeadership(resultsByProvider, companyName) {
       if (!l.role || !l.name) continue;
       const key = `${l.role}::${l.name.toLowerCase().trim()}`;
       if (!votes[key]) {
-        votes[key] = { role: l.role, name: l.name, count: 0, providers: [] };
+        votes[key] = { role: l.role, name: l.name, startDate: l.startDate || null, count: 0, providers: [] };
       }
+      // Prefer a startDate over null
+      if (l.startDate && !votes[key].startDate) votes[key].startDate = l.startDate;
       votes[key].count++;
       votes[key].providers.push(provider);
     }
@@ -190,7 +196,11 @@ function mergeLeadership(resultsByProvider, companyName) {
   return Object.values(votes)
     .filter(v => v.count >= threshold)
     .sort((a, b) => b.count - a.count)
-    .map(v => ({ role: v.role, name: v.name }));
+    .map(v => {
+      const entry = { role: v.role, name: v.name };
+      if (v.startDate) entry.startDate = v.startDate;
+      return entry;
+    });
 }
 
 // ========== MAIN ENRICHMENT ==========
@@ -220,9 +230,13 @@ async function enrichLeadership(companies, modelArg) {
   console.log(`\n[Leadership] Provider(s): ${providerNames.map(p => PROVIDERS[p].label).join(' + ')}`);
   if (isAll) console.log('[Leadership] Consensus mode: keeping names 2+ models agree on');
 
+  const datesOnly = process.argv.includes('--enrich-dates-only');
+
   const needsEnrichment = force
     ? companies
-    : companies.filter(c => !c.leadership || c.leadership.length === 0);
+    : datesOnly
+      ? companies.filter(c => c.leadership && c.leadership.length > 0 && c.leadership.some(l => !l.startDate))
+      : companies.filter(c => !c.leadership || c.leadership.length === 0);
   console.log(`[Leadership] ${needsEnrichment.length} companies to enrich (${companies.length - needsEnrichment.length} already done)`);
 
   if (needsEnrichment.length === 0) {
@@ -244,12 +258,36 @@ async function enrichLeadership(companies, modelArg) {
       continue;
     }
 
-    const companyList = batch.map(c => {
-      const hint = c.ceo ? ` [known CEO: ${c.ceo}]` : '';
-      return `- ${c.name} (${c.product || 'AI company'})${hint}`;
-    }).join('\n');
+    let prompt;
+    if (datesOnly) {
+      // Date-focused prompt: include existing leadership so LLM only needs to add dates
+      const companyList = batch.map(c => {
+        const leaders = (c.leadership || []).map(l => `${l.role}: ${l.name}`).join(', ');
+        return `- ${c.name} (${c.product || 'AI company'}) [current team: ${leaders}]`;
+      }).join('\n');
+      prompt = `For each AI/tech company and their known executives below, determine when each person started in their current role.
 
-    const prompt = buildPrompt(companyList);
+Return ONLY valid JSON — no markdown, no backticks, no commentary.
+
+Format: {"CompanyName": [{"role": "CEO", "name": "Full Name", "startDate": "YYYY-MM"}, ...], ...}
+
+Rules:
+- The names and roles are already confirmed — just add startDate for each
+- startDate should be the approximate month they started in THAT specific role (not when they joined the company)
+- Use "YYYY-MM" format (e.g., "2023-06"). Use null only if you truly cannot estimate
+- For well-known executives (Sam Altman, Jensen Huang, etc.), you should know the approximate date
+- Even for less-known executives, try to estimate based on when the company was at the stage they were likely hired
+- Return ALL executives listed, not just ones you have dates for
+
+Companies:
+${companyList}`;
+    } else {
+      const companyList = batch.map(c => {
+        const hint = c.ceo ? ` [known CEO: ${c.ceo}]` : '';
+        return `- ${c.name} (${c.product || 'AI company'})${hint}`;
+      }).join('\n');
+      prompt = buildPrompt(companyList);
+    }
 
     // Call all selected providers (in parallel for consensus mode)
     const results = {};
@@ -304,7 +342,11 @@ async function enrichLeadership(companies, modelArg) {
       } else {
         const parsed = Object.values(results)[0];
         const raw = parsed[c.name];
-        leaders = Array.isArray(raw) ? raw.filter(l => l.role && l.name).map(l => ({ role: l.role, name: l.name })) : [];
+        leaders = Array.isArray(raw) ? raw.filter(l => l.role && l.name).map(l => {
+          const entry = { role: l.role, name: l.name };
+          if (l.startDate) entry.startDate = l.startDate;
+          return entry;
+        }) : [];
       }
 
       if (leaders.length > 0) {
@@ -329,6 +371,100 @@ async function enrichLeadership(companies, modelArg) {
   return enriched + fallbacks;
 }
 
+// ========== EMPLOYEE GROWTH ENRICHMENT ==========
+
+const EMPLOYEE_GROWTH_BATCH = 20;
+
+function buildEmployeeGrowthPrompt(companyList) {
+  return `For each AI/tech company below, estimate their current employee count and recent growth trajectory.
+
+Return ONLY valid JSON — no markdown, no backticks, no commentary.
+
+Format: {"CompanyName": {"employeeCount": 500, "employeeGrowth": "growing"}, ...}
+
+Growth categories:
+- "high-growth": 40%+ year-over-year employee growth (rapidly hiring)
+- "growing": 10-40% year-over-year growth (steady hiring)
+- "steady": -10% to +10% (stable headcount)
+- "declining": more than 10% decrease (layoffs or attrition)
+
+Rules:
+- Use your best estimate for current employee count (approximate is fine)
+- If a company has a known employee hint in brackets, use it as a reference
+- Base growth assessment on recent hiring activity, news about layoffs/hiring, and company trajectory
+- Use null for employeeCount or employeeGrowth if you truly cannot estimate
+
+Companies:
+${companyList}`;
+}
+
+async function enrichEmployeeGrowth(companies, modelArg) {
+  const dryRun = process.argv.includes('--dry-run');
+  const force = process.argv.includes('--force');
+  const provider = PROVIDERS[modelArg];
+  if (!provider) return 0;
+  if (!KEYS[modelArg]) {
+    console.log(`[Employee Growth] No API key for ${modelArg}, skipping.`);
+    return 0;
+  }
+
+  const needsEnrichment = force
+    ? companies
+    : companies.filter(c => !c.employeeGrowth);
+
+  console.log(`\n[Employee Growth] ${needsEnrichment.length} companies to enrich`);
+  if (needsEnrichment.length === 0) return 0;
+
+  let enriched = 0;
+  for (let i = 0; i < needsEnrichment.length; i += EMPLOYEE_GROWTH_BATCH) {
+    const batch = needsEnrichment.slice(i, i + EMPLOYEE_GROWTH_BATCH);
+    const batchNum = Math.floor(i / EMPLOYEE_GROWTH_BATCH) + 1;
+    const totalBatches = Math.ceil(needsEnrichment.length / EMPLOYEE_GROWTH_BATCH);
+    console.log(`\n  Batch ${batchNum}/${totalBatches}`);
+
+    if (dryRun) {
+      console.log(`  [dry-run] Would call ${modelArg} for employee growth`);
+      continue;
+    }
+
+    const companyList = batch.map(c => {
+      const hint = c.employees ? ` [known: ${c.employees}]` : '';
+      return `- ${c.name} (${c.product || 'AI company'})${hint}`;
+    }).join('\n');
+
+    const prompt = buildEmployeeGrowthPrompt(companyList);
+
+    try {
+      const { text, tokens } = await provider.call(prompt);
+      const parsed = parseJsonResponse(text);
+      console.log(`    [${modelArg}] OK (${tokens})`);
+
+      for (const c of batch) {
+        const data = parsed[c.name];
+        if (data) {
+          if (data.employeeCount && !c.employeeCount) {
+            c.employeeCount = data.employeeCount;
+            c.employee_source = modelArg;
+          }
+          if (data.employeeGrowth && ['high-growth', 'growing', 'steady', 'declining'].includes(data.employeeGrowth)) {
+            c.employeeGrowth = data.employeeGrowth;
+            c.employee_enriched_at = new Date().toISOString();
+            enriched++;
+            console.log(`    [+] ${c.name}: ${c.employeeCount || '?'} employees, ${c.employeeGrowth}`);
+          }
+        }
+      }
+    } catch (err) {
+      console.error(`    [${modelArg}] FAIL: ${err.message}`);
+    }
+
+    await sleep(1000);
+  }
+
+  console.log(`\n[Employee Growth] Done: ${enriched} enriched`);
+  return enriched;
+}
+
 // ========== CLI ==========
 
 async function main() {
@@ -347,11 +483,22 @@ async function main() {
   const companies = loadCompanies();
   console.log(`Loaded ${companies.length} companies`);
 
-  const changes = await enrichLeadership(companies, model);
+  let totalChanges = 0;
 
-  if (changes > 0 && !process.argv.includes('--dry-run')) {
+  // Leadership enrichment (skip if --enrich-employees-only)
+  if (!process.argv.includes('--enrich-employees-only')) {
+    totalChanges += await enrichLeadership(companies, model);
+  }
+
+  // Employee growth enrichment (run if --enrich-employees or --enrich-employees-only)
+  if (process.argv.includes('--enrich-employees') || process.argv.includes('--enrich-employees-only')) {
+    const empModel = model === 'all' ? 'claude' : model; // Use single provider for employee growth
+    totalChanges += await enrichEmployeeGrowth(companies, empModel);
+  }
+
+  if (totalChanges > 0 && !process.argv.includes('--dry-run')) {
     saveCompanies(companies);
-    console.log(`\nDone! ${changes} companies updated.`);
+    console.log(`\nDone! ${totalChanges} companies updated.`);
   } else if (process.argv.includes('--dry-run')) {
     console.log('\n[dry-run] No changes saved.');
   } else {
@@ -366,4 +513,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { enrichLeadership, PROVIDERS };
+module.exports = { enrichLeadership, enrichEmployeeGrowth, PROVIDERS };
