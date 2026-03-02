@@ -17,7 +17,7 @@ app.use(express.json());
 // Health check
 app.get('/', (req, res) => {
   res.json({
-    service: 'AI Book Auto-Updater',
+    service: 'AI Radar Auto-Updater',
     status: 'running',
     lastCheck: updateLogs.length > 0 ? updateLogs[updateLogs.length - 1].timestamp : 'never',
     totalUpdates: updateLogs.length,
@@ -62,7 +62,7 @@ app.get('/dashboard', (req, res) => {
   res.send(`<!DOCTYPE html>
 <html>
 <head>
-  <title>AI Book Auto-Updater</title>
+  <title>AI Radar Auto-Updater</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { --bg: #0a1628; --card: #0f1d32; --gold: #D4AF37; --cyan: #00CED1; --text: #fff; --dim: #94a3b8; --green: #22c55e; --red: #ef4444; }
@@ -91,7 +91,7 @@ app.get('/dashboard', (req, res) => {
 </head>
 <body>
   <div class="container">
-    <h1>AI Book Auto-Updater</h1>
+    <h1>AI Radar Auto-Updater</h1>
     <p class="subtitle">Daily AI-powered company intelligence for your tracker</p>
 
     <div class="status-card">
@@ -202,7 +202,7 @@ cron.schedule('0 6 * * *', async () => {
 }, { timezone: 'UTC' });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`AI Book Auto-Updater running on port ${PORT}`);
+  console.log(`AI Radar Auto-Updater running on port ${PORT}`);
   console.log('Dashboard: http://localhost:' + PORT + '/dashboard');
   console.log('Cron: Daily at 6:00 AM UTC');
 });

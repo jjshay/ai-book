@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Radar Company Tracker - Video Overlays</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+  h1 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.5; margin-bottom: 10px; }
+  .card {
+    width: 390px;
+    height: 200px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: brightness(1);
+    z-index: 0;
+  }
+  .card > * { position: relative; z-index: 1; }
+  .card .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+  }
+  .card .title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .card .sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    max-width: 320px;
+  }
+  .card-1 { background: linear-gradient(135deg, #0f1d32, #1e3a5f); }
+  .card-2 { background: linear-gradient(135deg, #132847, #1e3a5f); }
+  .card-3 { background: linear-gradient(135deg, #1a3050, #2d4a6f); }
+  .card-4 { background: linear-gradient(135deg, #0f1d32, #1e3a5f); }
+  .card-5 { background: linear-gradient(135deg, #132847, #1e3a5f); }
+  .card-6 { background: linear-gradient(135deg, #1a3050, #2d4a6f); }
+  .card-7 { background: linear-gradient(135deg, #0f1d32, #1e3a5f); }
+  .card-8 { background: linear-gradient(135deg, #132847, #1e3a5f); }
+  .card-9 { background: linear-gradient(135deg, #1a3050, #2d4a6f); }
+  .card-10 { background: linear-gradient(135deg, #D4AF37, #F4CF47); }
+  .card .label { color: #D4AF37; }
+  .card-10 .title { color: #0f1d32; }
+  .card-10 .sub { color: rgba(15,29,50,0.85); }
+  .card-10 .label { color: rgba(15,29,50,0.6); }
+  .card-10 .url {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f1d32;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<h1>AI Radar Company Tracker &mdash; Video Overlay Cards</h1>
+
+<div class="card card-1" id="card-1">
+  <div class="label">AI Radar</div>
+  <div class="title">Track the AI Landscape</div>
+  <div class="sub">652 companies. $417B in funding. One tool.</div>
+</div>
+
+<div class="card card-2" id="card-2">
+  <div class="label">How It Works</div>
+  <div class="title">Swipe Through Companies</div>
+  <div class="sub">Right to save. Left to skip. Build your watchlist.</div>
+</div>
+
+<div class="card card-3" id="card-3">
+  <div class="label">Go Deeper</div>
+  <div class="title">Tap for Full Profile</div>
+  <div class="sub">Funding. Investors. CEO. Valuation. One tap.</div>
+</div>
+
+<div class="card card-4" id="card-4">
+  <div class="label">Deal Intelligence</div>
+  <div class="title">M&A on Every Company</div>
+  <div class="sub">Rationale. Acquirers. Price range. Deal timing.</div>
+</div>
+
+<div class="card card-5" id="card-5">
+  <div class="label">Find What Matters</div>
+  <div class="title">Filter by Category</div>
+  <div class="sub">Enterprise. Healthcare. Security. Dev-Tools.</div>
+</div>
+
+<div class="card card-6" id="card-6">
+  <div class="label">Your Collection</div>
+  <div class="title">Your AI Watchlist</div>
+  <div class="sub">Every saved company. Export. Share. Track.</div>
+</div>
+
+<div class="card card-7" id="card-7">
+  <div class="label">The Numbers</div>
+  <div class="title">$417 Billion Tracked</div>
+  <div class="sub">652 companies. 42 acquisitions. Real data.</div>
+</div>
+
+<div class="card card-8" id="card-8">
+  <div class="label">Why It Works</div>
+  <div class="title">No Login. No Paywall.</div>
+  <div class="sub">Just open it and start exploring.</div>
+</div>
+
+<div class="card card-9" id="card-9">
+  <div class="label">Always Current</div>
+  <div class="title">Auto-Updates</div>
+  <div class="sub">New companies and funding rounds — added live.</div>
+</div>
+
+<div class="card card-10" id="card-10">
+  <div class="label">Try It Now</div>
+  <div class="title">Start Exploring</div>
+  <div class="url">jjshay.com/ai</div>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
-  "name": "AI Book — The AI Company Tracker",
-  "short_name": "AI Book",
+  "name": "AI Radar — The AI Company Tracker",
+  "short_name": "AI Radar",
   "description": "Swipe through 600+ private AI companies. Real data: funding, investors, M&A intelligence, ratings.",
   "start_url": "./aibook.html",
   "display": "standalone",

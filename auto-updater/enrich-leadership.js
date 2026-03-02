@@ -1,4 +1,4 @@
-// Leadership Enrichment Script for AI Book
+// Leadership Enrichment Script for AI Radar
 // Seeds companies.json with leadership arrays (CEO, CTO, COO, etc.) via multiple LLM providers
 // Usage:
 //   node enrich-leadership.js --model=claude     (default)
@@ -476,7 +476,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('=== AI Book Leadership Enrichment ===');
+  console.log('=== AI Radar Leadership Enrichment ===');
   console.log(`Time: ${new Date().toISOString()}`);
   console.log(`Model: ${model === 'all' ? 'ALL (consensus)' : PROVIDERS[model].label}`);
 

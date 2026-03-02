@@ -1,7 +1,7 @@
 {
-  "name": "ai-book-auto-updater",
+  "name": "ai-radar-auto-updater",
   "version": "1.0.0",
-  "description": "Daily AI-powered company tracker updater for ai-book",
+  "description": "Daily AI-powered company tracker updater for AI Radar",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Assembly Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f1a;--sf:#111827;--sf2:#1a2235;--bd:#2a3548;--tx:#e2e8f0;--dim:#94a3b8;--ac:#3b82f6;--gd:#D4AF37;--gn:#22c55e;--rd:#ef4444;--or:#f97316;--tl:#14b8a6;--pr:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow:hidden}
+
+/* Header */
+.hdr{background:var(--sf);border-bottom:1px solid var(--bd);padding:6px 16px;display:flex;align-items:center;height:40px;gap:12px}
+.hdr h1{font-size:14px;font-weight:700;white-space:nowrap}
+.hdr h1 span{color:var(--ac)}
+.htabs{display:flex;gap:1px;flex:1;justify-content:center}
+.ht{padding:4px 10px;font-size:10px;font-weight:600;color:var(--dim);background:0;border:1px solid transparent;border-radius:4px;cursor:pointer;font-family:inherit;transition:.12s}
+.ht:hover{color:var(--tx);background:var(--sf2)}
+.ht.on{color:var(--tx);background:var(--sf2);border-color:var(--bd)}
+.hdr-r{display:flex;align-items:center;gap:8px}
+.dur-pill{display:flex;align-items:center;gap:5px;padding:3px 8px;border-radius:16px;background:var(--sf2);border:1px solid var(--bd);font-size:10px;font-weight:600;font-variant-numeric:tabular-nums}
+.dur-pill .d{width:5px;height:5px;border-radius:50%}
+.d-ok{background:var(--gn)}.d-w{background:var(--or)}.d-ov{background:var(--rd)}
+.hdr-btn{background:var(--sf2);border:1px solid var(--bd);color:var(--dim);padding:3px 8px;border-radius:4px;font-size:9px;font-weight:600;cursor:pointer;font-family:inherit;transition:.12s}
+.hdr-btn:hover{color:var(--tx);border-color:var(--dim)}
+
+/* Layout */
+.lay{display:grid;grid-template-columns:1fr 360px;height:calc(100vh - 40px)}
+.main{display:flex;flex-direction:column;overflow:hidden}
+
+/* Video */
+.va{flex:1;display:flex;align-items:center;justify-content:center;background:#000;position:relative;min-height:180px}
+.va video{max-width:100%;max-height:100%}
+.vp{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--dim);cursor:pointer;padding:24px;border:2px dashed var(--bd);border-radius:10px;transition:.2s}
+.vp:hover{border-color:var(--ac)}
+.vp svg{width:36px;height:36px;opacity:.4}
+
+/* Overlays on video */
+.ov-preview{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);pointer-events:none;opacity:0;transition:.3s;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.ov-preview.vis{opacity:.85}
+.ov-preview img{width:100%;display:block}
+.snd-badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.7);color:#fff;padding:3px 8px;border-radius:10px;font-size:9px;font-weight:600;display:none;align-items:center;gap:3px}
+.snd-badge.vis{display:flex}
+.lt-preview{position:absolute;bottom:0;left:0;right:0;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,.8));display:none;transition:.3s}
+.lt-preview.vis{display:block}
+.lt-preview .lt-name{font-size:13px;font-weight:700;color:#fff}
+.lt-preview .lt-sub{font-size:10px;color:rgba(255,255,255,.7);margin-top:1px}
+.prog-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--ac);transition:width .1s;display:none}
+.prog-bar.vis{display:block}
+.sec-counter{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:700;display:none}
+.sec-counter.vis{display:block}
+
+/* Controls */
+.ctrls{display:flex;align-items:center;gap:5px;padding:6px 16px;background:var(--sf);border-top:1px solid var(--bd)}
+.cb{background:var(--sf2);border:1px solid var(--bd);color:var(--tx);width:28px;height:28px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:.12s}
+.cb:hover{background:var(--bd)}
+.cb.on{background:var(--ac);border-color:var(--ac)}
+.cs{background:var(--sf2);border:1px solid var(--bd);color:var(--tx);padding:3px 5px;border-radius:4px;font-family:inherit;font-size:9px}
+.sep{width:1px;height:16px;background:var(--bd)}
+.kbd{background:var(--sf2);border:1px solid var(--bd);padding:0 3px;border-radius:2px;font-size:8px;color:var(--dim)}
+
+/* Timeline */
+.tl{background:var(--sf);border-top:1px solid var(--bd);padding:8px 16px 6px}
+.tl-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tl-h h3{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--dim)}
+.tl-trk{position:relative;height:52px;background:var(--sf2);border-radius:5px;overflow:hidden;cursor:pointer}
+.tl-thumbs{position:absolute;inset:0;display:flex;overflow:hidden;opacity:.3}
+.tl-thumbs canvas{height:100%;flex-shrink:0}
+.tl-prog{position:absolute;top:0;left:0;bottom:0;background:rgba(59,130,246,.1);pointer-events:none}
+.tl-ph{position:absolute;top:0;bottom:0;width:2px;background:var(--ac);pointer-events:none;z-index:10}
+.tl-blk{position:absolute;top:0;bottom:0;opacity:.6;pointer-events:none;display:flex;align-items:center;justify-content:center;border-left:2px solid;transition:.15s}
+.tl-blk span{font-size:7px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.tl-blk:hover{opacity:.9}
+.tl-time{display:flex;justify-content:space-between;margin-top:3px;font-size:9px;color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* Sidebar */
+.sb{background:var(--sf);border-left:1px solid var(--bd);overflow-y:auto;display:flex;flex-direction:column}
+.sb::-webkit-scrollbar{width:4px}
+.sb::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
+.ss{padding:10px 12px;border-bottom:1px solid var(--bd)}
+.ss h3{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.tp{display:none}.tp.on{display:block}
+
+/* Section cards */
+.sc{background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:6px 8px;margin-bottom:3px;cursor:pointer;transition:.12s}
+.sc:hover{border-color:var(--ac)}.sc.act{border-color:var(--gd);background:rgba(212,175,55,.05)}
+.sc-t{display:flex;align-items:center;gap:6px}
+.sc-n{width:18px;height:18px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;cursor:grab}
+.sc-i{flex:1;min-width:0}
+.sc-nm{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-m{font-size:8px;color:var(--dim);margin-top:1px;font-variant-numeric:tabular-nums;display:flex;gap:5px;flex-wrap:wrap}
+.sc-a{display:flex;gap:2px}
+.sc-a button{background:0;border:0;color:var(--dim);cursor:pointer;font-size:10px;padding:1px 2px;border-radius:2px}
+.sc-a button:hover{color:var(--tx)}
+.sc-sp{display:flex;align-items:center;gap:3px;margin-top:4px;padding-top:4px;border-top:1px solid var(--bd)}
+.sc-sp label{font-size:8px;color:var(--dim)}
+.spb{font-size:8px;font-weight:700;padding:1px 4px;border-radius:2px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-family:inherit;transition:.12s}
+.spb.on{border-color:var(--ac);background:rgba(59,130,246,.15);color:var(--ac)}
+.sc-tr{display:flex;align-items:center;gap:3px;margin-top:3px}
+.sc-tr label{font-size:8px;color:var(--dim)}
+.trb{font-size:8px;padding:1px 5px;border-radius:2px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--dim);font-family:inherit;transition:.12s}
+.trb.on{border-color:var(--pr);background:rgba(168,85,247,.12);color:var(--pr)}
+.trb:hover{border-color:var(--dim)}
+/* Part toggle */
+.sc-pt{display:flex;align-items:center;gap:3px;margin-top:3px}
+.sc-pt label{font-size:8px;color:var(--dim)}
+.ptb{font-size:8px;font-weight:600;padding:1px 5px;border-radius:2px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--dim);font-family:inherit;transition:.12s}
+.ptb.on{border-color:var(--gd);background:rgba(212,175,55,.12);color:var(--gd)}
+
+/* Collapsible section controls */
+.sc-controls{max-height:0;overflow:hidden;transition:max-height .2s ease;opacity:0}
+.sc.act .sc-controls{max-height:160px;opacity:1;transition:max-height .25s ease, opacity .2s ease .05s}
+.sc-expand{margin-left:auto;font-size:9px;color:var(--dim);transition:transform .2s;display:inline-block}
+.sc.act .sc-expand{transform:rotate(90deg);color:var(--tx)}
+
+/* Section status badges */
+.sc-status{font-size:7px;font-weight:700;padding:1px 4px;border-radius:3px;margin-left:4px}
+.sc-status.done{background:rgba(34,197,94,.15);color:var(--gn)}
+.sc-status.pending{background:rgba(239,68,68,.1);color:var(--rd)}
+
+/* Mark buttons (expanded section) */
+.sc-mark{display:flex;gap:4px;margin-top:5px;padding-top:5px;border-top:1px solid var(--bd)}
+.sc-mark button{flex:1;padding:4px 8px;font-size:9px;font-weight:600;border-radius:4px;cursor:pointer;font-family:inherit;transition:.15s;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+.sc-mark button:hover{border-color:var(--ac);background:rgba(59,130,246,.08)}
+.sc-mark button.marked{border-color:var(--gn);color:var(--gn)}
+
+/* Workflow step bar */
+.wf-steps{display:flex;gap:2px;padding:8px 12px;background:var(--sf2);border-bottom:1px solid var(--bd)}
+.wf-step{flex:1;text-align:center;padding:4px 2px;font-size:8px;font-weight:600;border-radius:3px;color:var(--dim);border:1px solid transparent}
+.wf-step.active{background:rgba(59,130,246,.1);border-color:var(--ac);color:var(--ac)}
+.wf-step.done{color:var(--gn)}
+.wf-step .step-num{display:block;font-size:10px;font-weight:800;margin-bottom:1px}
+
+/* Auto-mark panel */
+.auto-mark{display:none;padding:10px 12px;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(212,175,55,.06));border-bottom:1px solid var(--bd)}
+.auto-mark h3{font-size:10px;font-weight:700;color:var(--gd);margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase}
+.auto-mark .am-row{display:flex;gap:6px;margin-bottom:6px}
+.auto-mark .am-btn{flex:1;padding:8px 10px;font-size:10px;font-weight:700;border-radius:6px;cursor:pointer;font-family:inherit;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);transition:.15s}
+.auto-mark .am-btn:hover{border-color:var(--ac);background:rgba(59,130,246,.1)}
+.auto-mark .am-btn.primary{background:linear-gradient(135deg,#D4AF37,#f97316);color:#0f1d32;border-color:transparent}
+.auto-mark .am-btn.primary:hover{opacity:.9}
+.auto-mark .am-status{font-size:9px;color:var(--dim);line-height:1.4;min-height:14px}
+.auto-mark .am-status.working{color:var(--or)}
+.auto-mark .am-status.done{color:var(--gn)}
+.auto-mark .am-key{display:flex;gap:4px;align-items:center;margin-bottom:8px}
+.auto-mark .am-key input{flex:1;font-size:9px;padding:5px 8px;background:var(--bg);border:1px solid var(--bd);border-radius:4px;color:var(--tx);font-family:monospace}
+.auto-mark .am-key button{font-size:8px;padding:5px 8px;background:var(--sf2);border:1px solid var(--bd);border-radius:4px;color:var(--dim);cursor:pointer;font-family:inherit;white-space:nowrap}
+.auto-mark .am-frames{display:flex;gap:3px;flex-wrap:wrap;margin:6px 0;max-height:80px;overflow-y:auto}
+.auto-mark .am-frames img{width:40px;height:71px;object-fit:cover;border-radius:3px;border:1px solid var(--bd);opacity:.7}
+.auto-mark .am-frames img.classified{opacity:1;border-color:var(--gn)}
+.auto-mark .am-keys{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.auto-mark .am-keys .am-key-row{display:flex;gap:4px;align-items:center}
+.auto-mark .am-keys label{font-size:8px;font-weight:700;color:var(--dim);min-width:48px;letter-spacing:.3px}
+.auto-mark .am-keys input{flex:1;font-size:9px;padding:4px 6px;background:var(--bg);border:1px solid var(--bd);border-radius:4px;color:var(--tx);font-family:monospace}
+.am-review{display:none;margin-top:8px;padding:8px;background:var(--bg);border:1px solid var(--bd);border-radius:6px;max-height:200px;overflow-y:auto}
+.am-review h4{font-size:9px;font-weight:700;color:var(--gd);margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.am-review h4 .ai-badge{font-size:7px;padding:1px 5px;border-radius:3px;font-weight:700}
+.am-review h4 .ai-badge.claude{background:rgba(212,175,55,.15);color:#D4AF37}
+.am-review h4 .ai-badge.gpt{background:rgba(16,163,127,.15);color:#10a37f}
+.am-review .rv-item{font-size:9px;color:var(--dim);padding:3px 0;border-bottom:1px solid var(--bd);line-height:1.4}
+.am-review .rv-item:last-child{border-bottom:none}
+.am-review .rv-item .rv-label{font-weight:700;color:var(--tx)}
+.am-review .rv-flag{color:var(--or);font-weight:600}
+.am-review .rv-ok{color:var(--gn)}
+
+/* Section progress bar */
+.sec-prog{display:flex;align-items:center;gap:6px;padding:4px 12px 8px;font-size:8px;color:var(--dim)}
+.sec-prog .bar{flex:1;height:4px;background:var(--bd);border-radius:2px;overflow:hidden}
+.sec-prog .fill{height:100%;background:var(--gn);border-radius:2px;transition:.3s}
+
+/* AI Copy */
+.ai-c{background:var(--bg);border:1px solid var(--bd);border-radius:5px;padding:7px;margin-bottom:5px}
+.ai-c .sl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.ai-c .sl .dt{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ai-r{display:flex;align-items:center;gap:3px;font-size:8px;color:var(--dim);margin-bottom:2px;font-weight:600}
+.ai-r .rd{width:4px;height:4px;border-radius:50%}
+.rd-b{background:var(--ac)}.rd-p{background:var(--pr)}.rd-g{background:var(--gn)}
+.ai-t{font-size:10px;line-height:1.4;padding:5px 7px;border-radius:4px;border:1px solid var(--bd);margin-bottom:3px}
+.ai-t.w{background:var(--sf2);color:var(--tx)}
+.ai-t.e{background:rgba(20,184,166,.04);color:var(--tl);border-color:rgba(20,184,166,.18)}
+.ai-t[contenteditable]:focus{outline:0;border-color:var(--ac)}
+.ai-nt{font-size:8px;color:var(--dim);display:flex;align-items:center;gap:3px}
+.vp-row{display:flex;gap:3px;margin-top:3px}
+.vpk{font-size:8px;font-weight:600;padding:2px 6px;border-radius:3px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--dim);font-family:inherit;transition:.12s}
+.vpk.on{border-color:var(--gn);background:rgba(34,197,94,.08);color:var(--gn)}
+.wpm{font-size:8px;color:var(--dim);margin-top:3px;display:flex;align-items:center;gap:4px}
+.wpm .bar{flex:1;height:3px;background:var(--bd);border-radius:2px;overflow:hidden}
+.wpm .fill{height:100%;border-radius:2px;transition:.3s}
+.wpm-ok{background:var(--gn)}.wpm-w{background:var(--or)}.wpm-ov{background:var(--rd)}
+
+/* Toggle */
+.tg{display:flex;align-items:center;gap:6px;margin-top:5px;padding:5px 7px;background:var(--sf2);border:1px solid var(--bd);border-radius:5px;cursor:pointer;font-size:9px;color:var(--dim);transition:.12s}
+.tg:hover{border-color:var(--ac)}
+.tsw{width:24px;height:14px;border-radius:7px;background:var(--bd);position:relative;flex-shrink:0;transition:.2s}
+.tsw::after{content:'';position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:var(--dim);transition:.2s}
+.tg.on .tsw{background:var(--ac)}.tg.on .tsw::after{left:12px;background:#fff}.tg.on{color:var(--tx)}
+
+/* Setting rows */
+.sr{display:flex;align-items:center;gap:5px;margin-top:5px;padding:5px 7px;background:var(--sf2);border:1px solid var(--bd);border-radius:5px}
+.sr label{font-size:9px;color:var(--dim);flex:1}
+.sr input[type="number"],.sr select{background:var(--bg);border:1px solid var(--bd);color:var(--tx);padding:2px 4px;border-radius:3px;font-family:inherit;font-size:9px}
+.sr input[type="number"]{width:40px;text-align:center}
+.sr input:focus,.sr select:focus{outline:0;border-color:var(--ac)}
+
+/* Fraction picker */
+.frac-row{display:flex;gap:3px;margin-top:5px}
+.frac-btn{flex:1;text-align:center;font-size:9px;font-weight:600;padding:6px 4px;border-radius:4px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--dim);font-family:inherit;transition:.12s}
+.frac-btn.on{border-color:var(--gd);background:rgba(212,175,55,.1);color:var(--gd)}
+.frac-btn:hover{border-color:var(--dim)}
+.frac-btn .fv{display:block;font-size:16px;font-weight:800;margin-bottom:2px}
+.frac-btn .fl{font-size:7px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Music */
+.mc{display:flex;align-items:center;gap:7px;background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:7px}
+.mi{width:26px;height:26px;background:linear-gradient(135deg,var(--ac),#8b5cf6);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+
+/* Buttons */
+.bp{width:100%;padding:9px;background:linear-gradient(135deg,var(--ac),#6366f1);color:#fff;border:0;border-radius:5px;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:.15s}
+.bp:hover{opacity:.9}
+.bs{width:100%;padding:7px;background:var(--sf2);color:var(--tx);border:1px solid var(--bd);border-radius:5px;font-family:inherit;font-size:10px;font-weight:500;cursor:pointer;margin-top:4px;transition:.12s}
+.bs:hover{background:var(--bd)}
+.cmd{background:var(--bg);border:1px solid var(--bd);border-radius:5px;padding:7px;margin-top:7px;font-family:'SF Mono','Fira Code',monospace;font-size:8px;color:var(--gn);line-height:1.5;max-height:140px;overflow-y:auto;white-space:pre-wrap;word-break:break-all;display:none}
+.cmd.vis{display:block}
+
+/* LinkedIn preview */
+.li-frame{background:#fff;border-radius:8px;overflow:hidden;max-width:340px;margin:0 auto;font-family:'Inter',sans-serif}
+.li-head{padding:10px 12px;display:flex;align-items:center;gap:8px}
+.li-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--pr));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+.li-prof .li-name{font-size:12px;font-weight:600;color:#000}
+.li-prof .li-title{font-size:9px;color:#666}
+.li-body{padding:0 12px 8px;font-size:10px;color:#333;line-height:1.5}
+.li-body .more{color:var(--dim);cursor:pointer}
+.li-video{background:#000;aspect-ratio:9/16;max-height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.li-video img{width:100%;height:100%;object-fit:cover}
+.li-video .play-icon{position:absolute;width:48px;height:48px;background:rgba(0,0,0,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.li-actions{padding:8px 12px;display:flex;gap:16px;border-top:1px solid #e5e5e5}
+.li-actions span{font-size:10px;color:#666;cursor:pointer}
+.li-actions span:hover{color:#000}
+.li-post-text{background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:10px;margin-top:10px;font-size:10px;color:var(--tx);line-height:1.5;white-space:pre-wrap;max-height:200px;overflow-y:auto}
+
+/* Preview mode */
+.preview-overlay{position:absolute;inset:0;background:#000;display:none;align-items:center;justify-content:center;z-index:20;overflow:hidden}
+.preview-overlay.vis{display:flex}
+.preview-overlay img{max-width:100%;max-height:100%;object-fit:contain}
+.preview-overlay video{max-width:100%;max-height:100%}
+/* Ken Burns animation on preview images */
+@keyframes kbZoomIn{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes kbZoomOut{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+
+/* Flow diagram */
+.flow-step{display:flex;align-items:center;gap:6px;margin-bottom:3px;padding:4px 6px;border-radius:3px;font-size:9px}
+.flow-step .fs-icon{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0}
+.flow-step .fs-arrow{color:var(--or);font-size:10px}
+.flow-step.fs-title{background:rgba(15,29,50,.5)}
+.flow-step.fs-clip{background:rgba(34,197,94,.05)}
+.flow-divider{border-top:1px dashed var(--gd);margin:6px 0;position:relative}
+.flow-divider span{position:absolute;top:-6px;left:50%;transform:translateX(-50%);background:var(--sf);padding:0 6px;font-size:7px;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:1px}
+
+/* Export history */
+.eh-item{background:var(--sf2);border:1px solid var(--bd);border-radius:4px;padding:6px 8px;margin-bottom:3px;font-size:9px;display:flex;justify-content:space-between;align-items:center}
+.eh-item .ts{color:var(--dim)}
+.eh-item button{background:0;border:0;color:var(--ac);cursor:pointer;font-size:9px;font-family:inherit;font-weight:600}
+
+/* Upload overlay */
+.uo{position:fixed;inset:0;background:rgba(59,130,246,.08);border:3px dashed var(--ac);display:none;align-items:center;justify-content:center;z-index:100;font-size:16px;font-weight:700;color:var(--ac)}
+.uo.on{display:flex}
+
+/* Waveform */
+.wf-wrap{background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:8px;margin-top:5px}
+.wf-drop{border:2px dashed var(--bd);border-radius:5px;padding:12px;text-align:center;font-size:9px;color:var(--dim);cursor:pointer;transition:.15s}
+.wf-drop:hover{border-color:var(--ac)}
+.wf-canvas{width:100%;height:50px;border-radius:3px;cursor:crosshair;margin-top:5px}
+.wf-markers{font-size:8px;color:var(--dim);margin-top:3px;max-height:80px;overflow-y:auto}
+.wf-marker{display:flex;align-items:center;gap:4px;padding:2px 0;border-bottom:1px solid var(--bd)}
+.wf-marker .dot{width:4px;height:4px;border-radius:50%;background:var(--gd)}
+.wf-marker button{background:0;border:0;color:var(--ac);cursor:pointer;font-size:8px;font-weight:600;font-family:inherit;margin-left:auto}
+
+/* Caption style selector */
+.cap-style{display:flex;gap:3px;margin-top:4px}
+.cap-btn{flex:1;text-align:center;font-size:8px;font-weight:600;padding:5px 4px;border-radius:4px;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--dim);font-family:inherit;transition:.12s}
+.cap-btn.on{border-color:var(--tl);background:rgba(20,184,166,.08);color:var(--tl)}
+
+/* Intro/Outro toggles */
+.io-card{background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:6px 8px;margin-top:4px;display:flex;align-items:center;gap:6px}
+.io-card .io-icon{width:24px;height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.io-card .io-info{flex:1;font-size:9px}
+.io-card .io-info span{font-size:7px;color:var(--dim);display:block}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1><span>Video</span> Assembly</h1>
+  <div class="htabs">
+    <button class="ht on" onclick="tab('edit')">Edit</button>
+    <button class="ht" onclick="tab('copy')">AI Copy</button>
+    <button class="ht" onclick="tab('preview')">Preview</button>
+    <button class="ht" onclick="tab('linkedin')">LinkedIn</button>
+    <button class="ht" onclick="tab('export')">Export</button>
+  </div>
+  <div class="hdr-r">
+    <button class="hdr-btn" onclick="saveProject()">Save</button>
+    <button class="hdr-btn" onclick="loadProject()">Load</button>
+    <input type="file" id="loadInput" accept=".json" style="display:none">
+    <div class="dur-pill"><span class="d d-ok" id="dD"></span><span id="dT">0:00 / 1:30</span></div>
+  </div>
+</div>
+
+<div class="lay">
+<div class="main">
+  <div class="va" id="va">
+    <div class="vp" id="vph" onclick="document.getElementById('vi').click()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.6 11.7a.6.6 0 010 1.04l-5.4 3.12a.6.6 0 01-.9-.52V9.1a.6.6 0 01.9-.52l5.4 3.12z"/><rect x="2" y="4" width="20" height="16" rx="4"/></svg>
+      <p style="font-size:12px">Drop video or click to upload</p>
+    </div>
+    <video id="vpl" style="display:none" playsinline></video>
+    <input type="file" id="vi" accept="video/*" style="display:none">
+    <div class="ov-preview" id="ovP"><img id="ovI" src="" alt=""></div>
+    <div class="snd-badge" id="snB">&#128264; Sound on</div>
+    <div class="lt-preview" id="ltP"><div class="lt-name" id="ltN"></div><div class="lt-sub" id="ltS"></div></div>
+    <div class="prog-bar" id="pgB"></div>
+    <div class="sec-counter" id="scC"></div>
+    <div class="preview-overlay" id="pvO"></div>
+    <div id="gsGuide" style="display:none"></div>
+  </div>
+
+  <div class="ctrls" id="cBar" style="display:none">
+    <button class="cb" id="plB" title="Space">&#9654;</button>
+    <button class="cb" id="bkB">&#9194;</button>
+    <button class="cb" id="fwB">&#9193;</button>
+    <span class="sep"></span>
+    <button class="cb" id="mkB" style="color:var(--gd)">&#9998;</button>
+    <button class="cb" id="ovB" title="Overlay preview">&#128065;</button>
+    <button class="cb" id="ltB" title="Lower third">LT</button>
+    <select class="cs" id="spS"><option value=".25">.25x</option><option value=".5">.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
+      <span style="font-size:8px;color:var(--dim)"><kbd class="kbd">Space</kbd> play <kbd class="kbd">[</kbd><kbd class="kbd">]</kbd> frame <kbd class="kbd">M</kbd> mark <kbd class="kbd">1-0</kbd> sections</span>
+      <span style="font-size:9px;color:var(--dim);font-variant-numeric:tabular-nums" id="tC">0:00.0 / 0:00.0</span>
+    </div>
+  </div>
+
+  <div class="tl" id="tBar" style="display:none">
+    <div class="tl-h"><h3>Timeline</h3><span style="font-size:8px;color:var(--dim)" id="cCt">0 cuts</span></div>
+    <div class="tl-trk" id="tTrk">
+      <div class="tl-thumbs" id="tTh"></div>
+      <div class="tl-prog" id="tPr"></div>
+      <div class="tl-ph" id="tPh"></div>
+    </div>
+    <div class="tl-time"><span id="tS">0:00.0</span><span id="tE">0:00.0</span></div>
+  </div>
+</div>
+
+<div class="sb">
+<!-- EDIT -->
+<div class="tp on" id="p-edit">
+  <div class="wf-steps" id="wfSteps">
+    <div class="wf-step active" id="ws1"><span class="step-num">1</span>Upload</div>
+    <div class="wf-step" id="ws2"><span class="step-num">2</span>Mark Cuts</div>
+    <div class="wf-step" id="ws3"><span class="step-num">3</span>Preview</div>
+    <div class="wf-step" id="ws4"><span class="step-num">4</span>Export</div>
+  </div>
+  <div class="sec-prog" id="secProg" style="display:none">
+    <span id="secProgTxt">0 / 10 sections marked</span>
+    <div class="bar"><div class="fill" id="secProgFill" style="width:0%"></div></div>
+  </div>
+  <div class="auto-mark" id="autoMark">
+    <h3>AI Video Analysis</h3>
+    <div class="am-keys">
+      <div class="am-key-row"><label>Claude</label><input type="password" id="amKey" placeholder="sk-ant-..." value=""></div>
+      <div class="am-key-row"><label>OpenAI</label><input type="password" id="amKeyOAI" placeholder="sk-proj-..." value=""></div>
+      <button style="font-size:8px;padding:4px 10px;background:var(--sf2);border:1px solid var(--bd);border-radius:4px;color:var(--dim);cursor:pointer;font-family:inherit;align-self:flex-end" onclick="saveKeys()">Save Keys</button>
+    </div>
+    <div class="am-row">
+      <button class="am-btn primary" onclick="runFullPipeline()">Director + Editor AI</button>
+    </div>
+    <div class="am-row">
+      <button class="am-btn" onclick="autoMarkVision()">Claude Only</button>
+      <button class="am-btn" onclick="autoMarkEven()">Even Split</button>
+      <button class="am-btn" onclick="clearMarks()">Clear</button>
+    </div>
+    <div class="am-frames" id="amFrames"></div>
+    <div class="am-review" id="amReviewDirector"></div>
+    <div class="am-review" id="amReviewEditor"></div>
+    <div class="am-status" id="amStatus">Upload a video, then run AI analysis.</div>
+  </div>
+  <div class="ss">
+    <h3>Sections <span style="opacity:.4;font-weight:400">(drag to reorder)</span></h3>
+    <div id="sList"></div>
+  </div>
+  <div class="ss">
+    <h3>Title Cards</h3>
+    <div class="sr"><label>Title card hold</label><input type="number" id="tcDur" value="2.0" step=".5" min="1" max="5"><span style="font-size:8px;color:var(--dim)">s</span></div>
+    <div class="sr"><label>Ken Burns on title</label><select class="cs" id="tcKB" style="width:auto"><option value="zoomIn" selected>Zoom In</option><option value="zoomOut">Zoom Out</option><option value="none">None</option></select></div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tTC"><div class="tsw"></div>Show bold title cards</div>
+  </div>
+  <div class="ss">
+    <h3>Detail Overlay</h3>
+    <div class="sr"><label>Card display</label><input type="number" id="oDur" value="2.5" step=".5" min="1" max="5"><span style="font-size:8px;color:var(--dim)">s</span></div>
+    <div class="sr"><label>Fade</label><input type="number" id="fDur" value="0.5" step=".1" min=".1" max="2"><span style="font-size:8px;color:var(--dim)">s</span></div>
+  </div>
+  <div class="ss">
+    <h3>Font &amp; Overlay Size</h3>
+    <div class="sr"><label>Overlay font size</label><select class="cs" id="fSize" style="width:auto"><option value="22">22px (Small)</option><option value="28" selected>28px (Default)</option><option value="34">34px (Large)</option><option value="40">40px (XL)</option></select></div>
+    <div style="font-size:8px;color:var(--dim);margin-top:4px;margin-bottom:3px">Screen coverage (overlay height)</div>
+    <div class="frac-row">
+      <div class="frac-btn" onclick="setFrac('1/4',this)"><span class="fv">1/4</span><span class="fl">Subtle</span></div>
+      <div class="frac-btn on" onclick="setFrac('1/3',this)"><span class="fv">1/3</span><span class="fl">Default</span></div>
+      <div class="frac-btn" onclick="setFrac('1/2',this)"><span class="fv">1/2</span><span class="fl">Bold</span></div>
+      <div class="frac-btn" onclick="setFrac('full',this)"><span class="fv">Full</span><span class="fl">Cover</span></div>
+    </div>
+  </div>
+  <div class="ss">
+    <h3>Video Effects</h3>
+    <div class="tg on" onclick="this.classList.toggle('on');ud()" id="tCrop"><div class="tsw"></div>Crop phone frame</div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tKB"><div class="tsw"></div>Ken Burns zoom on clips</div>
+    <div class="sr"><label>KB direction</label><select class="cs" id="kbDir" style="width:auto"><option value="in" selected>Zoom In (slow push)</option><option value="out">Zoom Out (pull back)</option><option value="alt">Alternate In/Out</option></select></div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tSnd"><div class="tsw"></div>"Sound on" badge (3s)</div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tLT"><div class="tsw"></div>Lower-third text overlays</div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tProg"><div class="tsw"></div>Progress bar</div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tCtr"><div class="tsw"></div>Section counter (1/10)</div>
+  </div>
+  <div class="ss">
+    <h3>Music</h3>
+    <div class="mc"><div class="mi">&#9835;</div><div><div style="font-size:10px;font-weight:500">Piano Background Music</div><div style="font-size:8px;color:var(--dim)">sigmamusicart &bull; 3:04 &bull; No &copy;</div></div></div>
+    <div style="display:flex;align-items:center;gap:4px;margin-top:5px"><span style="font-size:8px;color:var(--dim)">Vol</span><input type="range" style="flex:1;accent-color:var(--ac)" id="mVol" min="0" max="100" value="25"><span style="font-size:8px;color:var(--dim);width:22px;text-align:right" id="vL">25%</span></div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tDuck"><div class="tsw"></div>Duck during voiceover</div>
+  </div>
+  <div class="ss">
+    <h3>Captions</h3>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tCap"><div class="tsw"></div>Burn-in subtitles</div>
+    <div style="font-size:8px;color:var(--dim);margin-top:4px;margin-bottom:3px">Caption style</div>
+    <div class="cap-style">
+      <div class="cap-btn" onclick="setCapStyle('srt',this)">Standard SRT</div>
+      <div class="cap-btn on" onclick="setCapStyle('highlight',this)">Word Highlight</div>
+      <div class="cap-btn" onclick="setCapStyle('karaoke',this)">Karaoke Pop</div>
+    </div>
+  </div>
+  <div class="ss">
+    <h3>Voiceover Audio</h3>
+    <div class="wf-wrap">
+      <div class="wf-drop" id="wfDrop" onclick="document.getElementById('voInput').click()">
+        Drop voiceover .mp3/.wav here or click to upload
+      </div>
+      <input type="file" id="voInput" accept="audio/*" style="display:none">
+      <canvas class="wf-canvas" id="wfCanvas" style="display:none"></canvas>
+      <div class="wf-markers" id="wfMarkers" style="display:none"></div>
+    </div>
+    <div class="tg" onclick="this.classList.toggle('on')" id="tAutoTime"><div class="tsw"></div>Auto-detect silence gaps</div>
+  </div>
+  <div class="ss">
+    <h3>Intro &amp; Outro</h3>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tIntro"><div class="tsw"></div>Intro bumper (3s)</div>
+    <div class="io-card"><div class="io-icon" style="background:linear-gradient(135deg,#0a0f1a,#1e3a5f);color:#fff;font-weight:900;font-size:7px">JS</div><div class="io-info">John Shay &mdash; Building AI Tools<span>intro-bumper.webm</span></div></div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tOutro"><div class="tsw"></div>End CTA card (4s)</div>
+    <div class="io-card"><div class="io-icon" style="background:linear-gradient(135deg,#D4AF37,#F4CF47);color:#0f1d32;font-weight:900;font-size:7px">CTA</div><div class="io-info">jjshay.com/ai &mdash; QR + Link in comments<span>end-card-cta.webm</span></div></div>
+  </div>
+</div>
+
+<!-- AI COPY -->
+<div class="tp" id="p-copy">
+  <div class="ss">
+    <h3>Dual AI Review</h3>
+    <div style="font-size:9px;color:var(--dim);line-height:1.4;margin-bottom:8px">
+      <strong style="color:var(--ac)">Writer</strong> drafts &rarr; <strong style="color:var(--pr)">Editor</strong> refines &rarr; <strong style="color:var(--gn)">You pick</strong> final. All text is editable.
+    </div>
+    <div id="aiList"></div>
+    <div style="margin-top:8px;display:flex;gap:4px">
+      <button class="bs" onclick="genSRT()" style="flex:1">Download .SRT</button>
+      <button class="bs" onclick="genASS()" style="flex:1;color:var(--tl)">Word Highlight .ASS</button>
+    </div>
+    <div style="display:flex;gap:4px;margin-top:0">
+      <button class="bs" onclick="expScript()" style="flex:1">Export Script</button>
+      <button class="bs" onclick="copyForEL()" style="flex:1;color:var(--pr)">&#10697; ElevenLabs</button>
+    </div>
+  </div>
+</div>
+
+<!-- PREVIEW -->
+<div class="tp" id="p-preview">
+  <div class="ss">
+    <h3>In-Browser Preview</h3>
+    <div style="font-size:9px;color:var(--dim);line-height:1.4;margin-bottom:8px">Full sequence: <strong style="color:var(--gd)">Bold title</strong> &rarr; Ken Burns &rarr; <strong style="color:var(--ac)">Video + overlay</strong> &rarr; fade &rarr; next title.</div>
+    <button class="bp" onclick="startPreview()">&#9654; Play Full Preview</button>
+    <div style="display:flex;gap:4px;margin-top:4px">
+      <button class="bs" onclick="startPreview(1)" style="flex:1">Part 1 Only</button>
+      <button class="bs" onclick="startPreview(2)" style="flex:1">Part 2 Only</button>
+    </div>
+    <button class="bs" onclick="stopPreview()">Stop Preview</button>
+    <div style="margin-top:10px">
+      <h3 style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:5px">Video Flow</h3>
+      <div id="previewSeq" style="font-size:9px;color:var(--dim);line-height:1.8"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN -->
+<div class="tp" id="p-linkedin">
+  <div class="ss">
+    <h3>Feed Preview</h3>
+    <div class="li-frame">
+      <div class="li-head">
+        <div class="li-avatar">JS</div>
+        <div class="li-prof"><div class="li-name">John Shay</div><div class="li-title">Building AI tools &bull; 1d</div></div>
+      </div>
+      <div class="li-body" id="liBody">I tracked 652 AI companies and $417 billion in funding. The data tells a story no one is talking about.
+
+Built a tool to make sense of the AI landscape — swipe, save, filter, and get M&amp;A intelligence on every company. <span class="more">...see more</span></div>
+      <div class="li-video">
+        <img id="liThumb" src="tc-01-intro.png" alt="">
+        <div class="play-icon">&#9654;</div>
+      </div>
+      <div class="li-actions">
+        <span>&#128077; Like</span><span>&#128172; Comment</span><span>&#8634; Repost</span><span>&#9993; Send</span>
+      </div>
+    </div>
+  </div>
+  <div class="ss">
+    <h3>Post Copy <button class="hdr-btn" onclick="copyPost()" style="margin-left:auto">Copy</button></h3>
+    <div class="li-post-text" id="liPost" contenteditable="true">I tracked 652 AI companies and $417 billion in funding. The data tells a story no one is talking about.
+
+There are over 600 private AI companies out there. Billions in funding. New deals every week. Keeping track of it all shouldn't be a full-time job.
+
+So I built something different:
+
+- Swipe through companies — right to save, left to skip
+- One tap for full profile — funding, investors, valuation, CEO
+- M&A intelligence on every company — acquirers, price range, deal timing
+- Filter by category — enterprise, healthcare, security, dev-tools
+- Your personal AI watchlist — export, share, track
+- Auto-updates — new companies and funding added as they happen
+
+652 companies. $417 billion tracked. 42 completed acquisitions. M&A analysis on every single one.
+
+No login. No paywall. Just open it and start exploring.
+
+Built by a dealmaker, not a developer. Powered by Claude.
+
+Try it: jjshay.com/ai
+
+#AI #MergersAndAcquisitions #VentureCapital #AICompanies #BuildInPublic</div>
+  </div>
+  <div class="ss">
+    <h3>LinkedIn Carousel Fallback</h3>
+    <div style="font-size:9px;color:var(--dim);line-height:1.4;margin-bottom:8px">Auto-generate a static carousel (images) from your title cards + overlay cards as an alternative post format.</div>
+    <button class="bs" onclick="genCarousel()">Generate Carousel Images</button>
+    <button class="bs" onclick="genCarouselPDF()">Download as PDF</button>
+  </div>
+</div>
+
+<!-- EXPORT -->
+<div class="tp" id="p-export">
+  <div class="ss">
+    <h3>LinkedIn Export</h3>
+    <div class="sr"><label>Resolution</label><select class="cs" id="oRes" style="width:auto"><option value="1080:1920">1080x1920 (9:16)</option><option value="1920:1080">1920x1080 (16:9)</option><option value="1080:1080">1080x1080 (1:1)</option></select></div>
+    <div class="sr"><label>FPS</label><select class="cs" id="oFps" style="width:auto"><option value="30" selected>30</option><option value="60">60</option></select></div>
+    <div class="sr"><label>Codec</label><select class="cs" id="oCod" style="width:auto"><option value="libx264" selected>H.264</option><option value="libx265">H.265</option></select></div>
+    <div class="sr"><label>Bitrate</label><select class="cs" id="oBit" style="width:auto"><option value="5M">5 Mbps</option><option value="8M" selected>8 Mbps</option><option value="12M">12 Mbps</option></select></div>
+  </div>
+  <div class="ss">
+    <h3>Hook Frame</h3>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tHook"><div class="tsw"></div>Intro title card as thumbnail (2s hold)</div>
+  </div>
+  <div class="ss">
+    <h3>Export Scope</h3>
+    <div class="frac-row">
+      <div class="frac-btn on" onclick="setExScope('all',this)"><span class="fv" style="font-size:12px">All</span><span class="fl">Full Video</span></div>
+      <div class="frac-btn" onclick="setExScope('p1',this)"><span class="fv" style="font-size:12px">Pt 1</span><span class="fl">Usage</span></div>
+      <div class="frac-btn" onclick="setExScope('p2',this)"><span class="fv" style="font-size:12px">Pt 2</span><span class="fl">Data</span></div>
+    </div>
+  </div>
+  <div class="ss">
+    <h3>Export History</h3>
+    <div id="expHist"></div>
+  </div>
+  <div class="ss">
+    <h3>Intro &amp; Outro in Export</h3>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tExIntro"><div class="tsw"></div>Include intro bumper (3s)</div>
+    <div class="tg on" onclick="this.classList.toggle('on')" id="tExOutro"><div class="tsw"></div>Include end CTA card (4s)</div>
+  </div>
+  <div class="ss">
+    <h3>In-Browser Render</h3>
+    <div style="font-size:9px;color:var(--dim);line-height:1.4;margin-bottom:6px">Render the full video in your browser — no ffmpeg needed. Composites title cards, overlays, and video clips with transitions.</div>
+    <button class="bp" onclick="renderInBrowser()" style="background:linear-gradient(135deg,#D4AF37,#f97316);color:#0f1d32">Render Video in Browser</button>
+    <div style="display:flex;gap:8px;margin-top:4px;align-items:center">
+      <div style="flex:1;height:4px;background:var(--bd);border-radius:2px;overflow:hidden"><div id="renderProg" style="height:100%;background:var(--gn);width:0%;transition:.2s"></div></div>
+      <span style="font-size:8px;color:var(--dim)" id="renderStatus">Ready</span>
+    </div>
+  </div>
+  <div class="ss">
+    <h3>ffmpeg Script Export</h3>
+    <button class="bp" onclick="genExport()">Generate ffmpeg Script</button>
+    <button class="bp" onclick="genBatchExport()" style="margin-top:4px;background:linear-gradient(135deg,#D4AF37,#f97316)">Batch Export (All + Pt1 + Pt2)</button>
+    <button class="bs" onclick="copyCmd()">Copy to Clipboard</button>
+    <button class="bs" onclick="genSRT()">Download .SRT</button>
+    <button class="bs" onclick="genASS()">Download .ASS (word highlight)</button>
+    <div class="cmd vis" id="cmdO" style="display:none"></div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="uo" id="uO">Drop video here</div>
+
+<script>
+const S=[
+{id:1,name:'How It Works',overlay:'01-intro.png',titleCard:'tc-01-intro.png',tcWord:'INTRO',color:'#1e3a5f',start:null,end:null,speed:1,transition:'fade',lt:'App info popup — 5-step guide to get started.',part:1},
+{id:2,name:'Browse the List',overlay:'02-swipe.png',titleCard:'tc-02-swipe.png',tcWord:'BROWSE',color:'#22c55e',start:null,end:null,speed:1.25,transition:'fade',lt:'Scroll 651 companies. Tap A-Z sidebar to jump.',part:1},
+{id:3,name:'Filter by Category',overlay:'05-filter.png',titleCard:'tc-05-filter.png',tcWord:'FILTER',color:'#a855f7',start:null,end:null,speed:1,transition:'slide',lt:'Foundation & Infra — 86 companies, $222B+ raised.',part:1},
+{id:4,name:'Swipe: Pass or Save',overlay:'02-swipe.png',titleCard:'tc-02-swipe.png',tcWord:'SWIPE',color:'#ef4444',start:null,end:null,speed:1,transition:'fade',lt:'Left to pass. Right to save. Build your watchlist.',part:1},
+{id:5,name:'Deep Dive: Full Profile',overlay:'03-details.png',titleCard:'tc-03-details.png',tcWord:'PROFILE',color:'#00CED1',start:null,end:null,speed:.75,transition:'zoom',lt:'Baseten — Leadership, M&A, Risks, News, HN, Wikipedia.',part:1},
+{id:6,name:'Save Your Favorites',overlay:'06-saved.png',titleCard:'tc-06-saved.png',tcWord:'SAVE',color:'#3b82f6',start:null,end:null,speed:1,transition:'fade',lt:'Swipe right on the best. Build your AI watchlist.',part:1},
+{id:7,name:'Analytics: Geography',overlay:'07-data.png',titleCard:'tc-07-data.png',tcWord:'GEO',color:'#f97316',start:null,end:null,speed:1,transition:'slide',lt:'77% US. 19 regions. CA dominates at 55.8%.',part:1},
+{id:8,name:'Analytics: Top VCs',overlay:'07-data.png',titleCard:'tc-07-data.png',tcWord:'VCs',color:'#D4AF37',start:null,end:null,speed:1,transition:'wipe',lt:'M12, NVIDIA, Thrive Capital — who is deploying capital.',part:1},
+{id:9,name:'Sold & Acquired',overlay:'04-ma-intel.png',titleCard:'tc-04-ma-intel.png',tcWord:'M&A',color:'#14b8a6',start:null,end:null,speed:1,transition:'slide',lt:'22 acquisitions. $298B deal value. Pie chart breakdown.',part:2},
+{id:10,name:'Your AI Watchlist',overlay:'06-saved.png',titleCard:'tc-06-saved.png',tcWord:'SAVED',color:'#D4AF37',start:null,end:null,speed:1,transition:'fade',lt:'Anthropic, Baseten, Cerebras — emailed to you.',part:2},
+];
+
+const AI=[
+{id:1,sec:'Intro',w:'There are over 600 private AI companies out there. Billions in funding. New deals every week. Keeping track of it all shouldn\'t be a full-time job.',e:'There are over 600 private AI companies out there. Billions in funding. New deals every week. Keeping track of it all shouldn\'t be a full-time job.',n:'Strong hook. No changes.',p:'e'},
+{id:2,sec:'Swipe',w:'So I built something different. See a company that interests you — swipe right to save it. Not relevant — swipe left. You\'re building an AI watchlist in seconds.',e:'I built something different. Interested? Swipe right to save. Not relevant? Swipe left. An AI watchlist — built in seconds.',n:'Tightened. Removed "So".',p:'e'},
+{id:3,sec:'Details',w:'Want to go deeper? One tap gives you funding, investors, valuation, employees, CEO, and a full company profile — everything you need without switching tabs.',e:'Want to go deeper? One tap — funding, investors, valuation, CEO, full profile. Everything you need, without switching tabs.',n:'Shortened. More direct.',p:'e'},
+{id:4,sec:'M&A Intel',w:'Here\'s where it gets interesting. Every company has M&A intelligence — strategic rationale, likely acquirers, estimated price range, unique assets, and deal timing. The kind of analysis you\'d pay a banker for.',e:'Every company has M&A intelligence — strategic rationale, likely acquirers, price range, unique assets, deal timing. Analysis you\'d pay a banker for.',n:'Tightened opening.',p:'e'},
+{id:5,sec:'Filter',w:'Looking for something specific? Filter by category — enterprise, healthcare, security, dev-tools. Filter by funding tier. Search by name. Find the signal in the noise.',e:'Looking for something specific? Filter by category — enterprise, healthcare, security, dev-tools. By funding tier. By name. Signal in the noise.',n:'Shortened.',p:'e'},
+{id:6,sec:'Saved',w:'Every company you save lands in your personal watchlist. Export it. Share it. Come back to it.',e:'Every company you save lands in your personal watchlist. Export it. Share it. Come back to it.',n:'Perfect as-is.',p:'e'},
+{id:7,sec:'Data',w:'The numbers behind it — 652 companies, $417 billion in tracked funding, 42 completed acquisitions, and M&A analysis on every single one.',e:'652 companies. $417 billion in tracked funding. 42 completed acquisitions. M&A analysis on every single one.',n:'Staccato punch.',p:'e'},
+{id:8,sec:'No Login',w:'No sign-ups. No accounts. No paywall. Just open it and start exploring.',e:'No sign-ups. No accounts. No paywall. Just open it and start exploring.',n:'Don\'t touch. Repetition is the point.',p:'e'},
+{id:9,sec:'Updates',w:'The dataset auto-updates. New companies, new funding rounds, new acquisitions — added as they happen.',e:'The dataset auto-updates. New companies, new funding rounds, new acquisitions — added as they happen.',n:'Clean as-is.',p:'e'},
+{id:10,sec:'CTA',w:'Try it now at jjshay.com/ai. Built by a dealmaker, not a developer. Powered by Claude.',e:'Try it now at jjshay.com/ai. Built by a dealmaker, not a developer. Powered by Claude.',n:'Punchy staccato close.',p:'e'},
+];
+
+let vid=null,dur=0,aS=0,showOv=false,showLt=false,dragI=null;
+let expHistory=JSON.parse(localStorage.getItem('vad_history')||'[]');
+let overlayFrac='1/3';
+let exportScope='all';
+
+// Tab
+function tab(t){document.querySelectorAll('.ht').forEach(h=>h.classList.toggle('on',h.textContent.toLowerCase().includes(t)));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));document.getElementById('p-'+t).classList.add('on');if(t==='preview')renderPreviewSeq();}
+
+// Fraction selector
+function setFrac(f,el){
+  overlayFrac=f;
+  document.querySelectorAll('.frac-row .frac-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  uOvSize();
+}
+function uOvSize(){
+  const ovEl=document.getElementById('ovP');
+  const fMap={'1/4':'25%','1/3':'33%','1/2':'50%','full':'100%'};
+  ovEl.style.maxWidth=fMap[overlayFrac]||'33%';
+}
+
+// Export scope
+function setExScope(sc,el){
+  exportScope=sc;
+  el.parentElement.querySelectorAll('.frac-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// Duration
+function ud(){
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const od=parseFloat(document.getElementById('oDur').value)||2.5;
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  let tc=0,cc=0;
+  S.forEach(s=>{
+    if(useTC)cc+=tcDur;
+    cc+=od;
+    if(s.start!=null&&s.end!=null)tc+=(s.end-s.start)/s.speed;
+  });
+  const tot=tc+cc,m=Math.floor(tot/60),sec=Math.floor(tot%60);
+  document.getElementById('dD').className='d '+(tot<=90?'d-ok':tot<=120?'d-w':'d-ov');
+  document.getElementById('dT').textContent=`${m}:${String(sec).padStart(2,'0')} / 1:30`;
+}
+
+// Sections
+function rS(){
+  const l=document.getElementById('sList');
+  const hasCuts=S.some(s=>s.start!=null&&s.end!=null);
+  l.innerHTML=S.map((s,i)=>{
+    const cd=(s.start!=null&&s.end!=null)?((s.end-s.start)/s.speed).toFixed(1)+'s':'';
+    const badges=`${s.speed!==1?`<span style="color:var(--or)">${s.speed}x</span>`:''}${s.transition!=='fade'?`<span style="color:var(--pr)">${s.transition}</span>`:''}`;
+    const isDone=s.start!=null&&s.end!=null;
+    const status=isDone?'<span class="sc-status done">&#10003;</span>':'<span class="sc-status pending">needs cut</span>';
+    return`<div class="sc ${i===aS?'act':''}" onclick="sel(${i})" draggable="true" ondragstart="dS(event,${i})" ondragover="dO(event)" ondrop="dD(event,${i})">
+      <div class="sc-t"><div class="sc-n" style="background:${s.color}">${s.id}</div>
+        <div class="sc-i"><div class="sc-nm">${s.name}${status}</div>
+        <div class="sc-m"><span>${s.start!=null?fT(s.start):'--:--'} &rarr; ${s.end!=null?fT(s.end):'--:--'}</span>${cd?`<span>${cd}</span>`:''}${badges}</div></div>
+        <span class="sc-expand">&#9656;</span></div>
+      <div class="sc-controls">
+        <div class="sc-mark"><button class="${s.start!=null?'marked':''}" onclick="event.stopPropagation();sS(${i})">${s.start!=null?'&#10003; Start: '+fT(s.start):'&#9654; Mark Start'}</button><button class="${s.end!=null?'marked':''}" onclick="event.stopPropagation();sE(${i})">${s.end!=null?'&#10003; End: '+fT(s.end):'&#9632; Mark End'}</button></div>
+        <div class="sc-sp"><label>Speed:</label>${[.5,.75,1,1.25,1.5,2].map(sp=>`<button class="spb ${s.speed===sp?'on':''}" onclick="event.stopPropagation();S[${i}].speed=${sp};rS()">${sp}x</button>`).join('')}</div>
+        <div class="sc-tr"><label>Transition:</label>${['fade','slide','zoom','wipe'].map(tr=>`<button class="trb ${s.transition===tr?'on':''}" onclick="event.stopPropagation();S[${i}].transition='${tr}';rS()">${tr}</button>`).join('')}</div>
+        <div class="sc-pt"><label>Part:</label>${[1,2].map(p=>`<button class="ptb ${s.part===p?'on':''}" onclick="event.stopPropagation();S[${i}].part=${p};rS()">Part ${p}</button>`).join('')}</div>
+      </div>
+    </div>`;
+  }).join('');
+  ud();uBlk();uSecProg();
+}
+
+function dS(e,i){dragI=i;e.dataTransfer.effectAllowed='move';}
+function dO(e){e.preventDefault();}
+function dD(e,i){e.preventDefault();if(dragI===null||dragI===i)return;const it=S.splice(dragI,1)[0];S.splice(i,0,it);const ai=AI.splice(dragI,1)[0];AI.splice(i,0,ai);S.forEach((s,x)=>s.id=x+1);AI.forEach((c,x)=>c.id=x+1);aS=i;dragI=null;rS();rAI();}
+function sel(i){aS=i;rS();if(S[i].start!=null&&vid)vid.currentTime=S[i].start;uOv();uLt();}
+function sS(i){if(!vid)return;S[i].start=Math.round(vid.currentTime*100)/100;rS();uCM();}
+function sE(i){if(!vid)return;S[i].end=Math.round(vid.currentTime*100)/100;if(i<S.length-1)aS=i+1;rS();uCM();}
+function fT(s){if(s==null)return'--:--';return`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}.${Math.floor((s%1)*10)}`;}
+
+function uBlk(){
+  document.querySelectorAll('.tl-blk').forEach(b=>b.remove());
+  if(!dur)return;const trk=document.getElementById('tTrk');
+  S.forEach(s=>{if(s.start!=null&&s.end!=null){const b=document.createElement('div');b.className='tl-blk';b.style.left=(s.start/dur*100)+'%';b.style.width=((s.end-s.start)/dur*100)+'%';b.style.borderColor=s.color;b.style.background=s.color+'25';b.innerHTML=`<span>${s.id}</span>`;trk.appendChild(b);}});
+}
+
+function uOv(){const el=document.getElementById('ovP'),img=document.getElementById('ovI');if(showOv&&S[aS]){img.src=S[aS].overlay;el.classList.add('vis');}else el.classList.remove('vis');}
+function uLt(){const el=document.getElementById('ltP');if(showLt&&S[aS]){document.getElementById('ltN').textContent=S[aS].name;document.getElementById('ltS').textContent=S[aS].lt;el.classList.add('vis');}else el.classList.remove('vis');}
+
+// Section progress & workflow steps
+function uSecProg(){
+  const done=S.filter(s=>s.start!=null&&s.end!=null).length;
+  const el=document.getElementById('secProg');
+  const hasVid=!!vid;
+  if(hasVid){el.style.display='flex';document.getElementById('secProgTxt').textContent=`${done} / ${S.length} sections marked`;document.getElementById('secProgFill').style.width=(done/S.length*100)+'%';}
+  // Workflow steps
+  const w1=document.getElementById('ws1'),w2=document.getElementById('ws2'),w3=document.getElementById('ws3'),w4=document.getElementById('ws4');
+  w1.className='wf-step'+(hasVid?' done':' active');
+  w2.className='wf-step'+(hasVid&&done<S.length?' active':done>=S.length?' done':'');
+  w3.className='wf-step'+(done>=S.length?' active':'');
+  w4.className='wf-step'+(done>=S.length?' active':'');
+  // Auto-mark panel visibility
+  document.getElementById('autoMark').style.display=hasVid?'block':'none';
+}
+
+// API key management
+function saveKeys(){
+  const k=document.getElementById('amKey').value.trim();
+  const oai=document.getElementById('amKeyOAI').value.trim();
+  if(k)localStorage.setItem('vad_anthropic_key',k);
+  if(oai)localStorage.setItem('vad_openai_key',oai);
+  amSt('Keys saved.','done');
+}
+window.addEventListener('load',()=>{
+  const k=localStorage.getItem('vad_anthropic_key');if(k){const el=document.getElementById('amKey');if(el)el.value=k;}
+  const oai=localStorage.getItem('vad_openai_key');if(oai){const el=document.getElementById('amKeyOAI');if(el)el.value=oai;}
+});
+
+// Extract frames from video at intervals
+function extractFrames(count){
+  return new Promise(resolve=>{
+    const frames=[];
+    const interval=dur/count;
+    const canvas=document.createElement('canvas');
+    canvas.width=320;canvas.height=Math.round(320*(vid.videoHeight/vid.videoWidth));
+    const ctx=canvas.getContext('2d');
+    let idx=0;
+    function grabNext(){
+      if(idx>=count){resolve(frames);return;}
+      const t=Math.min(idx*interval+interval/2,dur-0.1);
+      vid.currentTime=t;
+      vid.onseeked=()=>{
+        ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+        const dataUrl=canvas.toDataURL('image/jpeg',0.5);
+        frames.push({time:t,data:dataUrl.split(',')[1]});
+        // Show thumbnail
+        const container=document.getElementById('amFrames');
+        const img=document.createElement('img');
+        img.src=dataUrl;img.title=`${fT(t)}`;
+        container.appendChild(img);
+        idx++;
+        grabNext();
+      };
+    }
+    grabNext();
+  });
+}
+
+// Auto-mark: Claude Vision
+async function autoMarkVision(){
+  if(!vid||!dur){amSt('No video loaded.','');return;}
+  const key=document.getElementById('amKey').value.trim()||localStorage.getItem('vad_anthropic_key');
+  if(!key){amSt('Enter your Anthropic API key above.','');return;}
+  localStorage.setItem('vad_anthropic_key',key);
+  document.getElementById('amFrames').innerHTML='';
+  amSt('Extracting frames...','working');
+  // Sample ~20 frames evenly through the video
+  const frameCount=Math.min(20,Math.max(10,Math.floor(dur/3)));
+  const frames=await extractFrames(frameCount);
+  lastFrames=frames; // Save for Editor AI
+  amSt(`Sending ${frames.length} frames to Claude Vision...`,'working');
+  // Build the sections description
+  const secDesc=S.map((s,i)=>`${i+1}. "${s.name}" — ${s.lt}`).join('\n');
+  const frameList=frames.map((f,i)=>`Frame ${i+1}: timestamp ${f.time.toFixed(1)}s`).join('\n');
+  // Build API request with images
+  const content=[];
+  content.push({type:'text',text:`You are analyzing a screen recording of a mobile app called "AI Radar — The AI Company Tracker". The recording shows someone demonstrating the app's features.
+
+The video has ${S.length} sections that need to be identified. Here are the sections in order:
+${secDesc}
+
+I'm sending ${frames.length} frames sampled from a ${dur.toFixed(1)}s video.
+${frameList}
+
+For EACH of the ${S.length} sections, identify which frames mark the START and END of that section based on what you see on screen. Look for:
+- Section 1 (Intro): Landing/overview screen of the app
+- Section 2 (Swipe): Card swiping interface
+- Section 3 (Details): Expanded company profile/detail view
+- Section 4 (M&A Intel): M&A intelligence or acquisition data section
+- Section 5 (Filter): Category filters, search, or filtering UI
+- Section 6 (Saved): Saved/watchlist view showing saved companies
+- Section 7 (Data): Stats, numbers, or dashboard overview
+- Section 8 (No Login): Could be any screen showing simplicity/accessibility
+- Section 9 (Always Current): Any screen, often showing fresh/updated data
+- Section 10 (CTA): End screen or call-to-action
+
+Sections should be sequential and non-overlapping. Every frame should belong to exactly one section. If a section isn't clearly visible, estimate based on the flow.
+
+Return ONLY a JSON array, no other text:
+[{"section":1,"startFrame":1,"endFrame":3},{"section":2,"startFrame":4,"endFrame":6},...] `});
+  // Add each frame as an image
+  frames.forEach((f,i)=>{
+    content.push({type:'image',source:{type:'base64',media_type:'image/jpeg',data:f.data}});
+    content.push({type:'text',text:`Frame ${i+1} (${f.time.toFixed(1)}s)`});
+  });
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1500,
+        messages:[{role:'user',content}]
+      })
+    });
+    if(!resp.ok){
+      const err=await resp.text();
+      amSt(`API error ${resp.status}: ${err.substring(0,100)}`,'');return;
+    }
+    const result=await resp.json();
+    const text=result.content[0].text;
+    // Parse JSON from response
+    const jsonMatch=text.match(/\[[\s\S]*\]/);
+    if(!jsonMatch){amSt('Could not parse response. Raw: '+text.substring(0,100),'');return;}
+    const sections=JSON.parse(jsonMatch[0]);
+    // Apply marks
+    let applied=0;
+    sections.forEach(sec=>{
+      const idx=sec.section-1;
+      if(idx>=0&&idx<S.length){
+        const sf=frames[sec.startFrame-1];
+        const ef=frames[sec.endFrame-1];
+        if(sf&&ef){
+          S[idx].start=Math.round(sf.time*100)/100;
+          S[idx].end=Math.round(ef.time*100)/100;
+          applied++;
+        }
+      }
+    });
+    // Mark classified frames
+    document.querySelectorAll('#amFrames img').forEach(img=>img.classList.add('classified'));
+    rS();uCM();
+    amSt(`Done! Claude identified ${applied}/${S.length} sections.`,'done');
+  }catch(err){
+    console.error(err);
+    amSt('Vision analysis failed: '+err.message,'');
+  }
+}
+
+// Full two-AI pipeline: Director (Claude) + Editor (GPT-4o)
+let lastFrames=[];
+async function runFullPipeline(){
+  if(!vid||!dur){amSt('No video loaded.','');return;}
+  const claudeKey=document.getElementById('amKey').value.trim()||localStorage.getItem('vad_anthropic_key');
+  const oaiKey=document.getElementById('amKeyOAI').value.trim()||localStorage.getItem('vad_openai_key');
+  if(!claudeKey){amSt('Enter your Anthropic API key.','');return;}
+  if(!oaiKey){amSt('Enter your OpenAI API key.','');return;}
+  // Save keys
+  localStorage.setItem('vad_anthropic_key',claudeKey);
+  localStorage.setItem('vad_openai_key',oaiKey);
+  // Step 1: Director AI (Claude) — identify sections
+  document.getElementById('amReviewDirector').style.display='none';
+  document.getElementById('amReviewEditor').style.display='none';
+  await autoMarkVision(); // This sets lastFrames
+  if(!S.some(s=>s.start!=null&&s.end!=null)){amSt('Director AI found no sections. Adjust video.','');return;}
+  // Show Director summary
+  const dirPanel=document.getElementById('amReviewDirector');
+  dirPanel.style.display='block';
+  dirPanel.innerHTML=`<h4><span class="ai-badge claude">CLAUDE</span> Director AI — Section Cuts</h4>`+
+    S.map(s=>`<div class="rv-item"><span class="rv-label">${s.id}. ${s.name}:</span> ${s.start!=null?fT(s.start)+' → '+fT(s.end):'<span class="rv-flag">not found</span>'}</div>`).join('');
+  // Step 2: Editor AI (GPT-4o) — quality review
+  amSt('Editor AI (GPT-4o) reviewing quality...','working');
+  await editorReview(oaiKey);
+}
+
+// Editor AI: GPT-4o reviews frames for quality
+async function editorReview(key){
+  if(lastFrames.length===0){amSt('No frames to review.','');return;}
+  const secDesc=S.map((s,i)=>`Section ${i+1} "${s.name}": ${s.start!=null?s.start.toFixed(1)+'s-'+s.end.toFixed(1)+'s':'unset'}`).join('\n');
+  // Build OpenAI request — send ~10 evenly spaced frames
+  const step=Math.max(1,Math.floor(lastFrames.length/10));
+  const subset=lastFrames.filter((_,i)=>i%step===0).slice(0,10);
+  const messages=[{
+    role:'user',
+    content:[
+      {type:'text',text:`You are a video editor AI reviewing a screen recording of a mobile app demo. The Director AI has already identified section boundaries:
+
+${secDesc}
+
+Review these ${subset.length} frames from the video. For each section, evaluate:
+1. Is the content visually clear and matches the section description?
+2. Are there any blurry, static, or dead frames that should be trimmed?
+3. Are the cut points clean (not mid-scroll or mid-animation)?
+4. Rate each section: GOOD, NEEDS_TRIM, or RESHOOT
+
+Also provide overall suggestions for improving the recording.
+
+Return JSON:
+{
+  "sections": [
+    {"id":1, "rating":"GOOD", "note":"Clean intro shot"},
+    {"id":2, "rating":"NEEDS_TRIM", "note":"First 2s is static, trim start"}
+  ],
+  "overall": "Brief overall assessment",
+  "suggestions": ["suggestion 1", "suggestion 2"]
+}`},
+      ...subset.flatMap((f,i)=>[
+        {type:'image_url',image_url:{url:`data:image/jpeg;base64,${f.data}`,detail:'low'}},
+        {type:'text',text:`Frame at ${f.time.toFixed(1)}s`}
+      ])
+    ]
+  }];
+  try{
+    const resp=await fetch('https://api.openai.com/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
+      body:JSON.stringify({model:'gpt-4o',max_tokens:1500,messages})
+    });
+    if(!resp.ok){const err=await resp.text();amSt(`GPT-4o error ${resp.status}: ${err.substring(0,80)}`,'');return;}
+    const result=await resp.json();
+    const text=result.choices[0].message.content;
+    const jsonMatch=text.match(/\{[\s\S]*\}/);
+    if(!jsonMatch){
+      showEditorRaw(text);
+      amSt('Editor AI review complete (raw).','done');
+      return;
+    }
+    const review=JSON.parse(jsonMatch[0]);
+    // Render Editor review
+    const edPanel=document.getElementById('amReviewEditor');
+    edPanel.style.display='block';
+    let html=`<h4><span class="ai-badge gpt">GPT-4o</span> Editor AI — Quality Review</h4>`;
+    if(review.overall)html+=`<div class="rv-item" style="font-weight:600;color:var(--tx)">${review.overall}</div>`;
+    if(review.sections){
+      review.sections.forEach(s=>{
+        const cls=s.rating==='GOOD'?'rv-ok':s.rating==='RESHOOT'?'rv-flag':'rv-flag';
+        html+=`<div class="rv-item"><span class="rv-label">${s.id}.</span> <span class="${cls}">${s.rating}</span> — ${s.note||''}</div>`;
+      });
+    }
+    if(review.suggestions&&review.suggestions.length){
+      html+=`<div class="rv-item" style="margin-top:4px"><span class="rv-label">Suggestions:</span></div>`;
+      review.suggestions.forEach(s=>{html+=`<div class="rv-item" style="padding-left:8px">• ${s}</div>`;});
+    }
+    edPanel.innerHTML=html;
+    amSt('Two-AI review complete! Director marked cuts, Editor reviewed quality.','done');
+  }catch(err){
+    console.error(err);
+    amSt('Editor AI failed: '+err.message,'');
+  }
+}
+
+function showEditorRaw(text){
+  const edPanel=document.getElementById('amReviewEditor');
+  edPanel.style.display='block';
+  edPanel.innerHTML=`<h4><span class="ai-badge gpt">GPT-4o</span> Editor AI</h4><div class="rv-item">${text.substring(0,500)}</div>`;
+}
+
+// Auto-mark: even split
+function autoMarkEven(){
+  if(!vid||!dur){amSt('No video loaded.','');return;}
+  const segDur=dur/S.length;
+  S.forEach((s,i)=>{
+    s.start=Math.round(i*segDur*100)/100;
+    s.end=Math.round((i+1)*segDur*100)/100;
+  });
+  rS();uCM();
+  amSt(`Done! ${S.length} sections, ${segDur.toFixed(1)}s each.`,'done');
+}
+
+// Auto-mark: use voiceover script timing
+function autoMarkScript(){
+  if(!vid||!dur){amSt('No video loaded.','');return;}
+  // Script timing from voiceover-script.md
+  const timing=[
+    {start:0,end:8},{start:8,end:18},{start:18,end:28},{start:28,end:38},{start:38,end:48},
+    {start:48,end:56},{start:56,end:66},{start:66,end:74},{start:74,end:80},{start:80,end:88}
+  ];
+  // Scale to video duration if video is longer/shorter than 88s
+  const scriptDur=88;
+  const scale=dur/scriptDur;
+  timing.forEach((t,i)=>{
+    if(i<S.length){
+      S[i].start=Math.round(t.start*scale*100)/100;
+      S[i].end=Math.round(t.end*scale*100)/100;
+    }
+  });
+  rS();uCM();
+  amSt(`Done! Script timing applied (${scale!==1?scale.toFixed(2)+'x scaled':'1:1 match'}).`,'done');
+}
+
+// Clear all marks
+function clearMarks(){
+  S.forEach(s=>{s.start=null;s.end=null;});
+  rS();uCM();
+  amSt('All marks cleared.','');
+}
+
+function amSt(msg,cls){
+  const el=document.getElementById('amStatus');
+  el.textContent=msg;
+  el.className='am-status'+(cls?' '+cls:'');
+}
+
+// AI Copy
+function rAI(){
+  document.getElementById('aiList').innerHTML=AI.map((c,i)=>{
+    const txt=c.p==='w'?c.w:c.e;
+    const words=txt.split(/\s+/).length;
+    const secs=(words/140*60).toFixed(0);
+    const clipDur=(S[i]&&S[i].start!=null&&S[i].end!=null)?((S[i].end-S[i].start)/S[i].speed):8;
+    const ratio=secs/clipDur;
+    const wc=ratio<=1?'wpm-ok':ratio<=1.3?'wpm-w':'wpm-ov';
+    return`<div class="ai-c">
+      <div class="sl"><span class="dt" style="background:${S[i]?.color||'#666'}"></span>${c.id}. ${c.sec} <span style="color:var(--gd);margin-left:auto;font-size:7px">P${S[i]?.part||1}</span></div>
+      <div class="ai-r"><span class="rd rd-b"></span> Writer</div>
+      <div class="ai-t w" contenteditable="true" oninput="AI[${i}].w=this.textContent;rAI()">${c.w}</div>
+      <div class="ai-r"><span class="rd rd-p"></span> Editor</div>
+      <div class="ai-t e" contenteditable="true" oninput="AI[${i}].e=this.textContent;rAI()">${c.e}</div>
+      ${c.n?`<div class="ai-nt"><span class="rd rd-g"></span>${c.n}</div>`:''}
+      <div class="vp-row">
+        <button class="vpk ${c.p==='w'?'on':''}" onclick="AI[${i}].p='w';rAI()">Writer</button>
+        <button class="vpk ${c.p==='e'?'on':''}" onclick="AI[${i}].p='e';rAI()">Editor</button>
+      </div>
+      <div class="wpm"><span>${words}w &bull; ~${secs}s</span><div class="bar"><div class="fill ${wc}" style="width:${Math.min(ratio*100,100)}%"></div></div><span>${clipDur.toFixed(1)}s clip</span></div>
+    </div>`;
+  }).join('');
+}
+
+// SRT
+function genSRT(){
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const od=parseFloat(document.getElementById('oDur').value)||2.5;
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  let srt='',idx=1,t=0;
+  S.forEach((s,i)=>{const c=AI[i];if(!c)return;const txt=c.p==='w'?c.w:c.e;
+    if(useTC)t+=tcDur;
+    t+=od;
+    const cd=(s.start!=null&&s.end!=null)?(s.end-s.start)/s.speed:8;const ss=t,se=t+cd;
+    srt+=`${idx}\n${srtT(ss)} --> ${srtT(se)}\n${txt}\n\n`;idx++;t=se;});
+  dl(srt,'ai-book-tracker-captions.srt','text/plain');
+}
+function srtT(s){const h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor((s%3600)/60)).padStart(2,'0'),sc=String(Math.floor(s%60)).padStart(2,'0'),ms=String(Math.floor((s%1)*1000)).padStart(3,'0');return`${h}:${m}:${sc},${ms}`;}
+function expScript(){let t='AI Radar Tracker — Final Script\n'+'='.repeat(40)+'\n\n';AI.forEach(c=>{t+=`[${c.id}] ${c.sec.toUpperCase()}\n"${c.p==='w'?c.w:c.e}"\n\n`;});dl(t,'voiceover-final.txt','text/plain');}
+function copyForEL(){let t='';AI.forEach(c=>{t+=(c.p==='w'?c.w:c.e)+'\n\n';});navigator.clipboard.writeText(t.trim());const b=event.target;b.textContent='Copied!';setTimeout(()=>b.textContent='↗ ElevenLabs',1500);}
+function dl(c,n,t){const b=new Blob([c],{type:t}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();}
+
+// Preview mode — two-layer: bold title card → Ken Burns → video with overlay → fade
+let pvTimer=null,pvIdx=0,pvPhase='title';
+function renderPreviewSeq(){
+  const el=document.getElementById('previewSeq');
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  let html='';let lastPart=0;
+  S.forEach((s,i)=>{
+    if(s.part!==lastPart){
+      if(lastPart>0)html+=`<div class="flow-divider"><span>Part ${s.part}</span></div>`;
+      lastPart=s.part;
+    }
+    if(useTC){
+      html+=`<div class="flow-step fs-title"><span class="fs-icon" style="background:#0f1d32;border:1px solid var(--gd);font-size:6px;font-weight:900">${s.tcWord.replace(/\n/,'')}</span><span>Title: ${s.tcWord.replace(/\n/,' ')}</span><span class="fs-arrow">&darr;</span></div>`;
+    }
+    html+=`<div class="flow-step fs-clip"><span class="fs-icon" style="background:${s.color}">${s.id}</span><span>${s.name}</span>${s.speed!==1?`<span style="color:var(--or);font-size:8px">${s.speed}x</span>`:''}${useTC?'':'<span class="fs-arrow">&darr;</span>'}</div>`;
+  });
+  el.innerHTML=html;
+}
+
+function startPreview(partFilter){
+  if(!vid){return;}
+  pvIdx=0;pvPhase='title';
+  const ov=document.getElementById('pvO');ov.classList.add('vis');
+  if(partFilter){
+    // Find first section in this part
+    pvIdx=S.findIndex(s=>s.part===partFilter);
+    if(pvIdx<0)pvIdx=0;
+  }
+  playPreviewStep(partFilter);
+}
+
+function playPreviewStep(partFilter){
+  const ov=document.getElementById('pvO');
+  const s=S[pvIdx];
+  if(!s||(partFilter&&s.part!==partFilter)){stopPreview();return;}
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const od=parseFloat(document.getElementById('oDur').value)||2.5;
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  const tcKB=document.getElementById('tcKB').value;
+
+  if(pvPhase==='title'&&useTC){
+    // Show bold title card with Ken Burns
+    const kbAnim=tcKB==='zoomIn'?'kbZoomIn':tcKB==='zoomOut'?'kbZoomOut':'';
+    const animStyle=kbAnim?`animation:${kbAnim} ${tcDur}s ease-out forwards;`:'';
+    ov.innerHTML=`<img src="${s.titleCard}" style="max-width:100%;max-height:100%;object-fit:contain;${animStyle}">`;
+    ov.classList.add('vis');
+    pvTimer=setTimeout(()=>{pvPhase='overlay';playPreviewStep(partFilter);},tcDur*1000);
+  } else if(pvPhase==='overlay'||(!useTC&&pvPhase==='title')){
+    // Show detail overlay card briefly then transition to clip
+    ov.innerHTML=`<img src="${s.overlay}" style="max-width:100%;max-height:100%;object-fit:contain;animation:fadeIn .4s">`;
+    ov.classList.add('vis');
+    pvTimer=setTimeout(()=>{pvPhase='clip';playPreviewStep(partFilter);},od*1000);
+  } else if(pvPhase==='clip'){
+    if(s.start!=null&&s.end!=null){
+      ov.classList.remove('vis');
+      vid.currentTime=s.start;vid.playbackRate=s.speed;vid.play();
+      const clipDur=(s.end-s.start)/s.speed*1000;
+      // Show lower third
+      if(document.getElementById('tLT').classList.contains('on')){document.getElementById('ltN').textContent=s.name;document.getElementById('ltS').textContent=s.lt;document.getElementById('ltP').classList.add('vis');}
+      // Section counter
+      if(document.getElementById('tCtr').classList.contains('on')){document.getElementById('scC').textContent=`${s.id}/${S.length}`;document.getElementById('scC').classList.add('vis');}
+      pvTimer=setTimeout(()=>{
+        vid.pause();vid.playbackRate=1;
+        document.getElementById('ltP').classList.remove('vis');
+        document.getElementById('scC').classList.remove('vis');
+        pvIdx++;pvPhase='title';playPreviewStep(partFilter);
+      },clipDur);
+    } else {pvIdx++;pvPhase='title';playPreviewStep(partFilter);}
+  }
+}
+function stopPreview(){clearTimeout(pvTimer);document.getElementById('pvO').classList.remove('vis');document.getElementById('ltP').classList.remove('vis');document.getElementById('scC').classList.remove('vis');if(vid){vid.pause();vid.playbackRate=1;}}
+
+// Save/Load
+function saveProject(){
+  const data={sections:S,aiCopy:AI,settings:{tcDur:document.getElementById('tcDur').value,oDur:document.getElementById('oDur').value,fDur:document.getElementById('fDur').value,mVol:document.getElementById('mVol').value,overlayFrac,post:document.getElementById('liPost').textContent}};
+  dl(JSON.stringify(data,null,2),'video-project.json','application/json');
+}
+function loadProject(){document.getElementById('loadInput').click();}
+document.getElementById('loadInput').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);
+    d.sections.forEach((s,i)=>{if(S[i])Object.assign(S[i],s);});
+    d.aiCopy.forEach((c,i)=>{if(AI[i])Object.assign(AI[i],c);});
+    if(d.settings){
+      if(d.settings.tcDur)document.getElementById('tcDur').value=d.settings.tcDur;
+      document.getElementById('oDur').value=d.settings.oDur;document.getElementById('fDur').value=d.settings.fDur;document.getElementById('mVol').value=d.settings.mVol;
+      if(d.settings.overlayFrac)overlayFrac=d.settings.overlayFrac;
+      if(d.settings.post)document.getElementById('liPost').textContent=d.settings.post;
+    }
+    rS();rAI();ud();}catch(err){console.error(err);}};
+  r.readAsText(f);
+});
+
+// LinkedIn
+function copyPost(){navigator.clipboard.writeText(document.getElementById('liPost').textContent);event.target.textContent='Copied!';setTimeout(()=>event.target.textContent='Copy',1500);}
+
+// Thumbnails
+function genThumbs(){
+  if(!vid||!dur)return;const c=document.getElementById('tTh');c.innerHTML='';const n=30,tw=Math.ceil(document.getElementById('tTrk').offsetWidth/n);
+  for(let i=0;i<n;i++){const cv=document.createElement('canvas');cv.width=tw;cv.height=52;c.appendChild(cv);const ctx=cv.getContext('2d'),st=(i/n)*dur;
+  const tv=document.createElement('video');tv.src=vid.src;tv.currentTime=st;tv.addEventListener('seeked',function(){ctx.drawImage(tv,0,0,cv.width,cv.height);},{once:true});}
+}
+
+// Video
+document.getElementById('vi').addEventListener('change',e=>{if(e.target.files[0])loadV(e.target.files[0]);});
+document.addEventListener('dragover',e=>{e.preventDefault();document.getElementById('uO').classList.add('on');});
+document.addEventListener('dragleave',e=>{if(!e.relatedTarget||e.relatedTarget===document.documentElement)document.getElementById('uO').classList.remove('on');});
+document.addEventListener('drop',e=>{e.preventDefault();document.getElementById('uO').classList.remove('on');if(e.dataTransfer.files[0])loadV(e.dataTransfer.files[0]);});
+
+function loadV(f){const u=URL.createObjectURL(f),v=document.getElementById('vpl');v.src=u;v.style.display='block';document.getElementById('vph').style.display='none';vid=v;
+vid.addEventListener('loadedmetadata',()=>{dur=vid.duration;document.getElementById('tE').textContent=fT(dur);document.getElementById('cBar').style.display='flex';document.getElementById('tBar').style.display='block';setTimeout(genThumbs,500);ud();uSecProg();rS();});
+vid.addEventListener('timeupdate',uPH);}
+
+function uPH(){if(!vid||!dur)return;const p=(vid.currentTime/dur)*100;document.getElementById('tPr').style.width=p+'%';document.getElementById('tPh').style.left=p+'%';document.getElementById('tC').textContent=`${fT(vid.currentTime)} / ${fT(dur)}`;document.getElementById('tS').textContent=fT(vid.currentTime);
+if(document.getElementById('tProg').classList.contains('on')){document.getElementById('pgB').classList.add('vis');document.getElementById('pgB').style.width=p+'%';}
+}
+
+document.getElementById('tTrk').addEventListener('click',e=>{if(!vid)return;const r=e.currentTarget.getBoundingClientRect();vid.currentTime=((e.clientX-r.left)/r.width)*dur;});
+document.getElementById('plB').addEventListener('click',()=>{if(!vid)return;if(vid.paused){vid.play();document.getElementById('plB').innerHTML='&#9646;&#9646;';}else{vid.pause();document.getElementById('plB').innerHTML='&#9654;';}});
+document.getElementById('bkB').addEventListener('click',()=>{if(vid)vid.currentTime=Math.max(0,vid.currentTime-5);});
+document.getElementById('fwB').addEventListener('click',()=>{if(vid)vid.currentTime=Math.min(dur,vid.currentTime+5);});
+document.getElementById('mkB').addEventListener('click',()=>{if(!vid)return;if(S[aS].start===null)sS(aS);else sE(aS);});
+document.getElementById('ovB').addEventListener('click',function(){showOv=!showOv;this.classList.toggle('on',showOv);uOv();});
+document.getElementById('ltB').addEventListener('click',function(){showLt=!showLt;this.classList.toggle('on',showLt);uLt();});
+document.getElementById('spS').addEventListener('change',e=>{if(vid)vid.playbackRate=parseFloat(e.target.value);});
+document.getElementById('mVol').addEventListener('input',e=>{document.getElementById('vL').textContent=e.target.value+'%';});
+document.getElementById('oDur').addEventListener('input',ud);
+document.getElementById('tcDur').addEventListener('input',ud);
+
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.contentEditable==='true')return;
+  if(e.code==='Space'){e.preventDefault();document.getElementById('plB').click();}
+  if(e.code==='ArrowLeft'){if(vid)vid.currentTime=Math.max(0,vid.currentTime-(e.shiftKey?1:5));}
+  if(e.code==='ArrowRight'){if(vid)vid.currentTime=Math.min(dur,vid.currentTime+(e.shiftKey?1:5));}
+  if(e.code==='KeyM'||e.code==='Enter')document.getElementById('mkB').click();
+  if(e.code==='BracketLeft'){if(vid)vid.currentTime=Math.max(0,vid.currentTime-.04);}
+  if(e.code==='BracketRight'){if(vid)vid.currentTime=Math.min(dur,vid.currentTime+.04);}
+  const n=parseInt(e.key);if(!isNaN(n)&&n>=0&&n<=9){const x=n===0?9:n-1;if(x<S.length)sel(x);}
+});
+
+function uCM(){const trk=document.getElementById('tTrk');trk.querySelectorAll('.cut-marker').forEach(m=>m.remove());let c=0;
+S.forEach(s=>{if(s.start!=null&&dur){const m=document.createElement('div');m.style.cssText=`position:absolute;top:0;bottom:0;width:2px;background:${s.color};z-index:5;left:${s.start/dur*100}%`;trk.appendChild(m);c++;}});
+document.getElementById('cCt').textContent=c+' cut'+(c!==1?'s':'');}
+
+// Export — two-layer: bold title card → detail overlay card → video clip
+function genExport(){
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const od=parseFloat(document.getElementById('oDur').value),fd=parseFloat(document.getElementById('fDur').value),vol=parseInt(document.getElementById('mVol').value)/100;
+  const res=document.getElementById('oRes').value,fps=document.getElementById('oFps').value,cod=document.getElementById('oCod').value,bit=document.getElementById('oBit').value;
+  const fontSize=parseInt(document.getElementById('fSize').value);
+  const[w,h]=res.split(':');
+  const crop=document.getElementById('tCrop').classList.contains('on'),kb=document.getElementById('tKB').classList.contains('on');
+  const kbDir=document.getElementById('kbDir').value;
+  const duck=document.getElementById('tDuck').classList.contains('on'),hook=document.getElementById('tHook').classList.contains('on');
+  const cap=document.getElementById('tCap').classList.contains('on'),lt=document.getElementById('tLT').classList.contains('on');
+  const prog=document.getElementById('tProg').classList.contains('on'),ctr=document.getElementById('tCtr').classList.contains('on');
+  const snd=document.getElementById('tSnd').classList.contains('on');
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  const tcKB=document.getElementById('tcKB').value;
+
+  // Filter by export scope
+  let V=S.filter(s=>s.start!=null&&s.end!=null);
+  if(exportScope==='p1')V=V.filter(s=>s.part===1);
+  else if(exportScope==='p2')V=V.filter(s=>s.part===2);
+  if(!V.length){showC('# No cuts set yet for selected scope.');return;}
+
+  const outName=exportScope==='all'?'ai-book-tracker-demo.mp4':`ai-book-tracker-part${exportScope==='p1'?'1':'2'}.mp4`;
+
+  let c='#!/bin/bash\n# AI Radar Tracker — Video Assembly\n# Dual-AI reviewed | LinkedIn optimized\n';
+  c+=`# Scope: ${exportScope==='all'?'Full video':exportScope==='p1'?'Part 1 (Usage & Value)':'Part 2 (Data & Stats)'}\nset -e\n\n`;
+  c+=`INPUT="screen-recording.mp4"\nMUSIC="sigmamusicart-piano-background-music-484602.mp3"\nOUTPUT="${outName}"\n\n`;
+
+  c+=`echo "Processing ${V.length} sections..."\n\n`;
+
+  // Step 1: Bold title cards (if enabled)
+  if(useTC){
+    c+=`# Step 1: Bold section title cards (${tcDur}s each)\n`;
+    V.forEach((s,i)=>{
+      const n=String(i+1).padStart(2,'0');
+      let tf=`scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2`;
+      // Ken Burns on title card
+      if(tcKB==='zoomIn')tf+=`,zoompan=z='min(zoom+0.001,1.08)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${Math.ceil(tcDur*parseInt(fps))}:s=${w}x${h}:fps=${fps}`;
+      else if(tcKB==='zoomOut')tf+=`,zoompan=z='if(eq(on,1),1.08,max(zoom-0.001,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${Math.ceil(tcDur*parseInt(fps))}:s=${w}x${h}:fps=${fps}`;
+      else tf+=`,fps=${fps}`;
+      tf+=`,fade=t=in:st=0:d=0.3,fade=t=out:st=${(tcDur-0.3).toFixed(1)}:d=0.3`;
+      c+=`ffmpeg -y -loop 1 -i "${s.titleCard}" -t ${tcDur} -vf "${tf}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p "title_${n}.mp4"\n`;
+    });
+    c+='\n';
+  }
+
+  // Step 2: Detail overlay cards
+  c+=`# Step ${useTC?'2':'1'}: Detail overlay cards (${od}s, ${fd}s fade)\n`;
+  V.forEach((s,i)=>{
+    const n=String(i+1).padStart(2,'0');
+    let tf=`scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2`;
+    if(s.transition==='fade')tf+=`,fade=t=in:st=0:d=${fd},fade=t=out:st=${(od-fd).toFixed(1)}:d=${fd}`;
+    else if(s.transition==='slide')tf+=`,fade=t=in:st=0:d=${fd}`;
+    else if(s.transition==='zoom')tf+=`,zoompan=z='1.1-0.1*on/${(od*parseInt(fps))}':d=${od*parseInt(fps)}:s=${w}x${h}:fps=${fps},fade=t=in:st=0:d=${fd},fade=t=out:st=${(od-fd).toFixed(1)}:d=${fd}`;
+    else if(s.transition==='wipe')tf+=`,fade=t=in:st=0:d=${fd},fade=t=out:st=${(od-fd).toFixed(1)}:d=${fd}`;
+    tf+=`,fps=${fps}`;
+    c+=`ffmpeg -y -loop 1 -i "${s.overlay}" -t ${od} -vf "${tf}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p "card_${n}.mp4"\n`;
+  });
+
+  // Step 3: Cut & process video segments
+  const stepN=useTC?3:2;
+  c+=`\n# Step ${stepN}: Cut & process video segments\n`;
+  V.forEach((s,i)=>{
+    const n=String(i+1).padStart(2,'0'),pts=s.speed!==1?`setpts=${(1/s.speed).toFixed(4)}*PTS,`:'';
+    const cr=crop?'crop=in_w:in_h*0.92:0:in_h*0.04,':'';
+    let vf=`${pts}${cr}scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2`;
+    // Ken Burns on video clips
+    if(kb){
+      const clipFrames=Math.ceil(((s.end-s.start)/s.speed)*parseInt(fps));
+      let kbExpr;
+      if(kbDir==='in')kbExpr=`z='min(zoom+0.0005,1.04)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`;
+      else if(kbDir==='out')kbExpr=`z='if(eq(on,1),1.04,max(zoom-0.0005,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`;
+      else{// alternate
+        const isEven=i%2===0;
+        kbExpr=isEven?`z='min(zoom+0.0005,1.04)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`:`z='if(eq(on,1),1.04,max(zoom-0.0005,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`;
+      }
+      vf+=`,zoompan=${kbExpr}:d=1:s=${w}x${h}:fps=${fps}`;
+    } else vf+=`,fps=${fps}`;
+    // Lower third
+    if(lt)vf+=`,drawtext=text='${s.name.replace(/'/g,"\\'")}':fontfile=/System/Library/Fonts/Helvetica.ttc:fontsize=${fontSize}:fontcolor=white:x=30:y=h-80:enable='between(t,1,${((s.end-s.start)/s.speed-0.5).toFixed(1)})',drawtext=text='${s.lt.replace(/'/g,"\\'")}':fontfile=/System/Library/Fonts/Helvetica.ttc:fontsize=${Math.round(fontSize*0.65)}:fontcolor=white@0.7:x=30:y=h-50:enable='between(t,1,${((s.end-s.start)/s.speed-0.5).toFixed(1)})'`;
+    // Progress bar
+    if(prog)vf+=`,drawbox=x=0:y=ih-4:w=iw*t/${((s.end-s.start)/s.speed).toFixed(2)}:h=4:color=3b82f6@0.8:t=fill`;
+    // Counter
+    if(ctr)vf+=`,drawtext=text='${s.id}/${S.length}':fontfile=/System/Library/Fonts/Helvetica.ttc:fontsize=${Math.round(fontSize*0.72)}:fontcolor=white@0.6:x=w-60:y=20`;
+    c+=`ffmpeg -y -ss ${s.start} -to ${s.end} -i "$INPUT" -vf "${vf}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p -an "seg_${n}.mp4"\n`;
+  });
+
+  if(hook){
+    const hookSrc=useTC?V[0].titleCard:V[0].overlay;
+    c+=`\n# Hook frame (2s)\nffmpeg -y -loop 1 -i "${hookSrc}" -t 2 -vf "scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2,fps=${fps}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p "hook.mp4"\n`;
+  }
+
+  // Intro bumper & end CTA
+  const exIntro=document.getElementById('tExIntro').classList.contains('on');
+  const exOutro=document.getElementById('tExOutro').classList.contains('on');
+  if(exIntro){
+    c+=`\n# Intro bumper (convert WebM → MP4)\nffmpeg -y -i "intro-bumper.webm" -vf "scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2,fps=${fps}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p -an "intro.mp4"\n`;
+  }
+  if(exOutro){
+    c+=`\n# End CTA card (convert WebM → MP4)\nffmpeg -y -i "end-card-cta.webm" -vf "scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2,fps=${fps}" -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p -an "outro.mp4"\n`;
+  }
+
+  // Concat — flow: intro → hook → (title → card → seg) × N → outro
+  c+=`\n# Step ${stepN+1}: Concat — flow: ${exIntro?'intro → ':''}${useTC?'title → ':''}overlay → clip${exOutro?' → outro':''}\ncat > concat.txt << 'FL'\n`;
+  if(exIntro)c+="file 'intro.mp4'\n";
+  if(hook)c+="file 'hook.mp4'\n";
+  V.forEach((s,i)=>{
+    const n=String(i+1).padStart(2,'0');
+    if(useTC)c+=`file 'title_${n}.mp4'\n`;
+    c+=`file 'card_${n}.mp4'\nfile 'seg_${n}.mp4'\n`;
+  });
+  if(exOutro)c+="file 'outro.mp4'\n";
+  c+='FL\n';
+
+  c+=`\n# Step ${stepN+2}: Assemble\nffmpeg -y -f concat -safe 0 -i concat.txt -c:v ${cod} -b:v ${bit} -pix_fmt yuv420p "assembled.mp4"\n`;
+
+  c+=`\n# Step ${stepN+3}: Music`+(duck?' (ducked)':'')+'\n';
+  const af=duck?`volume=${vol},afade=t=in:st=0:d=2,afade=t=out:st=85:d=5,acompressor=threshold=-20dB:ratio=4:attack=200:release=1000`:`volume=${vol},afade=t=in:st=0:d=2,afade=t=out:st=85:d=5`;
+  c+=`ffmpeg -y -i "assembled.mp4" -i "$MUSIC" -filter_complex "[1:a]${af}[m]" -map 0:v -map "[m]" -c:v copy -c:a aac -shortest "$OUTPUT"\n`;
+
+  if(cap){
+    if(capStyle==='srt'){
+      c+=`\n# Step ${stepN+4}: Subtitles (SRT)\nffmpeg -y -i "$OUTPUT" -vf "subtitles=ai-book-tracker-captions.srt:force_style='FontName=Inter,FontSize=${fontSize-4},PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,MarginV=40'" -c:v ${cod} -b:v ${bit} -c:a copy "final.mp4" && mv "final.mp4" "$OUTPUT"\n`;
+    } else {
+      c+=`\n# Step ${stepN+4}: Word-highlight captions (ASS)\nffmpeg -y -i "$OUTPUT" -vf "ass=ai-book-tracker-captions.ass" -c:v ${cod} -b:v ${bit} -c:a copy "final.mp4" && mv "final.mp4" "$OUTPUT"\n`;
+    }
+  }
+
+  if(snd){c+='\n# Sound badge\n# ffmpeg -y -i "$OUTPUT" -i "sound-badge.png" -filter_complex "[1:v]format=rgba[b];[0:v][b]overlay=20:20:enable=\'lt(t,3)\'" -c:v '+cod+' -b:v '+bit+' -c:a copy "badge.mp4" && mv "badge.mp4" "$OUTPUT"\n';}
+
+  c+='\n# Cleanup\nrm -f seg_*.mp4 card_*.mp4'+(useTC?' title_*.mp4':'')+' assembled.mp4 concat.txt'+(hook?' hook.mp4':'')+(exIntro?' intro.mp4':'')+(exOutro?' outro.mp4':'')+'\n\necho "Done: $OUTPUT"\necho "Size: $(du -h $OUTPUT | cut -f1)"';
+
+  showC(c);
+
+  // Save to history
+  const entry={ts:new Date().toLocaleString(),sections:V.length,scope:exportScope,effects:[crop&&'crop',kb&&'kenburns',useTC&&'titlecards',lt&&'lowerthird',prog&&'progress',duck&&'ducked'].filter(Boolean).join(', ')};
+  expHistory.unshift(entry);if(expHistory.length>10)expHistory.pop();
+  localStorage.setItem('vad_history',JSON.stringify(expHistory));
+  renderHistory();
+  tab('export');
+}
+function showC(c){const e=document.getElementById('cmdO');e.textContent=c;e.style.display='block';}
+function copyCmd(){const c=document.getElementById('cmdO').textContent;if(c){navigator.clipboard.writeText(c);event.target.textContent='Copied!';setTimeout(()=>event.target.textContent='Copy to Clipboard',1500);}}
+
+function renderHistory(){
+  document.getElementById('expHist').innerHTML=expHistory.length?expHistory.map((h,i)=>`<div class="eh-item"><span class="ts">${h.ts} &bull; ${h.sections}s ${h.scope||'all'} &bull; ${h.effects}</span><button onclick="expHistory.splice(${i},1);localStorage.setItem('vad_history',JSON.stringify(expHistory));renderHistory()">x</button></div>`).join(''):'<div style="font-size:9px;color:var(--dim)">No exports yet</div>';
+}
+
+// Caption style
+let capStyle='highlight';
+function setCapStyle(s,el){capStyle=s;el.parentElement.querySelectorAll('.cap-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+
+// ASS subtitle generation — word-by-word highlight
+function genASS(){
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const od=parseFloat(document.getElementById('oDur').value)||2.5;
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  const fontSize=parseInt(document.getElementById('fSize').value)||28;
+  const isKaraoke=capStyle==='karaoke';
+
+  let ass=`[Script Info]
+Title: AI Radar Tracker Captions
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Inter,${fontSize+8},&H00FFFFFF,&H0000D4F4,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3,1,2,40,40,80,1
+Style: Highlight,Inter,${fontSize+12},&H0000D4F4,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3,2,2,40,40,80,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+`;
+
+  let t=0;
+  S.forEach((s,i)=>{
+    const c=AI[i];if(!c)return;
+    const txt=(c.p==='w'?c.w:c.e).trim();
+    if(useTC)t+=tcDur;
+    t+=od;
+    const cd=(s.start!=null&&s.end!=null)?(s.end-s.start)/s.speed:8;
+    const words=txt.split(/\s+/);
+    const wordDur=cd/words.length;
+
+    if(isKaraoke){
+      // Karaoke pop — each word appears with a scale pop
+      words.forEach((word,wi)=>{
+        const ws=t+wi*wordDur;
+        const we=t+(wi+1)*wordDur;
+        const assS=assTime(ws),assE=assTime(we);
+        // Show word with pop-in effect
+        ass+=`Dialogue: 0,${assS},${assE},Highlight,,0,0,0,,{\\fad(100,100)\\t(0,100,\\fscx120\\fscy120)\\t(100,200,\\fscx100\\fscy100)}${word}\n`;
+      });
+      // Also show full line in Default style underneath
+      ass+=`Dialogue: 1,${assTime(t)},${assTime(t+cd)},Default,,0,0,0,,${txt}\n`;
+    } else {
+      // Word-by-word highlight — full line shown, current word highlighted
+      words.forEach((word,wi)=>{
+        const ws=t+wi*wordDur;
+        const we=t+(wi+1)*wordDur;
+        // Build line with highlight on current word
+        const parts=words.map((w,j)=>{
+          if(j===wi)return`{\\c&H0000D4F4&\\b1}${w}{\\c&H00FFFFFF&\\b0}`;
+          return w;
+        }).join(' ');
+        ass+=`Dialogue: 0,${assTime(ws)},${assTime(we)},Default,,0,0,0,,${parts}\n`;
+      });
+    }
+    t+=cd;
+  });
+
+  dl(ass,'ai-book-tracker-captions.ass','text/plain');
+}
+function assTime(s){
+  const h=Math.floor(s/3600);const m=Math.floor((s%3600)/60);const sec=s%60;
+  return`${h}:${String(m).padStart(2,'0')}:${sec.toFixed(2).padStart(5,'0')}`;
+}
+
+// Voiceover audio analysis
+let audioBuffer=null;
+let silenceGaps=[];
+
+document.getElementById('voInput').addEventListener('change',async e=>{
+  const file=e.target.files[0];if(!file)return;
+  const ctx=new(window.AudioContext||window.webkitAudioContext)();
+  const arrayBuf=await file.arrayBuffer();
+  audioBuffer=await ctx.decodeAudioData(arrayBuf);
+  document.getElementById('wfDrop').textContent=`${file.name} (${audioBuffer.duration.toFixed(1)}s)`;
+  drawWaveform();
+  if(document.getElementById('tAutoTime').classList.contains('on'))detectSilence();
+});
+document.getElementById('wfDrop').addEventListener('dragover',e=>e.preventDefault());
+document.getElementById('wfDrop').addEventListener('drop',e=>{
+  e.preventDefault();
+  if(e.dataTransfer.files[0]){
+    const dt=new DataTransfer();dt.items.add(e.dataTransfer.files[0]);
+    document.getElementById('voInput').files=dt.files;
+    document.getElementById('voInput').dispatchEvent(new Event('change'));
+  }
+});
+
+function drawWaveform(){
+  if(!audioBuffer)return;
+  const canvas=document.getElementById('wfCanvas');
+  canvas.style.display='block';
+  const ctx=canvas.getContext('2d');
+  const w=canvas.offsetWidth;const h=50;
+  canvas.width=w*2;canvas.height=h*2;
+  ctx.scale(2,2);
+  const data=audioBuffer.getChannelData(0);
+  const step=Math.ceil(data.length/w);
+
+  ctx.fillStyle='#1a2235';ctx.fillRect(0,0,w,h);
+
+  // Draw waveform
+  ctx.fillStyle='#3b82f6';
+  for(let i=0;i<w;i++){
+    let min=1,max=-1;
+    for(let j=0;j<step;j++){
+      const d=data[i*step+j];
+      if(d<min)min=d;if(d>max)max=d;
+    }
+    const y1=(1+min)/2*h;const y2=(1+max)/2*h;
+    ctx.fillRect(i,y1,1,Math.max(1,y2-y1));
+  }
+
+  // Draw silence gaps
+  silenceGaps.forEach(g=>{
+    const x1=(g.start/audioBuffer.duration)*w;
+    const x2=(g.end/audioBuffer.duration)*w;
+    ctx.fillStyle='rgba(212,175,55,.2)';
+    ctx.fillRect(x1,0,x2-x1,h);
+    ctx.fillStyle='#D4AF37';
+    ctx.fillRect(x1,0,1,h);
+  });
+}
+
+function detectSilence(){
+  if(!audioBuffer)return;
+  const data=audioBuffer.getChannelData(0);
+  const sampleRate=audioBuffer.sampleRate;
+  const threshold=0.02;
+  const minGap=0.3;// seconds
+  const windowSize=Math.floor(sampleRate*0.05);
+
+  silenceGaps=[];
+  let inSilence=false,silStart=0;
+
+  for(let i=0;i<data.length;i+=windowSize){
+    let rms=0;
+    for(let j=i;j<Math.min(i+windowSize,data.length);j++)rms+=data[j]*data[j];
+    rms=Math.sqrt(rms/windowSize);
+
+    if(rms<threshold){
+      if(!inSilence){inSilence=true;silStart=i/sampleRate;}
+    } else {
+      if(inSilence){
+        const silEnd=i/sampleRate;
+        if(silEnd-silStart>=minGap){
+          silenceGaps.push({start:silStart,end:silEnd,mid:(silStart+silEnd)/2});
+        }
+        inSilence=false;
+      }
+    }
+  }
+
+  // Show markers
+  const el=document.getElementById('wfMarkers');
+  el.style.display='block';
+  el.innerHTML=silenceGaps.length?silenceGaps.map((g,i)=>
+    `<div class="wf-marker"><span class="dot"></span><span>${g.start.toFixed(1)}s &ndash; ${g.end.toFixed(1)}s (${(g.end-g.start).toFixed(1)}s gap)</span><button onclick="applySilenceGap(${i})">Apply as cut</button></div>`
+  ).join(''):'<div style="font-size:8px;color:var(--dim)">No significant gaps found</div>';
+
+  drawWaveform();
+}
+
+function applySilenceGap(gapIdx){
+  const gap=silenceGaps[gapIdx];if(!gap||!vid)return;
+  // Set end of current section to gap start, start of next to gap end
+  if(aS<S.length){
+    S[aS].end=Math.round(gap.start*100)/100;
+    if(aS+1<S.length){
+      aS++;
+      S[aS].start=Math.round(gap.end*100)/100;
+    }
+    rS();uCM();
+  }
+}
+
+// Batch export — generates 3 scripts
+function genBatchExport(){
+  const saved=exportScope;
+  let scripts=[];
+
+  // Full video
+  exportScope='all';
+  genExportSilent();
+  scripts.push({name:'ai-book-tracker-FULL.sh',content:document.getElementById('cmdO').textContent});
+
+  // Part 1
+  exportScope='p1';
+  genExportSilent();
+  scripts.push({name:'ai-book-tracker-PART1.sh',content:document.getElementById('cmdO').textContent});
+
+  // Part 2
+  exportScope='p2';
+  genExportSilent();
+  scripts.push({name:'ai-book-tracker-PART2.sh',content:document.getElementById('cmdO').textContent});
+
+  exportScope=saved;
+
+  // Create a combined batch script
+  let batch='#!/bin/bash\n# AI Radar Tracker — Batch Export\n# Generates Full, Part 1, and Part 2 videos\nset -e\n\n';
+  batch+='echo "=== BATCH EXPORT START ==="\n\n';
+  scripts.forEach(s=>{
+    batch+=`echo "--- ${s.name} ---"\n`;
+    // Extract just the ffmpeg commands (skip header)
+    const lines=s.content.split('\n').filter(l=>l.startsWith('ffmpeg ')||l.startsWith('cat ')||l.startsWith('rm ')||l.startsWith('echo ')||l.startsWith('INPUT=')||l.startsWith('MUSIC=')||l.startsWith('OUTPUT=')||l.startsWith('file ')||l.startsWith('FL'));
+    batch+=lines.join('\n')+'\n\n';
+  });
+  batch+='echo "=== BATCH EXPORT COMPLETE ==="\n';
+  batch+='echo "Files:"\nls -lh ai-book-tracker-*.mp4 2>/dev/null\n';
+
+  showC(batch);
+  dl(batch,'batch-export.sh','text/plain');
+  tab('export');
+}
+
+// Silent version of genExport (doesn't switch tabs or save history)
+function genExportSilent(){
+  // Temporarily suppress tab switch and history
+  const origTab=tab;
+  const origHist=renderHistory;
+  const genExportFn=genExport;
+  // Just call genExport which populates cmdO
+  genExport.__silent=true;
+  genExport();
+  genExport.__silent=false;
+}
+
+// LinkedIn carousel — generate images
+function genCarousel(){
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  S.forEach((s,i)=>{
+    // Download title card image
+    if(useTC){
+      const a=document.createElement('a');
+      a.href=s.titleCard;a.download=`carousel-${String(i+1).padStart(2,'0')}-title.png`;a.click();
+    }
+    // Download overlay card
+    setTimeout(()=>{
+      const a=document.createElement('a');
+      a.href=s.overlay;a.download=`carousel-${String(i+1).padStart(2,'0')}-overlay.png`;a.click();
+    },200*(i+1));
+  });
+}
+
+function genCarouselPDF(){
+  // Generate a simple PDF from canvas renders of each card
+  // Using a basic PDF builder (no library needed for images)
+  const images=[];
+  const loadPromises=[];
+
+  S.forEach((s,i)=>{
+    // Load title card and overlay
+    const loadImg=(src)=>new Promise((resolve)=>{
+      const img=new Image();
+      img.onload=()=>resolve(img);
+      img.onerror=()=>resolve(null);
+      img.src=src;
+    });
+    loadPromises.push(loadImg(s.titleCard));
+    loadPromises.push(loadImg(s.overlay));
+  });
+
+  Promise.all(loadPromises).then(imgs=>{
+    // Create a combined canvas with all slides vertically
+    const slideW=1080,slideH=1920;
+    const validImgs=imgs.filter(Boolean);
+
+    // For simplicity, download each as numbered PNG
+    validImgs.forEach((img,i)=>{
+      const c=document.createElement('canvas');
+      c.width=slideW;c.height=slideH;
+      const ctx=c.getContext('2d');
+      ctx.drawImage(img,0,0,slideW,slideH);
+      setTimeout(()=>{
+        c.toBlob(blob=>{
+          const a=document.createElement('a');
+          a.href=URL.createObjectURL(blob);
+          a.download=`carousel-slide-${String(i+1).padStart(2,'0')}.png`;
+          a.click();
+        },'image/png');
+      },i*300);
+    });
+  });
+}
+
+// Override genExport to include intro/outro
+const _origGenExport=genExport;
+// Patch the concat section to include intro/outro
+// (We'll modify genExport inline instead)
+
+// In-browser video render — Canvas + MediaRecorder
+async function renderInBrowser(){
+  if(!vid||!dur){alert('Upload a video first.');return;}
+  const V=S.filter(s=>s.start!=null&&s.end!=null);
+  if(!V.length){alert('No sections marked. Run AI analysis first.');return;}
+  const rSt=document.getElementById('renderStatus');
+  const rPr=document.getElementById('renderProg');
+  rSt.textContent='Preparing...';rPr.style.width='0%';
+  const [w,h]=document.getElementById('oRes').value.split(':').map(Number);
+  const fps=parseInt(document.getElementById('oFps').value);
+  const tcDur=parseFloat(document.getElementById('tcDur').value)||2;
+  const odDur=parseFloat(document.getElementById('oDur').value)||2.5;
+  const useTC=document.getElementById('tTC').classList.contains('on');
+  const canvas=document.createElement('canvas');
+  canvas.width=w;canvas.height=h;
+  const ctx=canvas.getContext('2d');
+  // MediaRecorder
+  const stream=canvas.captureStream(fps);
+  const recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:8000000});
+  const chunks=[];
+  recorder.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
+  recorder.onstop=()=>{
+    const blob=new Blob(chunks,{type:'video/webm'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='ai-book-tracker-rendered.webm';
+    a.click();
+    rSt.textContent='Done! Video downloaded.';
+    rPr.style.width='100%';
+  };
+  recorder.start();
+  const totalSections=V.length;
+  let completed=0;
+  // Helper: draw image on canvas scaled to fill
+  function drawImg(img){
+    const scale=Math.max(w/img.width,h/img.height);
+    const sw=img.width*scale,sh=img.height*scale;
+    ctx.drawImage(img,(w-sw)/2,(h-sh)/2,sw,sh);
+  }
+  // Helper: load image
+  function loadImg(src){
+    return new Promise((resolve,reject)=>{
+      const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;
+    });
+  }
+  // Helper: hold frame for duration
+  function holdFrame(ms){
+    return new Promise(resolve=>{
+      const endTime=performance.now()+ms;
+      function tick(){
+        // Just re-draw the current canvas state at fps intervals
+        if(performance.now()>=endTime){resolve();return;}
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  // Helper: play video segment to canvas
+  function playSegment(sec){
+    return new Promise(resolve=>{
+      vid.currentTime=sec.start;
+      vid.playbackRate=sec.speed;
+      const clipDur=(sec.end-sec.start)/sec.speed*1000;
+      const startT=performance.now();
+      function drawVid(){
+        ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);
+        const vw=vid.videoWidth,vh=vid.videoHeight;
+        const scale=Math.max(w/vw,h/vh);
+        const sw=vw*scale,sh=vh*scale;
+        ctx.drawImage(vid,(w-sw)/2,(h-sh)/2,sw,sh);
+        if(performance.now()-startT>=clipDur){
+          vid.pause();vid.playbackRate=1;resolve();return;
+        }
+        requestAnimationFrame(drawVid);
+      }
+      vid.play();
+      requestAnimationFrame(drawVid);
+    });
+  }
+  // Render sequence
+  for(let i=0;i<V.length;i++){
+    const sec=V[i];
+    rSt.textContent=`Rendering ${i+1}/${totalSections}: ${sec.name}`;
+    rPr.style.width=(i/totalSections*100)+'%';
+    // Title card (if enabled)
+    if(useTC){
+      try{
+        const tcImg=await loadImg(sec.titleCard);
+        ctx.fillStyle='#0f1d32';ctx.fillRect(0,0,w,h);
+        drawImg(tcImg);
+        await holdFrame(tcDur*1000);
+      }catch(e){console.warn('Title card not found:',sec.titleCard);}
+    }
+    // Overlay card
+    try{
+      const ovImg=await loadImg(sec.overlay);
+      ctx.fillStyle='#0f1d32';ctx.fillRect(0,0,w,h);
+      drawImg(ovImg);
+      await holdFrame(odDur*1000);
+    }catch(e){console.warn('Overlay not found:',sec.overlay);}
+    // Video segment
+    await playSegment(sec);
+    completed++;
+  }
+  // Stop recording
+  rPr.style.width='95%';
+  rSt.textContent='Finalizing...';
+  setTimeout(()=>recorder.stop(),500);
+}
+
+// Init
+rS();rAI();ud();renderHistory();uOvSize();uSecProg();
+</script>
+</body>
+</html>

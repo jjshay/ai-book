@@ -1,19 +1,20 @@
-// Signal Enrichment Script for AI Book
-// Enriches companies.json with 8 free data sources:
+// Signal Enrichment Script for AI Radar
+// Enriches companies.json with 9 data sources:
 //   1. Hacker News mentions (HN Algolia API)
 //   2. Wikipedia page views (Wikimedia REST API)
-//   3. USPTO patents (PatentsView API — needs API key)
+//   3. Google Patents (SerpApi — needs SERPAPI_KEY)
 //   4. Product Hunt launches (PH API — needs token)
 //   5. OpenAlex academic papers (OpenAlex API)
 //   6. Tranco web traffic ranking (CSV download)
 //   7. iTunes App Store ratings (Apple Search API)
 //   8. npm + PyPI package downloads
+//   9. LinkedIn employee counts (SerpApi Google Search — needs SERPAPI_KEY)
 //
 // Usage:
 //   node enrich-signals.js                           # All sources
 //   node enrich-signals.js --source=hn               # Single source
-//   node enrich-signals.js --source=tranco --force   # Force refresh all
-//   Valid sources: hn, wiki, patents, ph, papers, tranco, itunes, packages
+//   node enrich-signals.js --source=linkedin --force # Force refresh all
+//   Valid sources: hn, wiki, patents, ph, papers, tranco, itunes, packages, linkedin
 
 const fs = require('fs');
 const path = require('path');
@@ -222,37 +223,73 @@ async function enrichWikipedia(companies, force = false) {
   return enriched;
 }
 
-// ========== 3. USPTO PATENTS (PatentsView API) ==========
+// ========== 3. PATENTS (SerpApi Google Patents) ==========
+
+const PATENT_SLEEP_MS = 500; // SerpApi has generous limits, but be polite
 
 async function fetchPatents(companyName) {
-  // PatentsView v1 is discontinued (410). Use the new search.patentsview.org API.
-  const q = JSON.stringify({ _contains: { "assignees.assignee_organization": companyName } });
-  const f = 'patent_id,patent_title,patent_date,patent_number';
-  const s = JSON.stringify([{ patent_date: "desc" }]);
-  const o = JSON.stringify({ size: 5 });
-  const url = `https://search.patentsview.org/api/v1/patent/?q=${encodeURIComponent(q)}&f=${encodeURIComponent(f)}&s=${encodeURIComponent(s)}&o=${encodeURIComponent(o)}`;
+  const apiKey = process.env.SERPAPI_KEY;
+  if (!apiKey) {
+    return null;
+  }
+
+  const params = new URLSearchParams({
+    engine: 'google_patents',
+    q: companyName,
+    assignee: companyName,
+    api_key: apiKey,
+    num: '10',
+    sort: 'new',
+    status: 'GRANT',
+  });
+  const url = `https://serpapi.com/search?${params}`;
 
   try {
-    const res = await fetch(url, {
-      headers: process.env.PATENTSVIEW_API_KEY ? { 'X-Api-Key': process.env.PATENTSVIEW_API_KEY } : {},
-    });
-    if (!res.ok) return null;
+    const res = await fetch(url);
+    if (!res.ok) {
+      if (res.status === 429) console.warn(`  [!] SerpApi rate limited on ${companyName}`);
+      return null;
+    }
     const data = await res.json();
-    const count = data.total_hits || 0;
-    const recent = (data.patents || []).slice(0, 3).map(p => ({
-      title: p.patent_title,
-      date: p.patent_date,
-      number: p.patent_number || p.patent_id,
+
+    const totalResults = data.search_information?.total_results || 0;
+    const results = data.organic_results || [];
+
+    const recent = results.slice(0, 3).map(p => ({
+      title: p.title,
+      date: p.grant_date || p.publication_date || p.filing_date || null,
+      number: p.publication_number || null,
     }));
-    return { count, recent };
-  } catch {
+
+    // Extract CPC classifications from summary if available
+    const classifications = {};
+    if (data.summary?.cpc && Array.isArray(data.summary.cpc)) {
+      data.summary.cpc
+        .filter(c => c.key && c.key !== 'Total')
+        .slice(0, 5)
+        .forEach(c => {
+          // SerpApi returns CPC keys like "G06N" with percentage
+          // Estimate count from percentage and total
+          const estimatedCount = Math.round((c.percentage / 100) * totalResults);
+          if (estimatedCount > 0) classifications[c.key] = estimatedCount;
+        });
+    }
+
+    return { count: totalResults, recent, classifications };
+  } catch (err) {
+    console.warn(`  [!] SerpApi error for ${companyName}: ${err.message}`);
     return null;
   }
 }
 
 async function enrichPatents(companies, force = false) {
-  console.log('\n[Patents] Starting USPTO patent enrichment...');
-  let enriched = 0, skipped = 0, noResults = 0;
+  console.log('\n[Patents] Starting Google Patents enrichment (SerpApi)...');
+  if (!process.env.SERPAPI_KEY) {
+    console.log('[Patents] No SERPAPI_KEY set — skipping patent enrichment.');
+    console.log('[Patents] Get a key at https://serpapi.com/ (Starter plan: $25/mo for 1,000 searches)');
+    return 0;
+  }
+  let enriched = 0, skipped = 0, noResults = 0, apiCalls = 0;
 
   for (const c of companies) {
     if (!force && c.hasOwnProperty('patents_count') && !isStale(c.patents_enriched_at, STALE_DAYS)) {
@@ -261,15 +298,22 @@ async function enrichPatents(companies, force = false) {
     }
 
     const data = await fetchPatents(c.name);
-    await sleep(SLEEP_MS);
+    apiCalls++;
+    await sleep(PATENT_SLEEP_MS);
 
     if (data) {
       c.patents_count = data.count;
       c.patents_recent = data.recent;
       c.patents_enriched_at = new Date().toISOString();
+      if (data.classifications && Object.keys(data.classifications).length > 0) {
+        c.patents_classifications = data.classifications;
+      }
       if (data.count > 0) {
         enriched++;
-        console.log(`  [+] ${c.name} -> ${data.count} patents`);
+        const classInfo = data.classifications && Object.keys(data.classifications).length
+          ? ' [' + Object.entries(data.classifications).slice(0, 3).map(([k, v]) => `${k}:${v}`).join(', ') + ']'
+          : '';
+        console.log(`  [+] ${c.name} -> ${data.count} patents${classInfo}`);
       } else {
         noResults++;
       }
@@ -281,7 +325,7 @@ async function enrichPatents(companies, force = false) {
     }
   }
 
-  console.log(`[Patents] Done: ${enriched} with patents, ${skipped} skipped, ${noResults} no results`);
+  console.log(`[Patents] Done: ${enriched} with patents, ${skipped} skipped, ${noResults} no results (${apiCalls} API calls used)`);
   return enriched;
 }
 
@@ -683,6 +727,117 @@ async function enrichPackages(companies, force = false) {
   return enriched;
 }
 
+// ========== 9. LINKEDIN EMPLOYEE COUNT (SerpApi Google Search) ==========
+
+function parseLinkedInEmployeeCount(snippets) {
+  const text = snippets.join(' | ');
+  // "View all 14,677 employees" — exact count from LinkedIn
+  const exactMatch = text.match(/View all\s+([\d,]+)\s+employees/i);
+  if (exactMatch) {
+    return { count: parseInt(exactMatch[1].replace(/,/g, '')), type: 'exact' };
+  }
+  // "Company size: 5,001-10,000 employees" — range from About section
+  const rangeMatch = text.match(/Company size:\s*([\d,]+)\s*-\s*([\d,]+)\s*employees/i);
+  if (rangeMatch) {
+    const lo = parseInt(rangeMatch[1].replace(/,/g, ''));
+    const hi = parseInt(rangeMatch[2].replace(/,/g, ''));
+    return { count: Math.round((lo + hi) / 2), type: 'range', range: `${rangeMatch[1]}-${rangeMatch[2]}` };
+  }
+  // "Company size: 201-500 employees" or "10,001+ employees"
+  const plusMatch = text.match(/Company size:\s*([\d,]+)\+?\s*employees/i);
+  if (plusMatch) {
+    return { count: parseInt(plusMatch[1].replace(/,/g, '')), type: 'min' };
+  }
+  // "X,XXX employees on LinkedIn" in snippet
+  const inlineMatch = text.match(/([\d,]+)\s+employees?\s+on\s+LinkedIn/i);
+  if (inlineMatch) {
+    return { count: parseInt(inlineMatch[1].replace(/,/g, '')), type: 'exact' };
+  }
+  return null;
+}
+
+function extractLinkedInSlug(results) {
+  for (const r of results) {
+    const m = r.link?.match(/linkedin\.com\/company\/([^\/\?]+)/);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+async function fetchLinkedInEmployees(companyName) {
+  const apiKey = process.env.SERPAPI_KEY;
+  if (!apiKey) return null;
+
+  const params = new URLSearchParams({
+    engine: 'google',
+    q: `site:linkedin.com/company "${companyName}" employees`,
+    api_key: apiKey,
+    num: '5',
+  });
+
+  try {
+    const res = await fetch(`https://serpapi.com/search?${params}`);
+    if (res.status !== 200) return null;
+    const data = await res.json();
+    const results = data.organic_results || [];
+    if (results.length === 0) return null;
+
+    const snippets = results.map(r => r.snippet || '');
+    const parsed = parseLinkedInEmployeeCount(snippets);
+    const linkedinSlug = extractLinkedInSlug(results);
+
+    return {
+      employeeCount: parsed?.count || null,
+      countType: parsed?.type || null,
+      linkedinSlug,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function enrichLinkedInEmployees(companies, force = false) {
+  console.log('\n[LinkedIn] Starting employee count enrichment (SerpApi)...');
+  if (!process.env.SERPAPI_KEY) {
+    console.log('[LinkedIn] No SERPAPI_KEY set — skipping.');
+    return 0;
+  }
+  let enriched = 0, skipped = 0, noResults = 0, apiCalls = 0;
+
+  for (const c of companies) {
+    // Skip if already have a LinkedIn-sourced employee count (unless forced)
+    if (!force && c.employee_source === 'linkedin' && c.employeeCount && !isStale(c.employee_enriched_at, STALE_DAYS)) {
+      skipped++;
+      continue;
+    }
+    // Also skip if we already have a good employee count from another source (unless forced)
+    if (!force && c.employeeCount && c.employeeCount > 0) {
+      skipped++;
+      continue;
+    }
+
+    const data = await fetchLinkedInEmployees(c.name);
+    apiCalls++;
+    await sleep(PATENT_SLEEP_MS); // Reuse same polite delay
+
+    if (data && data.employeeCount) {
+      c.employeeCount = data.employeeCount;
+      c.employee_source = 'linkedin';
+      c.employee_enriched_at = new Date().toISOString();
+      if (data.linkedinSlug && !c.linkedin) {
+        c.linkedin = `https://www.linkedin.com/company/${data.linkedinSlug}`;
+      }
+      enriched++;
+      console.log(`  [+] ${c.name} -> ${data.employeeCount.toLocaleString()} employees (${data.countType})`);
+    } else {
+      noResults++;
+    }
+  }
+
+  console.log(`[LinkedIn] Done: ${enriched} enriched, ${skipped} skipped, ${noResults} no data (${apiCalls} API calls)`);
+  return enriched;
+}
+
 // ========== MAIN ==========
 
 const SOURCE_MAP = {
@@ -694,6 +849,7 @@ const SOURCE_MAP = {
   tranco: enrichTranco,
   itunes: enrichiTunes,
   packages: enrichPackages,
+  linkedin: enrichLinkedInEmployees,
 };
 
 async function enrichAll(companies, force = false) {
@@ -710,7 +866,7 @@ async function enrichAll(companies, force = false) {
 }
 
 async function main() {
-  console.log('=== AI Book Signal Enrichment ===');
+  console.log('=== AI Radar Signal Enrichment ===');
   console.log(`Time: ${new Date().toISOString()}`);
 
   // Parse CLI args
@@ -756,4 +912,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, enrichTranco, enrichiTunes, enrichPackages, SOURCE_MAP };
+module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, enrichTranco, enrichiTunes, enrichPackages, enrichLinkedInEmployees, SOURCE_MAP };

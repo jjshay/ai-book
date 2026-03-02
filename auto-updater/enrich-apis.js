@@ -1,4 +1,4 @@
-// API Enrichment Script for AI Book
+// API Enrichment Script for AI Radar
 // Enriches companies.json with GitHub org data and SEC EDGAR filings
 // Usage: GITHUB_TOKEN=xxx node enrich-apis.js
 
@@ -64,7 +64,7 @@ const GITHUB_ORG_MAP = {
 const GITHUB_API = 'https://api.github.com';
 const SEC_SEARCH_API = 'https://efts.sec.gov/LATEST/search-index';
 const SEC_SUBMISSIONS_API = 'https://data.sec.gov/submissions';
-const SEC_USER_AGENT = 'AI-Book-Tracker/1.0 jjshay@gmail.com';
+const SEC_USER_AGENT = 'AI-Radar-Tracker/1.0 jjshay@gmail.com';
 
 const STALE_DAYS = 7; // Refresh GitHub data older than this
 
@@ -416,7 +416,7 @@ async function fetchGoogleNews(companyName) {
   const url = `https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`;
   try {
     const res = await fetch(url, {
-      headers: { 'User-Agent': 'AI-Book-Tracker/1.0' },
+      headers: { 'User-Agent': 'AI-Radar-Tracker/1.0' },
     });
     if (!res.ok) return null;
     const xml = await res.text();
@@ -501,7 +501,7 @@ async function queryWikidata(companyName) {
   try {
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'AI-Book-Tracker/1.0 (jjshay@gmail.com)',
+        'User-Agent': 'AI-Radar-Tracker/1.0 (jjshay@gmail.com)',
         'Accept': 'application/sparql-results+json',
       },
     });
@@ -601,7 +601,7 @@ function saveCompaniesLocal(companies) {
 // ========== MAIN ==========
 
 async function main() {
-  console.log('=== AI Book API Enrichment ===');
+  console.log('=== AI Radar API Enrichment ===');
   console.log(`Time: ${new Date().toISOString()}`);
 
   const companies = await loadCompanies();

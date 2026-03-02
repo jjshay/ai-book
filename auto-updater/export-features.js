@@ -32,7 +32,10 @@ function encodeStage(parsed) {
   if (s.includes('series c')) return 4;
   if (s.includes('series d')) return 5;
   if (s.includes('series e') || s.includes('series f') || s.includes('series g')) return 6;
-  if (s === 'pe' || s === 'growth') return 7;
+  if (s === 'pe' || s.includes('growth')) return 7;
+  if (s === 'ipo' || s === 'spac' || s === 'pre-ipo') return 8;
+  if (s === 'bridge' || s === 'convertible' || s === 'secondary') return 3; // treat as ~Series B equivalent
+  if (s.includes('round') || s.includes('various') || s.includes('multiple')) return 4; // generic late
   return '';
 }
 

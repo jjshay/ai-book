@@ -86,40 +86,93 @@ function parseValuation(str) {
 }
 
 // ========== LAST ROUND DATE PARSER ==========
-// Handles: "Series D ($300M, May 2025)", "Series C (2024)", "Seed", "PE owned"
+// Handles: "Series D ($300M, May 2025)", "Series C (2024)", "Seed", "PE owned",
+//          "Seed ($480M, 2025)", "Funding round (2026-01-20)", "Series B (2026-02-10)",
+//          "Nvidia Round (~$1B, Late 2025)", "IPO (Mar 2025)", "SPAC (2024)",
+//          "PE-backed (Riverside)", "Growth equity", "Secondary", "Pre-IPO"
 // Returns { stage, year, monthsSinceRound }
 function parseLastRound(str) {
   if (!str || typeof str !== 'string') return null;
   const s = str.trim();
 
-  // Extract stage
-  let stage = null;
-  const stageMatch = s.match(/^(Series\s*[A-Z](\+| Extension)?|Seed|Pre-Seed|Angel|PE|Growth|Bridge|Venture|Convertible)/i);
-  if (stageMatch) stage = stageMatch[0].trim();
+  // Skip non-funding strings (but NOT PE-backed which is a valid stage)
+  if (/^(public|bootstrapped|shut down|part of|alphabet|daimler|bytedance|was public|acquired by)/i.test(s)) return null;
+  if (/^private$/i.test(s) || /^private equity$/i.test(s)) return null;
+  if (/\bowned\b/i.test(s) || /\bsubsidiary\b/i.test(s)) return null;
+  if (/\bfunded$/i.test(s) && !/PE|series|seed/i.test(s)) return null;
 
-  // Try to find year
+  // Extract stage — expanded to cover more patterns
+  let stage = null;
+  const stageMatch = s.match(/^(Series\s*[A-Z]\+?(\s*Extension)?|Seed|Pre-Seed|Angel|PE[\s-]?backed|PE|Growth(\s*equity)?|Bridge|Venture|Convertible|IPO|SPAC|Secondary|Pre-IPO|Funding\s*round|Nvidia\s*Round|Multiple\s*rounds|Various\s*rounds)/i);
+  if (stageMatch) {
+    stage = stageMatch[0].trim();
+    // Normalize PE variants
+    if (/^PE[\s-]?backed/i.test(stage)) stage = 'PE';
+  }
+
+  // Also check for mid-string stage indicators
+  if (!stage) {
+    const midMatch = s.match(/(Series\s*[A-Z]\+?|Seed|IPO|SPAC|PE)/i);
+    if (midMatch) stage = midMatch[0].trim();
+  }
+
+  // Try to find year — multiple strategies
+
   let year = null;
   let month = null;
 
-  // "May 2025" or "Feb 2026" or "Nov 2025"
-  const monthYearMatch = s.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})/i);
-  if (monthYearMatch) {
-    const months = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
-    month = months[monthYearMatch[1].toLowerCase()];
-    year = parseInt(monthYearMatch[2]);
-  } else {
-    // Just a year in parens: "(2024)"
-    const yearMatch = s.match(/\((\d{4})\)/);
-    if (yearMatch) {
-      year = parseInt(yearMatch[1]);
+  // Strategy 1: ISO date "2026-01-20" or "2026-02-10"
+  const isoMatch = s.match(/(\d{4})-(\d{2})(?:-\d{2})?/);
+  if (isoMatch) {
+    year = parseInt(isoMatch[1]);
+    month = parseInt(isoMatch[2]) - 1; // 0-indexed
+  }
+
+  // Strategy 2: "May 2025", "Mar 2025", "Dec 2025"
+  if (!year) {
+    const monthYearMatch = s.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})/i);
+    if (monthYearMatch) {
+      const months = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+      month = months[monthYearMatch[1].toLowerCase()];
+      year = parseInt(monthYearMatch[2]);
+    }
+  }
+
+  // Strategy 3: "Late 2025", "Early 2024", "Mid 2025"
+  if (!year) {
+    const seasonMatch = s.match(/(Late|Early|Mid|Q[1-4])\s+(\d{4})/i);
+    if (seasonMatch) {
+      year = parseInt(seasonMatch[2]);
+      const season = seasonMatch[1].toLowerCase();
+      if (season === 'early' || season === 'q1') month = 2;
+      else if (season === 'mid' || season === 'q2') month = 5;
+      else if (season === 'q3') month = 8;
+      else if (season === 'late' || season === 'q4') month = 10;
+    }
+  }
+
+  // Strategy 4: Year in parens with other stuff: "($480M, 2025)", "(2024)"
+  if (!year) {
+    const yearInParens = s.match(/\(.*?(\d{4}).*?\)/);
+    if (yearInParens) {
+      year = parseInt(yearInParens[1]);
       month = 6; // assume mid-year
+    }
+  }
+
+  // Strategy 5: Bare year at end: "Series D 2024"
+  if (!year) {
+    const bareYear = s.match(/\b(20[12]\d)\b/);
+    if (bareYear) {
+      year = parseInt(bareYear[1]);
+      month = 6;
     }
   }
 
   if (!year) return stage ? { stage, year: null, monthsSinceRound: null } : null;
 
   // Calculate months since round
-  const roundDate = new Date(year, month || 6);
+  const roundDate = new Date(year, month ?? 6);
   const now = new Date();
   const monthsSince = Math.round((now - roundDate) / (1000 * 60 * 60 * 24 * 30.44));
 

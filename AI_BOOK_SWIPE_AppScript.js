@@ -19,7 +19,7 @@ function doPost(e) {
 }
 
 function sendWatchlistEmail(email, companies) {
-  // Color palette matching AI Book app
+  // Color palette matching AI Radar app
   var bg = '#0a1628';
   var cardBg = '#0f1d32';
   var navy = '#1e3a5f';
@@ -93,7 +93,7 @@ function sendWatchlistEmail(email, companies) {
 
   // ===== HEADER =====
   h += "<tr><td style='padding:32px 24px;background:" + navy + ";border-radius:16px 16px 0 0;border-bottom:2px solid " + gold + ";text-align:center'>";
-  h += "<div style='font-size:28px;font-weight:800;color:" + gold + ";letter-spacing:3px;margin-bottom:4px'>AI BOOK</div>";
+  h += "<div style='font-size:28px;font-weight:800;color:" + gold + ";letter-spacing:3px;margin-bottom:4px'>AI RADAR</div>";
   h += "<div style='font-size:13px;color:" + textDim + ";letter-spacing:1px;text-transform:uppercase'>Your Watchlist</div>";
   h += "</td></tr>";
 

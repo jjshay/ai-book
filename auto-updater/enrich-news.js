@@ -1,4 +1,4 @@
-// News Enrichment Script for AI Book
+// News Enrichment Script for AI Radar
 // Seeds and refreshes company news headlines via Google News RSS + Claude API
 // Usage:
 //   Initial seed:  ANTHROPIC_API_KEY=xxx node enrich-news.js --mode=claude
@@ -40,7 +40,7 @@ async function fetchGoogleNewsRSS(companyName) {
 
   try {
     const res = await fetch(url, {
-      headers: { 'User-Agent': 'AI-Book-Tracker/1.0' },
+      headers: { 'User-Agent': 'AI-Radar-Tracker/1.0' },
     });
     if (!res.ok) return [];
     const xml = await res.text();
@@ -230,7 +230,7 @@ async function main() {
     : process.argv.includes('--mode=all') ? 'all'
     : 'rss';
 
-  console.log(`=== AI Book News Enrichment (mode: ${mode}) ===`);
+  console.log(`=== AI Radar News Enrichment (mode: ${mode}) ===`);
   console.log(`Time: ${new Date().toISOString()}`);
 
   const companies = loadCompanies();
