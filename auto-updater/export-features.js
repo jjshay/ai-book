@@ -11,6 +11,8 @@ const OUTPUT_PATH = outputArg !== -1 && process.argv[outputArg + 1]
   ? path.resolve(process.argv[outputArg + 1])
   : path.resolve(__dirname, '..', 'ma-features.csv');
 
+const FILL_ZEROS = process.argv.includes('--fill-zeros');
+
 function loadCompanies() {
   const p = path.resolve(__dirname, '..', 'companies.json');
   return JSON.parse(fs.readFileSync(p, 'utf-8'));
@@ -175,6 +177,44 @@ function main() {
 
     // Composite
     row.maRiskScore = c.maRiskScore ?? '';
+
+    // Fill zeros for ML: fields where 0 is semantically valid
+    if (FILL_ZEROS) {
+      // "no revenue reported" → 0 is a valid floor assumption for pre-revenue
+      if (row.revenueValue === '') row.revenueValue = 0;
+      // "no valuation known" → keep as empty (can't assume 0)
+      // "no commits" → 0 if they have a GitHub org, else leave empty
+      if (row.githubWeeklyCommits === '' && row.hasGithub) row.githubWeeklyCommits = 0;
+      if (row.githubWeeklyCommits === '' && !row.hasGithub) row.githubWeeklyCommits = 0;
+      // "no app" → 0 rating is meaningful
+      if (row.appRating === '') row.appRating = 0;
+      if (row.appRatingCount === '') row.appRatingCount = 0;
+      // "no tranco rank" → use a floor value (worse than all ranked sites)
+      if (row.trancoRank === '') row.trancoRank = 2000000;
+      // "no stage known" → -1 sentinel
+      if (row.stageEncoded === '') row.stageEncoded = -1;
+      // "no months since round" → median fill (36 months)
+      if (row.monthsSinceRound === '') row.monthsSinceRound = 36;
+      // "no burn rate" → 0
+      if (row.burnRateProxy === '') row.burnRateProxy = 0;
+      // "no revenue multiple" → 0
+      if (row.revenueMultiple === '') row.revenueMultiple = 0;
+      // "no employee count" → 0
+      if (row.employeeCount === '') row.employeeCount = 0;
+      if (row.employeeGrowthEncoded === '') row.employeeGrowthEncoded = 1; // assume steady
+      // "no funding per employee" → 0
+      if (row.fundingPerEmployee === '') row.fundingPerEmployee = 0;
+      // HN mentions, SEC filings — 0 is valid
+      if (row.hnMentions === '') row.hnMentions = 0;
+      if (row.secFilingCount === '') row.secFilingCount = 0;
+      // GitHub stars and repos
+      if (row.githubTotalStars === '') row.githubTotalStars = 0;
+      if (row.githubRepoCount === '') row.githubRepoCount = 0;
+      // Wiki views
+      if (row.wikiMonthlyViews === '') row.wikiMonthlyViews = 0;
+      // Funding value
+      if (row.fundingValue === '') row.fundingValue = 0;
+    }
 
     return row;
   });
