@@ -1,5 +1,5 @@
 // Signal Enrichment Script for AI Radar
-// Enriches companies.json with 9 data sources:
+// Enriches companies.json with 10 data sources:
 //   1. Hacker News mentions (HN Algolia API)
 //   2. Wikipedia page views (Wikimedia REST API)
 //   3. Google Patents (SerpApi — needs SERPAPI_KEY)
@@ -7,6 +7,7 @@
 //   5. OpenAlex academic papers (OpenAlex API)
 //   6. Tranco web traffic ranking (CSV download)
 //   7. iTunes App Store ratings (Apple Search API)
+//   7b. Google Play Store ratings (google-play-scraper)
 //   8. npm + PyPI package downloads
 //   9. LinkedIn employee counts (SerpApi Google Search — needs SERPAPI_KEY)
 //
@@ -14,7 +15,7 @@
 //   node enrich-signals.js                           # All sources
 //   node enrich-signals.js --source=hn               # Single source
 //   node enrich-signals.js --source=linkedin --force # Force refresh all
-//   Valid sources: hn, wiki, patents, ph, papers, tranco, itunes, packages, linkedin
+//   Valid sources: hn, wiki, patents, ph, papers, tranco, itunes, gplay, packages, linkedin
 
 const fs = require('fs');
 const path = require('path');
@@ -606,6 +607,83 @@ async function enrichiTunes(companies, force = false) {
   return enriched;
 }
 
+// ========== 7b. GOOGLE PLAY STORE RATINGS ==========
+
+let gplay;
+try { const m = require('google-play-scraper'); gplay = m.default || m; } catch { gplay = null; }
+
+async function searchGooglePlay(companyName) {
+  if (!gplay) return null;
+  try {
+    const results = await gplay.search({ term: companyName, num: 5, country: 'us' });
+    if (!results || results.length === 0) return null;
+
+    const nameLower = companyName.toLowerCase();
+    const match = results.find(r =>
+      (r.developer || '').toLowerCase().includes(nameLower) ||
+      (r.title || '').toLowerCase().includes(nameLower) ||
+      nameLower.includes((r.developer || '').toLowerCase().replace(/,? ?(inc|llc|ltd|corp)\.?$/i, '').trim())
+    ) || null;
+
+    if (!match) return null;
+
+    // Fetch full app details to get ratings count and installs
+    let details = {};
+    try {
+      details = await gplay.app({ appId: match.appId, country: 'us' });
+    } catch { /* use search data only */ }
+
+    return {
+      app_name: match.title,
+      rating: Math.round((details.score || match.score || 0) * 100) / 100,
+      rating_count: details.ratings || 0,
+      installs: details.maxInstalls || details.minInstalls || 0,
+      app_url: `https://play.google.com/store/apps/details?id=${match.appId}`,
+      developer: match.developer || null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function enrichGooglePlay(companies, force = false) {
+  if (!gplay) {
+    console.log('\n[Google Play] Skipped — google-play-scraper not installed (npm i google-play-scraper)');
+    return 0;
+  }
+  console.log('\n[Google Play] Starting Google Play Store enrichment...');
+  let enriched = 0, skipped = 0, noResults = 0;
+
+  for (const c of companies) {
+    if (!force && c.hasOwnProperty('gplay_rating') && !isStale(c.gplay_enriched_at, STALE_DAYS)) {
+      skipped++;
+      continue;
+    }
+
+    const data = await searchGooglePlay(c.name);
+    await sleep(SLEEP_MS * 3); // Be gentle with Google Play scraping
+
+    if (data) {
+      c.gplay_name = data.app_name;
+      c.gplay_rating = data.rating;
+      c.gplay_rating_count = data.rating_count;
+      c.gplay_installs = data.installs;
+      c.gplay_url = data.app_url;
+      c.gplay_developer = data.developer;
+      c.gplay_enriched_at = new Date().toISOString();
+      enriched++;
+      console.log(`  [+] ${c.name} -> ${data.app_name} (${data.rating} stars, ${data.rating_count.toLocaleString()} ratings, ${data.installs.toLocaleString()} installs)`);
+    } else {
+      c.gplay_rating = null;
+      c.gplay_enriched_at = new Date().toISOString();
+      noResults++;
+    }
+  }
+
+  console.log(`[Google Play] Done: ${enriched} with apps, ${skipped} skipped, ${noResults} no match`);
+  return enriched;
+}
+
 // ========== 8. NPM + PYPI DOWNLOADS ==========
 
 // Map company names to their known npm/pypi package names
@@ -848,6 +926,7 @@ const SOURCE_MAP = {
   papers: enrichOpenAlex,
   tranco: enrichTranco,
   itunes: enrichiTunes,
+  gplay: enrichGooglePlay,
   packages: enrichPackages,
   linkedin: enrichLinkedInEmployees,
 };
@@ -912,4 +991,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, enrichTranco, enrichiTunes, enrichPackages, enrichLinkedInEmployees, SOURCE_MAP };
+module.exports = { enrichAll, enrichHN, enrichWikipedia, enrichPatents, enrichProductHunt, enrichOpenAlex, enrichTranco, enrichiTunes, enrichGooglePlay, enrichPackages, enrichLinkedInEmployees, SOURCE_MAP };
