@@ -154,18 +154,22 @@
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 400;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.45);
             align-items: center;
             justify-content: center;
             padding: 24px;
         }
         .app-info-popup.active { display: flex; }
         .app-info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--gold);
-            border-radius: 16px;
+            background: rgba(15,20,35,0.75);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            backdrop-filter: blur(20px) saturate(1.4);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
             padding: 28px 24px;
             max-width: 360px;
+            max-height: 85vh;
+            overflow-y: auto;
             width: 100%;
             text-align: center;
         }
@@ -528,7 +532,7 @@
             font-weight: 800;
             font-size: 12px;
         }
-        .analytics-chip.chip-unicorn { background: rgba(212,175,55,0.2); color: #D4AF37; }
+        .analytics-chip.chip-unicorn { background: rgba(212,175,55,0.2); color: var(--gold); }
         .analytics-chip.chip-unicorn:hover { background: rgba(212,175,55,0.35); }
         .analytics-chip.chip-hiring { background: rgba(34,197,94,0.2); color: #22c55e; }
         .analytics-chip.chip-hiring:hover { background: rgba(34,197,94,0.35); }
@@ -597,17 +601,17 @@
             list-style: none;
         }
         .accordion-content li {
-            font-size: var(--fs-base);
+            font-size: var(--fs-sm);
             color: var(--text-dim);
             padding: var(--space-sm) 0;
-            padding-left: var(--space-xl);
+            padding-left: 14px;
             position: relative;
             line-height: 1.5;
         }
         .accordion-content li::before {
             content: '•';
             position: absolute;
-            left: var(--space-xs);
+            left: 0;
             color: var(--gold);
         }
         .accordion-content li.risk::before {
@@ -627,7 +631,7 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            padding-left: var(--space-xl);
+            padding-left: 14px;
             word-break: break-word;
         }
         .accordion-content li.github::before {
@@ -635,17 +639,17 @@
             color: var(--text-dim);
         }
         .accordion-content li.github {
-            padding-left: var(--space-xl);
+            padding-left: 14px;
         }
         .accordion-content li.sec::before {
             content: '\1F4C4';
             color: var(--text-dim);
         }
         .accordion-content li.sec {
-            padding-left: var(--space-xl);
+            padding-left: 14px;
         }
         .github-total-stars {
-            color: #D4AF37;
+            color: var(--gold);
             font-weight: 600;
             font-size: var(--fs-sm);
             margin-top: var(--space-sm);
@@ -678,14 +682,44 @@
             font-weight: 600;
             letter-spacing: 0.3px;
         }
-        .signal-pill.github {
-            background: rgba(59,130,246,0.15);
-            color: #60a5fa;
+        .signal-pill.jobs { background: rgba(34,197,94,0.15); color: #22c55e; cursor: pointer; }
+        .signal-pill.jobs:hover { background: rgba(34,197,94,0.25); }
+        .signal-pill.gd-good { background: rgba(34,197,94,0.15); color: #22c55e; cursor: pointer; }
+        .signal-pill.gd-ok { background: rgba(234,179,8,0.18); color: #facc15; cursor: pointer; }
+        .signal-pill.gd-bad { background: rgba(239,68,68,0.18); color: #f87171; cursor: pointer; }
+        .signal-pill.yc { background: rgba(212,175,55,0.2); color: var(--gold); }
+        .signal-pill.revenue { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .signal-pill.valuation { background: rgba(212,175,55,0.2); color: var(--gold); }
+        .signal-pill.tier1vc { background: rgba(96,165,250,0.15); color: #60a5fa; }
+        .signal-pill.news { background: rgba(96,165,250,0.15); color: #60a5fa; }
+        .signal-pill.stale-funding { background: rgba(239,68,68,0.15); color: #f87171; }
+        .signal-pill.high-burn { background: rgba(239,68,68,0.18); color: #f87171; }
+        .signal-pill.overfunded { background: rgba(234,179,8,0.18); color: #facc15; }
+        .signal-pill.young-funded { background: rgba(168,85,247,0.18); color: #c084fc; }
+        .signal-pill.acq-target { background: rgba(239,68,68,0.2); color: #f87171; }
+        .signal-pill.ma-high { background: rgba(239,68,68,0.18); color: #f87171; }
+        .signal-pill.ma-med { background: rgba(234,179,8,0.18); color: #facc15; }
+        .signal-pill[data-tooltip] { position: relative; cursor: default; }
+        .signal-pill[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            color: var(--text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 10;
         }
-        .signal-pill.news {
-            background: rgba(59,130,246,0.15);
-            color: #60a5fa;
-        }
+        .signal-pill[data-tooltip]:hover::after { opacity: 1; }
         /* News Accordion Items */
         .news-item {
             padding: 8px 0;
@@ -705,21 +739,6 @@
             color: var(--text-dim);
             margin-top: 2px;
         }
-        .signal-pill.hn { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.wiki { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.patents { background: rgba(59,130,246,0.15); color: #93c5fd; }
-        .signal-pill.ph { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.papers { background: rgba(59,130,246,0.15); color: #93c5fd; }
-        .signal-pill.tranco { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.appstore { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.packages { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .signal-pill.yc { background: rgba(212,175,55,0.2); color: #D4AF37; }
-        .signal-pill.emp-growth { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .signal-pill.emp-decline { background: rgba(148,163,184,0.15); color: #94a3b8; }
-        .signal-pill.glassdoor { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .signal-pill.hiring-fit { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .signal-pill.ma-risk { background: rgba(148,163,184,0.2); color: #94a3b8; }
-        .signal-pill.jobs { background: rgba(34,197,94,0.15); color: #22c55e; }
         .github-commit-velocity {
             color: #60a5fa;
             font-weight: 600;
@@ -1037,7 +1056,7 @@
             margin-bottom: 8px;
         }
         .mini-acc-title {
-            font-size: 11px;
+            font-size: var(--fs-base);
             font-weight: 700;
             color: var(--gold);
             text-transform: uppercase;
@@ -1052,9 +1071,9 @@
             position: relative;
         }
         .mini-acc-item::before {
-            content: '\2022';
+            content: '•';
             position: absolute;
-            left: 2px;
+            left: 0;
             color: var(--gold);
         }
         .mini-acc-item.news-link a {
@@ -1645,9 +1664,9 @@
             border-top: 1px solid var(--border);
         }
         .similar-title {
-            font-size: 12px;
+            font-size: var(--fs-md);
             font-weight: 700;
-            color: var(--text-dim);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 12px;
@@ -1718,19 +1737,6 @@
         }
 
         .stat-value.funding { color: var(--save); font-size: var(--fs-lg); }
-
-        .card-info-hint {
-            text-align: center;
-            margin-top: 8px;
-            font-family: var(--font);
-            font-size: 13px;
-            font-weight: 800;
-            color: #fff;
-            background: var(--gold);
-            border-radius: 10px;
-            padding: 8px 0;
-            letter-spacing: 0.5px;
-        }
 
         .card-meta {
             display: flex;
@@ -2040,8 +2046,8 @@
             margin-bottom: var(--space-lg);
         }
         .category-group-header {
-            font-size: var(--fs-sm);
-            font-weight: 600;
+            font-size: var(--fs-md);
+            font-weight: 700;
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -2266,6 +2272,44 @@
         }
 
         .detail-body { padding: var(--space-2xl); }
+        .detail-body ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .detail-body li {
+            font-size: var(--fs-sm);
+            color: var(--text-dim);
+            padding: var(--space-sm) 0;
+            padding-left: 14px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .detail-body li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+        .detail-body li.risk::before {
+            content: '⚠';
+            color: var(--pass);
+        }
+        .detail-body li.success::before {
+            content: '✓';
+            color: var(--save);
+        }
+        .detail-body li.intel::before {
+            content: '→';
+            color: var(--cyan);
+        }
+        .detail-body li.intel {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
 
         .detail-section {
             margin-bottom: var(--space-xl);
@@ -2284,7 +2328,7 @@
 
         .detail-section-content {
             color: var(--text);
-            font-size: var(--fs-base);
+            font-size: var(--fs-sm);
             line-height: 1.6;
         }
 
@@ -2341,9 +2385,9 @@
         }
         .detail-tab {
             flex: 1;
-            padding: 12px 8px;
+            padding: 12px 4px;
             text-align: center;
-            font-size: var(--fs-sm);
+            font-size: 10px;
             font-weight: 700;
             color: var(--text-dim);
             cursor: pointer;
@@ -2358,8 +2402,159 @@
             color: var(--gold);
             border-bottom-color: var(--gold);
         }
+        @keyframes tab-pulse {
+            0%, 100% { color: var(--gold); }
+            50% { color: var(--cyan); }
+        }
+        .detail-tab:not(.active) {
+            animation: tab-pulse 3s ease-in-out infinite;
+        }
         .detail-tab-panel { display: none; }
         .detail-tab-panel.active { display: block; }
+
+        /* Predictive M&A tab */
+        .pma-segment-header {
+            background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+            border-left: 3px solid var(--gold);
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+        }
+        .pma-segment-header h3 { margin:0; font-size:13px; color:var(--gold); font-weight:700; }
+        .pma-segment-header .pma-subtitle { font-size:10px; color:var(--text-dim); margin-top:3px; }
+        .pma-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .pma-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.15); }
+        .pma-current { border-color: var(--gold) !important; background: rgba(212,175,55,0.08) !important; }
+        .pma-card-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+        .pma-rank {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), #b8860b);
+            color: #000; font-size: 12px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .pma-name { font-size:12px; font-weight:700; color:var(--text); flex:1; }
+        .pma-name small { font-size:10px; color:var(--gold); font-weight:400; margin-left:4px; }
+        .pma-score { font-size:13px; font-weight:700; }
+        .pma-score-bar { height:6px; background:rgba(255,255,255,0.1); border-radius:3px; margin-bottom:8px; overflow:hidden; }
+        .pma-score-fill { height:100%; border-radius:3px; transition: width 0.6s ease; }
+        .pma-factor-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; }
+        .pma-factor-tag {
+            font-size:9px; padding:2px 6px; border-radius:10px;
+            background:rgba(0,200,255,0.1); color:var(--cyan); border:1px solid rgba(0,200,255,0.2);
+        }
+        .pma-why { font-size:10px; color:var(--text-dim); line-height:1.4; margin-bottom:4px; }
+        .pma-acquirers { font-size:10px; color:var(--gold); font-weight:500; }
+        .pma-not-ranked {
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 8px; padding: 10px 14px;
+            margin-top: 8px; text-align: center;
+            font-size: 11px; color: var(--text-dim);
+        }
+        .pma-not-ranked strong { color: var(--text); }
+        .pma-footer {
+            display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;
+            padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);
+        }
+        .pma-footer-stat {
+            font-size:10px; padding:3px 8px; border-radius:10px;
+            background:rgba(255,255,255,0.05); color:var(--text-dim);
+        }
+        .pma-footer-stat strong { font-weight:700; }
+        .pma-empty { text-align:center; padding:24px 16px; color:var(--text-dim); font-size:12px; }
+
+        /* Claude AI Analysis section */
+        .pma-claude-section {
+            margin-top: 16px;
+            border-top: 2px solid var(--gold);
+            padding-top: 12px;
+        }
+        .pma-ai-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.08));
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 12px; padding: 3px 10px;
+            font-size: 10px; font-weight: 700; color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .pma-ai-badge::before { content: '✦'; font-size: 10px; }
+        .pma-loading {
+            text-align: center; padding: 20px; color: var(--text-dim); font-size: 11px;
+        }
+        .pma-dot-pulse {
+            display: inline-flex; gap: 4px; margin-top: 8px;
+        }
+        .pma-dot-pulse span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--gold); opacity: 0.3;
+            animation: pmaDotPulse 1.2s infinite;
+        }
+        .pma-dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+        .pma-dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes pmaDotPulse {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1.1); }
+        }
+        .pma-segment-insight {
+            font-size: 11px; color: var(--text-dim); font-style: italic;
+            line-height: 1.5; margin-bottom: 12px; padding: 8px 12px;
+            background: rgba(255,255,255,0.03); border-radius: 6px;
+        }
+        .pma-verdict {
+            display: inline-block; font-size: 9px; font-weight: 700;
+            padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px;
+        }
+        .pma-verdict-LIKELY_TARGET { background: rgba(239,68,68,0.2); color: #ef4444; }
+        .pma-verdict-WATCH_LIST { background: rgba(249,115,22,0.2); color: #f97316; }
+        .pma-verdict-ACQUI_HIRE { background: rgba(168,85,247,0.2); color: #a855f7; }
+        .pma-verdict-DISTRESSED_EXIT { background: rgba(185,28,28,0.2); color: #dc2626; }
+        .pma-verdict-STRATEGIC_MERGER { background: rgba(59,130,246,0.2); color: #3b82f6; }
+        .pma-ai-company {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px; padding: 10px 12px; margin-bottom: 8px;
+        }
+        .pma-ai-company-header {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+        }
+        .pma-ai-company-header .pma-name { font-size: 11px; }
+        .pma-ai-summary { font-size: 10px; color: var(--text); line-height: 1.4; margin-bottom: 6px; }
+        .pma-deal-row {
+            font-size: 10px; color: var(--text-dim); line-height: 1.4;
+            padding: 6px 8px; background: rgba(255,255,255,0.02);
+            border-radius: 4px; margin-bottom: 4px; cursor: pointer;
+        }
+        .pma-deal-row summary {
+            color: var(--cyan); font-weight: 600; font-size: 10px; cursor: pointer;
+        }
+        .pma-deal-row summary:hover { color: var(--gold); }
+        .pma-catalyst { font-size: 10px; color: #22c55e; margin-top: 4px; }
+        .pma-catalyst::before { content: '⚡ '; }
+        .pma-timeframe { font-size: 10px; color: var(--cyan); }
+        .pma-timeframe::before { content: '⏱ '; }
+        .pma-contrarian { font-size: 10px; color: #f97316; margin-top: 4px; }
+        .pma-contrarian::before { content: '🔄 '; }
+        .pma-market-signal {
+            display: inline-block; font-size: 9px; font-weight: 600;
+            padding: 1px 6px; border-radius: 8px; margin-left: 6px;
+        }
+        .pma-signal-hot { background: rgba(239,68,68,0.2); color: #ef4444; }
+        .pma-signal-warm { background: rgba(249,115,22,0.2); color: #f97316; }
+        .pma-signal-cool { background: rgba(59,130,246,0.2); color: #3b82f6; }
+        .pma-ai-error {
+            text-align: center; padding: 16px; color: var(--text-dim); font-size: 11px;
+            background: rgba(255,255,255,0.02); border-radius: 6px; margin-top: 8px;
+        }
+        .pma-confidence {
+            font-size: 9px; color: var(--text-dim); margin-left: auto;
+        }
 
         /* Signals section (no accordions) */
         .signal-section {
@@ -2367,6 +2562,24 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .signal-section:last-child { border-bottom: none; }
+        .signal-section ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .signal-section li {
+            font-size: var(--fs-sm);
+            color: var(--text-dim);
+            padding: var(--space-sm) 0 var(--space-sm) 14px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .signal-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
         .signal-section-title {
             font-size: var(--fs-md);
             text-transform: uppercase;
@@ -2592,9 +2805,9 @@
         }
         .vc-section-label {
             font-family: var(--font);
-            font-size: 10px;
+            font-size: var(--fs-base);
             font-weight: 700;
-            color: var(--cyan);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin: 10px 0 6px;
@@ -2677,7 +2890,7 @@
         }
         .vc-stage-badge.early { background: rgba(34,197,94,0.18); color: #22c55e; }
         .vc-stage-badge.growth { background: rgba(59,130,246,0.18); color: #60a5fa; }
-        .vc-stage-badge.late { background: rgba(212,175,55,0.18); color: #D4AF37; }
+        .vc-stage-badge.late { background: rgba(212,175,55,0.18); color: var(--gold); }
         .vc-stage-bar-row {
             display: flex;
             align-items: center;
@@ -2718,9 +2931,9 @@
             background: var(--navy);
             padding: 6px 16px;
             font-family: var(--font);
-            font-size: 12px;
+            font-size: var(--fs-md);
             font-weight: 700;
-            color: var(--cyan);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 5;
@@ -2895,17 +3108,75 @@
 
         <!-- APP INFO POPUP -->
         <div class="app-info-popup" id="app-info-popup" onclick="if(event.target===this)closeAppInfo()">
-            <div class="app-info-card">
-                <h2>AI RADAR</h2>
-                <div class="tagline">Track 650+ private AI companies with live data from 15+ sources. M&A predictions, hiring signals, job postings, patents & more.</div>
-                <ul class="app-info-steps">
-                    <li><span class="step-num">1</span> Search, filter by category, or tap analytics chips</li>
-                    <li><span class="step-num">2</span> Tap a company to swipe through details</li>
-                    <li><span class="step-num">3</span> Save your picks and email the list to yourself</li>
-                </ul>
-                <div style="margin-top:16px;font-size:12px;color:var(--text-dim);line-height:1.5">Over 70 reports and counting on AI.<br><a href="https://jjshay.com" target="_blank" style="color:var(--gold);font-weight:700;text-decoration:none">jjshay.com</a> — See all projects</div>
-                <button class="app-info-close" onclick="closeAppInfo()">Got it</button>
-                <br><a class="tutorial-link" onclick="closeAppInfo();showTutorial()">Show tutorial again</a>
+            <div class="app-info-card" style="text-align:left">
+                <h2 style="text-align:center">AI RADAR</h2>
+                <div class="tagline" style="text-align:center">650+ AI companies. Live data. 15+ sources.</div>
+
+                <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Signal Key</div>
+                <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.5">
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill jobs" style="cursor:default">12 jobs</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Open positions</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill gd-good" style="cursor:default">4.2&#9733;</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Glassdoor <span style="color:#22c55e">&#8805;4</span> <span style="color:#facc15">&#8805;3</span> <span style="color:#f87171">&lt;3</span></td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill revenue" style="cursor:default">$50M+ ARR</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Revenue</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill valuation" style="cursor:default">$5.2B</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Valuation</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill tier1vc" style="cursor:default">Tier 1 VC</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Top-tier investors</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill yc" style="cursor:default">YC W19</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Y Combinator</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill news" style="cursor:default">In the News</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Recent press</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill stale-funding" style="cursor:default">4yr since funding</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Stale runway</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill high-burn" style="cursor:default">High Burn</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Burning cash fast</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill overfunded" style="cursor:default">Overfunded</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">$1M+/employee</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill young-funded" style="cursor:default">Young &amp; Funded</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">&#8804;6yr old, $100M+ raised</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill acq-target" style="cursor:default">Acquirer Target</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Named by multiple cos</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+                        <td style="padding:4px 0"><span class="signal-pill ma-high" style="cursor:default">M&A</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Likely target <span style="color:var(--text-dim)">&#8805;60</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:4px 0"><span class="signal-pill ma-med" style="cursor:default">M&A</span></td>
+                        <td style="padding:4px 8px;color:var(--text)">Possible target <span style="color:var(--text-dim)">30-59</span></td>
+                    </tr>
+                </table>
+
+                <div style="margin-top:12px;font-size:10px;color:var(--text-dim);text-align:center">Tap any company for full details.<br><a href="https://jjshay.com" target="_blank" style="color:var(--gold);font-weight:700;text-decoration:none">jjshay.com</a></div>
+                <div style="text-align:center">
+                    <button class="app-info-close" onclick="closeAppInfo()">Got it</button>
+                    <br><a class="tutorial-link" onclick="closeAppInfo();showTutorial()">Show tutorial again</a>
+                </div>
             </div>
         </div>
 
@@ -4180,17 +4451,8 @@ function renderMiniCard(c) {
     const name = searchQuery ? highlightMatch(c.name, searchQuery) : c.name;
     const product = searchQuery ? highlightMatch(c.product || '', searchQuery) : (c.product || '');
 
-    // Build signal pills — only recent/growth-relevant signals
-    const pills = [];
-    const sixMonthsAgo = new Date(); sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-    const isRecent = (iso) => iso && new Date(iso) >= sixMonthsAgo;
-    if (c.github_org && c.github_weekly_commits > 0 && isRecent(c.github_last_push)) pills.push(`<span class="signal-pill github">${c.github_weekly_commits} commits/wk</span>`);
-    if (c.recentNews && c.recentNews.length > 0 && c.recentNews.some(n => isRecent(n.date))) pills.push(`<span class="signal-pill news">In the News</span>`);
-    if (c.employeeGrowth === 'high-growth') pills.push(`<span class="signal-pill emp-growth">Hiring Surge</span>`);
-    if (c.employeeGrowth === 'growing') pills.push(`<span class="signal-pill emp-growth">Growing Team</span>`);
-    if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
-    if (c.job_count > 0) pills.push(`<span class="signal-pill jobs">${c.job_count} jobs</span>`);
-    if (c.glassdoor_rating) pills.push(`<span class="signal-pill glassdoor">${c.glassdoor_rating}★</span>`);
+    // Build signal pills — same 3 core signals as swipe cards
+    const pills = getTopSignalPills(c);
     const pillsHtml = pills.length > 0 ? `<div class="mini-card-pills">${pills.join('')}</div>` : '';
 
     return `
@@ -4715,7 +4977,7 @@ function getCompanyHealth(c) {
             class: 'unicorn',
             icon: '🦄',
             label: 'Unicorn',
-            tooltip: '$1B+ Elite'
+            tooltip: `Unicorn: $1B+ funding (${c.funding || 'N/A'})`
         };
     }
 
@@ -4725,7 +4987,7 @@ function getCompanyHealth(c) {
             class: 'hot',
             icon: '🔥',
             label: 'Hot',
-            tooltip: 'Strong Momentum'
+            tooltip: `Hot: $100M+ funding or $50M+ with 4+ star rating (${c.funding || 'N/A'})`
         };
     }
 
@@ -4735,7 +4997,7 @@ function getCompanyHealth(c) {
             class: 'warm',
             icon: '🌱',
             label: 'Emerging',
-            tooltip: 'Emerging ($10M-$100M)'
+            tooltip: `Emerging: $10M-$100M funding (${c.funding || 'N/A'})`
         };
     }
 
@@ -4744,7 +5006,7 @@ function getCompanyHealth(c) {
         class: 'cold',
         icon: '🔬',
         label: 'Early',
-        tooltip: 'Early Stage'
+        tooltip: `Early Stage: Under $10M funding (${c.funding || 'N/A'})`
     };
 }
 
@@ -4880,28 +5142,55 @@ function renderCards() {
     area.appendChild(card);
 }
 
-function getTopSignalPills(c, max = 3) {
-    // Ranked by signal importance for quick scanning
+function getTopSignalPills(c) {
     const pills = [];
-    if (c.employeeGrowth === 'high-growth') pills.push(`<span class="signal-pill emp-growth">Hiring Surge</span>`);
-    if (c.employeeGrowth === 'growing') pills.push(`<span class="signal-pill emp-growth">Growing Team</span>`);
-    if (c.recentNews && c.recentNews.length > 0) pills.push(`<span class="signal-pill news">In the News</span>`);
-    if (c.github_total_stars > 0) pills.push(`<span class="signal-pill github">${formatStars(c.github_total_stars)} stars</span>`);
-    if (c.yc_batch) pills.push(`<span class="signal-pill yc">YC ${c.yc_batch}</span>`);
-    if (c.patents_count > 0) pills.push(`<span class="signal-pill patents">${c.patents_count} patents</span>`);
-    if (c.hn_mentions > 0) pills.push(`<span class="signal-pill hn">${c.hn_mentions} HN</span>`);
-    if (c.tranco_rank) pills.push(`<span class="signal-pill tranco">#${c.tranco_rank.toLocaleString()} web</span>`);
-    if (c.app_rating) pills.push(`<span class="signal-pill appstore">${c.app_rating}\u2605 App</span>`);
-    if ((c.npm_downloads || c.pypi_downloads)) pills.push(`<span class="signal-pill packages">${formatViews((c.npm_downloads || 0) + (c.pypi_downloads || 0))} pkg/mo</span>`);
-    if (c.papers_count > 0) pills.push(`<span class="signal-pill papers">${c.papers_count} papers</span>`);
-    if (c.wiki_monthly_views > 0) pills.push(`<span class="signal-pill wiki">${formatViews(c.wiki_monthly_views)} wiki/mo</span>`);
-    if (c.ph_launches && c.ph_launches.length > 0) pills.push(`<span class="signal-pill ph">Product Hunt</span>`);
-    if (c.employeeGrowth === 'declining') pills.push(`<span class="signal-pill emp-decline">Declining</span>`);
-    if (c.glassdoor_rating) pills.push(`<span class="signal-pill glassdoor">${c.glassdoor_rating}★ GD</span>`);
-    if (c.job_count > 0) pills.push(`<span class="signal-pill jobs">${c.job_count} jobs</span>`);
-    if (c.maLikelihood >= 30) pills.push(`<span class="signal-pill ma-risk">M&A ${c.maLikelihood}</span>`);
-    if (c.hiringFitScore >= 50) pills.push(`<span class="signal-pill hiring-fit">Fit ${c.hiringFitScore}</span>`);
-    return pills.slice(0, max);
+    // Jobs
+    if (c.job_count > 0) {
+        const jobUrl = c.job_board_url ? ` onclick="event.stopPropagation();window.open('${c.job_board_url}','_blank')"` : '';
+        const jobTip = c.job_board_url ? 'Tap to view jobs' : 'Open positions';
+        pills.push(`<span class="signal-pill jobs"${jobUrl} data-tooltip="${jobTip}">${c.job_count} jobs</span>`);
+    }
+    // Glassdoor
+    if (c.glassdoor_rating) {
+        const gdClass = c.glassdoor_rating >= 4 ? 'gd-good' : c.glassdoor_rating >= 3 ? 'gd-ok' : 'gd-bad';
+        const gdUrl = c.glassdoor_url ? ` onclick="event.stopPropagation();window.open('${c.glassdoor_url}','_blank')"` : '';
+        pills.push(`<span class="signal-pill ${gdClass}"${gdUrl} data-tooltip="${c.glassdoor_reviews || 0} reviews">${c.glassdoor_rating}\u2605</span>`);
+    }
+    // Revenue
+    if (c.revenue) pills.push(`<span class="signal-pill revenue" data-tooltip="Annual recurring revenue">${c.revenue}</span>`);
+    // Valuation
+    if (c.valuation) pills.push(`<span class="signal-pill valuation" data-tooltip="Estimated valuation">${c.valuation}</span>`);
+    // Top-tier VC
+    if (c.hasTopTierVC) pills.push(`<span class="signal-pill tier1vc" data-tooltip="${c.investors || ''}">Tier 1 VC</span>`);
+    // YC
+    if (c.yc_batch) {
+        const ycSeason = c.yc_batch.charAt(0) === 'W' ? 'Winter' : 'Summer';
+        const ycYr = c.yc_batch.slice(1).slice(-2);
+        pills.push(`<span class="signal-pill yc" data-tooltip="Y Combinator ${ycSeason} '${ycYr}">YC '${ycYr}</span>`);
+    }
+    // In the News
+    if (c.recentNews && c.recentNews.length > 0) {
+        const latest = c.recentNews[0];
+        const tip = latest.headline ? latest.headline.slice(0, 60) : '';
+        pills.push(`<span class="signal-pill news" data-tooltip="${tip}">In the News</span>`);
+    }
+    // Stale funding
+    if (c.lastRoundParsed && c.lastRoundParsed.monthsSinceRound > 36) {
+        const yrs = Math.round(c.lastRoundParsed.monthsSinceRound / 12);
+        pills.push(`<span class="signal-pill stale-funding" data-tooltip="${c.lastRoundParsed.stage || 'Last round'} (${c.lastRoundParsed.year || '?'})">${yrs}yr since funding</span>`);
+    }
+    // High Burn ($2M+ funding per employee)
+    if (c.burnRateProxy >= 2000) pills.push(`<span class="signal-pill high-burn" data-tooltip="$${Math.round(c.burnRateProxy)}K per employee">High Burn</span>`);
+    // Overfunded ($3M+ funding per employee — acqui-hire signal)
+    if (c.fundingPerEmployee >= 3000000) pills.push(`<span class="signal-pill overfunded" data-tooltip="$${Math.round(c.fundingPerEmployee/1000)}K per employee">Overfunded</span>`);
+    // Young & Funded
+    if (c.companyAge && c.companyAge <= 6 && c.fundingValue && c.fundingValue >= 100000000) pills.push(`<span class="signal-pill young-funded" data-tooltip="Age ${c.companyAge}yr, ${c.funding} raised">Young &amp; Funded</span>`);
+    // Acquirer Target
+    if (c.topAcquirerMentionScore >= 100) pills.push(`<span class="signal-pill acq-target" data-tooltip="${c.acquirers || 'Multiple likely acquirers'}">Acquirer Target</span>`);
+    // M&A
+    if (c.maLikelihood >= 60) pills.push(`<span class="signal-pill ma-high" data-tooltip="M&A Score: ${c.maLikelihood}/100">M&A</span>`);
+    else if (c.maLikelihood >= 30) pills.push(`<span class="signal-pill ma-med" data-tooltip="M&A Score: ${c.maLikelihood}/100">M&A</span>`);
+    return pills;
 }
 
 function createCard(c, isCurrent) {
@@ -4922,7 +5211,7 @@ function createCard(c, isCurrent) {
 
     const logoUrl = c.website ? `https://www.google.com/s2/favicons?domain=${c.website}&sz=128` : null;
     const fallbackInitial = c.name.charAt(0);
-    const topPills = getTopSignalPills(c, 3);
+    const topPills = getTopSignalPills(c);
 
     card.innerHTML = `
         <div class="card-overlay pass">PASS</div>
@@ -4961,7 +5250,6 @@ function createCard(c, isCurrent) {
             </div>
         </div>
         ${topPills.length > 0 ? `<div class="card-signals">${topPills.join('')}</div>` : ''}
-        <div class="card-info-hint">TAP FOR FULL PROFILE ➤</div>
     `;
 
     return card;
@@ -5058,24 +5346,26 @@ function generateAccordion(c) {
         if (maIntel.length === 0) maIntel.push('Early-stage, building strategic value');
     }
 
-    // Generate Success Factors
-    const successFactors = [];
-    if (c.secretSauce) successFactors.push(c.secretSauce.split('+')[0].trim());
-    if (c.ceo) successFactors.push(`Experienced leadership (${c.ceo})`);
-    if (funding > 100) successFactors.push('Strong funding runway');
-    if (c.rating >= 4) successFactors.push('High market momentum');
-    if (c.category === 'enterprise-ai') successFactors.push('Enterprise revenue stability');
-    if (successFactors.length < 3) successFactors.push('Growing market opportunity');
+    // Use enriched data, fall back to generated
+    const successFactors = c.successFactors && c.successFactors.length > 0 ? c.successFactors : (() => {
+        const sf = [];
+        if (c.secretSauce) sf.push(c.secretSauce.split('+')[0].trim());
+        if (c.ceo) sf.push(`Experienced leadership (${c.ceo})`);
+        if (funding > 100) sf.push('Strong funding runway');
+        if (c.rating >= 4) sf.push('High market momentum');
+        if (sf.length < 3) sf.push('Growing market opportunity');
+        return sf;
+    })();
 
-    // Generate Risks
-    const risks = [];
-    if (c.category === 'foundation-models') risks.push('Intense competition from OpenAI/Google');
-    if (funding < 50) risks.push('Limited runway for scaling');
-    if (c.employees && c.employees.includes('50-')) risks.push('Team scaling challenges');
-    if (c.category === 'consumer-ai') risks.push('User acquisition costs');
-    if (c.category === 'ai-chips') risks.push('Hardware commoditization risk');
-    risks.push('Regulatory uncertainty in AI');
-    if (risks.length < 3) risks.push('Market timing dependency');
+    const risks = c.risks && c.risks.length > 0 ? c.risks : (() => {
+        const r = [];
+        if (c.category === 'foundation-models') r.push('Intense competition from OpenAI/Google');
+        if (funding < 50) r.push('Limited runway for scaling');
+        if (c.category === 'consumer-ai') r.push('User acquisition costs');
+        r.push('Regulatory uncertainty in AI');
+        if (r.length < 3) r.push('Market timing dependency');
+        return r;
+    })();
 
     return `
         <div class="accordion-item" onclick="toggleAccordion(event)">
@@ -5302,6 +5592,270 @@ function setupTapHandler(card, company) {
     });
 }
 
+function buildMAReasoning(c) {
+    // Try maBullets first
+    if (c.maBullets && c.maBullets.length > 0) {
+        for (const b of c.maBullets) {
+            const text = typeof b === 'string' ? b : (b.text || b.content || '');
+            if (text && (text.includes('Strategic') || text.includes('Rationale') || text.includes('Deal') || text.includes('Profile'))) {
+                return text.replace(/^(Strategic Rationale|Deal Profile)[:\s]*/i, '').trim();
+            }
+        }
+        // Fall back to first bullet with usable text
+        const first = c.maBullets[0];
+        const txt = typeof first === 'string' ? first : (first.text || first.content || '');
+        if (txt) return txt.length > 120 ? txt.slice(0, 117) + '...' : txt;
+    }
+    // Factor-based reasoning
+    const factorMap = {
+        'stale-funding-36mo+': 'Has not raised in 36+ months, suggesting exit pressure',
+        'stale-funding-24mo+': 'Has not raised in 24+ months, may be seeking acquisition',
+        'aging-round': 'Aging funding round (18+ months)',
+        'declining-headcount': 'Declining headcount signals potential wind-down or acqui-hire',
+        'competitors-acquired': 'Multiple competitors already acquired — market consolidation',
+        'some-competitors-acquired': 'Some competitors have been acquired',
+        'low-revenue-multiple': 'Low revenue multiple suggests undervaluation',
+        'high-burn': 'High burn rate may force strategic exit',
+        'small-with-top-vcs': 'Small team with top-tier VCs — classic acqui-hire profile',
+        'crowded-category': 'Crowded market may push toward consolidation',
+        'shared-investors-with-acquired': 'Shares investors with recently acquired companies',
+        'critical-runway': 'Critical runway — estimated under 6 months of funding',
+        'low-runway': 'Low runway — estimated under 12 months of funding',
+        'leadership-transition': 'Interim/acting leadership signals instability',
+        'founder-departure': 'Founder or CEO departure detected in recent news',
+        'no-ceo-listed': 'No CEO listed — potential leadership vacuum',
+        'ip-acquisition-target': 'Patent-rich but revenue-poor — IP acquisition target',
+        'ai-patent-portfolio': 'Significant AI patent portfolio attractive to acquirers',
+        'single-customer-risk': 'Single customer dependency increases acquisition pressure',
+        'customer-concentration': 'Concentrated customer base raises exit pressure',
+        'valuation-compressed': 'Valuation compression — trading below capital invested',
+        'hot-acquirers': 'Named acquirers are actively deal-making in AI',
+        'active-acquirers': 'Potential acquirers showing M&A appetite',
+        'high-regulatory-pressure': 'Heavy regulatory burden may favor acquisition by larger player',
+        'regulatory-exposure': 'Regulatory exposure in high-scrutiny sector',
+        'github-activity-decline': 'GitHub activity declined — possible engineering slowdown',
+        'ma-news-signal': 'Recent news mentions acquisition or merger activity',
+        'negative-press': 'Negative news coverage dominates recent headlines',
+        'mixed-press': 'Mixed news sentiment with some negative signals',
+        'investor-exit-pressure': 'Investors actively exiting portfolio positions',
+        'investor-exit-signal': 'Investor portfolio shows exit pattern',
+        'low-web-presence': 'Low web traffic despite significant funding',
+        'likely-acquirer': 'More likely to be an acquirer than a target',
+        'too-big-for-easy-acquisition': 'Large scale makes acquisition less likely',
+        'positive-momentum': 'Strong positive news momentum',
+        'recently-funded': 'Recently funded — not under exit pressure',
+        'strong-web-presence': 'Strong web traffic indicates healthy adoption',
+    };
+    const factors = c.maLikelihoodFactors || [];
+    const explained = factors
+        .filter(f => !['likely-acquirer', 'too-big', 'well-funded'].includes(f))
+        .map(f => factorMap[f] || f.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()))
+        .slice(0, 2);
+    if (explained.length > 0) return explained.join('. ') + '.';
+    return 'Composite signal score from funding, growth, and market factors.';
+}
+
+function renderPredictiveMA(company) {
+    const segmentLabel = getCategoryLabel(company.category, true);
+    const segmentCompanies = companies.filter(c => c.category === company.category && c.status !== 'acquired' && c.status !== 'closed');
+    const scored = segmentCompanies.filter(c => c.maLikelihood && c.maLikelihood > 0)
+        .sort((a, b) => b.maLikelihood - a.maLikelihood);
+
+    if (scored.length === 0) {
+        return `<div class="pma-empty">No M&A signals detected for companies in the ${segmentLabel} segment.</div>`;
+    }
+
+    const top5 = scored.slice(0, 5);
+    const currentRank = scored.findIndex(c => c.id === company.id);
+    const negativeTags = ['likely-acquirer', 'too-big', 'well-funded'];
+    const acquired = companies.filter(c => c.category === company.category && c.status === 'acquired').length;
+    const highRisk = scored.filter(c => c.maLikelihood >= 50).length;
+    const medRisk = scored.filter(c => c.maLikelihood >= 30 && c.maLikelihood < 50).length;
+
+    const scoreColor = (s) => s >= 60 ? '#ef4444' : s >= 40 ? '#f97316' : s >= 25 ? '#eab308' : '#22c55e';
+
+    const cards = top5.map((c, i) => {
+        const isCurrent = c.id === company.id;
+        const factors = (c.maLikelihoodFactors || []).filter(f => !negativeTags.includes(f));
+        const reasoning = buildMAReasoning(c);
+        const acquirerText = c.acquirers ? c.acquirers : '';
+        const color = scoreColor(c.maLikelihood);
+
+        return `<div class="pma-card${isCurrent ? ' pma-current' : ''}" onclick="closeDetail();openDetail(companies.find(x=>x.id===${c.id}))">
+            <div class="pma-card-header">
+                <div class="pma-rank">${i + 1}</div>
+                <div class="pma-name">${c.name}${isCurrent ? '<small>(this company)</small>' : ''}</div>
+                <div class="pma-score" style="color:${color}">${c.maLikelihood}/100</div>
+            </div>
+            <div class="pma-score-bar"><div class="pma-score-fill" style="width:${c.maLikelihood}%;background:${color}"></div></div>
+            ${factors.length > 0 ? `<div class="pma-factor-tags">${factors.slice(0, 4).map(f => `<span class="pma-factor-tag">${f.replace(/-/g, ' ')}</span>`).join('')}</div>` : ''}
+            <div class="pma-why">${reasoning}</div>
+            ${acquirerText ? `<div class="pma-acquirers">Likely acquirers: ${acquirerText}</div>` : ''}
+        </div>`;
+    }).join('');
+
+    let notInTop5 = '';
+    if (currentRank >= 5) {
+        notInTop5 = `<div class="pma-not-ranked"><strong>${company.name}</strong> ranks #${currentRank + 1} of ${scored.length} with score <strong>${company.maLikelihood}/100</strong></div>`;
+    } else if (currentRank === -1 && (!company.maLikelihood || company.maLikelihood === 0)) {
+        notInTop5 = `<div class="pma-not-ranked">No M&A signals detected for <strong>${company.name}</strong></div>`;
+    }
+
+    return `
+        <div class="pma-segment-header">
+            <h3>${segmentLabel} — Top M&A Targets</h3>
+            <div class="pma-subtitle">Ranked by acquisition likelihood score based on funding, growth, and market signals</div>
+        </div>
+        ${cards}
+        ${notInTop5}
+        <div class="pma-footer">
+            <span class="pma-footer-stat" style="color:#ef4444"><strong>${highRisk}</strong> High Risk (50+)</span>
+            <span class="pma-footer-stat" style="color:#f97316"><strong>${medRisk}</strong> Medium (30-49)</span>
+            <span class="pma-footer-stat" style="color:var(--gold)"><strong>${acquired}</strong> Already Acquired</span>
+        </div>
+        <div class="pma-claude-section" id="pma-claude-container">
+            <div class="pma-ai-badge">AI Analysis</div>
+            <div id="pma-claude-content">
+                <div class="pma-loading">
+                    Generating M&A intelligence…
+                    <div class="pma-dot-pulse"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// ========== CLAUDE M&A ANALYSIS ==========
+const MA_API_URL = 'https://web-production-08a17.up.railway.app/api/ma-analysis';
+const MA_API_SECRET = 'aibook-ma-2024';
+
+function buildMAPayload(top5, segmentLabel, currentName) {
+    return {
+        segment: segmentLabel,
+        companies: top5.map(c => ({
+            name: c.name,
+            product: c.product || '',
+            funding: c.funding || '',
+            founded: c.founded || '',
+            hq: c.hq || '',
+            employees: c.employees || '',
+            maLikelihood: c.maLikelihood || 0,
+            factors: c.maLikelihoodFactors || [],
+            acquirers: c.acquirers || '',
+            github_total_stars: c.github_total_stars || 0,
+            news_sentiment: c.news_sentiment || '',
+            description: (c.description || '').slice(0, 100),
+            category: c.category || '',
+            status: c.status || ''
+        }))
+    };
+}
+
+async function fetchMAAnalysis(company) {
+    const container = document.getElementById('pma-claude-content');
+    if (!container) return;
+
+    const segmentLabel = getCategoryLabel(company.category, true);
+    const cacheKey = 'ma_analysis_' + company.category;
+
+    // Check sessionStorage cache (1hr TTL)
+    try {
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.ts < 3600000) {
+                renderClaudeAnalysis(parsed.data, company);
+                return;
+            }
+            sessionStorage.removeItem(cacheKey);
+        }
+    } catch (e) { /* ignore parse errors */ }
+
+    // Get top 5 for this segment
+    const segmentCompanies = companies.filter(c => c.category === company.category && c.status !== 'acquired' && c.status !== 'closed');
+    const scored = segmentCompanies.filter(c => c.maLikelihood && c.maLikelihood > 0)
+        .sort((a, b) => b.maLikelihood - a.maLikelihood);
+    const top5 = scored.slice(0, 5);
+
+    if (top5.length === 0) {
+        container.innerHTML = '<div class="pma-ai-error">No scored companies available for AI analysis.</div>';
+        return;
+    }
+
+    const payload = buildMAPayload(top5, segmentLabel, company.name);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
+    try {
+        const resp = await fetch(MA_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-MA-Secret': MA_API_SECRET
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+        });
+        clearTimeout(timeout);
+
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+
+        // Cache in sessionStorage
+        try {
+            sessionStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() }));
+        } catch (e) { /* storage full */ }
+
+        renderClaudeAnalysis(data, company);
+    } catch (err) {
+        clearTimeout(timeout);
+        console.warn('[MA Analysis]', err.message);
+        container.innerHTML = '<div class="pma-ai-error">AI analysis unavailable — static scores shown above.</div>';
+    }
+}
+
+function renderClaudeAnalysis(data, company) {
+    const container = document.getElementById('pma-claude-content');
+    if (!container) return;
+
+    const verdictLabel = {
+        'LIKELY_TARGET': 'Likely Target',
+        'WATCH_LIST': 'Watch List',
+        'ACQUI_HIRE': 'Acqui-Hire',
+        'DISTRESSED_EXIT': 'Distressed Exit',
+        'STRATEGIC_MERGER': 'Strategic Merger'
+    };
+
+    let html = '';
+    if (data.segmentInsight) {
+        html += `<div class="pma-segment-insight">${data.segmentInsight}</div>`;
+    }
+
+    if (data.companies && Array.isArray(data.companies)) {
+        data.companies.forEach(c => {
+            const signalClass = c.marketSignal === 'hot' ? 'pma-signal-hot' : c.marketSignal === 'warm' ? 'pma-signal-warm' : 'pma-signal-cool';
+            const confPct = Math.round((c.confidence || 0) * 100);
+            html += `
+                <div class="pma-ai-company">
+                    <div class="pma-ai-company-header">
+                        <span class="pma-name">${c.name}</span>
+                        <span class="pma-verdict pma-verdict-${c.verdict}">${verdictLabel[c.verdict] || c.verdict}</span>
+                        ${c.marketSignal ? `<span class="pma-market-signal ${signalClass}">${c.marketSignal}</span>` : ''}
+                        <span class="pma-confidence">${confPct}%</span>
+                    </div>
+                    <div class="pma-ai-summary">${c.oneLineSummary || ''}</div>
+                    ${c.dealScenario ? `<details class="pma-deal-row"><summary>Deal Scenario</summary>${c.dealScenario}</details>` : ''}
+                    ${c.catalyst ? `<div class="pma-catalyst">${c.catalyst}</div>` : ''}
+                    ${c.timeframe ? `<span class="pma-timeframe">${c.timeframe}</span>` : ''}
+                    ${c.contrarian ? `<div class="pma-contrarian">${c.contrarian}</div>` : ''}
+                </div>`;
+        });
+    }
+
+    container.innerHTML = html || '<div class="pma-ai-error">No analysis data returned.</div>';
+}
+
 function getSimilarCompanies(company, count = 3) {
     const funding = parseFundingAmount(company.funding);
     return companies
@@ -5334,7 +5888,9 @@ function renderSimilarCompanies(company) {
         </div>`;
 }
 
+let _currentDetailCompany = null;
 function openDetail(company) {
+    _currentDetailCompany = company;
     const modal = document.getElementById('detail-modal');
     const content = document.getElementById('detail-content');
 
@@ -5449,22 +6005,25 @@ function openDetail(company) {
         if (maIntel.length === 0) maIntel.push('Early-stage, building strategic value');
     }
 
-    const successFactors = [];
-    if (company.secretSauce) successFactors.push(company.secretSauce.split('+')[0].trim());
-    if (company.ceo) successFactors.push(`Experienced leadership (${company.ceo})`);
-    if (funding > 100) successFactors.push('Strong funding runway');
-    if (company.rating >= 4) successFactors.push('High market momentum');
-    if (company.category === 'enterprise-ai') successFactors.push('Enterprise revenue stability');
-    if (successFactors.length < 3) successFactors.push('Growing market opportunity');
+    const successFactors = company.successFactors && company.successFactors.length > 0 ? company.successFactors : (() => {
+        const sf = [];
+        if (company.secretSauce) sf.push(company.secretSauce.split('+')[0].trim());
+        if (company.ceo) sf.push(`Experienced leadership (${company.ceo})`);
+        if (funding > 100) sf.push('Strong funding runway');
+        if (company.rating >= 4) sf.push('High market momentum');
+        if (sf.length < 3) sf.push('Growing market opportunity');
+        return sf;
+    })();
 
-    const risks = [];
-    if (company.category === 'foundation-models') risks.push('Intense competition from OpenAI/Google');
-    if (funding < 50) risks.push('Limited runway for scaling');
-    if (company.employees && company.employees.includes('50-')) risks.push('Team scaling challenges');
-    if (company.category === 'consumer-ai') risks.push('User acquisition costs');
-    if (company.category === 'ai-chips') risks.push('Hardware commoditization risk');
-    risks.push('Regulatory uncertainty in AI');
-    if (risks.length < 3) risks.push('Market timing dependency');
+    const risks = company.risks && company.risks.length > 0 ? company.risks : (() => {
+        const r = [];
+        if (company.category === 'foundation-models') r.push('Intense competition from OpenAI/Google');
+        if (funding < 50) r.push('Limited runway for scaling');
+        if (company.category === 'consumer-ai') r.push('User acquisition costs');
+        r.push('Regulatory uncertainty in AI');
+        if (r.length < 3) r.push('Market timing dependency');
+        return r;
+    })();
 
     content.innerHTML = `
         <div class="detail-header">
@@ -5485,6 +6044,7 @@ function openDetail(company) {
             <div class="detail-tab active" onclick="switchDetailTab('overview', this)">Overview</div>
             <div class="detail-tab" onclick="switchDetailTab('signals', this)">Signals</div>
             <div class="detail-tab" onclick="switchDetailTab('analysis', this)">Analysis</div>
+            <div class="detail-tab" onclick="switchDetailTab('predictive-ma', this)">Predictive M&A</div>
         </div>
 
         <!-- OVERVIEW TAB -->
@@ -5577,6 +6137,11 @@ function openDetail(company) {
             </div>
         </div>
 
+        <!-- PREDICTIVE M&A TAB -->
+        <div class="detail-tab-panel" id="detail-panel-predictive-ma">
+            <div class="detail-body">${renderPredictiveMA(company)}</div>
+        </div>
+
         <div class="card-links" style="padding:0 24px 8px;">
             ${company.website ? `<a href="https://${company.website}" target="_blank" class="link-circle" title="${company.website}"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>` : ''}
             <a href="https://linkedin.com/company/${company.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}" target="_blank" class="link-circle" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
@@ -5601,6 +6166,10 @@ function switchDetailTab(tab, el) {
     document.querySelectorAll('.detail-tab-panel').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     document.getElementById('detail-panel-' + tab).classList.add('active');
+
+    if (tab === 'predictive-ma' && _currentDetailCompany) {
+        fetchMAAnalysis(_currentDetailCompany);
+    }
 }
 
 function shareCompany(id, evt) {

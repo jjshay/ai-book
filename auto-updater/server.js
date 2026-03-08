@@ -6,13 +6,102 @@ const { enrichGitHubIncremental, loadCompanies, saveCompaniesLocal } = require('
 const { refreshNewsRSS } = require('./enrich-news');
 const { enrichAll: enrichSignals } = require('./enrich-signals');
 
+const Anthropic = require('@anthropic-ai/sdk');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Store recent update logs in memory
 const updateLogs = [];
 
+// M&A analysis cache (4hr TTL, keyed by segment)
+const maCache = new Map();
+const MA_CACHE_TTL = 4 * 60 * 60 * 1000;
+
 app.use(express.json());
+
+// CORS for M&A analysis endpoint
+const ALLOWED_ORIGINS = ['https://jjshay.github.io', 'https://jjshay.com', 'http://localhost'];
+app.use('/api/ma-analysis', (req, res, next) => {
+  const origin = req.headers.origin || '';
+  const allowed = ALLOWED_ORIGINS.find(o => origin.startsWith(o));
+  if (allowed) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-MA-Secret');
+    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  }
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
+// POST /api/ma-analysis — Claude-powered M&A analysis
+app.post('/api/ma-analysis', async (req, res) => {
+  // Auth check
+  const secret = req.headers['x-ma-secret'];
+  if (process.env.MA_API_SECRET && secret !== process.env.MA_API_SECRET) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const { segment, companies: companyProfiles } = req.body;
+  if (!segment || !companyProfiles || !Array.isArray(companyProfiles)) {
+    return res.status(400).json({ error: 'Missing segment or companies array' });
+  }
+
+  // Check cache
+  const cacheKey = segment.toLowerCase().trim();
+  const cached = maCache.get(cacheKey);
+  if (cached && Date.now() - cached.ts < MA_CACHE_TTL) {
+    return res.json({ ...cached.data, cached: true });
+  }
+
+  try {
+    const anthropic = new Anthropic();
+    const companyList = companyProfiles.map(c =>
+      `- ${c.name}: ${c.product || 'N/A'}, funding=${c.funding || 'N/A'}, score=${c.maLikelihood}/100, factors=[${(c.factors || []).join(',')}], founded=${c.founded || '?'}, hq=${c.hq || '?'}, employees=${c.employees || '?'}, acquirers=${c.acquirers || 'none'}${c.github_total_stars ? ', ghStars=' + c.github_total_stars : ''}${c.news_sentiment ? ', newsSentiment=' + c.news_sentiment : ''}`
+    ).join('\n');
+
+    const prompt = `You are an M&A analyst. Analyze these top acquisition targets in the "${segment}" AI segment.
+
+${companyList}
+
+Return ONLY valid JSON (no markdown, no backticks):
+{
+  "segmentInsight": "1-2 sentence insight about M&A activity in this segment",
+  "companies": [
+    {
+      "name": "exact company name",
+      "verdict": "LIKELY_TARGET|WATCH_LIST|ACQUI_HIRE|DISTRESSED_EXIT|STRATEGIC_MERGER",
+      "confidence": 0.0-1.0,
+      "oneLineSummary": "why this company is an M&A target",
+      "dealScenario": "most likely acquisition scenario in 2-3 sentences",
+      "catalyst": "what event could trigger a deal",
+      "timeframe": "e.g. 6-12 months, 1-2 years",
+      "contrarian": "one reason this might NOT get acquired",
+      "marketSignal": "hot|warm|cool"
+    }
+  ]
+}
+
+Be specific and analytical. Use real market dynamics. Match company names exactly.`;
+
+    const message = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1500,
+      messages: [{ role: 'user', content: prompt }]
+    });
+
+    const text = message.content[0].text.trim();
+    const data = JSON.parse(text);
+
+    // Cache result
+    maCache.set(cacheKey, { data, ts: Date.now() });
+
+    res.json(data);
+  } catch (error) {
+    console.error('[MA Analysis] Error:', error.message);
+    res.status(500).json({ error: 'Analysis failed', detail: error.message });
+  }
+});
 
 // Health check
 app.get('/', (req, res) => {
