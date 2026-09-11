@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "name": "ai-book",
+  "title": "AI Book",
+  "category": "AI and market intelligence",
+  "summary": "Company research needs a browsable shortlist instead of scattered notes and disconnected market news.",
+  "status": "Source available; runtime not revalidated in this documentation review",
+  "visibility": "public",
+  "reviewed_on": "2026-09-11",
+  "reviewed_commit": "146f5679b802dcb3b869371c8b9d41d0cfccbf58",
+  "architecture": "Company JSON \u2192 mobile directory and swipe cards \u2192 filters and saved watchlist \u2192 export.",
+  "evidence": [
+    {
+      "path": "aibook.html",
+      "role": "Implementation component supporting the data flow described above."
+    },
+    {
+      "path": "auto-updater/run-update.js",
+      "role": "Implementation component supporting the data flow described above."
+    }
+  ],
+  "validation": "Repository tree and referenced source reviewed. Existing application tests, hosted deployments, paid providers, and external mutations were not re-run in this documentation review.",
+  "limitations": "A static data-driven interface is portable and easy to distribute; freshness and provenance depend on the enrichment pipeline.",
+  "next_improvement": "Separate source-backed facts from editorial scores and attach observation dates to company fields.",
+  "related_repositories": [
+    "TradeWatch",
+    "ai-book-updater",
+    "intelligence-engine",
+    "jj-market-alert"
+  ]
+}

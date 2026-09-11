@@ -1,5 +1,10 @@
 # AI Book - The Pocket Guide to 623 AI Companies
 
+<!-- portfolio-navigation:start -->
+[Project brief](docs/PROJECT_BRIEF.md) · [Structured project record](project.json) · [Portfolio](https://github.com/jjshay)
+
+<!-- portfolio-navigation:end -->
+
 **Live App:** [jjshay.github.io/ai-book](https://jjshay.github.io/ai-book/)
 
 A mobile-first intelligence tracker for the AI industry. Swipe through 623 private AI companies, save your watchlist, and export it — all from your phone.
